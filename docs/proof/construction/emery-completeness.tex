@@ -1,0 +1,709 @@
+\subsection{Good integrators and comparison of topologies}
+\label{sec:emery-completeness}
+\begin{lemma}[Locally FV processes are good integrators]
+Let $A$ be a strongly adapted right-continuous real process whose paths
+all have local finite variation. Under a finite measure it is an
+elementary good integrator.
+\end{lemma}
+\begin{proof}
+Let predictable elementary integrands $H_n$ tend uniformly to zero over
+all times and sample points. Fix $T$ and stop $A$ there, giving paths of
+global finite variation without changing the elementary gain at $T$.
+Pathwise the gain has the Stieltjes representation
+\[
+ (H_n\cdot A)_T=\int1_{(0,T]}(t)H_n(t)\,dA^T_t.
+\]
+The integrands tend pointwise to zero and eventually have absolute value
+at most one. The pathwise total-variation measure is finite, so dominated
+convergence for the vector measure makes the gain tend to zero on each
+sample path. Strong adaptation and right continuity imply progressive
+measurability, hence measurability of the elementary gains. Under finite
+measure their almost-sure convergence implies convergence in probability.
+No bound on the number of strategy blocks or on expected variation is used.
+\end{proof}
+Linearity of elementary gains reduces the decomposable case to martingales,
+and indistinguishability transfers the result even to nonregular raw targets.
+\begin{lemma}[Martingale integral estimate]
+For a right-continuous true martingale $M$ with $M_T\in L^2$, and elementary
+predictable $H$ with everywhere bound $|H|\leq B$, $B\geq0$,
+\[
+ \|(H\cdot M)_T\|_2\leq B\sqrt{E(M_T-M_0)^2}.
+\]
+A right-continuous martingale square integrable at each time is consequently
+a good integrator.
+\end{lemma}
+\begin{proof}
+Stop at $T$ and take chronological factorial-grid left-endpoint integrals.
+Discrete isometry bounds their squared expectation by $B^2E(M_T-M_0)^2$.
+The grids cover the stopped terminal horizon, and right continuity gives
+pathwise convergence to the elementary gain. Fatou for the $L^2$ norm passes
+the bound to the limit. For uniformly vanishing $H_n$, write
+$C=\sqrt{E(M_T-M_0)^2}$ and eventually use
+$|H_n|\leq\varepsilon/(C+1)$ to get norm at most $\varepsilon$.
+Measurability and $L^2$ convergence imply convergence in probability.
+No block count or coefficient absolute-sum bound occurs.
+\end{proof}
+\begin{lemma}[Removing localization from good-integrator behavior]
+If strongly adapted right-continuous $S$ under a finite measure has
+$\tau_r\to\infty$ almost surely and every $S^{\tau_r}$ is a good integrator,
+then so is $S$. Monotonicity of the stops is unnecessary.
+\end{lemma}
+\begin{proof}
+For fixed $T$, bounded convergence gives $P(\tau_r\leq T)\to0$.
+On $\{\tau_r>T\}$ all elementary evaluation times lie before the stop,
+so the gains agree. Therefore
+\[
+ P(|(H_n\cdot S)_T|\geq\varepsilon)\leq P(\tau_r\leq T)
+ +P(|(H_n\cdot S^{\tau_r})_T|\geq\varepsilon).
+\]
+First choose $r$, then send $n$ to infinity.
+\end{proof}
+\begin{proposition}[Decomposable processes are good integrators]
+Under the usual conditions a zero-start process with admissible decomposition
+$X=N+A$ is an elementary good integrator.
+\end{proposition}
+\begin{proof}
+Apply DDY with threshold one: $N=L+Q$, $|\Delta L|\leq2$ and $Q$ locally FV.
+Common localization makes $L^{\tau_r}$ a deterministically bounded true
+martingale. The $L^2$ estimate and removal of localization give good-integrator
+behavior for $L$. Add the locally FV $Q+A$ and transfer to the raw target by
+indistinguishability. Local square integrability of $N$ itself is not assumed.
+\end{proof}
+\begin{lemma}[Finite stopping preserves good integrators]
+If $S$ is a good integrator and $\tau$ finite-valued, so is $S^\tau$.
+\end{lemma}
+\begin{proof}
+Stop an elementary strategy by subtracting its predictable post-stop tail.
+Its integrand is $1_{\{t\leq\tau\}}H_t$, preserving uniform convergence to
+zero. Commuting minima in each finite summand gives
+$(H\cdot S^\tau)_T=((1_{\{t\leq\tau\}}H)\cdot S)_T$.
+Transfer measurability and convergence by this identity.
+\end{proof}
+\begin{proposition}[Stopped decomposition of a bounded-jump good integrator]
+Let $X$ be zero-start, strongly adapted, c\`adl\`ag and a good integrator,
+with $|\Delta X|\leq c$ outside one common null set, $c\geq0$.
+The exhaustive stops
+
+\[
+ \sigma_n=\inf\{t:|X_t|>n+1\}\wedge(n+1)
+\]
+ make $X^{\sigma_n}$ bounded
+sources with bound $n+1+c$. Theorem~\ref{thm:bounded-source} therefore
+supplies a global special decomposition for every coordinate.
+\end{proposition}
+\begin{proof}
+Compact boundedness gives exhaustion. The pre-passage bound and stopping
+jump give the closed bound. Adaptation and c\`adl\`ag regularity survive
+stopping, as does good-integrator behavior by the preceding lemma.
+These supply all inputs to Theorem~\ref{thm:bounded-source}.
+\end{proof}
+\begin{proposition}[Removing large jumps from a general good integrator]
+For zero-start strongly adapted c\`adl\`ag good integrator $X$ and $c>0$, set
+\[
+ J_t=\sum_{0<s\leq t}\Delta X_s1_{\{|\Delta X_s|>c\}},\qquad Y=X-J.
+\]
+Then $J$ is zero-start strongly adapted c\`adl\`ag locally FV, and $Y$ is
+such a good integrator with $|\Delta Y_t|\leq c$ at every path and time.
+Thus the preceding stopped-decomposition proposition applies to $Y$.
+\end{proposition}
+\begin{proof}
+The finite-horizon sums $J^T$ agree before smaller horizons.
+Define $J_t=J^t_t$; fixed-time adaptation follows from that coordinate,
+right continuity from agreement on a larger horizon, and left limits and
+local BV from compact-interval agreement. At $t>0$ the residual agrees,
+including its left limit, with the finite-horizon residual at horizon $t$,
+so inherits the jump bound; at zero use the convention of zero jump.
+Subtract the locally FV good integrator $J$ from $X$, using linearity and
+stability of convergence in probability. No compensation of $J$ is needed,
+since the final FV component need only be adapted.
+\end{proof}
+\begin{theorem}[Decomposition of regular zero-start good integrators]\label{thm:regular-gi-decomposition}
+Under the usual conditions, a zero-start strongly adapted c\`adl\`ag $X$
+is an elementary good integrator if and only if it has a decomposition
+$X=N+B$ with zero-start c\`adl\`ag local martingale $N$ and zero-start
+strongly adapted c\`adl\`ag locally FV $B$.
+\end{theorem}
+\begin{proof}
+One direction was proved above. For the other remove jumps larger than one,
+writing $X=Y+J$. Decompose the bounded stopped sources
+$Y^{\sigma_n}=M^n+A^n$ and normalize
+\[
+ \widehat M^n=(M^n-M^n_0)^{\sigma_n},\qquad
+ \widehat A^n=(A^n-A^n_0)^{\sigma_n}.
+\]
+Local martingales can be centered without global integrability of the initial
+value. Constant extension of a predictable initial value and finite stopping
+preserve predictability. Each stopped FV path has global bounded variation.
+Zero start of the source and idempotence of stopping preserve the decomposition.
+Stop two coordinates at $\rho=\sigma_n\wedge\sigma_m$.
+Their FV difference is indistinguishable from a local-martingale difference,
+and is zero-start predictable right-continuous globally BV. Rigidity makes
+it zero, giving compatibility of both components.
+Glue the same martingale and predictable FV families. Exhaustion gives
+$Y=M+A$ on a common full-measure set. The martingale component is strongly adapted and c\`adl\`ag; the other
+component is predictable, right-continuous and locally of finite variation.
+Local finite variation gives its left limits. Recenter after gluing and set
+\[
+ N=M-M_0,\qquad B=A-A_0+J.
+\]
+Since $M_0+A_0=0$ almost surely, $X=N+B$.
+The final $B$ is adapted locally FV; predictability is not asserted.
+\end{proof}
+
+\begin{proposition}[Passing uniform Cauchy estimates to a ucp limit]
+Let $X_n$ be strongly progressively measurable and right-continuous, and
+let $X_n\to Y$ ucp. For a unit-bounded predictable elementary test $J$, put
+\[
+ \bar e_T^J(U,V)=E[1\wedge\sup_{t\leq T}|(J\cdot U)_t-(J\cdot V)_t|].
+\]
+Suppose that, for every $T,\varepsilon>0$, there is $N$ such that
+$\bar e_T^J(X_m,X_n)\leq\varepsilon$ for all $m,n\geq N$ and all $J$.
+Then $\sup_J\bar e_T^J(X_n,Y)\to0$. Conversely, this uniform convergence implies
+the Cauchy condition.
+\end{proposition}
+\begin{proof}
+For fixed $J$, the finite-sum estimate bounds the capped maximal test error
+by the capped maximal process error multiplied by
+\[
+ \max\{8\operatorname{length}(J),1\}.
+\] This constant is used only for a fixed test. The ucp convergence
+and boundedness of capped errors in $[0,1]$ give $\bar e_T^J(X_m,Y)\to0$.
+
+For $T,\varepsilon$, choose the Cauchy cutoff $N$ first, then fix $n\geq N$
+and $J$. For all $m\geq N$, the triangle inequality gives
+\[
+ \bar e_T^J(X_n,Y)\leq \bar e_T^J(X_m,X_n)+\bar e_T^J(X_m,Y)
+ \leq\varepsilon+\bar e_T^J(X_m,Y).
+\]
+Send $m\to\infty$ to get $\bar e_T^J(X_n,Y)\leq\varepsilon$.
+Only now take the supremum over $J$, since $N$ was chosen independently
+of the test. The converse uses the triangle inequality through $Y$ and
+an error bound $\varepsilon/2$ for each of its two terms.
+\end{proof}
+No closedness of a fixed source's integral range is used. We construct the
+regular limit and its good-integrator behavior next.
+\begin{proposition}[A fast subsequence on increasing horizons]
+Suppose strongly progressively measurable right-continuous processes $X_n$
+satisfy the uniform elementary-test Cauchy condition and
+$X_n(0)=X_0(0)$ almost surely for every $n$. There is a strictly increasing
+$f$ such that, almost surely, for all sufficiently large $k$,
+\[
+ \sup_{t\leq k+1}|X_{f(k+1)}(t)-X_{f(k)}(t)|\leq2^{-k-1}.
+\]
+Thus on each finite interval the sufficiently late adjacent suprema are
+summable pathwise.
+\end{proposition}
+\begin{proof}
+The unit test $1_{(0,T]}$ integrates to $X(t)-X(0)$ for $t\leq T$.
+The common initial value therefore turns the uniform test estimate into
+\[
+ E[1\wedge\sup_{t\leq T}|X_m(t)-X_n(t)|]\leq\varepsilon
+\]
+for all sufficiently large $m,n$. Put $q_k=2^{-k-1}$ and let $N_k$ be the
+cutoff at $T=k+1$ and error $q_k^2$. Set $f(0)=N_0$ and
+$f(k+1)=\max(f(k)+1,N_{k+1})$.
+For the consecutive capped maximum $E_k$, we have $EE_k\leq q_k^2$.
+Markov gives $P(E_k\geq q_k)\leq q_k$.
+Since $\sum_kq_k<\infty$, Borel--Cantelli gives $E_k<q_k$ eventually,
+outside one null set. As $q_k<1$, the cap can be removed.
+Right continuity makes the stopped factorial grid detect the entire interval
+supremum, so the estimate holds simultaneously for all $t\leq k+1$.
+\end{proof}
+\begin{proposition}[Regular limits of test-uniform Cauchy sequences]
+Assume the usual conditions. If strongly progressively measurable
+c\`adl\`ag processes $X_n$ are Cauchy uniformly over elementary tests and $X_n(0)=X_0(0)$ almost surely for every $n$, there is a
+strongly progressively measurable c\`adl\`ag process $Y$ such that
+\[
+ Y(0)=X_0(0)\quad\text{a.s.},\qquad
+ \sup_J\bar e_T^J(X_n,Y)\longrightarrow0\quad(T<\infty).
+\]
+The entire sequence also converges to $Y$ ucp.
+\end{proposition}
+\begin{proof}
+Take the preceding fast subsequence. On each finite interval, outside one
+common null set, sufficiently late adjacent suprema are bounded by a
+summable numerical sequence. The triangle inequality and series-tail
+bound give locally uniform Cauchy paths. Completeness of the reals gives
+a limit $Z(t)$ at every time, with locally uniform convergence.
+Use a measurable limit selection defined even on nonconvergent sample
+points. Then $Z(t)$ is measurable with respect to the information at $t$,
+so $Z$ is strongly adapted.
+
+Stopping paths at a finite horizon reduces this to all-time uniform
+convergence. Uniform limits preserve right continuity and left limits,
+so $Z$ is almost surely c\`adl\`ag. The usual conditions put the exceptional
+set in the time-zero sigma algebra. Replacing its paths by zero gives
+strongly adapted, everywhere c\`adl\`ag $Y$. Adapted right continuity
+implies strong progressive measurability. Locally uniform convergence
+survives outside the common null set, and convergence at time zero gives
+the asserted initial value.
+
+The subsequence's local uniform convergence gives convergence in probability
+of every capped maximal error. In the Cauchy-to-limit proof let the
+auxiliary index $m$ run through $f(m)$. Since $f(m)\to\infty$, the same
+Cauchy cutoff applies. Take the fixed-test limit first to obtain uniform
+error bounds for the original entire sequence. Thus that sequence
+converges against elementary tests. The common initial value and unit
+test give full-sequence ucp convergence as well.
+\end{proof}
+This construction does not assume the approximants are good integrators or
+use integral-range closedness.
+\begin{proposition}[Good-integrator stability under test-uniform limits]\label{prop:gi-limit}
+Suppose strongly progressively measurable right-continuous $X_n,Y$ satisfy
+$\sup_J\bar e_T^J(X_n,Y)\to0$ for each finite $T$. If every $X_n$ is a good
+integrator, so is $Y$.
+\end{proposition}
+\begin{proof}
+Fix uniformly vanishing predictable elementary integrands $H_k$ and a
+horizon $T$. For arbitrary $\varepsilon,\delta>0$, put
+$a=\min(\varepsilon/2,1)>0$.
+Choose one $m$ such that $\bar e_T^J(X_m,Y)\leq a\delta/4$ for every unit test.
+With this $m$ fixed, good-integrator behavior of $X_m$ gives, eventually,
+\[
+ P(|(H_k\cdot X_m)_T|\geq\varepsilon/2)<\delta/2.
+\]
+On the same tail $|H_k|\leq1$. The capped maximal integral difference
+$E_k$ therefore has $EE_k\leq a\delta/4$, so Markov yields
+$P(E_k\geq a)\leq\delta/4$.
+Right continuity bounds the capped difference at $T$ by $E_k$.
+The triangle inequality gives the event inclusion
+\[
+ \{|(H_k\cdot Y)_T|\geq\varepsilon\}
+ \subseteq\{|(H_k\cdot X_m)_T|\geq\varepsilon/2\}\cup\{E_k\geq a\}.
+\]
+Its probability is less than $\delta$. Since $\delta$ was arbitrary,
+this proves convergence in probability. Measurability of the gain follows
+from strong progressive measurability of $Y$ and its finite-sum formula.
+\end{proof}
+\begin{corollary}[The Cauchy limit remains decomposable]
+Under the usual and filtration sigma-finiteness conditions, a test-uniform
+Cauchy sequence of regular zero-start good integrators has a regular
+zero-start decomposable limit, with full-sequence elementary-test convergence.
+\end{corollary}
+\begin{proof}
+Construct $Y$ as above and set $Z_t=Y_t-Y_0$.
+Centering preserves all elementary increments, regularity, and adaptation.
+Stability makes $Z$ a good integrator; apply its zero-start decomposition
+theorem. The FV component need only be adapted.
+\end{proof}
+\begin{proposition}[Elementary gauges on the same quotient]
+On the indistinguishability quotient $\mathcal S$ of decomposable zero-start
+processes,
+\[
+ e_T([X],[Y])=\sup_J\bar e_T^J(X,Y)
+\]
+ is well-defined.
+Every sequence Cauchy for all finite-horizon gauges has a unique gauge limit
+in $\mathcal S$.
+\end{proposition}
+\begin{proof}
+Indistinguishable sources have identical finite-sum test integrals at every
+time off one null set. Envelopes, integrals, and test suprema are unchanged.
+Raw representatives need not be regular: choose each decomposition's component
+sum, which is zero-start strongly progressive and c\`adl\`ag.
+This preserves the Cauchy condition. Decomposability gives good-integrator
+behavior, so the preceding corollary constructs a limit in the same domain.
+Return to the original representatives and take the quotient.
+For uniqueness use regular zero-start versions, fixed-test uniqueness and
+the unit test to identify increments, then initial values to identify paths.
+\end{proof}
+This construction uses no auxiliary-metric completeness or continuity,
+only identification of its zero-distance relation with indistinguishability.
+\begin{proposition}[A time-weighted elementary metric]
+On the same quotient,
+
+\[
+ d_{\mathcal E}(x,y)=\sum_{n\geq0}2^{-n-1}e_{n+1}(x,y)
+\]
+ is a metric bounded
+by one.
+\end{proposition}
+\begin{proof}
+Regular representatives make test errors integrable and in $[0,1]$.
+Symmetry and triangle pass through integration and the test supremum;
+horizon monotonicity follows from the all-time supremum on each interval.
+The weights sum to one, so the series is finite and has the metric algebraic
+properties. If its value is zero, each positive-weight gauge is zero.
+Horizon monotonicity gives zero at every finite horizon; uniqueness of the
+gauge limit of a constant sequence gives equality of the two quotient points.
+\end{proof}
+\begin{proposition}[Independent completeness of the elementary metric]
+$(\mathcal S,d_{\mathcal E})$ is complete.
+\end{proposition}
+\begin{proof}
+For $T\leq k+1$,
+\[
+ 2^{-k-1}e_T(x_m,x_n)\leq d_{\mathcal E}(x_m,x_n).
+\]
+A metric-Cauchy sequence is therefore Cauchy for every gauge.
+Take its already constructed gauge limit and use dominated convergence
+with majorant $2^{-k-1}$ to obtain metric convergence.
+Neither auxiliary completeness nor closedness of an integral range is used.
+\end{proof}
+\begin{proposition}[The elementary metric and addition]
+The natural real-linear structure on $\mathcal S$ has translation-invariant
+$d_{\mathcal E}$, and subtraction is $2$-Lipschitz for the maximum product metric.
+\end{proposition}
+\begin{proof}
+Linearity in the source makes each test difference invariant under adding
+the same process. Integrate, take suprema, and sum the time weights.
+Symmetry also gives invariance under simultaneous negation. Thus
+\[
+ d_{\mathcal E}(x-y,x'-y')\leq d_{\mathcal E}(x,x')+d_{\mathcal E}(y,y')
+ \leq2\max(d_{\mathcal E}(x,x'),d_{\mathcal E}(y,y')).
+\]
+This gives the compatible additive uniform structure and continuous addition
+and negation.
+\end{proof}
+\begin{proposition}[Fixed scalar multiplication]
+
+\[
+ d_{\mathcal E}(ax,ay)\leq\max(|a|,1)d_{\mathcal E}(x,y)
+\]
+ for every real $a$.
+\end{proposition}
+\begin{proof}
+For positive $a$ use finite-sum linearity and
+$1\wedge(au)\leq\max(a,1)(1\wedge u)$, then integrate, take suprema, and
+sum. Zero is immediate; negative $a$ reduces to positive by negation isometry.
+\end{proof}
+The factor does not tend to zero with $a$; the next estimate handles that case.
+\begin{lemma}[Uniform boundedness of unit-integral maxima]
+For a strongly adapted right-continuous good integrator $S$, right-continuous
+filtration, and finite $T$, the maxima $\sup_{t\leq T}|(H\cdot S)_t|$ over
+all unit-bounded elementary predictable $H$ are bounded in probability.
+\end{lemma}
+\begin{proof}
+The good-integrator property gives boundedness of unit integrals at the
+fixed time $T$. Choose a tail bound $r\geq0$ and put $R=r+1$.
+Let $\tau$ be the first strict absolute passage of $X=H\cdot S$ above $R$.
+It is a stopping time, and if finite then $|X_\tau|\geq R$ by right continuity.
+Stopping $H$ at $\tau\wedge T$ gives another unit strategy $K$.
+If the original maximum exceeds $R$, then $\tau\leq T$ and
+$|(K\cdot S)_T|\geq R>r$. Its fixed-time tail controls the original maximal tail.
+\end{proof}
+\begin{proposition}[Joint scalar continuity for the elementary metric]
+$(\mathcal S,d_{\mathcal E})$ is a complete real topological vector space.
+\end{proposition}
+\begin{proof}
+Fix $x$ and a regular representative $S$, which is a good integrator.
+At horizon $T$ choose $R>0$ making all unit-integral maximal tails at most
+$\varepsilon/2$. If $|a|\leq\varepsilon/(4R)$, the capped scaled maximum $f$
+is at most $\varepsilon/4$ on the event where the unscaled maximum is at
+most $R$. Hence $P(f\geq\varepsilon/2)\leq\varepsilon/2$, and
+$f\leq\varepsilon/2+1_{\{f\geq\varepsilon/2\}}$ gives $Ef\leq\varepsilon$.
+Here the random variable being bounded is
+\[
+ f=1\wedge\sup_{t\leq T}|a(H\cdot S)_t|.
+\]
+The scalar cutoff is test-independent, so $e_T(ax,0)\to0$, and therefore
+the weighted metric tends to zero.
+For $a_n\to a,x_n\to x$, use
+\[
+ d_{\mathcal E}(a_nx_n,ax)\leq
+ \max(|a_n|,1)d_{\mathcal E}(x_n,x)+d_{\mathcal E}((a_n-a)x,0)\to0.
+\]
+Sequential continuity is continuity in metric spaces. Addition and
+completeness were already established.
+\end{proof}
+\begin{proposition}[The auxiliary complete topological vector space]
+The same quotient with auxiliary metric $R$ and its natural real-linear
+operations is a complete metrizable real topological vector space.
+\end{proposition}
+\begin{proof}
+Admissible decompositions are stable under addition, negation, and scaling.
+The triangle inequality gives continuity of addition and
+\[
+ R((X-Y)-(X'-Y'))\leq R(X-X')+R(Y-Y')
+ \leq2\max(R(X-X'),R(Y-Y')),
+\]
+so subtraction is uniformly continuous. Use the earlier scalar-continuity
+lemma. The operations descend to the separated quotient and its quotient
+map is continuous linear. Its equality is indistinguishability, and the
+already proved completeness is for this same metric.
+\end{proof}
+\begin{proposition}[Closed graph between the two topologies]
+The identity $(\mathcal S,d_{\mathcal E})\to(\mathcal S,R)$ has closed graph.
+\end{proposition}
+\begin{proof}
+Suppose $x_n\to y$ in the elementary metric and $x_n\to z$ in the auxiliary
+metric. Choose regular zero-start representatives from decompositions.
+Positive time weights and horizon monotonicity turn elementary-metric
+convergence into every finite-horizon gauge convergence. The unit test and
+common initial values give ucp convergence to $y$. The auxiliary maximal-tail
+estimate gives ucp convergence to $z$. Uniqueness of right-continuous ucp
+limits makes $y,z$ indistinguishable. The product is metrizable, so sequential
+closedness proves closedness of the graph.
+\end{proof}
+\begin{lemma}[Open mapping and closed graph for complete invariant metrics]
+Let $E,G$ be real topological vector spaces with translation-invariant metrics.
+If $E$ is complete and $G$ is Baire, every continuous surjective linear map
+$f:E\to G$ is open. If both are complete, a linear map with closed graph
+is continuous.
+\end{lemma}
+\begin{proof}
+A zero neighborhood $V$ absorbs $E$, giving
+$G=\bigcup_{n\geq0}(n+1)\overline{f(V)}$.
+Baire and the homeomorphism given by nonzero scaling make
+$\overline{f(V)}$ have nonempty interior.
+For any zero neighborhood $U$ choose symmetric $V$ with $V+V\subset U$;
+subtract an interior point to see that $\overline{f(U)}$ is a zero neighborhood.
+For $\varepsilon>0$ choose
+\[
+ 0<\delta_n\leq2^{-n},\qquad
+ B_G(0,\delta_n)\subset
+ \overline{f(B_E(0,(\varepsilon/4)2^{-n}))}.
+\]
+For $d_G(y,0)<\delta_0$, construct successive corrections from $x_0=0$
+with $d_G(f(x_n),y)<\delta_n$ and
+$d_E(x_n,x_{n+1})\leq(\varepsilon/4)2^{-n}$.
+Completeness gives $x_n\to x$ with $d_E(x,0)\leq\varepsilon/2$;
+continuity and vanishing residual give $f(x)=y$. Thus the image of the
+$\varepsilon$-ball contains a zero neighborhood. Translate to obtain openness.
+A closed graph is a complete closed linear subspace of the product.
+Apply openness to its first projection; its continuous inverse followed by
+the second projection is the original map.
+\end{proof}
+\begin{proposition}[From elementary convergence to auxiliary control]\label{prop:topology-localization}
+For decomposable processes, elementary-test convergence $X_n\to X$ implies
+$R(X_n-X)\to0$. For elementary representatives $G_n$ of a realized gain $G$
+over a strongly progressive c\`adl\`ag good-integrator source, one subsequence
+$n_k$ and one exhaustive $\tau_r\leq r+1$ give prefix witnesses for
+$G_{n_k}-G$ with costs $c_{r,k}$ satisfying
+\[
+ \sum_kc_{r,k}\leq6(r+4)<\infty,\qquad c_{r,k}\longrightarrow0.
+\]
+A simultaneous selection for consecutive differences has bound $6(r+5)$.
+Assume the usual conditions and sigma-finite filtration.
+\end{proposition}
+\begin{proof}
+The closed-graph theorem makes the identity from elementary to auxiliary
+topology continuous. Every elementary gain has a regular zero-start
+good-integrator decomposition. Independent elementary completeness constructs
+a decomposable limit, identified with the designated gain by ucp uniqueness.
+Apply the auxiliary subsequence and common-localization theorem.
+For consecutive differences first select
+$\sum_kR(G_{n_k}-G)\leq1$. Triangle gives a difference-cost sum at most $2$;
+apply summable-cost localization without another extraction.
+Realization of the limit as an integral has not been assumed.
+\end{proof}
+This comparison is independent of closedness of a fixed source's integral range.
+\begin{proposition}[One measure for prefix costs and boundary jumps]\label{prop:joint-costs}
+For an everywhere bounded source, one can choose simultaneously an equivalent
+probability $Q$, a subsequence $n_k$, and exhaustive $\tau_r\leq r+1$ so
+that for $Z_k=G_{n_{k+1}}-G_{n_k}$,
+\[
+ \sum_kc_{r,k}\leq6(r+5),\qquad
+ \sum_kE_Q|\Delta Z_k(\tau_r)|<\infty.
+\]
+There is also a measurable $\eta\geq0$ in $L^2(Q)$, defining $Q$ by an
+exponential tilt with bounded density, which bounds $|G_{n_k}-G|$ on
+$[0,k+1]$ simultaneously almost surely. Thus $\xi\in L^2(\mu)$ implies
+$\xi+\eta\in L^2(Q)$.
+\end{proposition}
+\begin{proof}
+Fix $Q$ first from growing-horizon error envelopes. Both auxiliary costs
+and these envelopes' $L^1(Q)$ norms vanish; choose a subsequence whose sum
+is bounded termwise by a geometric sequence. Increasing indices allow
+shrinking the measured horizon to $k+1$, retaining the envelope and sum bound
+one. Consecutive auxiliary costs sum to at most two, giving common stops.
+For fixed $r$ and $k+1\geq r+1$, if $a_k$ is the error envelope then
+
+\[
+ |\Delta Z_k(\tau_r)|\leq2(a_{k+1}+a_k),
+\] with summable expectations.
+The finitely many earlier terms are integrable because the bounded source
+and each row's finite coefficient bound bound its entire gain.
+No further extraction changes the common stops.
+\end{proof}
+
+\paragraph{Comparing prefix witnesses with actual component costs.}
+For the same witnesses define
+$\widehat N_k=(N_k-N_k(0))^{\tau_r}$.
+Intrinsic quadratic variation and reverse Davis give
+\[
+ E_Q\sqrt{[\widehat N_k]_{r+1}}
+ \leq7E_Q\sup_{t\leq r+1}|\widehat N_k(t)|\leq14c_{r,k}.
+\]
+Centering costs at most twice the original maximum; neither bounded jumps
+nor a separately supplied quadratic schedule is needed.
+For a prefix witness $N,A$, set
+\[
+ M=((N-N_0)^\tau)^T,\qquad
+ B=A^{\tau-}-A_0-\Delta N_\tau1_{[\tau,\infty)}.
+\]
+Use the zero-jump convention at $\tau=0$.
+The second component is adapted, zero-start, and globally FV. Their sum
+agrees with the zero-start target before $\tau$; when $\tau=0$ that condition
+is empty. Prefix variation and the boundary jump give $E\Var(B)\leq2c$,
+while the martingale root expectation is at most $14c$.
+Thus the actual J1 decomposition bounds the strict-prefix infimum,
+here denoted $J_\tau(X)$, as follows:
+\[
+ J_\tau(X)\leq16c.
+\]
+Indistinguishability of the exact witness transfers initial values and prefix
+agreement on the same null set. Consequently the same rows have summable
+$J_{\tau_r}(Z_k)$.
+If an integral representation is supplied, Lemma~\ref{lem:canonical-cost}
+and equation~\eqref{eq:actual-closed-cost} give
+\[
+ E\sup_{t\leq T}|M^{\mathrm{actual}}_t-M^{\mathrm{actual}}_0|
+ +E\Var_{[0,T]}A^{\mathrm{actual}}
+ \leq30\bigl(32c+E|\Delta X_\tau|\bigr).
+\]
+This estimate does not itself construct the integral representation and does
+not transfer special certificates unconditionally between measures.
+
+\subsubsection{Constructing actual rows from the same selection.}\label{sec:actual-series}
+Choose the preceding $Q,f,\tau_r$ from the bounded source and elementary
+representatives. An almost-sure bound uniform over time suffices: the finitely
+many initial jump terms can be bounded off that common null set, and the
+bound transfers by $Q\ll\mu$.
+After fixing $Q$, construct the original price's decomposition and completed
+schedule. Each $Z_k$ is the gain of the difference of two elementary strategies,
+whose coefficient absolute-sum bound is the sum of their row bounds.
+Construct its stopped graph directly at $\tau_r$, and stop again at
+$T_r=r+1$. The gain is still $Z_k^{\tau_r}$ and the coefficient is
+\[
+ 1_{(0,\tau_r]}(H^{f(k+1)}-H^{f(k)}).
+\]
+Both components are constant after $T_r$ and the FV component is globally BV.
+These are integral certificates for the original $S$.
+Indistinguishability of the stopped and represented gains allows the
+comparison estimate to apply to these independently constructed certificates.
+For their components $M^{r,k},A^{r,k}$ it yields
+\[
+ \sum_k\left(E_Q\sup_{t\leq T_r}|M^{r,k}_t-M^{r,k}_0|
+ +E_Q\Var_{[0,T_r]}A^{r,k}\right)<\infty.
+\]
+The tilt, density bound, and $L^2(Q)$ error envelope remain part of the same
+selection.
+
+\paragraph{All-time component series.}
+Fix $r$ and center $m_k=M^{r,k}-M^{r,k}_0$, $a_k=A^{r,k}-A^{r,k}_0$.
+The actual rows are restopped elementary realizations retaining martingale
+left limits. Each $m_k$ is c\`adl\`ag and constant after $T_r$, so its
+measurable horizon envelope $g_k$ dominates it for all time, with
+$\sum_kE_Qg_k<\infty$.
+This upgrades each local martingale to a true martingale; the dominated
+series theorem makes
+\[
+ m(t)=\sum_km_k(t)
+\]
+ a true martingale.
+Partial sums converge uniformly over all time almost surely.
+Centering does not change FV, and constancy after $T_r$ gives
+\[
+ \Var_{[0,\infty)}a_k\leq\Var_{[0,T_r]}A^{r,k}.
+\]
+Tonelli makes the variation series finite almost surely, giving a globally
+BV sum $a(t)=\sum_ka_k(t)$ with all-time uniform and variation-distance
+convergence. It is predictable as a pointwise series of predictable components.
+All conclusions concern the actually generated rows of the same selection.
+
+\paragraph{Actual approximants including the first term.}
+Write $G_k=H^{f(k)}\cdot S$. At stage $r$ let $P_{r,0}$ be the directly
+constructed certificate of $G_r^{\tau_r}$ and recursively, in the raw layer,
+
+\[
+ P_{r,n+1}=P_{r,n}+R_{r,r+n}
+\]
+ using the same actual increment rows.
+Telescoping gives coefficient $1_{(0,\tau_r]}H^{f(r+n)}$ and gain
+$G_{r+n}^{\tau_r}$. Transfer realization from its direct elementary certificate
+using coefficient equality and gain indistinguishability; a general actual
+addition calculus is unnecessary. Initial and increment components are zero-start.
+If $c_k$ bounds the $k$th elementary gain, the simultaneous error envelope gives
+\[
+ |G_{r+n}^{\tau_r}(t)|\leq |G_r^{\tau_r}(t)|
+ +|(G_{r+n}-X)^{\tau_r}(t)|+|(G_r-X)^{\tau_r}(t)|
+ \leq c_r+2\eta=:\zeta_r.
+\]
+Here $\tau_r\leq r+1\leq r+n+1$. Thus $\zeta_r\in L^2(Q)$ is a common
+all-time gain envelope for these actual approximants. Neither a new measure
+nor an additional $L^2$ assumption on the designated $X$ is needed.
+
+\paragraph{Regular component limits and the Mémín input.}
+Right continuity and left limits pass through all-time uniform convergence.
+Correct bad paths on time-zero measurable null sets, intersecting the two
+component agreement events. Preserve the martingale property, predictability,
+uniform convergence, and variation-distance convergence.
+Add the initial components to obtain $M_r^\infty,A_r^\infty$; the former is
+an everywhere c\`adl\`ag local martingale and the latter an everywhere
+right-continuous predictable globally BV process. Global BV is asserted at
+this fixed stopped stage only.
+Adjacent raw finite sums differ by exactly the stored increment components.
+Because the FV paths are constant after $T_r$, their canonical Stieltjes
+measure's total variation equals the path variation on $[0,T_r]$.
+This uses the stopped-path theorem, not an auxiliary measure field in a record.
+Every horizon martingale-difference envelope is likewise bounded by the
+$T_r$ envelope. The expected-cost sum and Tonelli therefore make both
+adjacent-difference norm series finite almost surely.
+Retain the stronger selected error bound
+\[
+ \sum_kE_Q\sup_{t\leq k+1}|G_k(t)-X(t)|\leq1.
+\]
+Tonelli makes the envelopes summable pathwise and tending to zero.
+On one full-measure set $G_k(t)\to X(t)$ at all times, hence also at
+$t\wedge\tau_r$. Gain identification and component convergence give
+\[
+ M_r^\infty+A_r^\infty\sim X^{\tau_r}.
+\]
+Together with $\zeta_r$ these supply every Mémín component-data field and
+the stored stopped-gain identification from the source and representatives.
+No new subsequence or measure is selected.
+
+\paragraph{Component identification by stopping and finite addition.}
+For a right-continuous local martingale $M$ with localizers $\rho_n$, put
+$B_n=\{\rho_n>0\}$. The process $1_{B_n}M$ stopped at $\rho_n$ is a
+martingale. Stop further at $\sigma$ and commute the indicator and the two
+stops. The same localizers establish the local property of $M^\sigma$;
+this argument does not require $M_0=0$.
+Finite stopping preserves predictability of a predictable FV component and
+turns local BV into global BV. Thus stop raw gains and both components
+directly, keeping initial values. On a graph coordinate the raw stop and
+the completed strategy have the same gain; uniqueness of centered canonical
+components identifies both parts. Repeat on minimum stops of two graph
+schedules, identifying energy kernels, variation bridges, and completed
+integrals. This supplies finite addition on a common schedule.
+Together with the finite-horizon Stieltjes identifications this constructs
+the needed FV calculus without assuming a general predictable-restriction
+calculus. The intrinsic special terminal model using this addition does not
+require a stopping calculus as input; identifying it with the general market
+is a separate step.
+
+\subsubsection{Direct joint passages and realization of the stopped limit.}\label{sec:joint-realization}
+At fixed outer stage $r$ combine the source completed schedule with all
+martingale passages of $P_{r,k}$ to obtain exhaustive finite-horizon stops
+$\rho_{r,j}$. Construct source prefixes by the direct stopping rule.
+The pre-passage bound and the Corollary~2.4 jump envelope include overshoot
+and give
+\[
+ \|M_{r,k}^{\rho_{r,j}}(T_j)\|_{L^2(Q)}
+ \leq c_j+6\|\zeta_r\|_{L^2(Q)}.
+\]
+The stopped local martingale has an integrable all-time envelope, so is a
+true martingale by dominated convergence.
+The fixed graph's completed coordinate and the directly stopped raw
+components have the same gain. Centered uniqueness identifies the integral
+representation of each approximating component. Apply
+Lemma~\ref{lem:joint-coefficient} with the summable adjacent FV variations
+and the common-coordinate $L^2$ bounds on martingale terminals proved above.
+That lemma first obtains convergence of the full coefficient sequence under
+variation control, then makes forward averages of the same coefficients
+converge in the energy coordinates. One predictable coefficient consequently
+represents both limiting integrals. Agreement with the variation-control
+limit also determines the FV integral on energy-null regions.
+The exhaustive coordinate graph realizes the component-sum limit as an
+actual strategy. Applying this to the same $Q,\tau_r$ component data gives
+an original-price actual strategy $V_r$ with
+\[
+ (V_r\cdot S)\sim_Q X^{\tau_r},\qquad
+ \tau_r\leq r+1,\qquad\tau_r\to\infty\quad Q\text{-a.s.}
+\]
+The left side denotes its stored gain. No new stopping calculus, measure,
+or approximating sequence is an input. These are special certificates at
+each stopped stage under $Q$. Return to the original measure's general graph,
+pasting of stopping intervals, and terminal identification are the separate
+steps already given in Section~\ref{sec:integral-calculus}.

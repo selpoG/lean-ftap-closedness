@@ -1,0 +1,39 @@
+\subsection{Deriving decomposition under an envelope}
+\label{sec:interface-decomposition}
+\begin{proof}[Proof of Theorem~\ref{thm:decomposition-input}]
+Apply Theorem~\ref{thm:regular-gi-decomposition} to $Y-Y_0$, obtaining
+$Y-Y_0=N+D$ with zero-start local martingale $N$ and adapted locally FV $D$.
+That theorem follows from bounded-source decomposition, large-jump removal
+and stopped pasting, independently of integral-range closedness.
+We have $|Y-Y_0|\leq2q$ and $q\in L^2(Q)\subseteq L^1(Q)$.
+
+Fix a finite horizon and first localize so that $N$ is a true martingale.
+Stop further when $|N|$ or $\Var(D)$ first exceeds $r$.
+For the closed stop $\sigma_r$, the pre-stop bounds and
+$\Delta D=\Delta Y-\Delta N$ imply
+\[
+ \Var(D^{\sigma_r})\leq2r+2q+|N_{\sigma_r}|.
+\]
+Optional sampling and $q\in L^1$ make the right side integrable.
+Apply the compensation theorem in Section~\ref{sec:canonical-cost} to this
+process, constant after the fixed horizon. Then
+\[
+ M^{(r)}=N^{\sigma_r}+D^{\sigma_r}-(D^{\sigma_r})^p,
+ \qquad A^{(r)}=(D^{\sigma_r})^p
+\]
+give a special decomposition. A zero-start predictable FV local martingale
+vanishes, so the components agree on overlapping stopped intervals.
+Pathwise boundedness and local finite variation make the stops exhaust each
+horizon. Remove localization and paste over integer horizons to obtain the
+claimed decomposition and uniqueness. Apply Lemma~\ref{lem:explicit-jump-envelope} to the now existing decomposition with envelope $2q$.
+On each fixed $T$, the jumps of $M$ are bounded by an $L^2$ variable $\xi_T$.
+Stop when $|M|$ first exceeds $n$ and at $T$. The closed-stop maximum is
+at most $n+\xi_T$, so this dominated local martingale is a true $L^2$
+martingale. Taking $T=n$ and increasing the levels yields an exhaustive
+sequence by local boundedness of the paths. The jump lemma is proved for
+an already supplied special decomposition using conditional expectation
+and Doob's inequality; its proof does not invoke existence from the present theorem.
+Finally, the good-integrator property is a condition on convergence in
+probability at finite times, preserved by equivalent measures. It is this condition, not the special components, that
+is transferred.
+\end{proof}

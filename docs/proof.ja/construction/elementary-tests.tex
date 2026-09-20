@@ -1,0 +1,38 @@
+\subsection{Elementary testsに一様な極限への接続}
+
+強progressiveかつ右連続なsource $S$ のelementary積分列を $X^n$、その指定された利得を $X$ とする。
+有限horizon $T$ におけるcapped絶対envelopeを $e_T$ と書き、
+unit-bounded predictable elementary tests $K$ に対して
+\[
+ \Phi_{K,T}(Y)=E[e_T(K\mathbin{\cdot}Y)],\qquad
+ g_{n,T}=\sup\bigl(\{0\}\cup\{\Phi_{K,T}(X^n-X):K\}\bigr)
+\]
+と置く。ここで積分はelementary testの有限和であり、一般predictable積分の存在は用いない。
+
+\begin{lemma}[Cauchy性と固定test極限から一様極限へ]
+realized strategyの代表列について、各 $T$ で $g_{n,T}\to0$ であり、さらに
+\[
+ \sum_{r\ge0}2^{-r-1}g_{n,r+1}\longrightarrow0.
+\]
+\end{lemma}
+
+\begin{proof}
+$\varepsilon>0$ と $T$ を固定する。代表列のÉmery-Cauchy性から、
+$m,n\ge N$ なら全ての $K$ で
+$\Phi_{K,T}(X^m-X^n)<\varepsilon$ となる共通の $N$ を選べる。
+ここで初めて $n\ge N$ と $K$ を固定する。固定testでの誤差は確率収束で零へ行くので、
+補助添字 $m$ の部分列を選ぶとcapped誤差がa.s.で零へ行く。
+その絶対値は1以下であり、優収束により期待値も零へ行く。
+envelopeの三角不等式から
+\[
+ \Phi_{K,T}(X^n-X)
+ \le\Phi_{K,T}(X^m-X^n)+\Phi_{K,T}(X^m-X)
+ \le\varepsilon+\Phi_{K,T}(X^m-X).
+\]
+補助部分列に沿って極限を取ると右辺は $\varepsilon$ となる。
+閾値 $N$ は $K$ に依存しないため、その後にsupremumを取れる。
+各 $g_{n,T}$ は $[0,1]$ に属するので、幾何重みを支配列とする級数の優収束から後半を得る。
+\end{proof}
+
+この結論は同じ代表列に対するelementary testsの一様収束である。
+本稿の位相はこの elementary test 族で定義するため、一般の predictable test への拡張を必要としない。

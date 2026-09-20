@@ -1,0 +1,64 @@
+\subsection{Integrable localization of the finite large-jump process}
+For a zero-start c\`adl\`ag local martingale $N$, write
+\[
+ J_t=\sum_{0<s\leq t\wedge T,\,|\Delta N_s|>c}\Delta N_s,
+ \qquad
+ V_t=\sum_{0<s\leq t\wedge T,\,|\Delta N_s|>c}|\Delta N_s|.
+\]
+A c\`adl\`ag path has only finitely many jumps larger than $c>0$ on a
+finite interval. Thus $J$ has finite variation and is constant after $T$.
+Using the deterministic horizons
+\[
+ H_n=T+(n+1),
+\]
+define the strict variation passages
+\[
+ \rho_n=\min\{H_n,\inf\{s:V_s>n+1\}\}.
+\]
+The horizons are cofinal. Monotonicity of both the variation levels and
+the horizons makes $(\rho_n)$ an increasing sequence of stopping times.
+Finite total variation and constancy after $T$ imply, on every path, that
+\[
+ \rho_n=H_n
+\]
+for all sufficiently large $n$. Hence $(\rho_n)$ is an exhaustive localizing
+sequence.
+
+At first use the strict-prefix source
+\[
+ C^n_t=\begin{cases}
+ J_t,&t<\rho_n,\\
+ J_{\rho_n-},&t\geq\rho_n.
+ \end{cases}
+\]
+It is adapted and c\`adl\`ag, with finite variation at most $n+1$ up to
+$H_n$. Its terminal cumulative variation therefore belongs to $L^1$.
+Each $C^n$ supplies normalized adapted c\`adl\`ag finite-variation $L^1$
+data. The value-truncation theorem yields a predictable finite-variation
+limit and a martingale residual. The source agrees exactly with $J$ on
+the open prefix $t<\rho_n$.
+
+Refine $\rho_n$ with a martingale localizer $\lambda_n$ and an
+absolute-passage localizer $\kappa_n$, putting
+$\tau_n=\rho_n\wedge\lambda_n\wedge\kappa_n$. These finite stops satisfy
+\[
+ \Var(J^{\tau_n};[0,H_n])\leq n+1+|\Delta J_{\tau_n}|.
+\]
+The next subsection proves integrability of the boundary term.
+Thus every closed source $J^{\tau_n}$ also supplies finite-variation $L^1$
+data and a value-truncation predictable projection. Fix all these choices
+as one family. Each of $(\rho_n),(\lambda_n),(\kappa_n)$ is almost surely
+increasing and exhaustive, so their minimum has the same properties.
+For $m\leq n$, stopping absorption gives
+\[
+ (J^{\tau_n})^{\tau_m}\sim J^{\tau_m}.
+\]
+Here $\sim$ denotes indistinguishability: everywhere monotonicity of the
+stops is not required.
+For $m\leq n$, the difference between the upper predictable projection
+stopped at $\tau_m$ and the lower projection is a local martingale, by this
+closed-source identity. It is also strongly predictable, right-continuous,
+and of finite variation. Rigidity of predictable finite-variation local
+martingales makes it indistinguishable from its initial value. Both
+projections start at zero almost surely, so their difference vanishes.
+This establishes compatibility on ordered overlaps.

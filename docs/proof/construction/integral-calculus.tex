@@ -1,0 +1,268 @@
+\subsection{Construction and transfer of the integral calculus}
+\label{sec:integral-calculus}
+We prove Theorem~\ref{thm:integral-input}. Local special integrals and the general graph are those of Definition~\ref{def:general-graph}.
+
+\begin{lemma}[Measure invariance without a decomposition]
+For strongly progressively measurable $X_n,Y$, convergence of the elementary
+test errors uniformly over all unit-bounded tests on every finite horizon is
+invariant under equivalent probability measures. Explicitly, for every finite
+$T$ and $\varepsilon>0$, one $N$ must satisfy
+\[
+ E_\mu\left[1\wedge\sup_{t\leq T}|(J\cdot X_n)_t-(J\cdot Y)_t|\right]
+ \leq\varepsilon
+\]
+for every $n\geq N$ and every unit-bounded elementary predictable test $J$. Without right continuity,
+use the countable horizon skeleton for the supremum.
+\end{lemma}
+\begin{proof}
+Every capped test envelope is measurable and lies in $[0,1]$. If uniform
+convergence failed under the target measure, choose $n_k\geq k$ and tests
+$J_k$ whose target expectations stay above one positive constant.
+Test-uniform convergence under the source measure makes the expectations of
+this chosen envelope sequence tend to zero. Pass to convergence in probability,
+transfer it by absolute continuity, then use boundedness to recover convergence
+of expectations under the target measure, a contradiction. Reverse the
+measures for the converse. No special decomposition is involved.
+\end{proof}
+Associativity of finite sums turns uniform elementary approximation estimates
+into this process convergence. Tests only see increments, so initial values
+must be fixed separately. Convergence alone does not produce an integrand.
+
+\begin{lemma}[Uniqueness with fixed initial value]
+If a strongly progressively measurable sequence converges in this sense to
+right-continuous $Y,Z$ with $Y_0=Z_0$ almost surely, then $Y,Z$ are indistinguishable.
+\end{lemma}
+\begin{proof}
+For a fixed test, convergence of capped expectations gives convergence in
+probability uniformly on compact intervals, whose limit is unique.
+Use the unit test on $(0,T]$ and evaluate at $T$ to obtain
+$Y_T-Y_0=Z_T-Z_0$ almost surely. Equality of initial values and right continuity
+extend equality from a countable right-dense time set to all times.
+\end{proof}
+
+\begin{proposition}[Uniqueness and reduction of measure transfer]
+For a fixed source and coefficient the graph gain is unique up to
+indistinguishability. Transfer of bounded-coefficient special graphs between
+equivalent measures implies transfer of the truncation graph.
+\end{proposition}
+\begin{proof}
+Two certificate sequences have identical coefficients $H^{(n)}$ row by row.
+Fixed-source uniqueness identifies their gains. Apply the preceding uniqueness
+lemma to this common sequence and its zero-start regular limits.
+For measure transfer apply bounded graph transfer separately to each row,
+then transfer test-uniform convergence and replace rows by their
+indistinguishable representatives. The regular limit and designated gain are
+preserved; no special decomposition of the limit is transferred.
+\end{proof}
+For $|H|\leq1$, every truncation equals $H$. A constant certificate sequence
+therefore gives graph membership once zero start and left limits are verified.
+
+\begin{proposition}[Unbounded coefficients and coordinate tails]
+Let $H$ have a global integral representation. Every $H^{(n)}$ has a local
+representation over the same source. If $h_k$ is the coefficient on completed
+coordinate $k$, with controls $q_k,v_k$, then for
+$r_{k,n}=h_k1_{\{|h_k|>n+1\}}$,
+\[
+ \|r_{k,n}\|_{L^1(v_k)}\to0,\qquad \|r_{k,n}\|_{L^2(q_k)}\to0.
+\]
+The terminal $L^2$ norm of the corresponding completed martingale tail
+integral also tends to zero.
+\end{proposition}
+\begin{proof}
+Restrict all coordinates to the same predictable set and glue the compatible
+completed coordinates. Each $h_k$ already belongs to both control spaces,
+so the large-value tails of its integrable powers vanish. The controls need
+not have finite total mass. The terminal martingale norm is the energy norm
+restricted to the horizon, bounded by the full coefficient tail norm.
+\end{proof}
+\begin{proposition}[Uniform truncation convergence and inclusion]
+If the source martingale component has left limits, every global or local
+special integral representation, including unbounded coefficients, belongs
+to the all-time truncation graph with the same coefficient and gain.
+\end{proposition}
+\begin{proof}
+Fix a completed coordinate. For a zero-start square-integrable martingale $M$
+and any elementary predictable test with represented integrand $|J|\leq1$,
+discrete $L^2$ contraction, chronological grid limits, and Doob's estimate give
+\[
+ E\left[1\wedge\sup_{t\leq T}|(J\cdot M)_t|\right]\leq2\|M_T\|_2.
+\]
+This bound does not depend on the number of test intervals or the sum of
+coefficient magnitudes. A completed martingale integral is constant after its
+horizon, so the estimate applies at any test horizon.
+For a variation-integrable coefficient $r$, identify the completed
+finite-variation integral $B$ with its pathwise Stieltjes integral. The signed
+measure density formula yields
+\[
+ |dB|(\mathbb R_+)\leq\int|r_t|\,d|A|_t,\qquad
+ \sup_t|(J\cdot B)_t|\leq|dB|(\mathbb R_+).
+\]
+The canonical variation norm bounds the $L^1$ norm of the first right-hand
+side. Transfer convergence in probability from the reference measure to the
+original probability and use the cap by one to obtain convergence of
+expectations, uniformly in the test.
+Apply both estimates to complementary coefficient tails. Additivity
+identifies the sum of the bounded cut and the tail with the original gain,
+so each coordinate has test-uniform truncation convergence.
+Choose a localization coordinate first so that $\Pp(\tau_k\leq T)$ is small,
+then the row cutoff on that coordinate. Before the stop all tests agree;
+after it the capped error is at most one. This removes localization.
+
+For a local representation, stopping at each positive integer horizon gives
+a global one. Integrate all bounded truncations on one source schedule and
+identify their stops with the global certificates by uniqueness. Remove
+localization again. Transfer regular representatives on a countable common
+full-measure set and correct its complement using the usual conditions.
+This yields an everywhere regular zero-start representative. No common
+schedule for the unbounded local coefficient itself is needed.
+\end{proof}
+
+\begin{proposition}[Bounded global certificates]
+With left limits for the source martingale, a global integral representation
+whose coefficient satisfies $|H|\leq b$ belongs to the truncation graph.
+The same holds for any bounded-coefficient local representation stopped at a
+positive finite deterministic time $T$.
+\end{proposition}
+\begin{proof}
+Restrict each completed coefficient to $\{|H|\leq n+1\}$ and glue the
+compatible coordinates. Completed stopping identities realize every finite
+stop on the same schedule. For $n+1\geq b$ the coefficients coincide with
+$H$, hence their gains are indistinguishable by uniqueness.
+Refine the source schedule against itself to obtain martingale coordinates
+with left limits. Glue the c\`adl\`ag martingale and locally finite-variation
+coordinates into a regular representative of the original gain; the completed
+graph gives zero initial value. All test errors on the eventual constant
+sequence vanish. For a local representation stop at $T$: its coefficient
+$1_{(0,T]}H$ is bounded by $\max(b,0)$ and its gain is $X_{t\wedge T}$.
+Apply the global result. Global finite variation of the unstopped gain is
+not required.
+\end{proof}
+
+\begin{proposition}[Constructing bounded predictable integrals]
+The bounded source and any bounded predictable $H$ supply a local integral
+graph and a truncation graph. Any existing bounded-coefficient local graph
+enters the all-time truncation graph with its designated gain.
+\end{proposition}
+\begin{proof}
+Use the completed schedule constructed directly from the source. Each
+coordinate has finite canonical variation and quadratic energy measures.
+Boundedness gives $L^1$ and $L^2$ membership, respectively. Use the same $H$
+in all coordinates and glue. Refine for left limits, glue the c\`adl\`ag
+martingale and locally finite-variation parts, and obtain zero start from the
+completed graph. Apply the same construction to every $H^{(n)}$.
+For $n+1\geq b$ fixed-source uniqueness makes all gains indistinguishable,
+so test errors vanish on one common tail. Uniqueness also identifies any
+previously designated local gain with this constructed gain.
+\end{proof}
+
+\begin{proposition}[Integral transfer under equivalent measures]
+Suppose the same bounded price $S$ has source data under equivalent
+probabilities $\mu,\nu$. Bounded predictable local integral graphs transfer
+with coefficient and gain unchanged. Consequently the general truncation
+graph transfers, and stopped Mémín realizations return to the original measure.
+\end{proposition}
+\begin{proof}
+First take global bounded-coefficient certificates under both measures.
+The sums of the two coordinate energy controls and of the two variation
+controls are finite measures with no mass at time zero. Common elementary
+density gives one sequence $J_n$ approximating the coefficient in both
+$L^2$ energy and $L^1$ variation controls. The completed integral errors tend
+to zero uniformly over all tests. On each coordinate the elementary integral
+is the pathwise $J_n\cdot S$ stopped at that coordinate's stopping time.
+
+Stop further at the minimum of the two coordinate stops. Finite stopping
+cannot increase a capped test envelope. Both integrals are thus limits of
+one stopped elementary sequence. Transfer convergence between measures and
+use zero-start uniqueness to identify these stopped gains. The sequence of
+minimum stops is exhaustive, so the stops can be removed. Apply this at each
+deterministic horizon for local certificates.
+Construct the bounded graph directly under the target source and identify
+its gain by this uniqueness argument. Transfer a general graph row by row
+through bounded truncations and then transfer convergence to its regular
+limit. For a stopped Mémín realization, absolute continuity preserves
+exhaustiveness of the stops. No unbounded gain's special decomposition is
+transferred in this argument.
+\end{proof}
+
+\begin{proposition}[All-time realization by pasting stopping intervals]
+If a zero-start regular $X$ has a general truncation graph at every stage of
+a finite-valued exhaustive stopping sequence, then one predictable coefficient
+$H$ realizes its all-time graph against the original source.
+\end{proposition}
+\begin{proof}
+Place bounded graphs on the source's directly constructed common schedule.
+The completed stopping rule gives graphs of arbitrary stopped gains.
+Stopping at a finite time preserves convergence against elementary tests,
+so the rule passes
+to general truncation graphs. For $\sigma\leq\tau$, subtract the stopped
+rows to represent coefficient restriction to $(\sigma,\tau]$ and gain
+$X^\tau-X^\sigma$. Restriction commutes with coefficient truncation.
+
+The common null set where monotonicity or divergence of the stops fails is
+measurable at time zero. Replace stops there by $n+1$, obtaining an everywhere
+increasing sequence $\upsilon_n$. This does not change stopped gains up to
+indistinguishability. Restrict the first coefficient to $(0,\upsilon_0]$ and
+the subsequent ones to $(\upsilon_n,\upsilon_{n+1}]$. Their disjoint supports
+make truncation commute with finite sums. Additivity and convergence give
+the graph of each finite sum, whose gain telescopes to $X^{\upsilon_n}$.
+The coefficients stabilize pointwise on every $(0,\upsilon_n]$; their limit
+$H$ is predictable and agrees there with the corresponding finite sum.
+Construct its bounded truncation integrals directly from the source, identify
+their stops with the finite-sum rows by uniqueness, and remove the localization
+error. This gives $(H,X)$ without assuming coefficients agree on overlaps.
+\end{proof}
+
+\paragraph{Unit-bounded transforms and Hahn components}
+We prove items 4 and 5 of Theorem~\ref{thm:integral-input}. The localization coordinates below have true $L^2$ components on finite horizons.
+
+\begin{proposition}[Completed bounded transforms and finite-horizon Hahn gains]
+Let $Y=M+A$ be strongly adapted and right-continuous, with predictable global
+bounded-variation $A$ and true martingale $M$ satisfying $M_T\in L^2$.
+Suppose every unit elementary test obeys
+\[
+ E\left[1\wedge\sup_{t\leq T}|(J\cdot M)_t|\right]\leq b.
+\]
+For predictable $|k|\leq1$, its completed integral
+$I^k=(k1_{(0,T]})\cdot M$ has the same test bound $b$.
+Moreover a positive predictable Hahn set $B$ gives
+$R=1_{B\cap(0,T]}\cdot Y=N+C$ with, almost surely for all $0\leq a\leq c\leq T$,
+\[
+ 0\leq C_c-C_a,\qquad A_c-A_a\leq C_c-C_a.
+\]
+The component $N$ has the same test bound and
+$E[1\wedge\sup_{t\leq T}|N_t|]\leq b$.
+\end{proposition}
+\begin{proof}
+The normalized variation and martingale energy controls are finite.
+Predictable ring density gives one elementary sequence with $|J_n|\leq1$
+converging to $k1_{(0,T]}$ in both controls. Energy continuity identifies its
+martingale integrals and gives elementary-Émery convergence to $I^k$.
+For another unit test $J$, finite-horizon associativity gives
+$J\cdot(J_n\cdot M)=(JJ_n)\cdot M$ with $|JJ_n|\leq1$.
+Pass the bound $b$ through the triangle inequality and arbitrarily small
+approximation error. Variation error is unnecessary for the martingale estimate.
+Obtain $B$ from the normalized finite-variation bridge and restrict the
+horizon's realized unit integral. The completed/Stieltjes identification
+expresses $C_c-C_a$ as the signed mass of $B\cap(a,c]$; positivity of Hahn
+mass gives both increment bounds, including the right endpoint.
+The transform estimate applies to $N$. Its zero start and the horizon unit
+test give the maximal-function bound.
+\end{proof}
+
+For the local version remove stops as follows.
+
+Use the integral graph's localizers $\sigma_r$ and completion horizons $U_r$.
+Its normalized stopped martingale component is the completed integral of
+$k$; restriction to $(0,U_r]$ does not change its energy class or unit bound.
+Apply the preceding approximation to each coordinate while keeping test
+horizon $T$ fixed. Stopping at $U_r$ before testing cannot increase the capped
+maximum relative to the test of $M^{\sigma_r}$. The stopped elementary gain
+identity bounds the latter by a test of $M$ at the same $T$. No ordering of
+$U_r$ and $T$ is required.
+On $\{\sigma_r>T\}$ stopped and unstopped tests agree; otherwise the cap
+costs at most one. The full expectation is at most
+$b+P(\sigma_r\leq T)$; let $r\to\infty$. Centering does not change increments.
+A local finite-variation graph may first be stopped at $T+1$.
+
+
+Elementary density for a general graph follows by approximating each bounded truncation row and diagonalizing over integer horizons. Proposition~\ref{prop:gi-limit} makes its gain a good integrator.

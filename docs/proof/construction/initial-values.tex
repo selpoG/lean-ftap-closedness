@@ -1,0 +1,18 @@
+\subsection{Initial values and stopping}
+Elementary integrals are sums of increments on intervals $(0,t]$, hence
+vanish at zero. Completed martingale integrals also vanish there; completed
+finite-variation integrals do so as uniform limits of Stieltjes integrals.
+Evaluate indistinguishability with the localized coordinate gains at zero
+to see that every represented gain $X$ satisfies $X_0=0$ almost surely.
+A decomposition $X=M+A$ admits constant shifts. Replacing its components by
+$M-M_0$ and $A+M_0$ preserves the gain and, when $X_0=0$, normalizes both
+components to zero. The costs below use these normalized components.
+For finite $\tau$, write $X^\tau_t=X_{t\wedge\tau}$ for closed stopping.
+The strict prefix equals $X_t$ for $t<\tau$ and $X_{\tau-}$ for $t\geq\tau$,
+with $X_{0-}=X_0$. Thus
+\[
+ X^\tau=X^{\tau-}+1_{\{0<\tau\leq t\}}\Delta X_\tau.
+\]
+Closed-stop variation and component costs require a boundary-jump term in
+addition to the strict-prefix bound. Integrals use closed stopping;
+strict prefixes are auxiliary objects for cost comparison.

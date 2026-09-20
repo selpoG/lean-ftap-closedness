@@ -1,0 +1,21 @@
+\section{最大閉包元の実現}
+\label{sec:realization}
+この節は、\cite[Theorem 4.2の証明]{DS}で成分の収束からM\'eminの閉性定理を適用する段階に対応する。ここでは\contractref{C1}を用い、同じ極限とその終端を元価格の積分として実現する。
+
+前節の構成は、元価格の同じ利得列 $R_n=\widetilde M_n+\widetilde A_n$ を返す。
+$R_n\to X$ は全時間一様概収束であり、$X\geq-1$、$X_\infty=h$ である。
+M成分は全elementary testに一様なÉmery Cauchy性を持ち、FV成分は各有限horizonの変動で
+確率Cauchyとなる。この節ではこの二つの評価を積分領域の閉性へ渡す。
+
+\begin{theorem}[最大閉包元の実現]
+\label{prop:realization}
+NFLVRの下で、$\clprob{K_1}$ の任意のa.e.最大元 $h$ は $K_1$ に属する。
+\end{theorem}
+\begin{proof}
+同じ凸平均列のM成分の全test一様な期待値Cauchy評価に、誤差 $\varepsilon^2$ を指定する。
+Markov不等式により $Q_*(e_T^J(\widetilde M_m,\widetilde M_n)>\varepsilon)\leq\varepsilon$ を
+全test共通のcutoffで得る。FV差の変動確率評価は前節の最大性矛盾が供給する。
+同じ $R_n$ は強適合・càdlàgで、$\widetilde A_n$ の差は局所BVである。
+既に保持した全時間一様極限 $X\geq-1$ とその固有終端 $h$ を合わせ、\contractref{C1}の全仮定を満たす。
+従って $h\in K_1$ である。
+\end{proof}

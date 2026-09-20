@@ -1,0 +1,225 @@
+\section{Component estimates for the same convexified sequence}\label{sec:components}
+Fix the selected gains $Y_i\to X$, the terminal $X_\infty=h$, and the one
+equivalent measure $Q_*$ from the preceding section. Their common $L^2(Q_*)$
+envelope supplies zero-start special decompositions $Y_i=M_i+A_i$.
+The auxiliary sources may differ with $i$. We return transformations of each
+auxiliary gain to the same original market before using NFLVR.
+
+\subsection{Predictable transforms and class maximal estimates}
+The next proposition corresponds to the class estimate of \cite[Lemma 4.7]{DS}. Auxiliary decompositions may vary with the index; all contradiction strategies return to the same original market.
+
+\begin{proposition}[An indexed auxiliary-decomposition estimate from NFLVR]\label{prop:indexed-maximal}
+Suppose the original bounded-price general market satisfies NFLVR.
+Fix $Q\sim P$ and any index set $I$. Let $Y_i=M_i+A_i$ be gains realized in
+that market with special decompositions under $Q$, $M_i(0)=0$, and locally
+finite-variation $A_i$. If
+\[
+ Y_i\geq-1,\qquad |Y_i(t)|\leq\xi_i\ (\forall t),\qquad
+ \sup_i\|\xi_i\|_{L^2(Q)}\leq B<\infty,
+\]
+then $\{\sup_t|M_i(t)|:i\in I\}$ is bounded in $Q$-probability.
+There is no common-auxiliary-source assumption.
+\end{proposition}
+\begin{proof}
+Suppose boundedness fails. The all-time maximum of a c\`adl\`ag path is the increasing limit of its integer-horizon maxima.
+Thus for fixed $0<\alpha\leq1/4$ and every sufficiently large $n$, choose an index $i_n$ and finite $T_n>0$
+with $Q(\sup_{t\leq T_n}|M_{i_n}(t)|>n^3)>8\alpha$.
+Apply \contractref{F1} to this gain. For $k_n=\lfloor\alpha n/4\rfloor$, all its finite-scale hypotheses hold for sufficiently large $n$.
+The resulting $f_n\in K_0-L^0_+(Q)$ satisfy, for fixed $\eta,p>0$,
+\[
+ f_n\geq-\delta_n,\qquad \delta_n=n^{-1/4}+2/(nk_n)\to0,
+ \qquad Q(f_n\geq\eta)>p.
+\]
+Indeed, the stated profit levels tend to $\alpha^3/4$ and the probability lower bounds to $\alpha^2/2$.
+Admissibility in the same market is invariant under equivalent measures, as is convergence in probability.
+Transfer NFLVR to $Q$ and apply it to this vanishing-risk sequence of terminal claims, a contradiction.
+There is no need to lift $f_n$ back to a gain process.
+\end{proof}
+The path limit $X$ and its own terminal $h$ are retained through every
+subsequence used to select the envelope and the gains.
+\begin{corollary}[Finite convex classes]
+If the gains have one common envelope $q\in L^2(Q)$, then the all-time maximal
+functions of $\sum_iw_iM_i$, over all finite convex weights $w$, are uniformly
+bounded in probability.
+\end{corollary}
+\begin{proof}
+Use \contractref{M7} to realize $Y^w=\sum_iw_iY_i$ with the same component sums
+$M^w=\sum_iw_iM_i$ and $A^w=\sum_iw_iA_i$.
+Convexity preserves the lower bound $-1$ and common envelope $q$.
+Apply the preceding
+proposition to the class indexed by $w$ itself. This uses no general
+boundedness assertion for convex hulls in $L^0$.
+\end{proof}
+
+\subsection{Stopped tails and common Hilbert convexification}
+The next proposition and its corollary correspond to the convex-tail estimate of \cite[Lemma 4.8]{DS}. We first use a finitely stopped family, then remove the stops.
+
+\begin{proposition}[Convex tails of finitely stopped gains]\label{prop:convex-tails}
+Choose positive finite horizons $T_i$ and set $\bar Y_i=Y_i^{T_i}$, stopping
+both components in the same way. Let $\tau_i(c)$ be the first passage of
+$|\bar M_i|$ at level $c$ and put
+\[
+ L^{w,c}=\sum_iw_i(\bar M_i-\bar M_i^{\tau_i(c)}).
+\]
+For every $\varepsilon>0$ there is $c_0\geq0$ such that, for $c\geq c_0$ and
+all finite convex weights, the probability that $|L^{w,c}|$ exceeds
+$\varepsilon$ at a finite time is at most $\varepsilon$.
+\end{proposition}
+\begin{proof}
+Clause \contractref{M6} gives a finite-gain sequence with the same stopped components, lower bound and common envelope.
+Proposition~\ref{prop:indexed-maximal} bounds its M maxima in probability; pass this to \contractref{F2}.
+If the conclusion fails, some $\varepsilon>0$ allows a tail with finite-passage
+probability greater than $\varepsilon$ beyond every proposed cutoff.
+Fix $N$ from \contractref{F2} and set
+\[
+ \delta_r=\frac{\varepsilon}{4(N+1)(r+1)}\qquad(r\geq0).
+\]
+For each $r$, first choose  the cutoff in \contractref{F2}, then an offending weight and level.
+The resulting original-market gains $V_r=M^{V_r}+A^{V_r}$ satisfy
+$V_r\geq-1$, $|V_r|\leq g_r$, $\|g_r\|_2\leq1$, and
+\[
+ Q\bigl((M^{V_r})^*>2(r+1)\bigr)>\varepsilon/2.
+\]
+Apply Proposition~\ref{prop:indexed-maximal} to this normalized family itself.
+It gives $R\geq0$ such that $Q((M^{V_r})^*>R)\leq\varepsilon/4$ for every $r$.
+Choosing $2(r+1)>R$ gives a contradiction.
+The auxiliary decompositions may vary: all the constructed gains belong to
+the same original market.
+\end{proof}
+The cutoff may depend on the prescribed sequence $(T_i)$.
+\begin{corollary}[Unstopped all-time convex tails]
+The same conclusion holds for the original $M_i$ and their passage tails.
+\end{corollary}
+\begin{proof}
+Encode $(i,r)\in\mathbb N^2$ by one natural number and apply the preceding
+proposition to the entire family $Y_i^{r+1}$ with the same stopped components.
+The cutoff is now fixed before $r$ is chosen. Embed any original finite
+convex weights into the indices with second coordinate $r$.
+For the original passage $\tau(c)$ and the passage $\tau^{r+1}(c)$ of $M^{r+1}$,
+\[
+ \tau^{r+1}(c)\wedge(r+1)=\tau(c)\wedge(r+1),
+\]
+so the stopped passage tail equals $(M-M^{\tau(c)})^{r+1}$, including its value
+at the passage and horizon. The probability estimate therefore holds on
+$[0,r+1]$ with one common cutoff. Increase $r$ and use continuity of measure
+from below.
+\end{proof}
+The next proposition corresponds to the Emery tail estimate of \cite[Lemma 4.9]{DS}, stated uniformly over elementary tests and finite horizons.
+
+\begin{proposition}[Test-uniform convex-tail estimates]\label{prop:test-uniform-tails}
+For every $\varepsilon>0$ there exists $c_0\geq0$ such that for all finite
+convex weights $w$, $c\geq c_0$, $T>0$, and elementary predictable $|J|\leq1$,
+\[
+ E_Q\left[1\wedge\sup_{t\leq T}|(J\cdot L^{w,c})_t|\right]\leq\varepsilon.
+\]
+\end{proposition}
+\begin{proof}
+First use the finite-gain family encoding the index and an integer horizon.
+Put $\eta=\varepsilon/5$ and take the larger of the cutoff in \contractref{F3} and the cutoff in
+Proposition~\ref{prop:convex-tails} making the level-$\eta$ passage probability at most $\eta$.
+Then $E_Qe_T^J(L^{w,c},0)\leq4\eta+\eta=\varepsilon$ for all weights, horizons and tests.
+The cutoff precedes all these choices.
+For the original unstopped sequence choose an integer $r$ with $T\leq r+1$ and embed the weights at second coordinate $r$.
+The stopping identity from the preceding corollary makes the gains coincide on $[0,T]$.
+Their finite-sum test integrals also coincide, transferring the estimate.
+\end{proof}
+The next proposition corresponds to the common convexification of \cite[Lemma 4.10]{DS}. We first obtain Emery Cauchy estimates for the martingale components and identify the limit later.
+
+\begin{proposition}[Common convexification of the martingale components]\label{prop:martingale-convexification}
+There is one sequence of forward convex weights $w_n$ such that
+$\widetilde M_n=\sum_iw_{n,i}M_i$ is elementary-Émery Cauchy under $Q$.
+The gains with the same weights converge uniformly over all time to the
+original $X$, whose terminal value remains $h$.
+\end{proposition}
+\begin{proof}
+Put $P_{i,j}=M_i^{\tau_i(j+1)\wedge(j+1)}$.
+Clauses \contractref{F4} and \contractref{F5} make $P_{i,j}$ a right-continuous zero-start true martingale, with
+\[
+ \|P_{i,j}(j+1)\|_2\leq j+1+6\|q\|_2
+\]
+uniformly in $i$. Normalize these coordinate bounds by geometric weights
+and embed in a Hilbert direct sum. One convexification makes the terminal
+sums $\sum_iw_{n,i}P_{i,j}(j+1)$ $L^2$-Cauchy for every $j$.
+For fixed $T,\varepsilon$, choose $j+1$ beyond both $T$ and the tail cutoff.
+Clause \contractref{A2} makes the stopped sums Cauchy uniformly over tests and horizons up to $T$.
+On this interval
+$M_i-P_{i,j}=M_i-M_i^{\tau_i(j+1)}$. The stopped sums are strongly progressive by adaptedness and \contractref{F5}.
+The preceding tail estimate and \contractref{A1} give the desired Cauchy property, with cutoff independent of the test.
+Forward convex weights preserve all-time uniform convergence and the
+previously retained terminal certificate of $X$.
+\end{proof}
+This only proves the martingale estimate. The finite-variation estimate is
+obtained next for these same weights, gains, and limit.
+
+\subsection{Applying the finite Hahn input to the same sequence}
+\begin{proposition}[Hahn improvement data with a common pair cutoff]\label{prop:sequence-hahn}
+The same weights from the preceding proposition realize $R_n=\sum_iw_{n,i}Y_i$ with components
+$\widetilde M_n,\widetilde A_n$ in the original market.
+For every $T,b>0$ there is a common cutoff such that every later pair and every $\delta\geq0$
+admit the two orientations of improvement data in \contractref{H1}.
+The same $X$ and $X_\infty=h$ are retained.
+\end{proposition}
+\begin{proof}
+Clause \contractref{M7} realizes gains and both components with the same weights.
+Convexity gives $R_n\geq-1$ and $|R_n|\leq q$.
+The M component's Emery Cauchy property gives a cutoff common to all pairs and tests, with bound $b$ in either order.
+Apply \contractref{H1} to the two specified gains.
+Forward convex averages preserve the all-time uniform limit, so the same $X,h$ remain.
+\end{proof}
+
+\subsection{Finite-variation Cauchy estimates from maximality}\label{sec:fv-cauchy}
+This subsection corresponds to the maximality argument for the FV components in \cite[Lemma 4.11]{DS}. We prove variation Cauchy estimates on each finite horizon and retain the infinite-time terminal value through the previously constructed all-time uniform limit.
+
+\begin{proposition}[Normalized terminal gaps and maximality]
+Suppose the variations are not Cauchy in probability on fixed $[0,T]$, $T>0$.
+Then some $\alpha>0$ has, beyond every cutoff, pairs with
+$Q_*(\Var_{[0,T]}(\widetilde A_n-\widetilde A_k)>\alpha)>\alpha$.
+Choose
+\[
+ c=\min(\alpha/8,1),\quad\delta_r=c2^{-(r+1)},\quad
+ b_r=\delta_r^2/8,\quad U_r=\max(T,r+1).
+\]
+Choose pairs beyond both $r$ and the martingale cutoff for error $b_r$.
+Choose an orientation satisfying
+\[Q_*(C_r(T)>\alpha/2)>\alpha/2.\]
+Let $\ell_r\geq r$ be its
+base index and $Z_r$ its continued gain. The sequences
+\[
+ g_r=\frac{Z_r(U_r)}{1+\delta_r},\qquad
+ f_r=\frac{R_{\ell_r}(U_r)}{1+\delta_r}
+\]
+contradict maximality.
+\end{proposition}
+\begin{proof}
+Positive scaling gives $g_r\in K_1$. The failure event $D_r=\{\tau_r\leq T\}$
+satisfies
+\[
+ Q_*(D_r)\leq\frac{8b_r}{\delta_r}=\delta_r.
+\]
+Write $L_r$ for the chosen martingale component difference.
+On survival,
+\[
+ N_r(T)-\max(L_r(T),0)\geq-\delta_r,
+\]
+hence $N_r(T)\geq-\delta_r$ and
+\[
+ g_r-f_r\geq\frac{C_r(T)-\delta_r}{1+\delta_r}.
+\]
+Thus $(f_r-g_r)^+\leq\delta_r$. On
+$E_r=\{C_r(T)>\alpha/2\}\setminus D_r$ we have $g_r-f_r\geq\alpha/8$ and
+$Q_*(E_r)>\alpha/2-\delta_r\geq\alpha/4$.
+No extra martingale-error event is required. Choose one orientation per $r$,
+never an orientation depending on the sample point.
+Since $\sum_rQ_*(D_r)<\infty$, Borel--Cantelli gives eventual survival almost
+surely, hence vanishing lower error. The all-time uniform convergence to the
+same $X$, together with $\ell_r\to\infty$, $U_r\to\infty$, and $X_\infty=h$,
+gives $R_{\ell_r}(U_r)\to h$ almost surely; therefore $f_r\to h$.
+No new terminal limit of each $R_n$ is needed.
+The same original $K_1$, its forward convex candidates, its probability
+closure, and maximality transfer to $Q_*$ by mutual absolute continuity.
+The persistent-improvement lemma applies to these measurable bases and claims,
+the vanishing lower error, and the varying events $E_r$, giving a contradiction.
+Neither $f_r\in K_1$ nor a common improvement event is required.
+This proves the finite-horizon variation Cauchy property; at $T=0$ variation
+is zero.
+\end{proof}

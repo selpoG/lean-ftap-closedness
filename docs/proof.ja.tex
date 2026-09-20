@@ -1,0 +1,68 @@
+\documentclass[uplatex,dvipdfmx,11pt,a4paper]{jsarticle}
+\usepackage{amsmath,amssymb,amsthm,mathtools,array,booktabs,longtable,enumitem,xurl}
+\usepackage[dvipdfmx,hidelinks]{hyperref}
+\usepackage{pxjahyper}
+\setlist[itemize]{leftmargin=2em}
+\setlist[enumerate]{leftmargin=2em}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newtheorem{theorem}{定理}[section]
+\newtheorem{proposition}[theorem]{命題}
+\newtheorem{lemma}[theorem]{補題}
+\newtheorem{corollary}[theorem]{系}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{定義}
+\newtheorem{remark}[theorem]{注意}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Pp}{\mathbb P}
+\newcommand{\Qq}{\mathbb Q}
+\newcommand{\E}{\mathbb E}
+\newcommand{\F}{\mathcal F}
+\newcommand{\Linfty}{L^\infty}
+\newcommand{\Lzero}{L^0}
+\newcommand{\as}{\mathrm{a.s.}}
+\newcommand{\clprob}[1]{\overline{#1}^{\,L^0}}
+\newcommand{\Var}{\operatorname{Var}}
+
+% Stable clause identifiers link the mathematical inputs to the isolation manifest.
+\newcommand{\analyticcontract}[2]{\hypertarget{analytic:#1}{\textnormal{\textsf{[#1]}}}}
+\newcommand{\contractref}[1]{\hyperlink{analytic:#1}{\textsf{[#1]}}}
+
+\hypersetup{pdftitle={Delbaen--Schachermayer 閉性定理の数学的証明},
+  pdfauthor={selpo},
+  pdfsubject={有界実数値セミマルチンゲールに対する Fatou 閉性と弱スター閉性},
+  pdfkeywords={Lean, FTAP, NFLVR, semimartingale, closedness}}
+\title{Delbaen--Schachermayer 閉性定理\\Lean形式化に対応する数学的証明}
+\author{selpo}
+\date{}
+
+\begin{document}
+\maketitle
+\begin{center}
+\url{https://github.com/selpoG/lean-ftap-closedness}
+\end{center}
+\setcounter{tocdepth}{2}
+\begin{abstract}
+本稿は有界実数値セミマルチンゲールについてのTheorem~4.2を証明する。
+一般確率積分の終端市場に対するNFLVRから、Fatou閉性と弱スター閉性を導く。
+選択利得ごとの補助分解、同じ凸重みの成分評価、元価格の一般積分への極限実現を順に構成し、
+Leanの公開主定理が用いる仮定と証明の依存関係に対応させる。
+\end{abstract}
+\tableofcontents
+
+\input{docs/proof.ja/setting.tex}
+\input{docs/proof.ja/integral-domain.tex}
+\input{docs/proof.ja/terminal-compactness.tex}
+\input{docs/proof.ja/process-compactness.tex}
+\input{docs/proof.ja/component-estimates.tex}
+\input{docs/proof.ja/realization.tex}
+\input{docs/proof.ja/fatou-weakstar.tex}
+
+% jsarticle includes 付録 in section references; theorem numbers use only A.1, etc.
+\appendix
+\renewcommand{\thetheorem}{\Alph{section}.\arabic{theorem}}
+\input{docs/proof.ja/stochastic-construction.tex}
+\clearpage
+\input{docs/proof.ja/appendix/lean-declarations.tex}
+\input{docs/proof/bibliography.tex}
+
+\end{document}

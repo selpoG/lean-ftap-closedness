@@ -1,0 +1,34 @@
+\subsection{Connecting decomposition and market operations to the inputs}
+\label{sec:auxiliary-transforms}
+\begin{proof}[Proof of Proposition~\ref{input:decomposition}]
+By the elementary approximation in Theorem~\ref{thm:integral-input}, the gain $Y$ is a good integrator.
+Transfer this property to $Q$ and apply Theorem~\ref{thm:decomposition-input} to the same gain with envelope $|q|$.
+Since $Y_0=0$ almost surely, the resulting zero-start components form a special decomposition of the same $Y$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{input:market}]
+Clauses \contractref{M1}--\contractref{M3} are the gain-domain and terminal-set identification in Section~\ref{sec:closure-proof}.
+Taking $a=1$ or the union over positive $a$ retains each candidate's own terminal witness.
+For \contractref{M4}, express the terminal value as the limit of the adapted gain at integer times to obtain a.e. measurability.
+Collect the lower bounds at those countably many times on one full-measure set and pass to the limit.
+
+Regularity, the zero initial value and the intrinsic terminal in \contractref{M5} are data of the realization model;
+graph membership follows from the identification above.
+Replacing the terminal value by an a.e. equal representative leaves the same gain converging to it.
+For original coefficients $H,K$, switching uses
+$H+1_E1_{(\tau,\infty)}(K-H)$.
+It is predictable because $E\in\F_\tau$ and $\tau$ is a bounded stopping time.
+Stopping, restriction and addition in Corollary~\ref{cor:market-operations} give the specified gain.
+Letting $t\to\infty$ gives its terminal formula from the two intrinsic terminal values and the finite stopped values.
+
+For \contractref{M6}, apply closed stopping from Theorem~\ref{thm:integral-input} simultaneously to the gain and both components.
+Stopping a locally BV path at finite $T$ makes it globally BV.
+For \contractref{M7}, apply linearity of the general graph to a finite sum.
+Add the M/FV components with those same coefficients, preserving predictability, local BV, local martingale behavior and zero initial values.
+Thus the three prescribed weighted sums are realized simultaneously, without reselecting components.
+\end{proof}
+
+The finite constructions below return realized integrals over auxiliary decompositions to the original price by
+Corollary~\ref{cor:market-operations}. That corollary treats even unbounded realized coefficients by truncation,
+preserving lower bounds and constancy after finite times.
+Only the general graph, not specialness, is transferred between equivalent measures.

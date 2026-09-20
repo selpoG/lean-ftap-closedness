@@ -1,0 +1,64 @@
+\section{Fatou閉性と弱スター閉性}
+\label{sec:fatou}
+
+\subsection{終端下界から全時刻の下界へ}
+\begin{lemma}[終端下界の伝播]
+\label{lem:terminal-running}
+$Y$ は既にある有限定数 $b>0$ についてadmissibleで、有限終端を持つとする。
+NFLVRの下で $Y_\infty\geq-a$ a.s.（$a>0$）なら、各時刻で $Y_t\geq-a$ a.s.である。
+\end{lemma}
+\begin{proof}
+決定論的時刻 $t$ で $B=\{Y_t<-a\}$ が正の確率を持つと仮定する。
+零集合を除けば $Y_t\geq-b$ である。$B\in\F_t$ 上だけで $t$ より後の取引を開始し、
+利得 $V_u=1_B(Y_u-Y_t)$（$u>t$）、$V_u=0$（$u\leq t$）を構成する。
+\contractref{M5}を零戦略から元戦略への時刻 $t$ での切替えに適用すると、この利得と終端が得られる。
+$B$ 上では $Y_t<0$ なので $V_u\geq-b$ となり、有限の許容下界を保つ。
+$V_\infty=1_B(Y_\infty-Y_t)$ は非負で $B$ 上正である。
+これを上から1で切ったclaimは $C$ に属し、NFLVRに反する。
+従って各 $t$ の下界が得られ、可算時刻集合と右連続性により共通零集合の外へ拡張できる。
+\end{proof}
+
+\subsection{Fatou閉性}
+\begin{theorem}
+\label{thm:fatou}
+$C_0$ はFatou closedである。
+\end{theorem}
+\begin{proof}
+正のスカラー倍により共通下界を $-1$ に正規化する。
+$f_n\in C_0$、$f_n\geq-1$、$f_n\to f$ a.s.とし、$f_n\leq G_n\in K_0$ を選ぶ。
+$G_n\geq-1$ であるから、前補題により同じ利得が1-admissibleとなり、$G_n\in K_1$ である。
+$K_1$ の凸コンパクト性により、forward凸平均 $\widetilde G_n\to g$ a.s.を選ぶ。
+同じ重みを $f_n$ に適用した平均は $f$ に収束するので、$f\leq g$ a.s.である。
+$\clprob{K_1}$ の中で $g$ を支配する最大元 $h$ を取り、定理\ref{prop:realization}によって
+$h\in K_1\subseteq K_0$ と実現する。$f\leq h$ と $C_0=K_0-L^0_+$ より $f\in C_0$ である。
+\end{proof}
+
+\subsection{有界切片を\texorpdfstring{$L^1$}{L¹}に移す}
+\begin{lemma}
+$D$ は概至る所の同値で飽和したsolidな凸錐で、Fatou closedとする。
+各 $R\geq0$ について $D_R=\{f\in D\cap L^\infty:\|f\|_\infty\leq R\}$ は弱スター閉である。
+\end{lemma}
+\begin{proof}
+有限測度の下で $L^\infty\hookrightarrow L^1$ と埋め込み、$D_R$ の像を考える。
+像の $L^1$ 収束列にはa.s.収束する部分列がある。
+代表元を同じ $[-R,R]$ に取ると、極限もこの範囲に入り、Fatou閉性により $D$ に属する。
+従って像は $L^1$ のノルム閉凸集合である。Hahn--Banachの分離定理から $L^1$ の弱位相でも閉である。
+
+$L^\infty$ の弱スター位相から $L^1$ の弱位相へのこの埋め込みは連続である。
+実際、$L^1$ の双対testは $L^\infty$ 関数であり、有限測度ではその関数は $L^1$ にも属するので、
+合成した積分pairingは $\sigma(L^\infty,L^1)$ で連続である。
+像の逆像は正確に $D_R$ であり、$D_R$ の弱スター閉性が従う。
+\end{proof}
+
+次の結論への移行は、原論文が\cite[Theorem 2.1]{DS}を用いる段階に対応する。ここでは有界切片の閉性とKrein--\v Smulian定理を明示的に組み合わせる。
+
+\begin{proposition}[弱スター閉性]
+\label{prop:weakstar}
+$C=C_0\cap L^\infty$ は $\sigma(L^\infty,L^1)$-closedである。
+\end{proposition}
+\begin{proof}
+$C_0$ はsolidな凸錐である。前補題により $C$ の各ノルム有界切片は弱スター閉である。
+有限測度空間上の $L^\infty=(L^1)^*$ という双対同定により、Krein--\v Smulian定理を適用できる。
+従って $C$ 全体が弱スター閉となる。この議論は $L^1$ の可分性を仮定しない。
+\end{proof}
+これで定理\ref{thm:main}の二つの結論が得られた。

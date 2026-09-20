@@ -1,0 +1,214 @@
+\section{The boundary between the main proof and stochastic analysis}
+\label{sec:graph}
+The main argument receives its analytic results through the seven propositions in this section.
+Each clause identifier corresponds to one theorem replaced by an assumption in the Lean isolation check.
+There are twenty clauses, together with two data definitions for the integral graph and the market.
+These are the complete inputs to the main proof when the analytic implementation is removed.
+Accepting them suffices to read the entire main argument, including Section~\ref{sec:selection} onwards,
+without consulting internal appendix lemmas.
+Ordinary measure theory, conditional expectation, Doob inequalities, optional sampling and Hilbert-space convex compactness are shared foundations.
+NFLVR, maximality, the selection of convex averages, boundedness in probability of whole families,
+and the M/FV Cauchy properties are not inputs here: they are used or proved in the main argument.
+
+\subsection{Two data definitions and notation}
+Fix the original bounded price $S$ and $(\Omega,\F,(\F_t),\mu)$ satisfying the usual conditions.
+Whenever $Q\sim\mu$ is used below, $Q$ is a probability measure and the same filtration satisfies the usual conditions under $Q$.
+Unless stated otherwise, process identities and all-time bounds are understood up to indistinguishability or on one common full-measure set.
+An elementary predictable test $J$, with $|J|\leq1$, consists of finitely many stopping intervals and coefficients measurable at their left endpoints.
+Define $J\cdot Y$ by the corresponding finite sum of increments and write
+\[
+ e_T^J(Y,Z)=1\wedge\sup_{t\leq T}|(J\cdot(Y-Z))_t|,
+ \qquad d_T^Q(Y,Z)=\sup_J E_Q e_T^J(Y,Z).
+\]
+Emery convergence means $d_T^Q(Y_n,Y)\to0$ for every finite $T$.
+The Cauchy quantifiers are $\forall T,\varepsilon>0\ \exists N\ \forall n,k\geq N\ \forall J$.
+
+\begin{definition}[The original-price integral graph and terminal market]\label{def:boundary-data}
+\leavevmode\par
+\begin{enumerate}
+\item \analyticcontract{G0}{FTAPTheorem42.BoundedSourceIntegralMarket.GeneralIntegralGraph}
+Put $H^{(n)}=H1_{\{|H|\leq n+1\}}$.
+A local special integral is obtained by applying the \emph{same} predictable coefficient to the
+energy integral of the M component and the Stieltjes integral of the FV component on stopped coordinates, then gluing.
+Write $(H,X)\in\mathcal G_S$, or $X=H\cdot S$, when the local special integrals of $H^{(n)}$
+converge in Emery topology to $X$, which has a zero-start strongly adapted c\`adl\`ag representative.
+Neither specialness nor existence of a terminal value is required of $X$ itself.
+\item \analyticcontract{M0}{FTAPTheorem42.BoundedSourceIntegralMarket.generalMarket}
+The gain-process model $\mathcal M_S$ is obtained from the Emery completion of elementary integrals of the original price.
+Its strategies carry a realized gain and its own terminal value; gain and terminal value respect linear operations.
+Clauses \contractref{M1}--\contractref{M3} below identify this model with the market defined by $\mathcal G_S$.
+\end{enumerate}
+Set $K_a=\{f:a>0,\ \exists(H,X)\in\mathcal G_S,\ X\geq-a,\ X_t\to f\ \as\}$ and
+$K_0=\bigcup_{a>0}K_a$. These set definitions remain concrete in the isolation check.
+An ``original-market gain'' means a zero-start strongly adapted c\`adl\`ag process $Y$ with a witness $(H,Y)\in\mathcal G_S$.
+A ``special gain'' additionally carries a specified zero-start decomposition $Y=M+A$ under $Q$,
+where $M$ is a c\`adl\`ag local martingale and $A$ is predictable, c\`adl\`ag and locally of finite variation.
+A ``finite gain'' is a special gain constant after some finite time, whose specified $A$ is globally BV.
+These data types also remain in the isolation check.
+\end{definition}
+
+\subsection{Seven analytic inputs}
+\begin{proposition}[Regular limits, common envelopes and equivalent measures]\label{input:paths}
+\leavevmode\par
+\begin{enumerate}
+\item \analyticcontract{P1}{FTAPTheorem42.AnalyticInterface.regular_uniform_limit}
+If strongly adapted c\`adl\`ag processes $Y_n$ are Cauchy in probability for the all-time supremum,
+there are a strictly increasing $f$ and a strongly adapted c\`adl\`ag $X$ such that $Y_{f(n)}\to X$ uniformly over all time almost surely.
+\item \analyticcontract{P2}{FTAPTheorem42.AnalyticInterface.regular_common_envelope}
+If each process in such a Cauchy sequence has its own finite terminal value, there are a strictly increasing $f$
+and a finite nonnegative measurable $q$ such that $|Y_{f(n)}(t)|\leq q$ for every $n,t$, almost surely.
+\item \analyticcontract{P3}{FTAPTheorem42.AnalyticInterface.equivalent_envelope_measure}
+For any finite nonnegative measurable $q$, there is an equivalent probability $Q\sim\mu$ with $q\in L^2(Q)$;
+the same filtration satisfies the usual conditions under $Q$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}[Special decomposition of a specified gain]\label{input:decomposition}
+\analyticcontract{D1}{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_specialDecomposition}
+If an original-market gain $Y$ satisfies $|Y_t|\leq|q|$ for $q\in L^2(Q)$,
+the same $Y$ has a zero-start special decomposition $Y=M+A$.
+The decomposition is constructed under $Q$; no transfer of specialness to the original measure is asserted.
+\end{proposition}
+
+\begin{proposition}[Market identification and finite operations]\label{input:market}
+\leavevmode\par
+\begin{enumerate}
+\item \analyticcontract{M1}{FTAPTheorem42.BoundedSourceIntegralMarket.generalAdmissibleClaims_eq_generalMarket}
+For every real $a$, $K_a$ equals the $a$-admissible terminal set of $\mathcal M_S$.
+\item \analyticcontract{M2}{FTAPTheorem42.BoundedSourceIntegralMarket.generalTerminalClaims_eq_generalMarket_K0}
+$K_0$ equals the admissible terminal set of $\mathcal M_S$.
+\item \analyticcontract{M3}{FTAPTheorem42.BoundedSourceIntegralMarket.generalAdmissibleClaims_one_eq_generalMarket_K1}
+$K_1$ equals the unit-admissible terminal set of $\mathcal M_S$.
+\item \analyticcontract{M4}{FTAPTheorem42.BoundedSourceIntegralMarket.generalMarket_terminal_properties}
+Admissible terminal claims of this model are a.e. strongly measurable, and an admissibility bound $-a$ also holds at the terminal value.
+\item \analyticcontract{M5}{FTAPTheorem42.BoundedSourceIntegralMarket.generalMarket_operations}
+Model gains are zero-start, strongly adapted and c\`adl\`ag, have their own terminal values, and are realized in $\mathcal G_S$.
+An a.e. equal terminal representative can be substituted without changing the gain.
+For gains $Y,Z$, a bounded stopping time $\tau\leq T$, and $E\in\F_\tau$, there is a switched strategy
+with gain $Y_{t\wedge\tau}+Z_t-Z_{t\wedge\tau}$ on $E$, and $Y_t$ on $E^c$.
+Its terminal value is $Z_\infty+Y_\tau-Z_\tau$ on $E$, and $Y_\infty$ on $E^c$.
+\item \analyticcontract{M6}{FTAPTheorem42.BoundedSourceIntegralMarket.originalSpecialGain_finiteStop}
+For a special gain $Y=M+A$ and finite $T>0$, $Y^T=M^T+A^T$ is realized as a finite gain.
+\item \analyticcontract{M7}{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_convexCombination}
+Finite convex combinations of special gains are realized using the \emph{same weights} for gains, M components and FV components.
+In particular this realization is available for specified forward convex weights.
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}[Finite-scale quantitative estimates]\label{input:finite}
+None of the following clauses assumes NFLVR.
+\leavevmode\par
+\begin{enumerate}
+\item \analyticcontract{F1}{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_finiteRisk}
+Suppose a special gain $Y=M+A\geq-1$ satisfies $|Y|\leq\xi$ and $\|\xi\|_2\leq B$.
+Let $0<\alpha\leq1/4$, let $n$ be a positive integer, and let $T>0$, with
+\[
+ k=\lfloor\alpha n/4\rfloor>0,\quad 6B\leq n^2,\quad (B/n)^2\leq\alpha,
+ \quad m=\alpha^2-(4B/(\alpha n^2))^2\geq0.
+\]
+If $Q(\sup_{t\leq T}|M_t|>n^3)>8\alpha$, there is an a.e. measurable $f\in K_0-L^0_+(Q)$ such that
+\[
+ f\geq-n^{-1/4}-\frac2{nk},\qquad
+ Q\left(f\geq\frac{\alpha m}4-n^{-1/4}\right)
+ \geq\frac m2-\frac{16\sqrt n}{k}.
+\]
+\item \analyticcontract{F2}{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_finiteTail_normalization}
+Let finite gains $Y_i=M_i+A_i\geq-1$ have a common envelope $|q|\in L^2(Q)$ and suppose $\{M_i^*\}$ is bounded in probability.
+Put $\tau_i(c)=\inf\{t:|M_i(t)|>c\}$ and $L^{w,c}=\sum_iw_i(M_i-M_i^{\tau_i(c)})$.
+Let $B(w,c,\varepsilon)$ be the event that the passage time of $|L^{w,c}|$ across level $\varepsilon$ is finite.
+For every $\varepsilon>0$ there is $N\geq0$ such that for every $0<\delta\leq\varepsilon/4$ there is $c_0\geq0$ with the following property.
+For every finite convex weight $w$ and $c\geq c_0$, if $Q(B(w,c,\varepsilon))>\varepsilon$,
+there are an original-market special gain $V=M^V+A^V$ and an envelope $g$ with
+\[
+ V\geq-1,\quad |V|\leq g,\quad \|g\|_2\leq1,\quad
+ Q((M^V)^*>\varepsilon/[2(1+N)\delta])>\varepsilon/2.
+\]
+\item \analyticcontract{F3}{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_finiteTail_test_estimate}
+Assume the finite-gain, common-envelope and M-maximal boundedness conditions of the preceding clause, but not the lower bound $-1$.
+For every $\eta>0$ there is $c_0\geq0$ such that for every $w$, $c\geq c_0$, $T>0$ and $J$,
+\[
+ E_Q e_T^J(L^{w,c},0)\leq4\eta+Q(B(w,c,\eta)).
+\]
+\item \analyticcontract{F4}{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_prefix_energy}
+For a special gain $Y=M+A$, $q\in L^2(Q)$, $|Y|\leq q$, $c\geq0$ and $T>0$,
+$P=M^{\tau(c)\wedge T}$ is a true martingale, $P_T\in L^2(Q)$, and
+$\|P_T\|_2\leq c+6\|q\|_2$.
+\item \analyticcontract{F5}{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_prefix_regular}
+The same stopped component $P=M^{\tau(c)\wedge T}$ is right-continuous and satisfies $P_0=0$ almost surely
+for every real $c$ and $T\geq0$, without an envelope assumption.
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}[Martingale approximation uniformly over tests]\label{input:approximation}
+\leavevmode\par
+\begin{enumerate}
+\item \analyticcontract{A1}{FTAPTheorem42.AnalyticInterface.emeryCauchy_of_uniform_approximations}
+Let $X_n$ be strongly progressive. Suppose for every $T,\varepsilon>0$ there is a strongly progressive sequence $P_n$
+with $\sup_n d_T^Q(X_n,P_n)\leq\varepsilon$, Cauchy uniformly over tests at this $T$.
+Then $X_n$ is Emery Cauchy.
+\item \analyticcontract{A2}{FTAPTheorem42.AnalyticInterface.martingaleTestsCauchy_of_terminalL2}
+Let $P_n$ be right-continuous zero-start true martingales and let $U\geq0$ be finite.
+If $(P_n(U))$ is Cauchy in $L^2(Q)$, then for every $\varepsilon>0$ there is $N$ such that
+$E_Qe_T^J(P_n,P_k)\leq\varepsilon$ for every $n,k\geq N$, every $T\leq U$, and every $J$.
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}[Finite Hahn trades for two specified gains]\label{input:hahn}
+\analyticcontract{H1}{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_finiteHahn}
+Let special gains $Y=M_Y+A_Y$ and $Z=M_Z+A_Z$ share an envelope $q\in L^2(Q)$ and both be bounded below by $-1$.
+Fix $T>0$ and $\delta\geq0$, and assume $E_Qe_T^J(M_Y,M_Z)\leq b$ and the reverse-order estimate for every $J$.
+The following data can be chosen simultaneously for both orientations. For orientation $(Y,Z)$ put $L=M_Y-M_Z$ and $A=A_Y-A_Z$.
+There are strongly adapted $N,C$ and $V=N+C$, with $N$ right-continuous, $C_0=0$, and
+\[
+ 0\leq C_c-C_a,\quad A_{c\wedge T}-A_{a\wedge T}\leq C_c-C_a\quad(a\leq c),
+ \qquad E_Q[1\wedge\sup_{t\leq T}|N_t|]\leq b.
+\]
+Put $\tau=\inf\{t:N_t-\max(L_t,0)<-\delta\}$, $\sigma=\tau\wedge T$, and $E=\{T<\tau\}$.
+If $0<\delta\leq1$, then $Q(\tau\leq T)\leq8b/\delta$; for every $U\geq T$,
+\[
+ Z^{\rm paste}_t=(Z+V)_{t\wedge\sigma}
+       +1_E\bigl(Z_{t\wedge U}-Z_{t\wedge T}\bigr),\qquad
+ Z^{\rm paste}_U\in K_{1+\delta}.
+\]
+Writing $C'$ for the FV component in the reverse orientation, for every real $\alpha$,
+\[
+ Q(\Var_{[0,T]}A>\alpha)>\alpha
+ \ \Longrightarrow\ Q(C_T>\alpha/2)>\alpha/2
+ \ \text{or}\ Q(C'_T>\alpha/2)>\alpha/2.
+\]
+This is a finite construction for two gains; it assumes neither a Cauchy sequence, NFLVR nor maximality.
+\end{proposition}
+
+\begin{proposition}[Realizing the intrinsic terminal value from component estimates]\label{input:realization}
+\analyticcontract{C1}{FTAPTheorem42.BoundedSourceIntegralMarket.truncatedTerminalClaims_one_of_component_estimates}
+Let $(H_n,Y_n)\in\mathcal G_S$, with $Y_n$ strongly adapted and right-continuous.
+Suppose $Y_n$ converges almost surely uniformly over all time to a zero-start strongly adapted c\`adl\`ag $X\geq-1$, and $X_t\to h$ almost surely.
+Under $Q\sim\mu$, let the same gains satisfy $Y_n=M_n+A_n$, where each $A_n$ is right-continuous and every difference $A_m-A_n$ is locally BV on every path.
+If for every finite $T$ and $\varepsilon>0$ there is $N$ such that for every $m,n\geq N$ and every $J$,
+\[
+ Q(e_T^J(M_m,M_n)>\varepsilon)\leq\varepsilon,
+ \qquad Q(\Var_{[0,T]}(A_m-A_n)>\varepsilon)\leq\varepsilon,
+\]
+then $h\in K_1$. No additional martingale assumption on $M_n$ is imposed here.
+\end{proposition}
+
+\subsection{Proof locations and the isolation check}
+Appendix~\ref{sec:input-proofs} assembles the proofs of the seven inputs.
+\begin{center}\small
+\begin{tabular}{ll}
+\toprule Input & Proof location\\\midrule
+Proposition~\ref{input:paths} & Section~\ref{sec:path-inputs}\\
+Propositions~\ref{input:decomposition}, \ref{input:market} & Sections~\ref{sec:integral-background}--\ref{sec:auxiliary-transforms}\\
+Proposition~\ref{input:finite} & Sections~\ref{sec:ds-estimates}, \ref{sec:approximation-inputs}\\
+Proposition~\ref{input:approximation} & Section~\ref{sec:approximation-inputs}\\
+Proposition~\ref{input:hahn} & Section~\ref{sec:finite-hahn-proof}\\
+Proposition~\ref{input:realization} & Section~\ref{sec:component-realization}\\\bottomrule
+\end{tabular}\end{center}
+Appendices~\ref{sec:construction}--\ref{sec:emery-realization} divide the internal construction into three stages.
+Their internal theorems need not be held in mind simultaneously to follow the main proof.
+The Lean correspondence table gives the fully qualified name for each identifier.
+The isolation check compares the Japanese and English mappings with the actual set of 22 declarations replaced by assumptions,
+and rebuilds the unchanged main proof without \path{Stochastic/}.
+It also verifies that the resulting main theorem uses all 22 specified inputs and no other analytic axioms.
+This verifies the formal dependency boundary. Agreement in mathematical meaning between the prose and the Lean types
+still requires comparing the hypotheses and conclusions stated here with those types.

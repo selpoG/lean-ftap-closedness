@@ -1,0 +1,110 @@
+\section{終端利得の凸コンパクト性}
+以後、\contractref{M1}--\contractref{M3}により一般graphの終端集合と利得モデルの集合を同定する。
+\contractref{M4}により終端のa.e.可測性と許容下界を使える。線形演算は\contractref{M0}のモデル構造による。
+
+
+\subsection{NFLVR と確率有界性}
+
+$D\subseteq\Lzero$ が確率有界であるとは、任意の $\varepsilon>0$ に対して $R>0$ が存在し、
+\[
+ \sup_{f\in D}\Pp(|f|>R)\leq\varepsilon
+\]
+となることをいう。
+
+\begin{proposition}[Delbaen--Schachermayer, Proposition 3.1]
+\label{prop:k1-bip}
+NFLVR の下で $K_1$ は確率有界である。
+\end{proposition}
+
+\begin{proof}
+そうでないとする。$K_1$ の元は $-1$ 以上なので、ある $\varepsilon>0$、
+$1\leq a_n\uparrow\infty$、$G_n\in K_1$ を
+$\Pp(G_n>a_n)>\varepsilon$ となるように選べる。そこで
+\[
+ f_n:=\min(G_n/a_n,1)
+\]
+と置く。正の定数倍と非負 claim の差を取ったので $f_n\in C_0$ であり、
+\[
+ -a_n^{-1}\leq f_n\leq1,\qquad
+ \E f_n\geq\Pp(G_n>a_n)-a_n^{-1}>\varepsilon-a_n^{-1}
+\]
+である。bounded Komlós argumentにより、$f_n$ の forward convex averages $W_nf$ は、
+ある $0\leq f\leq1$ へ a.e. に収束するように選べる。$a_n$ は増加するので、
+凸平均も $-a_n^{-1}$ と $1$ の間にあり、期待値は $\varepsilon-a_n^{-1}$ 以上である。
+優収束定理より $\E f\geq\varepsilon$、従って $\Pp(f>0)>0$ となる。
+
+$\Pp(f\geq b)>0$ となる $b>0$ を選ぶ。Egorov の定理により、
+$W_nf\to f$ が一様となる正の確率の可測集合 $A\subseteq\{f\geq b\}$ が存在する。
+\[
+ U_n:=1_AW_nf-a_n^{-1}1_{A^c},\qquad U:=1_Af
+\]
+と置く。$U_n\leq W_nf$ なので、$C_0$ の下方閉性と有界性から $U_n\in C$ である。
+また $0\ne U\in\Linfty_+$ であり、
+\[
+ \|U_n-U\|_\infty
+ \leq\max\left\{\sup_{\omega\in A}|(W_nf)(\omega)-f(\omega)|,a_n^{-1}\right\}
+ \longrightarrow0
+\]
+となる。これは NFLVR に反する。
+\end{proof}
+
+\subsection{forward convex limit}
+
+列 $(x_n)$ の forward convex combinationとは
+\[
+ y_n=\sum_{k=n}^{N_n}\alpha_{n,k}x_k,
+ \qquad
+ \alpha_{n,k}\geq0,
+ \qquad
+ \sum_{k=n}^{N_n}\alpha_{n,k}=1
+\]
+という形の列である。
+
+次の命題は\cite[Lemma A1.1]{DS}のうち、凸包の確率有界性によって有限値の極限を得る場合に対応する。
+
+\begin{proposition}[下に有界な凸集合の Komlós 型コンパクト性]
+\label{prop:forward}
+$D\subseteq\Lzero$ は凸かつ確率有界とし、$G_n\in D$ は一つの定数で下から
+抑えられているとする。このとき、ある forward convex combinations $\widetilde G_n$ と
+有限値確率変数 $G$ が存在して $\widetilde G_n\to G$ a.e. となる。
+\end{proposition}
+
+\begin{proof}
+定数を加えて $G_n\geq0$ とする。各 tail convex hull上で
+$X\mapsto\E[1-e^{-X}]$ の近似最大元 $Y_n$ を選ぶ。midpoint estimateにより
+$e^{-Y_n/2}$ は $L^2$-Cauchyとなる。$n_j\geq j$ を満たす部分列を抽出して、
+$e^{-Y_{n_j}/2}\to q$ a.e. とする。
+$q=0$ が正の確率で起これば $Y_{n_j}\to\infty$ となり、$D$ の確率有界性に反する。
+従って $q>0$ a.e. である。$\widetilde G_j=Y_{n_j}$ と置けば
+$\widetilde G_j\to-2\log q$ a.e. であり、その凸重みの台は $k\geq n_j\geq j$ にある。
+従ってこの新しい列が必要なforward convex combinationsである。最後に加えた定数を戻す。
+\end{proof}
+
+確率有界な一つの列から、任意の growing-support convexificationの確率有界性が
+従うわけではない。ここで使うのは、各凸結合が同じ凸集合 $K_1$ に属することと、
+$K_1$ 全体の確率有界性である。
+
+\subsection{最大終端利得}
+
+次の命題は\cite[Lemma 4.3]{DS}の最大元の存在に対応する。ここでは超限帰納法に代えて、凸コンパクト性と目的関数の最大化を用いる。
+
+\begin{proposition}[maximal upper claim]
+\label{prop:maximal}
+$D\subseteq\Lzero$ は凸、確率有界、確率収束について逐次閉とする。
+任意の $g\in D$ に対し、$g\leq h$ a.e. となる a.e. maximal element $h\in D$ が存在する。
+\end{proposition}
+
+\begin{proof}
+$D_g:=\{f\in D:g\leq f\ \as\}$ 上で
+$f\mapsto\E[1-e^{-(f-g)}]$ を最大化する。
+共通下界 $g$ は定数とは限らないので、命題~\ref{prop:forward}は
+非負で凸かつ確率有界な集合 $D_g-g$ の近似最大列に適用する。
+得た凸平均に $g$ を戻すと、逐次閉性によりその極限 $h$ は $D_g$ に属する。
+凹性は凸平均の目的関数値を元のtailの下限以上に保ち、被積分関数は $[0,1]$ に値を取るため、
+有界収束により $h$ は目的関数の最大元となる。$h\leq k\in D$ で不等号が正の確率で真ならば、
+$1-e^{-x}$ の狭義単調性が最大性に反する。
+\end{proof}
+
+$\clprob{K_1}$ は凸、確率有界、確率収束について逐次閉である。
+従って $K_1$ の列の forward convex limit $g$ に対し、$g\leq h$ a.e. となる
+a.e. maximal $h\in\clprob{K_1}$ を選べる。

@@ -1,0 +1,205 @@
+\subsection{補助利得に対する定量評価}
+\label{sec:ds-estimates}
+第\ref{sec:components}節で使う数値評価を示す。
+以下の成分は一つの確率 $Q$ の下での零始点正準成分である。
+取引の帰還先の価格は常に $S$ とする。構成で使う操作は有界予測可能制限、加法、
+正のスカラー倍、閉停止だけである。系\ref{cor:market-operations}によって、構成した許容利得は
+全て元市場に実現される。議論は\cite[Lemmas 4.7--4.10]{DS}に従うが、
+実現済み利得の族として述べるため、補助分解は添字ごとに異なってよい。
+
+\begin{lemma}[具体的なjump包絡]\label{lem:explicit-jump-envelope}
+$Y=M+A$ を予測可能FV成分を持つ正則special過程とし、
+$0\leq q\in L^2(Q)$ により全時刻で $|Y_t|\leq q$ とする。
+各有限 $T$ に対して非負の $\xi_T\in L^2(Q)$ が存在し、
+\[
+ |\Delta M_t|\leq\xi_T\quad(0<t\leq T),\qquad
+ \|\xi_T\|_2\leq6\|q\|_2
+\]
+となる。
+\end{lemma}
+\begin{proof}
+$Z_t=E_Q[q\mid\mathcal F_t]$ のcàdlàgマルチンゲール版を取り、
+$Z_T^*=\sup_{t\leq T}|Z_t|$ と置く。
+予測可能停止時刻 $\sigma\leq T$ では、正準分解のjumpの条件付き期待値から
+\[
+ \Delta A_\sigma=E_Q[\Delta Y_\sigma\mid\mathcal F_{\sigma-}],\qquad
+ |\Delta A_\sigma|\leq2Z_{\sigma-}
+\]
+を得る。局所成分については先に局所化し、$\sigma$ を下から予告する。
+$Y$ の可積分包絡により、条件付き期待値をjumpの極限へ移せる。
+予測可能過程のjumpの列挙によって、$A$ の非零jumpは可算個のそのような時刻で覆われる。
+共通の確率1の集合で全ての $0<t\leq T$ に対して $|\Delta A_t|\leq2Z_T^*$ となる。
+従って
+\[
+ \xi_T=2q+2Z_T^*,\qquad
+ \|\xi_T\|_2\leq2\|q\|_2+4\|q\|_2=6\|q\|_2
+\]
+と取れる。最後はDoobの $L^2$ 不等式である。
+これは\cite[Corollary 2.4]{DS}のjump評価について、包絡とhorizonを明示したものである。
+\end{proof}
+
+\begin{lemma}[有限horizonの消失リスク戦略]\label{lem:quantitative-47}
+元市場に実現された利得 $Y=M+A$ が $Y\geq-1$、$|Y|\leq q$、
+$\|q\|_2\leq B$ を満たすとする。
+$0<\alpha\leq1/4$、正整数 $n$、有限 $T>0$ に対し
+\[
+ Q\left(\sup_{t\leq T}|M_t|>n^3\right)>8\alpha
+\]
+とする。$k=\lfloor\alpha n/4\rfloor$ と置き、$k>0$、
+$6B\leq n^2$、$(B/n)^2\leq\alpha$、
+$m_n=\alpha^2-(4B/(\alpha n^2))^2\geq0$ と仮定する。
+元市場の利得 $V_n$ で、$T$ 以後一定であり、
+\[
+ \begin{aligned}
+ V_n(t)&\geq-n^{-1/4}-\frac{2}{nk}\quad(\forall t),\\
+ Q\left(V_n(T)\geq\frac{\alpha m_n}{4}-n^{-1/4}\right)
+ &\geq\frac{m_n}{2}-\frac{16\sqrt n}{k}
+ \end{aligned}
+\]
+を満たすものが存在する。
+\end{lemma}
+\begin{proof}
+最初の同時passageと再尺度化した利得を
+\[
+ \theta=T\wedge\inf\{t:|M_t|>n^3\text{ または }|Y_t|>n\},\qquad
+ L=n^{-2}Y^\theta=N+B^L
+\]
+とする。停止前の利得上界と $Y\geq-1$ から、$\theta$ でのjumpを含めて
+$\Delta L\geq-(n+1)/n^2\geq-2/n$ である。また $L^*\leq q/n^2$ である。
+前補題により $N$ のjump包絡の $L^2$ ノルムは $6B/n^2\leq1$ 以下となる。
+停止前には $|N|\leq n$ であるから、全時間の包絡は $n$ とこのjump包絡の和で抑えられる。
+従って $N$ は真の $L^2$ マルチンゲールである。
+Chebyshev不等式で利得上限に達する事象を除き、初回passageでの右連続性を使うと
+\[
+ Q(N_T^*>n/2)>8\alpha-(B/n)^2\geq7\alpha
+\]
+を得る。半径を $n/2$ とすることで、passageでの厳密不等号の問題を避ける。
+
+$\kappa_0=0$ から始め、$\kappa_{j-1}$ 以後の $N$ の変位の絶対値が
+初めて $1$ を厳密に超える時刻と $T$ の最小を $\kappa_j$ とする。
+$1\leq j\leq k$ に対し $F_j=N_{\kappa_j}-N_{\kappa_{j-1}}$ と置く。
+jump包絡より $\|F_j\|_2\leq2$、任意抽出定理より $E_QF_j=0$ である。
+最初の $k$ 個のexcursionが完了していなければ、最大関数はこれらの停止excursionの
+最大関数の和で抑えられる。Doob不等式はそれぞれの $L^2$ ノルムを $4$ で抑えるので、
+\[
+ Q(N_T^*>n/2,\ k\text{ 個のexcursionが未完了})
+ \leq\left(\frac{4k}{n/2}\right)^2\leq\alpha.
+\]
+特に全ての $j\leq k$ に対し $Q(|F_j|\geq1)>6\alpha$ である。
+従って $EF_j^-=E|F_j|/2>3\alpha$ となる。
+$E_j=\{F_j^->\alpha\}$ とすると $E[F_j^-1_{E_j}]>2\alpha$ であり、
+Cauchy--Schwarz不等式で同じ期待値は $2\sqrt{Q(E_j)}$ 以下である。
+従って $Q(E_j)>\alpha^2$ となる。
+対応する利得増分の $L^2$ ノルムは $2B/n^2$ 以下である。
+水準 $\alpha/2$ のChebyshev不等式と $B^L=L-N$ から
+\[
+ Q(B^L_{\kappa_j}-B^L_{\kappa_{j-1}}\geq\alpha/2)\geq m_n
+\]
+を得る。
+
+$dB^L$ の予測可能な正のHahn集合 $P$ を一つ選び、実際の利得を
+\[
+ R=(1_P1_{(0,\kappa_k]})\cdot L=N^R+C
+\]
+とする。$C$ は非減少で、各excursionでの増分は $B^L$ の対応する増分以上である。
+上で得た $k$ 個の事象の成立個数を $Z$ とすると、$0\leq Z\leq k$、$EZ\geq km_n$ である。
+$EZ\leq km_n/2+kQ(Z\geq km_n/2)$ より
+\[
+ Q(C_T\geq k\alpha m_n/4)\geq m_n/2
+\]
+となる。excursion事象の独立性は使わない。
+予測可能制限は各マルチンゲールexcursionの $L^2$ ノルムを縮小する。
+互いに交わらない停止区間の増分の直交性から $E|N^R_T|^2\leq4k$、従って
+\[
+ Q\left(\sup_{t\leq T}|N^R_t|>d\right)\leq16k/d^2
+\]
+を得る。ここでは全て固定horizonの真の $L^2$ マルチンゲールであり、
+任意抽出と等長性がノルム縮小と直交性を正当化する。
+
+最後に
+\[
+ d=kn^{-1/4},\qquad
+ \lambda=T\wedge\inf\{t:R_t<-d\},\qquad V_n=k^{-1}R^\lambda
+\]
+と置く。正のHahn集合への制限は利得のjumpまたは零を選ぶから、$\Delta R\geq-2/n$ である。
+従って停止時の飛び越しも含めて $R^\lambda\geq-d-2/n$ となる。
+上のマルチンゲール最大事象の外では、$T$ まで $R=N^R+C\geq-d$、
+かつ $R_T\geq C_T-d$ である。$C_T$ の事象と交差を取り $k$ で割れば、
+$16k/d^2=16\sqrt n/k$ より両評価を得る。
+$L,R,V_n$ を定義する全操作は本小節冒頭の元市場への実現を持ち、
+最後の停止によって終端値は文字どおり $V_n(T)$ となる。
+\end{proof}
+この有限尺度の構成を用いるNFLVRの矛盾は、命題\ref{prop:indexed-maximal}で行う。
+
+\begin{lemma}[凸尾部の許容性と具体的な包絡]\label{lem:quantitative-tails}
+各利得が有限時刻以後一定である実現済み族 $Y_i=M_i+A_i\geq-1$ を考える。
+共通包絡 $q\geq0$ は $L^2(Q)$ に属し、$\{M_i^*\}_i$ は確率有界と仮定する。
+$\tau_i(c)=\inf\{t:|M_i(t)|>c\}$、$E_i(c)=\{\tau_i(c)<\infty\}$ と置く。
+有限凸重み $w$ に対する尾部利得とそのM成分を
+\[
+ Z^{w,c}=\sum_iw_i(Y_i-Y_i^{\tau_i(c)}),\qquad
+ L^{w,c}=\sum_iw_i(M_i-M_i^{\tau_i(c)})
+\]
+とする。利得の包絡は
+\[
+ G^{w,c}=2q\sum_iw_i1_{E_i(c)},\qquad
+ \sup_w\|G^{w,c}\|_2\leq2\sup_i\|q1_{E_i(c)}\|_2\longrightarrow0
+\]
+で与えられる。各有限horizonでjump包絡 $\xi_T^{w,c}$ を持ち、
+$\sup_w\|\xi_T^{w,c}\|_2\leq6\sup_w\|G^{w,c}\|_2\to0$ となる。
+このノルム上界のcutoffは $T$ に依存しない。
+さらに任意の $\varepsilon>0$ に対し $N\geq0$ を選べる。
+各 $0<\delta\leq\varepsilon/4$ に対して、重みを選ぶ前に $c_0$ を定められ、
+$c\geq c_0$ かつ $L^{w,c}$ の水準 $\varepsilon$ への有限passageの確率が
+$\varepsilon$ を超えるなら、元市場の利得 $V=M^V+A^V$ と包絡 $g$ が存在して
+\[
+ V\geq-1,\qquad |V|\leq g,\qquad \|g\|_2\leq1,\qquad
+ Q\!\left((M^V)^*>\frac{\varepsilon}{2(N+1)\delta}\right)>\frac\varepsilon2
+\]
+となる。この主張は一つの有限凸尾部の構成であり、NFLVRを仮定しない。
+
+\end{lemma}
+\begin{proof}
+仮定した最大関数の確率有界性から $\sup_iQ(E_i(c))\to0$ である
+（必要ならpassage水準を少し下げて適用する）。
+$q^2$ の積分の絶対連続性により $\sup_i\|q1_{E_i(c)}\|_2\to0$ となる。
+各尾部はpassage以前およびpassage時に零で、それ以後の絶対値は $2q$ 以下である。
+包絡とそのノルム評価は三角不等式から従う。
+
+有限尺度の構成を示す。$\varepsilon>0$ を固定する。
+$Q(q\geq N)<\varepsilon/4$ となる $N$ を選び、全利得の絶対値のいずれかが
+初めて $N$ を厳密に超える時刻を $\zeta$ とする。
+$0<\delta\leq\varepsilon/4$ に対し、全ての $i$ で $Q(E_i(c))\leq\delta^2$、
+全ての重みで $\|G^{w,c}\|_2\leq\delta$ となるcutoffを選ぶ。
+これらは結論を破る重みを選ぶ前の選択である。
+active mass
+\[
+ F_t=\sum_iw_i1_{\{\tau_i(c)<t\}},\qquad
+ \gamma=\inf\{t:F_t>\delta\}
+\]
+は非減少、適合、左連続であるから $F_\gamma\leq\delta$ となる。
+一方 $EF_\infty\leq\delta^2$ より $Q(\gamma<\infty)\leq\delta$ である。
+$t\leq\zeta\wedge\gamma$ なら全てのactiveな開始時刻は $\zeta$ より厳密に前であるため、
+$Y_i(\tau_i(c))\leq N$ である。また閉停止時を含めて $Y_i(t)\geq-1$ なので
+\[
+ Z^{w,c}_t\geq-(N+1)F_t\geq-(N+1)\delta
+\]
+となる。$L^{w,c}$ の水準 $\varepsilon$ へのpassageも停止に加える。
+このpassageが有限である確率が $\varepsilon$ を超えるとする。
+利得上限とactive massによる二つの停止が先に起こる事象を除いても、残る確率は
+$\varepsilon-\varepsilon/4-\delta\geq\varepsilon/2$ より大きい。
+その事象では閉停止時のM成分の絶対値が $\varepsilon$ 以上であり、
+特に $\varepsilon/2$ を厳密に超える。有限和に現れる各利得は有限時刻後一定なので、
+この停止利得も有限時刻後一定である。
+$(N+1)\delta$ で正規化すれば、元市場の $1$ 許容利得を得る。
+包絡ノルムは $1/(N+1)\leq1$ であり、表示した増幅後の確率下界が従う。
+最後に補題\ref{lem:explicit-jump-envelope}を $q=G^{w,c}$ として適用する。
+具体的には
+\[
+ \xi_T^{w,c}=2G^{w,c}+2\sup_{t\leq T}|E_Q[G^{w,c}\mid\mathcal F_t]|
+\]
+と取れる。ノルム評価はDoob不等式から従い、horizonに依存しない。
+\end{proof}
+
+\contractref{F1}は補題\ref{lem:quantitative-47}の終端 $f=V_n(T)$ を取り、
+$K_0\subseteq K_0-L^0_+$ を使ったものである。\contractref{F2}は補題\ref{lem:quantitative-tails}の結論そのものである。

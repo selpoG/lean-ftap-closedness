@@ -1,0 +1,81 @@
+\section{最大性による全時間一様極限と共通包絡}
+\label{sec:selection}
+$h\in\clprob{K_1}$ をa.e.最大元とする。確率収束閉包の定義と部分列抽出により、
+$1$-admissibleな積分利得 $Y_n$ を、その固有終端が $Y_n(\infty)\to h$ a.s.となるように選ぶ。
+この段階では $Y_n$ の全時間一様収束を構成する。全test一様なCauchy性は次節で別に証明する。
+
+\subsection{持続する終端改善の排除}
+次の補題は、原論文がLemma 4.11の証明で\cite[Lemma A3.1]{DS}を用いる段階の役割を担う。消失する下方誤差を許す形で、持続する改善を最大性に矛盾させる。
+
+\begin{lemma}[消失する下方誤差と最大性]\label{lem:persistent-improvement}
+可測な $f_n\to h$ a.s.と $g_n\in K_1$ が
+$(f_n-g_n)^+\to0$ a.s.を満たすとする。
+固定した $\eta,p>0$ と可測事象 $E_n$ について
+$\Pp(E_n)\geq p$、$g_n-f_n\geq\eta$ on $E_n$ が全 $n$ で成立することはない。
+\end{lemma}
+\begin{proof}
+$e_n=(f_n-g_n)^+$、$b_n=f_n-e_n=\min(f_n,g_n)$ と置く。
+$b_n\leq g_n$ であり、$b_n\to h$ a.s.である。
+$K_1$ のforward凸コンパクト性を、補正しない $g_n\in K_1$ に適用する。
+得た重みを $W_n$ と書くと、$W_ng\to g\in\clprob{K_1}$、$W_nb\to h$ a.s.である。
+従って $g\geq h$ となり、最大性から $g=h$ a.s.を得る。
+
+非負の差 $d_n=g_n-b_n$ は $E_n$ 上で $\eta$ 以上である。
+その切断 $c_n=\min(d_n,\eta)$ は $0\leq c_n\leq\eta$ と
+$\E c_n\geq\eta p$ を満たす。非負で総和1の重みに対し
+\[
+ 0\leq W_nc\leq\min(W_nd,\eta),\qquad \E(W_nc)\geq\eta p.
+\]
+ところが $W_nd=W_ng-W_nb\to0$ a.s.なので、有界収束定理により
+$\E(W_nc)\to0$ となり矛盾する。
+この議論では比較基底 $f_n$ の $K_1$ 所属は要らない。
+\end{proof}
+
+\subsection{時間順の貼り合わせ}
+次の命題は\cite[Lemma 4.5]{DS}に対応する。最大性と時間順の貼り合わせから、全時間の上限についてCauchy性を得る。
+
+\begin{proposition}[全時間のCauchy性]\label{prop:all-time-cauchy}
+上の近似列は、必要な部分列を取ることにより
+\[
+ \sup_{t\geq0}|Y_n(t)-Y_k(t)|\longrightarrow0
+ \quad\text{in probability}\quad(n,k\to\infty)
+\]
+を満たす。
+\end{proposition}
+\begin{proof}
+結論が成立しなければ、一定の大きさの利得差が一定の確率で起きる添字対を任意のtailから選べる。
+右連続性で全時間の上限を可算時刻集合に還元し、その事象を有限部分集合で近似する。
+有限集合を時間順に並べ、二方向のうち正の確率下界を持つ一方を選ぶ。
+初めて正の差を検出した格子時刻までは高い側の利得を保持し、それ以後は他方の増分を取る。
+切替えの有無はその時刻で可測なので、\contractref{M5}がこの切替戦略とその終端を供給する。
+切替え後には正の利得差が加算されるため、元の $-1$ 下界を保持できる。
+終端は他方の終端値に検出した正の差を加えたものとなる。
+
+元の二つの終端値は同じ $h$ に収束する。従って貼り合わせ終端には、消失する下方誤差と
+固定量の正の改善が共存する。前補題により矛盾する。
+有限集合の列挙は上限の検出にだけ使い、取引の切替えには常に時間順の格子を使う。
+\end{proof}
+
+\begin{proposition}[正則な一様極限とその終端]
+さらに部分列を取ると、零始点・強適合・càdlàgな $X$ に対して
+$Y_n\to X$ が全時間一様にa.s.成立し、$X\geq-1$、$X_t\to h$ a.s.となる。
+\end{proposition}
+\begin{proof}
+\contractref{P1}を全時間Cauchy列に適用し、強適合càdlàgな一様極限を持つ部分列を取る。
+初期値と下界は極限に渡る。
+\[
+ |X_t-h|\leq\sup_u|X_u-Y_n(u)|
+       +|Y_n(t)-Y_n(\infty)|+|Y_n(\infty)-h|
+\]
+で、まず $n$ を大きくし、次に $t\to\infty$ とすれば、同じ $X$ の終端が $h$ と分かる。
+\end{proof}
+
+\subsection{一つの測度と選択利得ごとの分解}
+\contractref{P2}でさらに部分列と共通の有限非負可測包絡 $q$ を取り、
+\contractref{P3}で $q\in L^2(Q_*)$ となる一つの同値測度を選ぶ。
+\contractref{D1}を各 $Y_i$ に適用し、同じ利得の零始点special分解 $Y_i=M_i+A_i$ を得る。
+$A_i$ は予測可能な局所有限変動過程である。
+
+各利得の $L^2$ 包絡を分解構成へ渡すので、補助分解のsourceは $i$ ごとに異なる。
+次節の族評価では任意の添字集合を許し、有限凸結合や正規化したtailの族そのものに適用する。
+同じ測度・同じ利得・同じ一様極限 $X$ と終端 $h$ を全ての選択で保持する。

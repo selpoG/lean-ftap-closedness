@@ -1,0 +1,137 @@
+\subsection{Finite Hahn trades and closed-stop estimates}
+\label{sec:finite-hahn-proof}
+\begin{proposition}[Completed bounded transforms and finite-horizon Hahn gains]
+Let $Y=M+A$ be strongly adapted and right-continuous, with predictable global
+bounded-variation $A$ and true martingale $M$ satisfying $M_T\in L^2$.
+Suppose every unit elementary test obeys
+\[
+ E\left[1\wedge\sup_{t\leq T}|(J\cdot M)_t|\right]\leq b.
+\]
+For predictable $|k|\leq1$, its completed integral
+$I^k=(k1_{(0,T]})\cdot M$ has the same test bound $b$.
+Moreover a positive predictable Hahn set $B$ gives
+$R=1_{B\cap(0,T]}\cdot Y=N+C$ with, almost surely for all $0\leq a\leq c\leq T$,
+\[
+ 0\leq C_c-C_a,\qquad A_c-A_a\leq C_c-C_a.
+\]
+The component $N$ has the same test bound and
+$E[1\wedge\sup_{t\leq T}|N_t|]\leq b$.
+\end{proposition}
+\begin{proof}
+Item 4 of Theorem~\ref{thm:integral-input} preserves the same test bound $b$ under unit-bounded transforms. Restrict the Hahn set from item 5 to $[0,T]$ and use item 2 to decompose the same gain as $N+C$. The Stieltjes increments include the right endpoint and give both inequalities. The horizon unit test of zero-start $N$ bounds its capped maximum by $b$.
+\end{proof}
+\begin{proposition}[Local transforms and return to the original price]
+For a regular local special source $Y=M+A$, assume the integral representation has true $L^2$ martingale components on an exhaustive sequence of stopped coordinates. A test bound $b$ on $M$ at a fixed
+$T$ transfers to the martingale component $N$ of a realized unit-bounded
+predictable transform. If $N_0=0$, its capped maximal expectation is also at
+most $b$. Local finite variation suffices; unstopped global $L^2$ is not assumed.
+If $Y$ is realized over bounded $S$, has normalized components and an $L^2$
+gain envelope, the positive Hahn transform $V=N+C$ of $Y^T$ satisfies
+\[
+ 0\leq C_c-C_a,\qquad A_{c\wedge T}-A_{a\wedge T}\leq C_c-C_a\quad(a\leq c)
+\]
+and both martingale bounds $b$, and has a general graph over the original price.
+\end{proposition}
+\begin{proof}
+Use the local transform estimate of Theorem~\ref{thm:integral-input} at the fixed $T$. Removing localization costs only the probability of a stop before $T$, leaving the same bound $b$. The identified FV integral retains the preceding Hahn increment bounds. For an original-market gain with an $L^2$ envelope, apply Corollary~\ref{cor:market-operations} to this same Hahn gain. Only the general integral graph is transferred.
+\end{proof}
+
+\paragraph{Application to two specified gains}
+Let $R_n=\widetilde M_n+\widetilde A_n$ and $R_k=\widetilde M_k+\widetilde A_k$ be two specified special gains with common envelope $q\in L^2(Q)$,
+lower bound $-1$, and bound $b$ for every test of the M difference in both orders at fixed $T$.
+Their difference is dominated by $2q$ and carries exactly the specified component differences.
+Apply the $L^2$ stopped coordinates from Theorem~\ref{thm:decomposition-input} and the preceding proposition to this difference.
+The resulting zero-start $V_{n,k}=N+C$ has an original-price general graph;
+$C$ is increasing and dominates the stopped FV increments, while every test and the capped maximum of $N$ have bound $b$.
+The indices merely distinguish the two gains; no sequence selection, NFLVR or maximality is used.
+Apply the following three propositions to this same trade.
+
+\begin{proposition}[Closed finite stopping and admissibility]
+Write $V_{n,k}=N+C$ and set, for $\delta\geq0$,
+\[
+ D_t=N_t-\max\{\widetilde M_n(t)-\widetilde M_k(t),0\},\quad
+ \tau=\inf\{t\geq0:D_t<-\delta\},\quad\sigma=\tau\wedge T.
+\]
+Then $B=(R_k+V_{n,k})^\sigma\geq-(1+\delta)$ at all times and its own
+terminal claim belongs to the original $K_{1+\delta}$.
+\end{proposition}
+\begin{proof}
+Adapted right continuity makes the downside passage and its finite cut
+stopping times. Zero start and the Hahn increments give, for $t\leq T$,
+$C_t\geq0$ and $C_t\geq\widetilde A_n(t)-\widetilde A_k(t)$.
+Before $\sigma$, $D_t\geq-\delta$, whence
+\[
+ (R_k+V_{n,k})_t\geq\max(R_n(t),R_k(t))-\delta.
+\]
+Take left limits at the stop. The actual Hahn restriction jumps by
+$\Delta(R_n-R_k)$ on its Hahn set and by zero on the complement, including
+at $T$. Thus the pasted gain's jump is either $\Delta R_n$ or $\Delta R_k$.
+Add the selected input's jump to the left-limit inequality and use that
+input's bound $-1$ to get the closed-stop bound. At $\sigma=0$ use zero start.
+Original-price addition and finite stopping realize this gain. It is constant
+after $T$, so its finite terminal value belongs to $K_{1+\delta}$.
+General graphs and lower bounds return to the original measure while
+component estimates stay under $Q$.
+\end{proof}
+\begin{proposition}[Continuation on survival and failure probability]
+Let $E=\{T<\tau\}$. For finite $U\geq T$ define
+\[
+ Z_t=(R_k+V_{n,k})_{t\wedge\sigma}
+       +1_E\bigl(R_k(t\wedge U)-R_k(t\wedge T)\bigr).
+\]
+This is an original-market general gain with $Z\geq-(1+\delta)$,
+$Z_U\in K_{1+\delta}$, and on $E$,
+\[
+ Z_U=R_k(U)+V_{n,k}(T).
+\]
+If the capped maximal expectations of $N$ and $\widetilde M_n-\widetilde M_k$
+on $[0,T]$ are at most $b$, then for $0<\delta\leq1$,
+
+\[
+ Q(\tau\leq T)\leq8b/\delta,
+\] independently of $U$.
+\end{proposition}
+\begin{proof}
+Since $E\in\F_T$, use predictable event-tail restriction after $T$, stop at
+$U$, and add the stopped gain. On $E^c$ use the closed-stop lower bound.
+On $E$, $\sigma=T$ and after $T$ the gain is
+$R_k(t\wedge U)+V_{n,k}(T)$. The inequalities $D_T\geq-\delta$ and $C_T\geq0$
+give $V_{n,k}(T)\geq-\delta$, preserving admissibility. The gain is constant
+after $U$.
+If both capped maxima are less than $\delta/4<1$, their uncapped path values
+are less than $\delta/4$, hence $D_t\geq-\delta/2$ for all $t\leq T$.
+Right continuity at $T$ preserves a strict margin slightly beyond $T$;
+therefore $\tau>T$. The failure event is contained in the union where one
+capped maximum is at least $\delta/4$. Markov's inequality gives $8b/\delta$.
+The original martingale difference's maximal bound follows from zero start
+and the horizon unit test in the assumed finite-scale estimate.
+\end{proof}
+\begin{proposition}[Two Hahn orientations dominate variation]
+Apply the construction to $A=\widetilde A_n-\widetilde A_k$ and $-A$,
+with resulting increasing components $C^+,C^-$. Almost surely,
+\[
+ \Var_{[0,T]}A\leq C^+_T+C^-_T.
+\]
+If $Q(\Var_{[0,T]}A>\alpha)>\alpha$, one orientation satisfies
+
+\[
+ Q(C^\pm_T>\alpha/2)>\alpha/2,
+\] retaining all the preceding estimates and
+original-market terminal membership for any finite $U\geq T$.
+\end{proposition}
+\begin{proof}
+For $a\leq c\leq T$ the two increment inequalities give
+\[
+ A_c-A_a\leq C^+_c-C^+_a,\qquad
+ -(A_c-A_a)\leq C^-_c-C^-_a.
+\]
+Since both right-hand sides are nonnegative,
+$|A_c-A_a|\leq(C^+_c-C^+_a)+(C^-_c-C^-_a)$.
+Sum over a partition and take the supremum. Right continuity identifies
+this path variation with the total variation of the stopped Stieltjes measure.
+The large-variation event is contained, up to a null set, in the union of
+the two events $\{C^\pm_T>\alpha/2\}$. Subadditivity chooses an orientation.
+The assumed bound $b$ in both orders supplies both constructions simultaneously.
+\end{proof}
+
+These constructions supply every conclusion of \contractref{H1} for the same two gains.

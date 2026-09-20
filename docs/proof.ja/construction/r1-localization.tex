@@ -1,0 +1,649 @@
+\subsection{補助位相と共通局所化}
+
+\begin{lemma}[capped級数からの経路的有限性]
+具体的な零始点分解 $X_k=N_k+A_k$ に対して
+\[
+ B_k(t)=\sqrt{[N_k]_t}+\Var_{[0,t]}(A_k)
+\]
+と置く。全整数 $n\ge0$ で $\sum_k E[1\wedge B_k(n)]<\infty$ なら、
+一つの確率1の集合上で全時刻 $t\ge0$ について $\sum_k B_k(t)<\infty$ である。
+\end{lemma}
+\begin{proof}
+各 $B_k$ は有限非負値で増加し、固定時刻で可測である。
+整数 $n$ を固定すると、Tonelliから $\sum_k(1\wedge B_k(n))<\infty$ a.s.を得る。
+この級数の項は零へ収束するので、経路ごとに十分大きな $k$ では $B_k(n)<1$ となる。
+その尾部ではcapが外れ、有限個の初期項も有限だから $\sum_k B_k(n)<\infty$ である。
+整数 $n$ の可算交叉を取り、任意の $t$ には $n=\lceil t\rceil$ と単調性を使えばよい。
+\end{proof}
+この補題は総和の期待値の有限性を与えるものではない。
+
+\begin{lemma}[総和の単調性と右連続性]
+同じ仮定の下で、一つの確率1の集合上で
+$U_t=\sum_k B_k(t)$ は有限実数値の増加・右連続関数である。
+\end{lemma}
+\begin{proof}
+局所有限変動な右連続関数の累積全変動は右連続である。
+実際、累積全変動の右極限とその値との差は、元の関数の右jumpの絶対値であり、これは零である。
+従って各 $B_k$ は右連続である。前の補題のevent上では、各時刻の級数は有限であり、
+項ごとの単調性から総和の単調性も従う。
+$t$ を固定し、右側近傍 $t\le s<t+1$ を考えると $0\le B_k(s)\le B_k(t+1)$ である。
+右辺は $k$ について和可能なので、級数の支配収束により $s\downarrow t$ と総和を交換できる。
+これが同じevent上の全時刻で右連続性を与える。
+\end{proof}
+
+\begin{lemma}[具体的な分解列の共通passage]
+usual conditionsの下で、上のcapped級数の仮定を満たす分解列に対して、
+総和 $U$ の強適合的c\`adl\`ag代表元を選べる。
+その絶対値が $r+1$ を初めて厳密に超える時刻を $r+1$ で切ったものを $\tau_r$ とすると、
+$(\tau_r)$ は一つの局所化列であり、$\tau_r\le r+1$ である。
+一つの確率1の集合上で、全 $r$ と全 $t<\tau_r$ に対して
+\[
+ \sum_k B_k(t)\le r+1
+\]
+が成り立つ。
+\end{lemma}
+\begin{proof}
+各時刻 $t$ の累積全変動は、$t$ 以下の有限グリッド変動の可算上限から復元できるため
+$\mathcal F_t$-可測である。二次変分の適合性と合わせて各 $B_k(t)$ は $\mathcal F_t$-可測となり、
+実数値級数の総和も強適合的である。
+前の補題による共通event上の単調性から左極限が存在し、右連続性と合わせてc\`adl\`ag性を得る。
+usual conditionsにより例外の零集合は $\mathcal F_0$ に属するので、そこで零へ修正しても適合性を保つ。
+修正した同じ過程にc\`adl\`ag絶対値passageの局所化定理を適用する。
+得られる族は単調かつ無限大へ発散し、各有限代表は対応する決定論的horizon以下である。
+passageより厳密に前では $|U_t|\le r+1$ であり、元の総和との全時刻一致から結論を得る。
+\end{proof}
+ここでは具体的な分解列のcapped評価を入力に共通局所化を構成した。
+Émery収束からの入力生成は本節後半の閉グラフによる位相比較が供給し、
+停止時の境界jumpを含むprelocal cost総和の評価は以下で証明する。
+そのうち、closed stoppingによるquadratic rootの境界補正は次のとおりである。
+
+\begin{lemma}[停止したquadratic rootの境界補正]
+零始点の二次変分 $[N]$ について、一つの確率1の集合上で全時刻 $t$ に対し
+\[
+ \sqrt{[N]_t}\le\sqrt{[N]_{t-}}+|\Delta N_t|
+\]
+である。零始点のc\`adl\`ag過程 $N$ の有限値停止時刻 $\tau$ に対して、
+同じ二次変分を停止したcertificateの全時間rootは $\sqrt{[N]_\tau}$ に等しく、
+\[
+ E\sup_{t\ge0}\sqrt{[N^\tau]_t}
+ \le E\bigl[\sqrt{[N]_{\tau-}}+|\Delta N_\tau|\bigr].
+\]
+期待値は無限でもよく、$\tau$ の決定論的有界性は要求しない。
+\end{lemma}
+\begin{proof}
+二次変分の単調性と零初期値から $[N]_{t-}\ge0$ である。
+jumpの同定により $[N]_t=[N]_{t-}+(\Delta N_t)^2$ なので、
+非負な平方根を比較すれば最初の不等式を得る。
+$[N]^\tau_t=[N]_{t\wedge\tau}$ は増加し、$t=\tau$ で終端値に達するため全時間supremumを同定できる。
+共通event上で $t=\tau$ を代入し、非負積分の単調性を使えば期待値の評価を得る。
+時刻零では左極限を初期値とする規約と $[N]_0=0$ を用いる。
+\end{proof}
+
+\begin{lemma}[停止直前成分とjumpによるprelocal cost評価]
+usual conditionsの下で、零始点分解 $X=N+A$ と有限停止時刻 $\tau\le T$ に対して
+\[
+ \mathcal J_{\tau-}(X)
+ \le E\bigl[\sqrt{[N]_{\tau-}}+|\Delta N_\tau|\bigr]
+       +E[\Var(A)_{\tau-}]
+\]
+が成立する。$A$ は局所有限変動でよく、期待値は無限でもよい。
+\end{lemma}
+\begin{proof}
+まず $A$ を決定論的時刻 $T$ で停止する。この過程は大域的有限変動であり、
+$[0,\tau)$ で元の $A$ と一致するため、strict prefixも元のものと等しい。
+累積全変動の単調性から、全 $t<\tau$ で $\Var(A)_t\le\Var(A)_{\tau-}$ である。
+strict-prefix変動評価を適用すると
+$\Var(A^{\tau-})_\infty\le\Var(A)_{\tau-}$ を得る。
+従って $Y=N^\tau+A^{\tau-}$ は $X$ のstrict prefix上の延長であり、
+右辺の二成分はその許容分解となる。マルチンゲール成分のcostには前の境界root評価を使い、
+FV成分には上の全変動評価を積分して用いる。
+最後に延長と分解についての下限の定義を適用すれば結論を得る。
+\end{proof}
+\begin{lemma}[共通passageにおける左極限の総和]
+上のcapped仮定から構成した同じ共通passageについて、一つの確率1の集合上で全 $r$ に対し
+\[
+ \sum_k\left(\sqrt{[N_k]_{\tau_r-}}+\Var(A_k)_{\tau_r-}\right)\le r+1
+\]
+が成立する。
+\end{lemma}
+\begin{proof}
+各clockの左極限は、二次変分の左極限に平方根を適用したものと累積全変動の左極限との和である。
+有限部分和を固定する。$t<\tau_r$ ではこの部分和は全級数以下であり、共通passageの評価から
+$r+1$ 以下となる。$\tau_r>0$ なら左からの極限を取り、有限部分和の左極限にも同じ上界を得る。
+最後に有限部分集合について上限を取ると非負級数全体の評価となる。
+$\tau_r=0$ では各左極限が零初期値に一致するため同じ結論となる。
+\end{proof}
+\begin{lemma}[共通局所化によるcostとwitnessの和可能性]
+usual conditionsの下で、上のcapped仮定を満たす零始点分解列について、
+同じ共通停止時刻族 $\tau_r\le r+1$ は各 $r$ で
+\[
+ \sum_k\mathcal J_{\tau_r-}(X_k)
+ \le r+1+\sum_k E|\Delta N_{k,\tau_r}|
+\]
+を満たす。ここで
+\[
+ s(N):=\sup_{\tau\text{：有界停止時刻}}E|\Delta N_\tau|
+\]
+と定める。さらに $\sum_k s(N_k)<\infty$ なら、各 $r$ で形式の
+exact-representation witness列を選べ、そのcost総和は
+\[
+ 6\left(r+1+\sum_k s(N_k)+1\right)<\infty
+\]
+で抑えられる。停止時刻族は列全体に共通である。
+\end{lemma}
+\begin{proof}
+停止時jumpは進行的可測過程の停止値なので可測である。
+従って一分解のcost評価からその期待値を分離できる。
+残る左極限clockについては、有限個の期待値の和は和の非負積分以下であり、
+経路的総和上界を積分すると $r+1$ 以下となる。
+有限部分集合について上限を取り、jumpの期待値を加えれば最初の不等式を得る。
+各 $\tau_r$ は有界停止時刻なので、jump項は $\sum_k s(N_k)$ 以下である。
+よってprelocal costが和可能となり、近似的最小分解の選択定理を適用すると、
+総和が1の正の誤差列とDavis定数6からwitnessの上界を得る。
+\end{proof}
+このwitnessは一般分解のものであり、元の価格過程に対するactual integralの所属は意味しない。
+\begin{definition}[零始点の補助cost]
+零始点分解 $D=(N,A)$ とその二次変分に対し
+\[
+ c_{r^1}(D):=s(N)+\sum_{n=0}^\infty 2^{-n-1}
+ E\left[1\wedge\left(\sqrt{[N]_n}+\Var(A)_n\right)\right],
+ \qquad R(X):=\inf_{X\sim N+A}c_{r^1}(N,A)
+\]
+と定める。値は無限でもよい。二つの項は同じ分解から計算し、その和の下限を取る。
+\end{definition}
+\begin{lemma}[許容分解を持つ全過程での補助costの有限性]
+usual conditionsの下で、零始点の許容分解 $X\sim N+A$ が存在するなら $R(X)\le3$ である。
+逆に $R(X)<\infty$ なら許容分解が存在する。
+この主張に $\mathcal J(X)<\infty$ は不要である。
+\end{lemma}
+\begin{proof}
+与えられた $N$ に閾値1の大域DDY分解を適用し、$N=L+Q$ とする。
+$L$ は零始点局所マルチンゲールで、その全時刻のjumpは共通の確率1の集合上で2以下である。
+$Q$ は零始点の適合的càdlàg局所有限変動過程であるから、
+$X\sim L+(Q+A)$ は同じtargetの許容分解である。
+同じ $L$ の二次変分を構成する。全有界停止時刻でjumpを評価して期待値を取ると $s(L)\le2$ である。
+一方、capped clockの各期待値は1以下であり、重みの総和も1なので、その級数は1以下である。
+従ってこの分解のjoint costは3以下であり、下限 $R(X)$ も3以下となる。
+逆方向では、許容分解が存在しなければ外側の下限が空であり $R(X)=\infty$ となる。
+\end{proof}
+ここで有限性を得た空間は許容分解を持つ零始点過程全体である。
+主定理で必要な零始点・正則なelementary good-integratorからこの空間への所属は、
+後述の分解生成とelementary-test完備性で供給する。
+\begin{lemma}[大域的costから補助costへの評価]
+usual conditionsの下で、拡張値のまま $R(X)\le2\mathcal J(X)$ が成立する。
+従って $\mathcal J(X)<\infty$ なら $R(X)<\infty$ であり、$\mathcal J(X_k)\to0$ なら $R(X_k)\to0$ である。
+\end{lemma}
+\begin{proof}
+分解 $D=(N,A)$ を固定し、その大域的costを
+\[
+ j(D):=E\left[\sup_t\sqrt{[N]_t}+\Var(A)_\infty\right]
+\]
+と書く。二次変分のjump条件と単調性から
+$|\Delta N_\sigma|\le\sqrt{[N]_\sigma}\le\sup_t\sqrt{[N]_t}$ が
+全時刻共通の確率1の集合上で成立する。期待値を取り、全有界停止時刻について上限を取ると
+$s(N)\le j(D)$ を得る。一方、各時刻のclockは全時間rootと全変動の和以下なので
+各capped期待値も $j(D)$ 以下である。重み $2^{-n-1}$ の総和は1であり、
+$c_{r^1}(D)\le2j(D)$ となる。全分解について下限を取れば主張を得る。
+無限値から実数への変換は不要である。零収束の主張は $0\le R(X_k)\le2\mathcal J(X_k)$ から従う。
+\end{proof}
+\begin{lemma}[補助costの三角不等式と差]
+usual conditionsの下で
+\[
+ R(X+Y)\le R(X)+R(Y),\qquad R(-X)=R(X),\qquad
+ R(X-Y)\le R(X)+R(Y)
+\]
+が成立する。従って $R(Z_k-X)\to0$ なら $R(Z_{k+1}-Z_k)\to0$ である。
+\end{lemma}
+\begin{proof}
+二つの許容分解を固定して足す。局所マルチンゲールの和の二次変分を構成し、
+root三角不等式と全変動の劣加法性を使うと、和のclockは二つのclockの和以下である。
+$1\wedge(a+b)\le(1\wedge a)+(1\wedge b)$ を積分し、正の重みを掛けて足すと
+capped項も劣加法的となる。一方、全有界停止時刻でjumpの三角不等式を積分してから
+上限を取れば、jump項の劣加法性を得る。停止時jumpの可測性を用いて非負積分の和を分離する。
+最後に、二項を同じ分解に保ったまま全分解と二次変分について下限を取る。
+負号は二次変分と全変動を変えず、jumpの絶対値も保存するので $R(-X)=R(X)$ である。
+差の評価は和と負号の結果から従う。
+$Z_{k+1}-Z_k=(Z_{k+1}-X)-(Z_k-X)$ に適用して零収束を得る。
+\end{proof}
+\begin{lemma}[補助costとclosed stop]
+任意の停止時刻 $\tau$ に対して $R(X^\tau)\le R(X)$ が成立する。
+また $\sigma\le\tau$ なら $R(X^\sigma)\le R(X^\tau)$ である。
+停止時刻は無限値を取ってよい。
+従って $R(X_k)\to0$ なら、各項で任意に選んだ停止時刻 $\tau_k$ に対しても
+$R(X_k^{\tau_k})\to0$ である。
+\end{lemma}
+\begin{proof}
+一つの分解 $X\sim N+A$ とその二次変分を固定し、両成分を同じ $\tau$ で停止する。
+任意の有限時刻 $s$ において、$s\le\tau$ なら $\Delta N^\tau_s=\Delta N_s$ であり、
+$\tau<s$ なら $\Delta N^\tau_s=0$ である。これを各有界停止時刻で評価して積分すると
+$s(N^\tau)\le s(N)$ を得る。
+停止した二次変分は $[N]^\tau$ であり、その単調性と停止後の全変動の縮小から
+各時刻のclockも元のclock以下である。従ってcapped積分と重み付き級数も縮小する。
+同じ分解の二座標を合わせ、全分解について下限を取れば第一の主張を得る。
+第二の主張は $(X^\tau)^\sigma=X^\sigma$ に第一の主張を適用して従う。
+列については $0\le R(X_k^{\tau_k})\le R(X_k)$ を用いる。
+\end{proof}
+\begin{lemma}[補助costの零収束から共通局所化へ]
+usual conditionsの下で $R(X_k)\to0$ なら、一つの狭義単調な部分列 $f$ と
+一つのlocalizing sequence $\tau_r\le r+1$ が存在し、各 $r$ について
+$X_{f(k)}$ のexact-representation witness列を選べる。そのcost総和は $6(r+4)$ 以下であり、
+costは零へ収束する。
+\end{lemma}
+\begin{proof}
+まず $\sum_k R(X_k)<\infty$ の場合を考える。総和が1の正の誤差列を使って
+各下限を近似すると、一つの分解列 $D_k$ を選べて
+$\sum_k c_r(D_k)\le\sum_k R(X_k)+1<\infty$ となる。
+jump項の総和はこのcost総和以下である。また整数 $n$ を固定すると、
+重み $2^{-n-1}>0$ を掛けたcapped期待値の総和もこのcost総和以下である。
+重みが正なので各整数horizonのcapped期待値の総和も有限となる。
+前の共通局所化定理をこの同じ分解列へ適用すると、各 $r$ でwitness cost総和は
+$6(r+1+\sum_k R(X_k)+2)$ 以下となる。
+一般の零収束列については $R(X_{f(k)})<2^{-k-1}$ となる狭義単調な部分列を選ぶ。
+その補助cost総和は1以下なので上界 $6(r+4)$ を得る。
+非負級数の有限性から各項の零収束も従う。
+\end{proof}
+Émery収束から補助costの零収束への接続は、後述の同じ分解可能過程の商上の閉グラフ定理で証明する。
+大域的costの零収束 $\mathcal J(X_k)\to0$ が与えられる場合には、上の比較をこの構成へ適用できる。
+同じ結論、すなわち一つの部分列、一つの共通停止時刻族、および各段階でcost総和が
+$6(r+4)$ 以下かつ零収束するexact-representation witness列を得る。
+\begin{lemma}[補助costの分離性]
+区別不能な過程は同じ補助costを持つ。usual conditionsの下で
+\[
+ R(X)=0\ \Longleftrightarrow\ X\sim0,
+ \qquad R(X-Y)=0\ \Longleftrightarrow\ X\sim Y
+\]
+が成立する。
+\end{lemma}
+\begin{proof}
+区別不能なtargetへ同じ分解と二次変分を移してもcostは変わらず、下限も等しい。
+$R(X)=0$ なら定数列 $X_k=X$ の補助cost総和は零である。
+近似的最小分解を選び共通局所化へ渡すと、各 $r$ で
+$\sum_k\mathcal J_{\tau_r-}(X)<\infty$ を得る。定数非負級数なので
+$\mathcal J_{\tau_r-}(X)=0$ である。
+まず $X$ が適合的で右連続な場合、各固定時刻 $t$ について
+$|X_t|\mathbf1_{\{t<\tau_r\}}$ は可測であり、停止前の最大値評価からその期待値は零となる。
+可算個の $r$ に共通の確率1の集合を取り、$\tau_r\to\infty$ を使うと $X_t=0$ を得る。
+さらに可算right-dense skeleton上の等式を右連続性で全時刻へ延ばす。
+一般のraw targetでは、$R(X)<1$ から許容分解を一つ取り、その和を正則な代表元として使う。
+逆向きは零分解と零二次変分のcostが零であることと、区別不能性による不変性から従う。
+差に適用すれば二つ目の同値も得る。
+\end{proof}
+\begin{lemma}[補助costの和可能性と経路的一様収束]
+usual conditionsの下で $\sum_k R(X_k)<\infty$ なら、一つの確率1の集合上で全有限 $T$ に対し
+\[
+ \sum_k\sup_{t\le T}|X_k(t)|<\infty
+\]
+である。従って各有限horizonで一様に零へ収束する。
+特に $R(X_k)\to0$ なら、この結論を満たす一つの狭義単調な部分列を選べる。
+\end{lemma}
+\begin{proof}
+まず各過程が適合的で右連続である場合を考える。
+共通停止時刻 $\tau_r$ を固定し、可算right-dense skeletonのうち $t<\tau_r$ の点における
+$|X_k(t)|$ の上限を $G_{k,r}$ とする。これは可測であり、停止前の最大値評価から
+$E G_{k,r}\le6\mathcal J_{\tau_r-}(X_k)$ である。
+右辺を $k$ について足すと有限なので、Tonelliにより $\sum_kG_{k,r}<\infty$ が確率1で成立する。
+可算個の $r$ に共通の集合を取り、任意の有限 $T$ について $T<\tau_r$ となる $r$ を選ぶ。
+各 $t\le T$ を停止前のskeleton点で右から近似し、右連続性を使うと
+$\sup_{t\le T}|X_k(t)|\le G_{k,r}$ を得る。これを足せば結論となる。
+一般のraw target列では、近似的最小分解の和を正則な代表元として使い、
+全rowと全時刻に共通の区別不能性により同じ結論を移す。
+最後に零収束列から $\sum_kR(X_{f(k)})\le1$ となる部分列を選ぶ。
+\end{proof}
+\begin{lemma}[補助costの収束はucp収束を含意する]
+usual conditionsの下で $R(X_k-X)\to0$ なら、全有限 $T$ と全 $\varepsilon>0$ に対し
+\[
+ P\{\exists t\le T:\ |X_k(t)-X(t)|>\varepsilon\}\longrightarrow0
+\]
+である。raw targetの可測性や経路正則性は追加仮定しない。
+\end{lemma}
+\begin{proof}
+まず補助costが和可能な列を考える。各項は許容分解を持つので、その正則な和の
+factorial envelopeを使い、元のtargetの有限horizon最大値がa.e.可測であることを得る。
+前の補題から最大値はa.e.有限で零へ収束するため、その実数値版は確率収束する。
+最大値の有限性を使って実数値版の確率尾部を拡張非負実数値の最大値の確率尾部と同定する。
+一般の零収束列については、任意の部分列から補助costが和可能な部分列を再抽出できる。
+従って確率尾部の数列にも零へ収束する再抽出があり、部分列判定から元の数列が零へ収束する。
+最後に $X_k-X$ に適用する。ある時刻で誤差が $\varepsilon$ を越える事象は、
+その最大値が $\varepsilon$ 以上である事象に含まれる。
+\end{proof}
+従って $R(X_k)\to0$ なら、項ごとに任意の停止時刻 $\tau_k$ を選んでも
+$X_k^{\tau_k}\to0$ がucpで成立する。これはclosed stopによる補助costの縮小を
+上の確率尾部の評価へ適用した帰結である。
+
+\begin{proposition}[分解可能過程の商上の距離とCauchy列]
+usual conditionsの下で、許容分解を持つ零始点過程全体を $\mathcal D_0$ とする。
+$d(X,Y):=R(X-Y)$ は有限値の擬距離であり、その分離商は区別不能性による商と一致する。
+商上の $X_k\to X$ は $R(X_k-X)\to0$ と同値であり、ucp収束を含意する。
+さらに商上で $(X_k)$ がCauchyなら、一つの狭義単調な $f$ が存在し、
+\[
+ \sum_k R(X_{f(k+1)}-X_{f(k)})\le1
+\]
+となる。同じ差分列に対して、一つのlocalizing sequence $\tau_r\le r+1$ と、
+各 $r$ でcost総和が $6(r+4)$ 以下かつ有限なexact-representation witness列を選べる。
+\end{proposition}
+\begin{proof}
+二つの許容分解の差も許容分解であるから、DDYによる有限性の結果を距離に適用できる。
+対称性と三角不等式は補助costの代数から従い、距離零と区別不能性の同値性から商の同定を得る。
+商の距離は代表元の $R(X-Y)$ に等しいので、距離収束の同定とucpへの含意も従う。
+Cauchy性から $b_n\to0$ を満たす拡張非負実数列を選び、$i,j\ge n$ なら
+$d(X_i,X_j)\le b_n$ とできる。$b_{f(k)}<2^{-k-1}$ となる狭義単調な $f$ を選べば
+$f(k+1)\ge f(k)$ により隣接差のcost総和は1以下となる。
+この同じ差分列に補助costの和可能性からの共通局所化を適用する。
+\end{proof}
+\begin{lemma}[同じ部分列の局所一様極限]
+隣接差について $\sum_k R(Y_{k+1}-Y_k)<\infty$ なら、一つの過程 $Y$ が存在し、
+一つの確率1の集合上で全有限 $T$ に対し $Y_k\to Y$ が $[0,T]$ 上一様に成立する。
+従って前の命題のCauchy列には、共通局所化witnessを持つ同じ部分列に対して、この極限を選べる。
+\end{lemma}
+\begin{proof}
+補助costの和可能性から、共通の確率1の集合上で全有限 $T$ に対して
+\[
+ \sum_k q_k(T)<\infty,\qquad
+ q_k(T):=\sup_{t\le T}|Y_{k+1}(t)-Y_k(t)|
+\]
+を得る。各項は有限であり、各固定時刻の隣接差の距離級数はこの級数で抑えられる。
+実数の完備性から各時刻の極限を得る。この点ごとの極限を $Y_t$ と定めると、
+和可能な一様step上界 $q_k(T)$ によって $[0,T]$ 上の一様収束へ上げられる。
+$Y_t$ の定義はhorizonに依存しない。前の命題が選んだ部分列の差分costは和可能なので、
+その同じ部分列にこの結論を適用する。
+\end{proof}
+この極限はここではraw processとして得られる。以下で大域成分級数を使って許容分解を構成し、
+三座標のtail評価から商上の補助距離での収束と完備性を示す。
+\begin{lemma}[固定停止段階のマルチンゲール成分の和]
+true martingale列 $(M_k)$ と非負可測関数 $(g_k)$ が
+$|M_k(t)|\le g_k$ を全時刻で満たし、$\sum_k E g_k<\infty$ とする。
+このとき $M_t:=\sum_k M_k(t)$ はstrongly adaptedなtrue martingaleである。
+従って上で得た共通局所化の各段階 $r$ で、同じwitnessの成分を零始点に正規化した後の
+\[
+ M^{(r)}_t:=\sum_k (N_k-N_k(0))_{t\wedge\tau_r}
+\]
+もtrue martingaleとなる。
+\end{lemma}
+\begin{proof}
+Tonelliにより $G:=\sum_k g_k$ は可積分であり、確率1で有限である。
+その同じ集合上で全時刻の $\sum_k |M_k(t)|$ が有限となる。
+各固定時刻で級数の和は可測であるから、$M$ はstrongly adaptedである。
+有限部分和はtrue martingaleであり、その絶対値は可積分な $G$ 以下である。
+支配収束によるmartingale極限定理を適用すれば第一の主張を得る。
+witnessへの適用では、零始点正規化したclosed-stopped成分がtrue martingaleであることを使う。
+停止時刻がhorizon以下なので、有限horizonのenvelopeは停止成分を全時間で支配する。
+正規化のcostは元のcostの2倍以下であり、witness costの和可能性から必要なenvelope期待値の
+和可能性が従う。
+\end{proof}
+\begin{lemma}[中心化した有限変動成分の級数]
+零初期値の実数値経路列 $(a_k)$ が $\sum_k\Var(a_k)<\infty$ を満たすなら、
+部分和は $a:=\sum_k a_k$ へ全時間で一様収束し、$a$ は有限変動であり、
+\[
+ \Var\left(a-\sum_{k<n}a_k\right)\longrightarrow0
+\]
+となる。従って固定段階の和可能なwitness列に対し
+$a_k(t):=A_k^{\tau-}(t)-A_k^{\tau-}(0)$ とすれば、同じ三性質が共通の確率1の集合上で成立する。
+\end{lemma}
+\begin{proof}
+零初期値から $|a_k(t)|\le\Var(a_k)$ であり、和可能な上界による級数の一様収束定理を使える。
+部分和の隣接差の全変動は $\Var(a_k)$ であるから、有限変動極限定理と
+全変動距離での収束定理を適用して残る二性質を得る。
+witnessへの適用では、定数を引いても変動は変わらず、strict prefixは停止時刻以後一定である。
+停止時刻がhorizon以下なので、全時間の変動はwitnessの有限horizon変動以下となる。
+cost総和の有限性とTonelliから、これらの変動の総和は確率1で有限である。
+中心化は、変動から制御できない初期定数の級数を取り除くために必要である。
+\end{proof}
+この結果は、同じCauchy列の部分列と同じ共通停止時刻族の各段階へ適用済みである。
+以下では大域分解列を保持する経路を使い、段階ごとの成分の貼り合わせを避けて極限の分解を構成する。
+
+\begin{lemma}[大域分解を保持した共通成分評価]
+上の商空間のCauchy列に対して、一つの狭義増加列 $f$ と、実際の隣接差
+$X_{f(k+1)}-X_{f(k)}=N_k+A_k$ の大域分解列を選べる。
+同じ分解の補助costの総和は2以下であり、一つの局所化列 $\tau_r\le r+1$ に対して
+\[
+ \sum_k\left(E\sqrt{[N_k]_{\tau_r}}+
+ E\Var(A_k^{\tau_r-})\right)\le r+3
+\]
+が成立する。全変動は全時間で取る。
+\end{lemma}
+\begin{proof}
+隣接差の補助距離の総和を1以下にする部分列を選び、下限の近似によって一つの分解列を
+選ぶと、そのcost総和は2以下になる。この同じ列の共通clockを用いた停止では、
+停止直前のrootと累積変動の総和の期待値が $r+1$ 以下となる。
+各項について
+\[
+ \sqrt{[N_k]_{\tau_r}}\le
+ \sqrt{[N_k]_{\tau_r-}}+|\Delta N_{k,\tau_r}|,
+ \qquad
+ \Var(A_k^{\tau_r-})\le\Var_{[0,\tau_r)}(A_k).
+\]
+境界jumpの期待値は同じ分解のbounded-stopping-jump cost以下であり、
+その総和は2以下である。非負積分の有限和の評価を上限へ移して、目的の評価を得る。
+停止した二次変分は増加し、停止時刻以後一定なので、停止時のrootは全時間のroot上限に等しい。
+\end{proof}
+\begin{lemma}[同じ大域マルチンゲール成分の和]
+前の補題で選んだ成分について、$M_t:=\sum_kN_k(t)$ と定めると、各 $M^{\tau_r}$ は
+true martingaleであり、$M$ 自身は零始点のlocal martingaleである。
+\end{lemma}
+\begin{proof}
+一つの $r$ を固定する。停止二次変分の全時間root上限は $\sqrt{[N_k]_{\tau_r}}$ に等しい。
+Davis評価から
+\[
+ \sum_k E\sup_t|N_k(t\wedge\tau_r)|
+ \le 6\sum_k E\sqrt{[N_k]_{\tau_r}}<\infty
+\]
+を得る。$\tau_r\le r+1$ なので、各停止成分の有限horizonの可測envelopeが全時間を支配する。
+その可積分性によって各停止成分はtrue martingaleとなり、上の支配されたmartingale級数の
+補題を適用できる。停止と点ごとの級数は同じ時点の値を評価するので、得られる和は
+$M^{\tau_r}$ そのものである。各 $N_k(0)=0$ から $M_0=0$ であり、共通局所化列を使えば
+局所化の零時刻indicatorを除去して $M$ のlocal martingale性を得る。
+\end{proof}
+\begin{lemma}[マルチンゲール級数の正則な代表元]
+同じ $M=\sum_kN_k$ は、零始点でstrongly adaptedかつ全経路càdlàgな
+local martingaleと区別不能である。
+\end{lemma}
+\begin{proof}
+各共通停止段階で用いたenvelopeの期待値総和は有限なので、Tonelliにより経路ごとの
+envelope総和も確率1で有限となる。この同じ上界によって停止成分の有限部分和は全時間で
+一様収束する。各部分和はcàdlàgであり、一様極限も右連続で左極限を持つ。
+全停止段階の共通の確率1の集合を取る。停止時刻族は無限大へ達するため、各時刻 $t$ に対し
+ある段階の停止時刻が $t+1$ より大きくなる。大域和とその停止は $[0,t+1)$ で同じ値を持ち、
+大域和の右連続性と左極限をこの停止段階から得る。
+各固定時刻の級数和は可測である。càdlàgでない経路の零集合を初期時刻可測な集合として
+その上で零に置き換えると、適合性・零初期値・区別不能性を保存する。
+区別不能性による移送定理を使い、この同じ代表元へlocal martingale性を移す。
+\end{proof}
+\begin{lemma}[同じ大域有限変動成分の和]
+同じ分解列について $A_t:=\sum_k A_k(t)$ と定めると、一つの確率1の集合上で
+$A$ は局所有限変動であり、全ての有限 $T$ に対して
+\[
+ \sum_{k<n}A_k\longrightarrow A\quad\text{一様に }[0,T]\text{ 上で},
+ \qquad
+ \Var_{[0,T]}\left(A-\sum_{k<n}A_k\right)\longrightarrow0
+\]
+が成立する。
+\end{lemma}
+\begin{proof}
+capped clockの評価から、一つの確率1の集合上で、全ての $T$ に対し
+$\sum_k\Var_{[0,T]}(A_k)<\infty$ となる。
+$T$ を固定し、$a_k(t):=A_k(t\wedge T)$ と置く。
+その全時間の変動は $\Var_{[0,T]}(A_k)$ 以下であり、$a_k(0)=0$ である。
+零始点の変動級数定理により、$\sum_k a_k$ は全時間で有限変動であり、
+有限部分和は一様収束し、全時間の変動距離でも収束する。
+$[0,T]$ 上では $a_k=A_k$ なので、一様収束と変動距離の収束を元の成分へ移せる。
+任意のコンパクト区間はある $[0,T]$ に含まれるため、$A$ の局所有限変動性も従う。
+\end{proof}
+\begin{lemma}[有限変動級数の正則な代表元]
+前の有限変動級数は、零始点でstrongly adapted、全経路càdlàgかつ局所有限変動の過程と
+区別不能である。
+\end{lemma}
+\begin{proof}
+各時刻で可測な関数の級数を取るため、和はstrongly adaptedである。
+一つの確率1の集合上で、有限部分和は全ての有限区間で一様収束する。
+各有限部分和は右連続であり、時刻 $t$ の右側の近傍を $[0,t+1]$ に制限して
+一様極限の定理を使えば、和の右連続性を得る。
+局所有限変動性と右連続性が同時に成立しない経路を一つの零集合にまとめる。
+usual conditionsによりこの集合は初期時刻で可測なので、その上で和を零に置き換えても
+適合性と区別不能性を保存する。零初期値も保たれる。
+修正した全経路は右連続かつ局所有限変動であり、後者から左極限の存在が従う。
+\end{proof}
+この構成では停止段階ごとに分解を選び直さない。adaptedな有限変動成分を持つ分解では、
+和の一致から各成分の一致は従わないためである。
+\begin{lemma}[分解可能過程空間内の極限]
+補助距離についてCauchyな列 $(X_k)$ には、一つの狭義増加列 $f$ と許容分解を持つ過程 $Y$ が存在し、
+一つの確率1の集合上の全有限区間で $X_{f(n)}\to Y$ が一様に成立する。
+同じ部分列の点ごとの極限も $Y$ と区別不能であり、許容分解を持つ。
+\end{lemma}
+\begin{proof}
+上で構成した同じ大域成分の正則な和を $M,A$ とし、$Y:=X_{f(0)}+M+A$ と置く。
+基準項の許容分解と $(M,A)$ の分解を加えると $Y$ の許容分解を得る。
+全ての隣接差の分解、両成分の代表元との一致、停止後の一様収束、FV部分和の局所一様収束を
+一つの確率1の集合上で用いる。有限区間 $[0,T]$ に対して $\tau_r>T$ となる段階を選べば、
+停止後のmartingale部分和はその区間で元の部分和と一致する。従って両成分の部分和は
+それぞれ $M,A$ へ一様収束する。一方、各有限和で
+\[
+ X_{f(0)}+\sum_{k<n}(N_k+A_k)=X_{f(n)}
+\]
+であるから、$Y$ への一様収束が従う。
+各時刻の極限の一意性をこの同じ集合上で使うと、点ごとの極限は $Y$ と全時刻で一致し、
+区別不能性によって許容分解を移せる。
+\end{proof}
+\begin{lemma}[級数極限の停止jump評価]
+許容分解のmartingale成分列 $U_n$ が左極限を持つ過程 $U$ へa.e.に局所一様収束するなら、
+bounded-stopping-jump cost $s$ に対して $s(U)\le\liminf_n s(U_n)$ となる。
+従って上で構成した同じ正則なmartingale和は
+\[
+ s(M)\le\sum_k s(N_k)
+\]
+を満たす。
+\end{lemma}
+\begin{proof}
+有界停止時刻 $\sigma\le T$ を固定する。$T$ で停止した経路は全時間で一様収束し、
+左極限の収束定理によって $\Delta U_n(\sigma)\to\Delta U(\sigma)$ となる。
+各項のjumpは可測であり、Fatouから
+$E|\Delta U(\sigma)|\le\liminf_n E|\Delta U_n(\sigma)|\le\liminf_n s(U_n)$ を得る。
+最後の上界は $\sigma$ に依存しないので、有界停止時刻全体の上限を取れる。
+級数には、元の分解を有限個加えた分解を使う。有限和のjump costは各項のcostの和以下であるから、
+下半連続性を適用して目的の評価を得る。構成済みの $M$ への適用では、共通停止後の一様収束と
+停止時刻族のexhaustivityにより、元の部分和の局所一様収束を使える。
+\end{proof}
+\begin{lemma}[成分級数のtail評価]
+上と同じ正則な和 $M,A$ と元の分解列に対して、任意の $n$ で
+\[
+ s\left(M-\sum_{k<n}N_k\right)\le\sum_{k=0}^{\infty}s(N_{k+n})
+\]
+である。従って、この左辺は $n\to\infty$ で零に収束する。また各有限horizon $T$ で
+\[
+ E\left[\min\left\{\operatorname{Var}_{[0,T]}
+       \left(A-\sum_{k<n}A_k\right),1\right\}\right]\longrightarrow0
+\]
+である。
+\end{lemma}
+\begin{proof}
+$n$ を固定し、元の分解列を $n$ だけずらす。そのmartingale成分の部分和は
+$M-\sum_{k<n}N_k$ へ同じ確率1の集合上で局所一様収束する。
+前補題をこの列に適用すると最初の不等式を得る。
+$\sum_k s(N_k)<\infty$ なので、右辺は零へ収束する。
+FV成分については、既に得た経路ごとの全変動の零収束を用いる。
+正則な和と各部分和は強適合的で右連続であるため、差の有限区間全変動は可測である。
+同じ代表元への区別不能性を使い、定数1による支配収束で期待値の収束を得る。
+\end{proof}
+\begin{lemma}[同じマルチンゲール級数のquadratic-root tail]
+上の正則な和を $M$ とし、$U_n=M-\sum_{k<n}N_k$ とおく。
+元のroot期待値総和が有限である共通有界停止時刻 $\tau$ について
+\[
+ E\sqrt{[U_n]_\tau}
+ \le42\sum_{k\ge n}E\sqrt{[N_k]_\tau}\longrightarrow0
+\]
+が成立する。$[U_n]$ は各tailの内在的二次変分として構成でき、停止時刻の選択には依存しない。
+\end{lemma}
+\begin{proof}
+まず有限 $T$ 上で部分和が局所マルチンゲール $U$ へ一様収束する場合を考える。
+非負のenvelope級数が無限となるpathも許して、部分和の極限から
+\[
+ U_T^*\le\sum_k (N_k)_T^*
+\]
+を得る。実際、各時刻で絶対値の有限和評価を極限へ移し、全時刻の上限を取ればよい。
+逆Davis評価、Tonelli、順方向のDavis評価から
+\[
+ E\sqrt{[U]_T}\le7E U_T^*
+ \le7\sum_k E(N_k)_T^*\le42\sum_k E\sqrt{[N_k]_T}
+\]
+となる。
+次に $N_k^\tau$ の和へ適用する。共通停止後のenvelope期待値総和は有限なので、
+その部分和は全時間でほとんど確実に一様収束する。
+元の和から最初の $n$ 項を引くと、同じ確率1の集合上で
+残りの部分和は $U_n^\tau$ へ一様収束する。
+$\tau\le T$ を満たす決定論的horizonを取り、停止整合性を使うと主張の評価を得る。
+右辺は非負の可算和のtailであるから零へ収束する。
+\end{proof}
+
+\begin{lemma}[capped rootの共通局所化の除去]
+$\tau_r\to\infty$ がほとんど確実に成立し、各 $r$ で
+$E\sqrt{[U_n]_{\tau_r}}\to0$ とする。このとき各有限 $T$ で
+\[
+ E\bigl[\min\{\sqrt{[U_n]_T},1\}\bigr]\longrightarrow0.
+\]
+\end{lemma}
+\begin{proof}
+二次変分の単調性から
+\[
+ \min\{\sqrt{[U_n]_T},1\}
+ \le\sqrt{[U_n]_{\tau_r}}+\boldsymbol1_{\{\tau_r\le T\}}.
+\]
+右辺第二項の期待値はexhaustionと支配収束により $r\to\infty$ で零へ行く。
+まずこれを小さくする $r$ を固定し、その後 $n\to\infty$ とすればよい。
+\end{proof}
+
+\begin{theorem}[零始点分解可能過程の補助距離の完備性]
+usual conditionsの下で、許容分解を持つ全零始点過程の区別不能性商は、
+距離 $d(X,Y)=R(X-Y)$ に関して完備である。
+\end{theorem}
+\begin{proof}
+商のCauchy列から速い部分列 $X_{f(k)}$ を選び、その実際の隣接差の分解 $(N_k,A_k)$ を保持する。
+上で構成した正則な成分和を $M,A$ とし、$X=X_{f(0)}+M+A$ とおく。
+この $X$ は許容分解を持つ。同じ分解から最初の $n$ 項を引けば、
+$X-X_{f(n)}$ のmartingale成分とFV成分はそれぞれ
+\[
+ U_n=M-\sum_{k<n}N_k,\qquad B_n=A-\sum_{k<n}A_k
+\]
+となる。sourceの同定には元の隣接差のtelescopingを用いる。
+jump tail評価により $s(U_n)\to0$ であり、各有限 $T$ で
+\[
+ E\min\{\sqrt{[U_n]_T},1\}\to0,\qquad
+ E\min\{\operatorname{Var}_{[0,T]}(B_n),1\}\to0
+\]
+も得た。$\min\{a+b,1\}\le\min\{a,1\}+\min\{b,1\}$ を使うと、同じ分解の
+capped clock期待値が各整数horizonで零へ行く。
+各期待値は1以下なので、幾何重み $2^{-j-1}$ による可算和にも支配収束を適用できる。
+従って同じ分解の $r^1$ costが零へ収束し、その下限である $R(X-X_{f(n)})$ も零へ行く。
+負号不変性から元の部分列は商上で $X$ へ収束する。
+最後にCauchy列に収束部分列があれば列全体も同じ極限へ収束することを使う。
+商の任意の列を代表元へ持ち上げてこの議論を適用できるので、完備性を得る。
+\end{proof}
+
+\begin{lemma}[スカラー倍の連続性]
+許容分解を持つ零始点過程について
+\[
+ R(cX)\le\max\{1,|c|\}\,R(X)
+\]
+である。さらに、$a_k\to a$ かつ $R(X_k-X)\to0$ なら
+$R(a_kX_k-aX)\to0$ であり、同じ分離商上のスカラー倍は連続である。
+\end{lemma}
+\begin{proof}
+分解 $X=N+A$ と二次変分 $[N]$ を固定する。
+$cX=cN+cA$ は許容分解で、$[cN]=c^2[N]$ である。
+後者はjumpの二乗の恒等式と、$c^2(N^2-[N])$ の局所マルチンゲール性から従う。
+変動の評価とjumpの斉次性から、clockとjump costはそれぞれ
+$|c|B(t)$ と $|c|s(N)$ 以下である。
+$1\wedge(|c|b)\le\max\{1,|c|\}(1\wedge b)$ を適用し、
+同じ分解で評価してから下限を取ると最初の不等式を得る。
+
+零へのスカラー収束にはこの不等式だけでは足りない。
+DDY分解を用いて、固定した $X$ の有限jump costを持つ分解 $E=N+A$ を選ぶ。
+$a_k\to0$ なら $|a_k|s(N)\to0$ であり、各有限horizonでは
+有限のclockに対して $1\wedge(|a_k|B(t))\to0$ a.s.である。
+1による支配収束と幾何重みの可算和への支配収束から
+同じ分解のcostが零へ行き、$R(a_kX)\to0$ を得る。
+一般のjoint limitは
+\[
+ a_kX_k-aX=a_k(X_k-X)+(a_k-a)X
+\]
+と三角不等式、最初の評価、固定過程に対する零収束から従う。
+距離空間では逐次連続性は連続性と同値であり、連続なスカラー倍は分離商へ降りる。
+\end{proof}

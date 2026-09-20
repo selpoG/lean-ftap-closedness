@@ -1,0 +1,30 @@
+\subsection{Regular limits and measurable envelopes}
+\label{sec:path-inputs}
+\begin{proof}[Proof of Proposition~\ref{input:paths}]
+For \contractref{P1}, use the all-time Cauchy condition to choose a strictly increasing $f$ with
+\[
+ \mu\{\sup_t|Y_{f(n+1)}(t)-Y_{f(n)}(t)|>2^{-n}\}\leq2^{-n}.
+\]
+Right continuity reduces the supremum to nonnegative rational times, so these events are measurable.
+By Borel--Cantelli, on almost every path the consecutive all-time suprema are at most $2^{-n}$ for all sufficiently large indices.
+The resulting tail series is finite, so the sequence is uniformly Cauchy. Completeness of the reals gives an all-time uniform limit.
+Uniform limits preserve right continuity and left limits at every positive time.
+The usual conditions put the common exceptional null set in $\F_0$; define the process to be zero there at every time.
+At each fixed time it is a limit of adapted real-valued random variables, and the null-set correction preserves adaptedness.
+This gives a strongly adapted c\`adl\`ag representative.
+
+For \contractref{P2}, use the same fast subsequence. Each $Y_n$ has bounded paths over all time,
+by c\`adl\`ag boundedness on compact intervals and its finite limit at infinity.
+On the common full-measure set of uniform Cauchy convergence,
+\[\sup_{n,t}|Y_{f(n)}(t)|<\infty.\]
+Choose a countable right-dense set $D$. The extended-real random variable
+\[q_0=\sup_{n,t\in D}|Y_{f(n)}(t)|\]
+is measurable. Set it to zero wherever it is infinite.
+The resulting finite nonnegative measurable $q$ dominates all the gains on one full-measure set.
+
+For \contractref{P3}, put $Z=E_\mu e^{-q}$ and $dQ/d\mu=e^{-q}/Z$.
+Since $q$ is finite, $0<Z\leq1$ and the density is positive, giving $Q\sim\mu$.
+Boundedness of $x^2e^{-x}$ on $[0,\infty)$ gives $q\in L^2(Q)$.
+Equivalent measures have the same null sets, so completeness is preserved; right continuity of the filtration is measure-independent.
+Thus the usual conditions are preserved as well.
+\end{proof}

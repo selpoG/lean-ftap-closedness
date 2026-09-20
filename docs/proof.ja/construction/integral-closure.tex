@@ -1,0 +1,68 @@
+\subsection{一般積分graphの閉性の証明}
+\label{sec:closure-proof}
+\begin{proof}[定理\ref{thm:graph-closure}の証明]
+\emph{一つの元価格上の近似列を選ぶ。}
+元価格の一様上界が失敗する共通零集合は通常条件により時刻0で可測である。
+その上で価格を零に置き換えれば、利得の区別不能性を保ったまま全点での有界性を満たせる。
+定理\ref{thm:integral-input}の有界切断とelementary密度を各 $Y_n$ に適用する。
+各整数horizonの全test一様誤差を幾何的に小さくする対角選択により、
+同じ $X$ にÉmery収束する元価格のelementary積分列 $P_n$ を得る。
+$X$ は仮定により零始点・強適合・càdlàgである。
+命題\ref{prop:gi-limit}が $X$ のgood-integrator性を与え、
+定理\ref{thm:regular-gi-decomposition}が補助位相の領域に属する分解を与える。
+ここでは $X$ の積分表示を仮定しない。
+
+\emph{同じ列に共通する局所化を選ぶ。}
+命題\ref{prop:topology-localization}を $P_n-X$ に適用し、補助 $r^1$ costが零へ収束することを得る。
+同命題の位相比較は、分解可能過程の空間の完備性と閉グラフ定理に基づき、積分値域閉性から独立である。
+さらに速い部分列を取ると、隣接差のcostが和可能となる。
+命題\ref{prop:joint-costs}は、この部分列と一つの同値測度 $Q$、一つの停止列 $\tau_r$ を選び、
+prelocal成分costと境界jumpの期待値を同時に和可能にする。
+$\tau_r\leq r+1$、$\tau_r\to\infty$ を保持する。
+
+\emph{停止した実際の積分成分へ評価を渡す。}
+各 $P_n^{\tau_r}$ は元価格の実現済み積分である。
+補題\ref{lem:canonical-cost}と式\eqref{eq:actual-closed-cost}により、
+任意の分解から得たcostの上界を、この同じ利得の正準成分の上界へ移す。
+\ref{sec:actual-series}項で、この評価を同じ $r$ の全隣接差に適用して成分級数を構成する。
+その結果、M成分の局所一様極限とFV成分の変動極限、その和が $X^{\tau_r}$ であることを得る。
+新たな列や独立の分解を選んで同一視する操作はない。
+
+\emph{一つの係数で両成分を実現する。}
+\ref{sec:joint-realization}項のjoint停止は、近似M成分の終端を全添字で一様に $L^2(Q)$ 有界にする。
+FV隣接差の変動総和可能性とともに補題\ref{lem:joint-coefficient}の仮定を満たす。
+同補題は、FVの変動controlでの係数極限と、同じ係数の凸化によるenergy極限を一致させる。
+従って一つの予測可能係数が停止した両成分を表し、その和は同じ $X^{\tau_r}$ である。
+energy測度が零となる部分にもFV側から係数が定まり、両測度間の絶対連続性は必要ない。
+
+\emph{元測度と全時間へ戻す。}
+定理\ref{thm:integral-input}の切断包含と測度移送により、各停止利得の一般graphを元測度へ戻す。
+付録の\ref{sec:integral-calculus}節で証明した停止区間の貼り合わせをこの停止列に適用する。
+互いに素な区間上で係数を継ぎ、停止利得の一致と $\tau_r\to\infty$ により
+元価格の全時間の一般graph $(H,X)$ を得る。
+貼り合わせが必要とするのは利得の区別不能性であり、別々に選んだ係数の重なりでの一致ではない。
+補助測度上のspecial分解自体は移送しない。
+\end{proof}
+
+\paragraph{利得領域と終端集合}
+elementary-test実現とは、各行の係数絶対値和が決定論的定数で抑えられた
+予測可能初等戦略列と、その積分の強適合・càdlàgなucp極限の組であって、
+積分列が全elementary testに一様なCauchy性を持つものをいう。
+\begin{proposition}[利得領域と終端集合の同定]
+同じ有界sourceの一般切断graphの利得領域は、elementary-test実現の利得領域と
+区別不能性まで一致する。各候補の有限終端極限を明示して定めた
+$a$-admissible終端集合も、両領域で一致する。
+\end{proposition}
+\begin{proof}
+初等戦略列の各行の係数は有界なので、その積分は一般切断graphに属する。
+そのÉmery Cauchy性とucp極限から、同じ極限へのÉmery収束を得る。
+定理\ref{thm:graph-closure}を適用すると、elementary-test実現の一般graph帰属が従う。
+逆に一般graphからは、各有界切断行を元のsourceのelementary積分で近似する。
+停止を外す誤差は、全testに共通して停止時刻がhorizon以前となる確率で抑えられる。
+切断行の収束と三角不等式により、正則代表元は任意の有限horizonでelementary近似を持つ。
+整数horizon $n+1$ で誤差を $1/(n+1)$ 以下に選ぶ。
+horizonの単調性から全horizonで収束し、全test共通のCauchy評価と
+零始点性を用いたucp収束により、実現の全条件を満たす。
+区別不能な利得の間で、各時刻の下界と候補自身の終端極限を移す。
+有限horizon収束から終端極限の存在を推論する必要はない。
+\end{proof}

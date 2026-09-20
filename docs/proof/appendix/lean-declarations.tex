@@ -1,0 +1,111 @@
+\section{Mathematical steps and Lean declarations}
+The public import is \path{FTAPTheorem42}. Every declaration below occurs
+in the transitive dependencies of the main theorem's type or proof.
+Component estimates under $Q_*$ and realization as general integrals under
+the original measure are separate steps.
+
+\small
+\begin{longtable}{L{0.29\linewidth}L{0.64\linewidth}}
+\toprule
+Mathematical step & Lean declaration \\
+\midrule\endfirsthead
+\toprule
+Mathematical step & Lean declaration \\
+\midrule\endhead
+\bottomrule\endlastfoot
+Main theorem & \path{FTAPTheorem42.BoundedSourceIntegralMarket.theorem42_generalMarket} \\
+General integral domain and terminal claims & \path{FTAPTheorem42.BoundedSourceIntegralMarket.truncatedTerminalClaimsBy_eq_generalMarket} \\
+Closure of the original integral domain & \path{FTAPTheorem42.BoundedSourceIntegralMarket.exists_truncatedIntegralGraph_of_emeryConverges} \\
+Global realization under the original measure & \path{FTAPTheorem42.BoundedSourceIntegralMarket.exists_realized_truncatedGraph} \\
+Joint localization under an auxiliary measure & \path{FTAPTheorem42.BoundedSourceIntegralMarket.exists_joint_actual_component_localization} \\
+Elementary topology to auxiliary cost & \path{FTAPTheorem42.ElementaryMetricProcess.tendsto_r1_of_elementary} \\
+Common localization and summable component costs & \path{FTAPTheorem42.J1Decomposition.exists_common_localizers_summable_component_costs} \\
+Terminal improvement versus maximality & \path{FTAPTheorem42.not_persistent_terminalGain_improvement_of_vanishing_lowerError} \\
+Cauchy estimates for both components of one sequence & \path{FTAPTheorem42.BoundedSourceIntegralMarket.exists_selected_original_componentCauchy} \\
+FV variation estimate from maximality & \path{FTAPTheorem42.BoundedSourceIntegralMarket.original_finiteVariation_cauchyInProbability} \\
+Realization of a maximal closure element & \path{FTAPTheorem42.BoundedSourceIntegralMarket.maximal_mem_general_K1} \\
+From terminal to process lower bounds & \path{FTAPTheorem42.BoundedSourceIntegralMarket.generalMarket_terminalLowerBoundControlsGain} \\
+Assembly of Fatou and weak-star closedness & \path{FTAPTheorem42.GainProcessModel.theorem42ConcreteWeakStar_from_gainProcessModel_K1_maximalRealization} \\
+Weak-star closedness of bounded slices & \path{FTAPTheorem42.isClosed_linftyWeakStar_claimSlice} \\
+From a Fatou-closed cone to weak-star closedness & \path{FTAPTheorem42.linftyWeakStarClosed_of_fatouCone} \\
+Forward-convex terminal compactness (Proposition 3.1) & \path{FTAPTheorem42.BoundedSourceIntegralMarket.generalMarket_forwardConvexCandidates} \\
+Uniform path limit from maximality (Lemma 4.5) & \path{FTAPTheorem42.BoundedSourceIntegralMarket.exists_uniform_terminal_limit_of_maximal} \\
+Indexed maximal bound (Lemma 4.7) & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_class_boundedInProbability} \\
+Tail bound by normalization (Lemma 4.8) & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_finiteTail_tendsToZero} \\
+Uniform tail tests (Lemma 4.9) & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_tail_tests} \\
+M Cauchy estimates with common weights (Lemma 4.10) & \path{FTAPTheorem42.BoundedSourceIntegralMarket.exists_original_martingale_convexification} \\
+Lower-bounded convex compactness (Lemma A1.1) & \path{FTAPTheorem42.hasForwardConvexAELimit_of_lowerBounded_convexSet_aestronglyMeasurable} \\
+Existence of a maximal terminal claim (Lemma 4.3) & \path{FTAPTheorem42.exists_aeMaximal_ge_inMeasureSequentialClosure_of_mem} \\
+\end{longtable}
+\normalsize
+
+Continuous-time gain identities use indistinguishability. Right continuity
+and a countable dense time set combine fixed-time null sets into one null
+set for all times. Passing between $L^p$ classes and measurable
+representatives preserves lower bounds and terminal limits. The weak-star
+topology is induced by the integral pairing with $L^1$.
+
+\noindent\begin{minipage}{\linewidth}
+\small
+\textbf{Construction of the analytic inputs}\par\medskip
+\begin{tabular}{L{0.29\linewidth}L{0.64\linewidth}}
+\toprule
+Mathematical step & Lean declaration \\
+\midrule
+Bounded-source decomposition & \path{FTAPTheorem42.HorizonFactorialGrid.exists_boundedSemimartingaleSource_globalSpecialDecompositionData} \\
+Canonical component cost transfer & \path{FTAPTheorem42.ActualSIntegrableStrategy.centered_component_cost_le_witness_of_stopped} \\
+Energy limit of the common coefficient & \path{FTAPTheorem42.LocalCompletedM2A.exists_intrinsicJointPassage_selectedIntegrand} \\
+FV identification of the same coefficient & \path{FTAPTheorem42.LocalCompletedM2A.intrinsicJointPassageSelectedIntegrand_ae_eq_rangeVariation} \\
+Finite-horizon vanishing-risk strategy & \path{FTAPTheorem42.LocalCompletedM2A.actualFirstLocalized_hahnPositive_stopDownside_of_originalHigh} \\
+\bottomrule
+\end{tabular}
+\end{minipage}\par
+
+\subsection*{The boundary between the main proof and analytic implementation}
+\path{Proof/Selection/} proves lower-bound control, terminal convex compactness,
+maximality-based pasting, and the uniform path limit.
+\path{Proof/Components/} corresponds to Lemmas 4.7--4.10: it derives the class
+bound from NFLVR, normalizes the tails, and chooses common Hilbert convex weights.
+\path{Proof/OrientedSequence.lean} assembles finite Hahn improvements for the same
+sequence; \path{Closedness/} proves the maximality contradiction and FV Cauchy
+property corresponding to Lemma 4.11. Terminal convex compactness, maximal
+elements, and the final closure arguments use \path{PositiveTail/},
+\path{Trading/}, and \path{Core/}.
+
+The main proof does not directly reference \path{Stochastic/}; it receives the seven analytic propositions of Section~\ref{sec:graph} through \path{Interface/}.
+The following is the complete list of 22 declarations checked against the actual isolation build.
+All inputs are proved in the normal build. Only the isolated copy replaces them by assumptions and rebuilds the unchanged main proof.
+No theorem about selection, convexification, maximality or closedness is added as an assumption.
+
+\subsection*{The complete isolated boundary}
+Identifiers refer to the clauses of Section~\ref{sec:graph}. G0 and M0 are data; the remaining twenty entries are propositions.
+\small
+\begin{longtable}{L{0.12\linewidth}L{0.81\linewidth}}
+\toprule
+Input & Lean declaration \\
+\midrule\endhead
+\bottomrule\endlastfoot
+\contractref{G0} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.GeneralIntegralGraph} \\
+\contractref{M0} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.generalMarket} \\
+\contractref{P1} & \path{FTAPTheorem42.AnalyticInterface.regular_uniform_limit} \\
+\contractref{P2} & \path{FTAPTheorem42.AnalyticInterface.regular_common_envelope} \\
+\contractref{P3} & \path{FTAPTheorem42.AnalyticInterface.equivalent_envelope_measure} \\
+\contractref{D1} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_specialDecomposition} \\
+\contractref{M1} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.generalAdmissibleClaims_eq_generalMarket} \\
+\contractref{M2} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.generalTerminalClaims_eq_generalMarket_K0} \\
+\contractref{M3} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.generalAdmissibleClaims_one_eq_generalMarket_K1} \\
+\contractref{M4} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.generalMarket_terminal_properties} \\
+\contractref{M5} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.generalMarket_operations} \\
+\contractref{M6} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalSpecialGain_finiteStop} \\
+\contractref{M7} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_convexCombination} \\
+\contractref{F1} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_finiteRisk} \\
+\contractref{F2} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_finiteTail_normalization} \\
+\contractref{F3} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_finiteTail_test_estimate} \\
+\contractref{F4} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_prefix_energy} \\
+\contractref{F5} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_prefix_regular} \\
+\contractref{A1} & \path{FTAPTheorem42.AnalyticInterface.emeryCauchy_of_uniform_approximations} \\
+\contractref{A2} & \path{FTAPTheorem42.AnalyticInterface.martingaleTestsCauchy_of_terminalL2} \\
+\contractref{H1} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_finiteHahn} \\
+\contractref{C1} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.truncatedTerminalClaims_one_of_component_estimates} \\
+\end{longtable}
+\normalsize

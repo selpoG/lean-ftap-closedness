@@ -1,0 +1,73 @@
+\subsection{Doléans--Dade--Yen 型分解}
+
+一般 local martingaleは locally $M^2$ とは限らない。running supremumの $L^1$ boundだけでは、
+first passage時の未観測 jumpが二乗可積分であるとも、決定論的に有界であるともいえない。
+従って、任意の local martingaleに $M^2$ localizing sequenceがあると仮定する経路は取れない。
+
+supplied special decompositionの局所 martingale成分を $N$ とする。最初に必要なのは、$N$ に対する
+Doléans--Dade--Yen 型の分解
+\[
+ N=L+B
+\]
+である。$L$ は局所 martingaleで、その jumpは局所化後に決定論的に有界であり、
+$B$ は適合局所有限変動過程でなければならない。証明は次を含む。
+\begin{enumerate}
+\item c\`adl\`ag pathの有限区間には、任意の閾値より大きい jumpが有限個しかないことを示す。
+\item large jumpsを genuine stopping timesで時系列化し、適合 c\`adl\`ag 有限変動過程を作る。
+\item その variationが可積分となる exhaustive localizationを選び、予測可能射影を取る。
+\item 補償後の martingale jumpを announced-time estimateで制御し、停止との整合性を示す。
+\end{enumerate}
+非単調な dense skeletonの列挙順を jumpの発生順として使ってはならない。
+
+決定論的な path core については、実数値 càdlàg path $x$、$c>0$、および
+有限 horizon $T$ に対し
+\[
+ J_{c,T}=\{t\in(0,T]:c<|x_t-x_{t-}|\}
+\]
+が有限であることを用いる。$J_{c,T}$ の元を時刻順に保持する有限 step path
+\[
+ P_t=\sum_{s\in J_{c,T},\ s\leq t}(x_s-x_{s-})
+\]
+を構成すると、$P_0=0$、右連続性、左極限、各時刻での jump の exact identity
+（$J_{c,T}$ の jump は保持し、それ以外は $0$）が得られる。またその累積絶対
+jump 和は単調であり、任意の $0\leq u\leq v$ に対して、経路の実変動
+$\operatorname{eVariationOn}$ と累積変動 $C$ の間に
+\[
+\operatorname{eVariationOn}(P,[u,v])
+ = \operatorname{ofReal}\bigl(C(v)-C(u)\bigr)
+\]
+という厳密な等式が成り立つ。ここで $C(v)-C(u)$ は $(u,v]$ にある保持された
+jump の絶対値の有限和である。この等式は各有限step経路について成り立つ。
+さらに factorial skeleton の局所振動事象を用いると、固定閾値の最初の大きい左jumpが
+時刻 $t$ より前に存在することを pathwise に可測事象として表せる。この表示から、
+有限な jump 集合の infimum（空集合では horizon に clamped）は genuine stopping time
+となり、非空時の attainment と earliest property が得られる。
+
+確率過程への移行では、単なる各時刻の可測性ではなく、large-jump graph の
+chronological debut を停止時刻として反復することが必要である。上の specialized
+first-debut theorem は generic optional debut theoremを仮定せず、factorial skeletonの
+局所振動と有限集合の infimum からこの最初の停止時刻を構成する。過去の停止時刻
+後の部分を deterministic post-processing で切り出し、有理数にわたる可算合併
+で pre-$T$ の successor を表し、$t>T$ では 結論 $T$ の jump を明示的に加えることで、
+この構成を反復できる。得られた座標は genuine stopping times であり、active な座標は
+時刻順に厳密に増加し、$T$ を含む exact jump set に属する。さらに全ての大きい left jump
+時刻を coverage し、有限個を尽くした後は $\top$ となる。従って chronological stopping-time
+enumeration は完了している。
+
+時系列有限和については、停止左jump process の各座標を
+
+\[
+ J^{(n)}_t(\omega)=1_{\{\tau_n(\omega)\leq t\}}
+ \bigl(N_{\tau_n(\omega)}-N_{\tau_n(\omega)-}\bigr)(\omega)
+\]
+
+（$\tau_n=\top$ では零）とし、$J=\sum_n J^{(n)}$ と定める。各座標は停止過程の
+strong adaptation と停止時刻事象の indicator から strongly adapted であり、countable sum
+の可測性を持つ。pathwise には enumeration が有限個の large jump を尽くした後 $\top$ に
+安定するため、$J$ は前述の有限 step path と厳密に一致する。この一致から $J_0=0$、right
+continuity、left limits、global/local bounded variation、および累積 jump 変動との
+exact $\operatorname{eVariationOn}$ identity を得る。区間 $(0,T]$ で $|\Delta N|>c$ の jump は
+コピーされ、その他の left jump は零である。また $T$ 後の constancy と、partial finite sums
+の process-level eventual constancy も得られる。従って確率過程としての有限大jump processは得られた。右連続過程の level
+hitting に対する停止時刻定理や、predictable interval-algebra に対する debut の構成を、
+一般の optional graph の代用として扱ってはならない。

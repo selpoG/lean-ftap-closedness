@@ -1,0 +1,124 @@
+\subsection{One coefficient for both limiting components}
+\label{sec:joint-coefficient}
+We spell out the coefficient selection used in the preceding realization.
+All decompositions in this subsection are under the fixed auxiliary
+probability $Q$, on the original price $S$.
+Write $S-S_0=M^S+A^S$, with zero-start canonical components.
+Let $H_n$ be the actual approximating coefficients and write
+\[
+ M_n=H_n\cdot M^S,\qquad A_n=H_n\cdot A^S.
+\]
+The preceding component-series construction supplies regular limits $M,A$,
+locally uniform convergence of $M_n$ to $M$, variation convergence of $A_n$
+to $A$, and, almost surely on each finite horizon $T$,
+\[
+ \sum_n\Var_{[0,T]}(A_{n+1}-A_n)<\infty.
+\]
+It also supplies common joint stops on each of which the martingale
+terminals are bounded in $L^2(Q)$, uniformly in the approximation index.
+
+\begin{lemma}[Simultaneous coefficient selection]\label{lem:joint-coefficient}
+Under these conditions there is one predictable real coefficient $H$ whose
+completed martingale and finite-variation integrals on every joint coordinate
+are the corresponding stops of $M$ and $A$. No absolute continuity between
+the energy measure and the variation measure is required.
+\end{lemma}
+\begin{proof}
+Fix first a deterministic $T>0$. Write $v_T(\omega)=|d(A^S)^T|(\omega)$ for
+the source's pathwise variation measure. Choose a finite measurable random
+variable $R_T\geq0$ dominating
+\[
+ v_T(\omega)([0,\infty))+\Var_{[0,T]}A_0+
+ \sum_n\Var_{[0,T]}(A_{n+1}-A_n),
+\]
+Such a variable exists by the pathwise summability already proved.
+The construction may add the summable martingale envelopes to $R_T$;
+this makes the same weight usable for all component estimates.
+Set $a_T=(1+R_T)^{-2}$, replacing it by $1$ on the null exceptional set.
+It is strictly positive almost surely. Define a finite measure on the
+predictable sigma-field by
+\[
+ \nu_T(B)=E_Q\left[a_T\int1_B(t,\omega)\,dv_T(\omega)(t)\right].
+\]
+This changes only the variation control; martingale and energy estimates
+remain under $Q$.
+
+For every approximating integral the pathwise density identity gives
+\[
+ \begin{aligned}
+ \int|H_0|\,d\nu_T&=E_Q[a_T\Var_{[0,T]}A_0]<\infty,\\
+ \sum_n\int|H_{n+1}-H_n|\,d\nu_T
+ &=E_Q\left[a_T\sum_n\Var_{[0,T]}(A_{n+1}-A_n)\right]<\infty.
+ \end{aligned}
+\]
+Indeed $d(A_{n+1}-A_n)=(H_{n+1}-H_n)dA^S$ and the variation of a signed
+measure with density $f$ is $|f|$ times its variation measure.
+Tonelli and completeness of $L^1$ imply that the full coefficient sequence
+has a limit $h_T$, both $\nu_T$-almost everywhere and in $L^1(\nu_T)$.
+Equivalently, outside a $Q$-null set it converges $v_T(\omega)$-almost
+everywhere and in pathwise $L^1(v_T(\omega))$: its successive pathwise
+$L^1$ distances are summable and its initial term is integrable.
+
+For the countably many joint terminal coordinates choose $b_r>0$ with
+$\sup_n\|M_n(\rho_r)\|_2\leq b_r$. The vectors
+$(2^{-(r+1)/2}M_n(\rho_r)/b_r)_r$ are bounded in the Hilbert direct sum
+of the terminal $L^2(Q)$ spaces. Weak subsequential compactness and Mazur's
+lemma give forward convex averages converging strongly in this direct sum.
+Transfer the subsequence weights back to the original indices; their support
+still tends forward. Thus one family $w_{n,k}$ makes every terminal
+coordinate Cauchy. Define $\bar H_n=\sum_kw_{n,k}H_k$, and use the same
+weights for $\bar M_n$.
+Let $q_r$ be the predictable energy measure on the $r$th coordinate.
+The completed isometry gives
+\[
+ \|\bar H_n-\bar H_m\|_{L^2(q_r)}
+ =\|\bar M_n(\rho_r)-\bar M_m(\rho_r)\|_{L^2(Q)}.
+\]
+Here $\rho_r$ is the finite coordinate stop, including its deterministic
+horizon, and $\bar M_n$ uses precisely the same weights.
+Thus these coefficients are Cauchy in each of the countably many
+$L^2(q_r)$ spaces. Choose one strictly increasing $f$ with
+\[
+ \|\bar H_{f(j+1)}-\bar H_{f(j)}\|_{L^2(q_r)}\leq2^{-j}
+ \quad(r\leq j).
+\]
+Each $q_r$ is finite, so Cauchy--Schwarz and Tonelli give pointwise convergence
+$q_r$-almost everywhere. Define $H$ to be the pointwise limit where this
+sequence converges in $\mathbb R$, and zero elsewhere. Its convergence set
+is predictable, so $H$ is predictable; $L^2$ completeness gives
+$\bar H_{f(j)}\to H$ in $L^2(q_r)$ for every $r$.
+
+The same definition determines the variation component, including regions
+where $q_r$ vanishes. At each point where $H_n\to h_T$, forward convexity gives
+\[
+ |\bar H_n-h_T|\leq\sup_{k\geq n}|H_k-h_T|\longrightarrow0.
+\]
+Hence $H=h_T$ $\nu_T$-almost everywhere, and also
+$v_T(\omega)$-almost everywhere for almost every $\omega$.
+In particular $H\in L^1(\nu_T)$ and is pathwise integrable against $v_T$.
+A joint source prefix is a further stop before its deterministic horizon,
+so its variation measure is a restriction of $v_T$. The same integrability
+therefore holds on that coordinate. This explicitly supplies both
+$L^2(q_r)$ and $L^1$ membership for one coefficient.
+
+The completed martingale isometry and Doob's inequality show that the
+martingale integrals of $\bar H_{f(j)}$ converge to that of $H$ on coordinate
+$r$. Forward averages preserve the already existing limit $M$, and uniqueness
+of limits in probability identifies this integral with $M^{\rho_r}$.
+On the variation side, for almost every path,
+\[
+ \Var_{[0,T]}\bigl(H_n\cdot A^S-H\cdot A^S\bigr)
+ =\int|H_n-H|\,dv_T\longrightarrow0.
+\]
+The left-hand integrals also converge in variation to $A^T$.
+Zero initial values and uniqueness of limits identify $H\cdot(A^S)^T=A^T$.
+Restricting these signed-measure identities to $(0,\rho_r]$ proves the
+finite-variation identification on the joint coordinate, with the endpoint
+jump included. Countably many coordinates and right continuity give one
+null set for all process equalities. Thus the same $H$ realizes both parts.
+\end{proof}
+The coefficients in different outer stopped stages need not agree.
+Section~\ref{sec:integral-calculus} pastes them on disjoint stopping intervals after
+return to the original measure. Lemma~\ref{lem:joint-coefficient} supplies
+the stopped realizations required there; it does not assume integral-range
+closedness in selecting $H$.

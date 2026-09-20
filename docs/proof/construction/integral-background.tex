@@ -1,0 +1,135 @@
+\subsection{Internal theorems for the integral construction}
+\label{sec:integral-background}
+\subsubsection{Decomposition and the integral domain}
+\begin{theorem}[Decomposition under an envelope]\label{thm:decomposition-input}
+Under the usual conditions, let $Y$ be an adapted c\`adl\`ag good integrator
+with $\sup_t|Y_t|\leq q$, $q\geq0$, and $q\in L^2(Q)$.
+There is a decomposition $Y-Y_0=M+A$, where $M$ is a zero-start c\`adl\`ag
+local martingale and $A$ is zero-start, predictable, c\`adl\`ag and locally
+of finite variation. Both components are unique up to indistinguishability. The martingale component has an exhaustive sequence of finite stopped coordinates on which it is a true $L^2$ martingale.
+For bounded $S$ take a constant envelope. The good-integrator property is
+preserved by equivalent measures, but the decomposition is constructed anew
+under the chosen measure.
+\end{theorem}
+\begin{proof}[Location of the proof]
+Section~\ref{sec:interface-decomposition} of the appendix derives this from
+decomposition and compensation. Neither NFLVR nor integral-range closedness
+is an assumption of this input.
+\end{proof}
+
+An elementary predictable test $J$ consists of finitely many stopping
+intervals and bounded coefficients measurable at their left endpoints.
+Its integral against any c\`adl\`ag process is a finite sum of increments.
+Put
+\[
+ d_T^Q(Y,Z)=\sup_{J:\,|J|\leq1}
+ E_Q\left[1\wedge\sup_{t\leq T}|(J\cdot(Y-Z))_t|\right].
+\]
+Emery convergence~\cite{Emery79} means $d_T^Q(Y_n,Y)\to0$ for every finite $T$.
+A countable right-dense time set ensures measurability of the supremum.
+The Cauchy quantifiers are $\forall T,\varepsilon>0\ \exists N\ \forall n,k\geq N$,
+with the same $N$ for every unit-bounded test.
+
+A \emph{local special integral} against a specially decomposed process is
+obtained by applying the completed $L^2$ integral for the martingale energy
+measure and the $L^1$ integral for the FV variation measure to the same
+predictable coefficient, then gluing on stopped intervals. The FV integral
+is the pathwise Stieltjes integral. The required localization, completion
+and uniqueness are part of the next calculus theorem.
+
+\begin{definition}[The general integral graph]\label{def:general-graph}
+Write $H^{(n)}=H1_{\{|H|\leq n+1\}}$.
+For predictable $H$ and zero-start strongly adapted c\`adl\`ag $X$, put
+$(H,X)$ in the general integral graph of $S$ if the local special integrals
+of $H^{(n)}$ converge to $X$ in Emery topology, and write $X=H\cdot S$.
+Processes are identified up to indistinguishability. Neither a special
+decomposition nor an infinite-time terminal value is required of $X$ itself.
+\end{definition}
+
+\begin{theorem}[Integral calculus and estimates]\label{thm:integral-input}
+For bounded $S$ and the general integral graph above, the following hold.
+\begin{enumerate}
+\item Bounded predictable coefficients have local special integrals, unique
+up to indistinguishability for a fixed coefficient. Local special integrals
+belong to the general graph with the same coefficient and gain.
+Every general gain is an Emery limit of elementary integrals against the
+original price and is a good integrator.
+\item Local special integrals obey linearity, closed stopping and predictable
+restriction. For $Y=M+A$ and bounded predictable $k$,
+$k\cdot Y=k\cdot M+k\cdot A$ and
+$\Delta(k\cdot Y)_t=k_t\Delta Y_t$.
+Finite sums use the same weights for both components. Stopping at a finite
+time $T$ turns local FV into global BV.
+\item Emery convergence and the general graph transfer between equivalent
+probability measures with the same coefficients and gains. The same
+admissibility bound and any existing intrinsic terminal value are preserved.
+\item On a fixed finite horizon, a unit-bounded predictable coefficient has
+unit-bounded elementary approximations simultaneously for its M and FV
+integrals: terminal $L^2$ convergence on square-integrable stopped coordinates on the M side and
+variation convergence on the FV side.
+For a zero-start $L^2$ martingale $N$ and $|J|\leq1$,
+\[
+ E_Q[1\wedge\sup_{t\leq T}|(J\cdot N)_t|]\leq2\|N_T\|_2.
+\]
+For a local martingale $M$ exhausted by such $L^2$ stopped coordinates,
+if all unit elementary tests have capped
+expectation at most $b$ on that horizon, the same is true of $k\cdot M$
+for every predictable $|k|\leq1$.
+\item A predictable FV process $A$ has a predictable positive Hahn set $B$;
+$C=1_B\cdot A$ is increasing and $C_c-C_a\geq A_c-A_a$.
+For $|J|\leq1$, also
+$\sup_{t\leq T}|(J\cdot A)_t|\leq\Var_{[0,T]}A$.
+The intervals include their right endpoints, retaining jumps at closed stops.
+\end{enumerate}
+\end{theorem}
+\begin{proof}[Location of the proof]
+Section~\ref{sec:integral-calculus} of the appendix proves these assertions
+from bounded completed integrals, truncation and uniqueness, independently
+of realization of limits in the general integral domain.
+\end{proof}
+
+\subsubsection{Limit realization and original-market operations}
+The next theorem supplies the M\'emin closedness result~\cite{Memin80} used in the proof of
+\cite[Theorem 4.2]{DS}.
+\begin{theorem}[Closedness of the general integral graph]\label{thm:graph-closure}
+If general gains $Y_n$ of the same bounded price $S$ converge in Emery
+topology to zero-start strongly adapted c\`adl\`ag $X$, some predictable $H$
+satisfies $(H,X)$ in the same general integral graph.
+\end{theorem}
+\begin{proof}[Location of the proof]
+Section~\ref{sec:closure-proof} of the appendix connects topology comparison,
+common localization and realization of both components by one coefficient.
+The subsequent argument uses only this conclusion, not the auxiliary
+measure or stopping sequence selected in its proof.
+\end{proof}
+
+\begin{corollary}[Operations in the original market]\label{cor:market-operations}
+Finite linear combinations, closed stops, restrictions to stopping intervals,
+and finite predictable pastings of general gains are again general gains
+of the original price. Moreover, if a realized zero-start gain $Y=M+A$
+has an $L^2(Q)$ envelope, every realized local special integral $V=k\cdot Y$
+is a general gain of the original price. Its components remain the same
+$V=k\cdot M+k\cdot A$. If $Q$ is equivalent to the original measure, the
+same gain can be returned to that measure. If $V\geq-a$ and $V$ is constant
+after $T$, its intrinsic terminal value is $V_T$, in the terminal set at
+the same admissibility level.
+\end{corollary}
+\begin{proof}
+Apply finite sums, stops and restrictions to the elementary approximations
+of Theorem~\ref{thm:integral-input}. Finite-sum associativity and the triangle
+inequality give Emery convergence to the specified transformed gain.
+Pasting coefficients multiply events known at a stopping time by indicators
+of subsequent stopping intervals, so are predictable.
+Theorem~\ref{thm:graph-closure} realizes these regular zero-start limits.
+
+For bounded $k$, approximate the M and FV integrals with the same elementary
+coefficients. Each elementary transform is a finite sum of stopped increments
+of $Y$; substitute its original-price approximations. First make the error
+small in each finite sum, then diagonalize over integer horizons. This gives
+original-price elementary integrals converging to the same $V$ in Emery
+topology. Apply closedness again. For unbounded realized $k$, truncation
+convergence from Theorem~\ref{thm:integral-input} reduces to the bounded case;
+apply the same closedness theorem. Transfer the general graph between measures.
+The bound, constancy after $T$, and terminal value are properties of the
+unchanged gain and are preserved.
+\end{proof}

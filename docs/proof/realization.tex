@@ -1,0 +1,19 @@
+\section{Realization of maximal closure claims}\label{sec:realization}
+This section corresponds to the application of M\'emin's closedness theorem after component convergence in the proof of \cite[Theorem 4.2]{DS}. We use \contractref{C1} to realize the same limit and its terminal value as an original-price integral.
+
+The preceding construction yields gains $R_n=\widetilde M_n+\widetilde A_n$
+in the original market, converging almost surely uniformly over all time to
+$X\geq-1$ with $X_\infty=h$. Their martingale components are elementary-Émery
+Cauchy; the variations of their finite-variation differences are Cauchy in
+probability on every finite horizon.
+\begin{theorem}[Maximal-claim realization]\label{prop:realization}
+Under NFLVR every almost-sure maximal $h\in\clprob{K_1}$ belongs to $K_1$.
+\end{theorem}
+\begin{proof}
+Apply the test-uniform M expectation Cauchy estimate for the same convexified sequence with error $\varepsilon^2$.
+Markov's inequality gives $Q_*(e_T^J(\widetilde M_m,\widetilde M_n)>\varepsilon)\leq\varepsilon$ with one cutoff for all tests.
+The preceding maximality contradiction supplies the variation probability estimate for the FV differences.
+The same $R_n$ are strongly adapted and c\`adl\`ag, and differences of the $\widetilde A_n$ are locally BV.
+Together with the retained all-time uniform limit $X\geq-1$ and its own terminal $h$, these verify every hypothesis of \contractref{C1}.
+Hence $h\in K_1$.
+\end{proof}

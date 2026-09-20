@@ -1,0 +1,108 @@
+\subsection{積分構成で使う内部の定理}
+\label{sec:integral-background}
+\subsubsection{分解と積分の定義}
+\begin{theorem}[包絡を持つ過程の分解]\label{thm:decomposition-input}
+通常の条件の下で、適合càdlàg good integrator $Y$ が
+$\sup_t|Y_t|\leq q$、$q\geq0$、$q\in L^2(Q)$ を満たすとする。
+このとき $Y-Y_0=M+A$ と分解できる。$M$ は零始点càdlàg local martingale、
+$A$ は零始点の予測可能càdlàg局所有限変動過程であり、両成分は区別不能性を除いて一意である。
+$M$ には真のL²マルチンゲールとなる有限停止座標のexhaustiveな列がある。
+有界価格 $S$ には $q$ を定数として適用する。同値測度の下でgood-integrator性は保たれるが、
+分解はその測度の下で作り直す。
+\end{theorem}
+\begin{proof}[証明の所在]
+付録の\ref{sec:interface-decomposition}節で、分解と補償の結果から導く。
+市場のNFLVRや積分領域の閉性はこの入力の仮定ではない。
+\end{proof}
+
+予測可能elementary test $J$ は、有限個の停止区間と左端で可測な有界係数からなる。
+任意のcàdlàg過程に対して $J\cdot Y$ は増分の有限和で定義できる。
+\[
+ d_T^Q(Y,Z)=\sup_{J:\,|J|\leq1}
+ E_Q\left[1\wedge\sup_{t\leq T}|(J\cdot(Y-Z))_t|\right].
+\]
+各有限 $T$ で $d_T^Q(Y_n,Y)\to0$ となることをÉmery収束という\cite{Emery79}。
+上限の可測性には可算な右稠密時刻集合を用いる。
+Émery Cauchy性の量化順序は $\forall T,\varepsilon>0\ \exists N\ \forall n,k\geq N$ であり、
+この $N$ は全ての単位有界testに共通である。
+
+特殊分解を持つ過程の\emph{局所special積分}は、停止した座標上で
+マルチンゲール成分のenergy測度に関する $L^2$ 積分と、FV成分の変動測度に関する
+$L^1$ 積分を同じ予測可能係数に適用し、停止区間で貼り合わせたものをいう。
+FV積分は経路ごとのStieltjes積分である。必要な局所化・完成・一意性は次の定理の一部である。
+
+\begin{definition}[一般積分graph]\label{def:general-graph}
+$H^{(n)}=H1_{\{|H|\leq n+1\}}$ とする。予測可能係数 $H$ と零始点・強適合・càdlàg過程 $X$ に対し、
+$H^{(n)}$ の局所special積分が $X$ にÉmery収束するとき、$(H,X)$ を元価格 $S$ の一般積分graphに入れ、
+$X=H\cdot S$ と書く。過程は区別不能性まで同一視する。
+一般の $X$ 自体にspecial分解や無限時刻の終端を要求する定義ではない。
+\end{definition}
+
+\begin{theorem}[積分の基本則と評価]\label{thm:integral-input}
+有界価格 $S$ と上の一般積分graphについて、次が成り立つ。
+\begin{enumerate}
+\item 有界予測可能係数の局所special積分が存在する。同じ係数の利得は区別不能性まで一意である。
+局所special積分は、係数と利得を保って一般積分graphに属する。
+各一般積分利得は元価格のelementary積分列でÉmery近似でき、good integratorである。
+\item 局所special積分では線形性、閉停止、予測可能制限が成り立つ。
+$Y=M+A$ に対する有界予測可能係数 $k$ の積分は
+$k\cdot Y=k\cdot M+k\cdot A$ と分解され、
+$\Delta(k\cdot Y)_t=k_t\Delta Y_t$ である。
+同じ有限和の重みで両成分を取れる。有限時刻 $T$ での停止は局所FV成分を全時間BVにする。
+\item 同値確率測度間で、Émery収束と一般積分graphは係数・利得を保って移送できる。
+従って同じ許容下界と、存在する場合の同じ固有終端を保つ。
+\item 固定した有限horizon上で、単位有界予測可能係数を、単位有界elementary係数で
+M積分とFV積分の両方について同時に近似できる。M側は平方可積分な停止座標での終端 $L^2$、FV側は変動での収束である。
+零始点 $L^2$ マルチンゲール $N$ と $|J|\leq1$ に対して
+\[
+ E_Q[1\wedge\sup_{t\leq T}|(J\cdot N)_t|]\leq2\|N_T\|_2.
+\]
+そのようなL²停止座標がhorizonを尽くす局所マルチンゲール $M$ について、
+全単位testの同じhorizon上の期待値上界が $b$ なら、
+$|k|\leq1$ に対する $k\cdot M$ の全単位testにも上界 $b$ が成り立つ。
+\item 予測可能FV過程 $A$ には予測可能な正のHahn集合 $B$ があり、
+$C=1_B\cdot A$ は非減少で、$C_c-C_a\geq A_c-A_a$ である。
+また $|J|\leq1$ なら $\sup_{t\leq T}|(J\cdot A)_t|\leq\Var_{[0,T]}A$ である。
+これらの区間は右端を含み、閉停止時のjumpも保持する。
+\end{enumerate}
+\end{theorem}
+\begin{proof}[証明の所在]
+付録の\ref{sec:integral-calculus}節で各項を示す。
+一般利得の極限実現を仮定せず、有界係数の完成積分、切断、一意性から導く。
+\end{proof}
+
+\subsubsection{極限実現と元市場での操作}
+次の定理は\cite[Theorem 4.2の証明]{DS}で用いるM\'eminの閉性定理\cite{Memin80}に対応する。
+\begin{theorem}[一般積分graphの閉性]\label{thm:graph-closure}
+同じ有界価格 $S$ の一般積分利得 $Y_n$ が、零始点・強適合・càdlàg過程 $X$ に
+Émery収束するなら、予測可能係数 $H$ が存在し、$(H,X)$ も同じ一般積分graphに属する。
+\end{theorem}
+\begin{proof}[証明の所在]
+付録の\ref{sec:closure-proof}節で、位相比較、共通局所化、同一係数による両成分の実現を接続して証明する。
+以後はこの結論だけを用い、そこで選ぶ補助測度や停止列は用いない。
+\end{proof}
+
+\begin{corollary}[元市場での取引操作]\label{cor:market-operations}
+一般積分利得の有限線形結合、閉停止、停止区間への制限、有限回の予測可能な貼り合わせは
+再び元価格の一般積分利得である。
+さらに、元価格に実現された零始点利得 $Y=M+A$ が $L^2(Q)$ 包絡を持つなら、
+その局所special積分として実現された利得 $V=k\cdot Y$ も、元価格の一般積分利得として実現できる。
+成分は同じ $V=k\cdot M+k\cdot A$ のまま保持する。
+$Q$ が元測度と同値なら、元測度にも同じ利得を戻せる。
+$V\geq-a$ で $T$ 以後一定なら、その固有終端は $V_T$ であり、同じ許容水準の終端集合に入る。
+\end{corollary}
+\begin{proof}
+定理\ref{thm:integral-input}のelementary近似に、有限和・停止・制限を施す。
+有限和の結合則と三角不等式により、その利得は指定した操作後の過程へÉmery収束する。
+貼り合わせの係数は、停止時刻で既知の事象とその後の停止区間の指示関数の積であり、予測可能である。
+定理\ref{thm:graph-closure}により、これらの正則な零始点極限を実現する。
+
+$k$ が有界の場合、同じelementary係数で $M,A$ の積分を近似する。
+各elementary変換は $Y$ の有限個の停止増分の和なので、さらに $Y$ の元価格上の近似を代入できる。
+各有限和での近似誤差を先に小さくし、整数horizonについて対角選択すると、
+元価格のelementary積分列が同じ $V$ へÉmery収束する。
+再び閉性定理を使う。非有界な実現済み $k$ は、定理\ref{thm:integral-input}の切断収束で
+有界な場合へ帰着し、同じ閉性定理を適用する。
+測度移送は一般graphに適用する。下界・停止後の定数性・固有終端は同じ利得の性質なので保たれる。
+\end{proof}
+

@@ -1,0 +1,97 @@
+\section{Convex compactness of terminal gains}
+We henceforth identify the general-graph terminal sets with the gain-model sets using \contractref{M1}--\contractref{M3}.
+Clause \contractref{M4} supplies a.e. measurability and the admissible lower bound at the terminal value. Linear operations belong to the model structure \contractref{M0}.
+
+\subsection{NFLVR and boundedness in probability}
+A set $D\subseteq L^0$ is bounded in probability if for every $\varepsilon>0$
+there exists $R>0$ with
+\[
+ \sup_{f\in D}\Pp(|f|>R)\leq\varepsilon.
+\]
+\begin{proposition}[Delbaen--Schachermayer, Proposition 3.1]\label{prop:k1-bip}
+Under NFLVR, $K_1$ is bounded in probability.
+\end{proposition}
+\begin{proof}
+Otherwise, since its elements are at least $-1$, choose $1\leq a_n\uparrow\infty$
+and $G_n\in K_1$ with $\Pp(G_n>a_n)>\varepsilon$ for one $\varepsilon>0$.
+Put
+\[
+ f_n=\min(G_n/a_n,1).
+\]
+Positive scaling and subtraction of a nonnegative claim give $f_n\in C_0$.
+Moreover,
+\[
+ -a_n^{-1}\leq f_n\leq1,\qquad
+ \E f_n\geq\Pp(G_n>a_n)-a_n^{-1}>\varepsilon-a_n^{-1}.
+\]
+Bounded Komlós convexification gives forward convex averages $W_nf$
+converging almost surely to some $0\leq f\leq1$. Since $a_n$ increases,
+these averages still lie between $-a_n^{-1}$ and $1$, and their expectations
+are at least $\varepsilon-a_n^{-1}$. Dominated convergence yields
+$\E f\geq\varepsilon$, hence $\Pp(f>0)>0$.
+Choose $b>0$ with $\Pp(f\geq b)>0$. Egorov's theorem provides a measurable
+subset $A\subseteq\{f\geq b\}$ of positive probability on which $W_nf\to f$
+uniformly. Define
+\[
+ U_n=1_AW_nf-a_n^{-1}1_{A^c},\qquad U=1_Af.
+\]
+We have $U_n\leq W_nf$, so solidity of $C_0$ and boundedness give $U_n\in C$.
+Also $0\ne U\in L^\infty_+$ and
+\[
+ \|U_n-U\|_\infty
+ \leq\max\left\{\sup_{\omega\in A}|(W_nf)(\omega)-f(\omega)|,a_n^{-1}\right\}
+ \longrightarrow0.
+\]
+This contradicts NFLVR.
+\end{proof}
+
+\subsection{Forward convex limits}
+A forward convex combination of $(x_n)$ is
+\[
+ y_n=\sum_{k=n}^{N_n}\alpha_{n,k}x_k,\qquad
+ \alpha_{n,k}\geq0,\qquad\sum_{k=n}^{N_n}\alpha_{n,k}=1.
+\]
+The next proposition corresponds to the case of \cite[Lemma A1.1]{DS} in which boundedness in probability of the convex hull ensures a finite limit.
+
+\begin{proposition}[Komlós compactness with a lower bound]\label{prop:forward}
+Let $D\subseteq L^0$ be convex and bounded in probability. A sequence $G_n\in D$
+with a common constant lower bound has forward convex combinations converging
+almost surely to a finite random variable.
+\end{proposition}
+\begin{proof}
+Translate by a constant to make the sequence nonnegative. On each tail convex
+hull choose approximate maximizers $Y_n$ of $\E[1-e^{-Y}]$.
+The midpoint identity for the exponential implies that $e^{-Y_n/2}$ is
+$L^2$-Cauchy. Extract indices $n_j\geq j$ such that
+$e^{-Y_{n_j}/2}\to q$ almost surely. If $q=0$ on a set of positive probability,
+$Y_{n_j}$ tends to infinity there, contradicting boundedness in probability
+of the convex set. Thus $q>0$ almost surely. Set $\widetilde G_j=Y_{n_j}$.
+Then $\widetilde G_j\to-2\log q$ almost surely, and its convex weights
+are supported on $k\geq n_j\geq j$, as required for a forward combination
+of the original sequence. Finally undo the initial constant translation.
+\end{proof}
+Boundedness in probability of a sequence alone does not imply boundedness of
+its growing convex hulls. We use convexity of $K_1$ and boundedness of the
+entire set $K_1$.
+
+\subsection{Maximal terminal claims}
+The next proposition supplies the maximal element of \cite[Lemma 4.3]{DS}. Here convex compactness and maximization of a functional replace transfinite induction.
+
+\begin{proposition}\label{prop:maximal}
+If $D\subseteq L^0$ is convex, bounded in probability, and sequentially closed
+in probability, each $g\in D$ is dominated by an almost-sure maximal $h\in D$.
+\end{proposition}
+\begin{proof}
+Maximize $\E[1-e^{-(f-g)}]$ over $D_g=\{f\in D:g\leq f\text{ a.s.}\}$.
+The common lower bound $g$ need not be constant. Apply
+Proposition~\ref{prop:forward} to the nonnegative convex set $D_g-g$, which is
+bounded in probability, and to an approximate maximizing sequence.
+Add $g$ back to the convex averages. Their almost-sure limit $h$ belongs to
+$D_g$ by sequential closedness. Concavity preserves the tail lower bounds on
+the objective, and bounded convergence shows that $h$ attains its supremum.
+If $k\in D$, $k\geq h$, and $\Pp(k>h)>0$, strict monotonicity of $1-e^{-x}$
+contradicts this maximizing property.
+\end{proof}
+The probability closure $\clprob{K_1}$ has these three properties.
+In particular, any forward convex limit $g$ of claims from $K_1$ is dominated
+by a maximal $h\in\clprob{K_1}$.

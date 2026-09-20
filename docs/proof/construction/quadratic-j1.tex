@@ -1,0 +1,741 @@
+\subsection{General quadratic variation and exact \texorpdfstring{$j^1$}{j1}}
+For bounded-jump martingales we have finite-horizon $M^2$ quadratic processes,
+stopping consistency, gluing, uniqueness, terminal roots, and the one-sided
+Davis estimate with constant $6$. Horizonwise jump bounds suffice for local
+martingales; the DDY decomposition supplies them for its component $L^T$.
+
+\begin{lemma}[Absolute convergence of finite-variation jump corrections]
+For the same DDY decomposition $N=L+Q$, let $V_T=\Var_{[0,T]}Q$.
+On one full-measure set, for every $T\geq0$,
+\[
+ \sum_{0<t\leq T}|\Delta Q_t|\leq V_T,\quad
+ \sum_{0<t\leq T}|\Delta L_t\Delta Q_t|\leq2cV_T,\quad
+ \sum_{0<t\leq T}(\Delta Q_t)^2\leq V_T^2.
+\]
+Moreover the absolutely convergent correction is
+\[
+ D_T=\sum_{0<t\leq T}\bigl((\Delta N_t)^2-(\Delta L_t)^2\bigr)
+ =2\sum_{0<t\leq T}\Delta L_t\Delta Q_t+\sum_{0<t\leq T}(\Delta Q_t)^2,
+ \qquad |D_T|\leq4cV_T+V_T^2.
+\]
+\end{lemma}
+\begin{proof}
+For a right-continuous BV path, the variation of its signed Stieltjes measure
+at a singleton is the absolute jump. Every finite sum of absolute jumps in
+$(0,T]$ is bounded by the measure's variation there, proving summability and
+the first estimate. Apply this to a locally BV path stopped at $T$.
+Multiply by $|\Delta L|\leq2c$ and $|\Delta Q|\leq V_T$ for the other bounds.
+Expand $\Delta N=\Delta L+\Delta Q$ and add the absolutely convergent series.
+The common all-time jump-bound event works for every $T$.
+\end{proof}
+\begin{lemma}[Squared increments on the same finite grid]
+For a finite ordered grid $u_0\leq\cdots\leq u_m$, define
+\[
+ \begin{aligned}
+ E_G(Y,t)&=\sum_{k<m}(Y_{t\wedge u_{k+1}}-Y_{t\wedge u_k})^2,\\
+ C_G(Y,Z,t)&=\sum_{k<m}(Y_{t\wedge u_{k+1}}-Y_{t\wedge u_k})
+                       (Z_{t\wedge u_{k+1}}-Z_{t\wedge u_k}).
+ \end{aligned}
+\]
+For the same DDY components, pathwise at every time,
+\[
+ E_G(N,t)=E_G(L,t)+2C_G(L,Q,t)+E_G(Q,t),
+\]
+\[
+ |\sqrt{E_G(N,t)}-\sqrt{E_G(L,t)}|\leq\Var_{[0,t]}(Q).
+\]
+The estimate contains no grid-dependent constant.
+\end{lemma}
+\begin{proof}
+Expanding the square of each cell increment gives the first identity.
+Cauchy--Schwarz gives
+$C_G(Y,Z,t)\leq\sqrt{E_G(Y,t)}\sqrt{E_G(Z,t)}$.
+Together with the square expansion this proves the root triangle inequality
+$\sqrt{E_G(Y+Z,t)}\leq\sqrt{E_G(Y,t)}+\sqrt{E_G(Z,t)}$.
+The sum of absolute increments over ordered cells is at most path variation,
+so
+\[
+ \sqrt{E_G(Q,t)}\leq\sum_{k<m}|Q_{t\wedge u_{k+1}}-Q_{t\wedge u_k}|
+ \leq\Var_{[0,t]}(Q).
+\]
+Apply the root triangle inequality to both $N=L+Q$ and $L=N-Q$.
+\end{proof}
+\begin{lemma}[Factorial cross-increment limits]
+Let $f$ be a real c\`adl\`ag path and $Q$ a right-continuous locally BV path.
+Let $\eta_T$ be the signed Stieltjes measure of $Q^T_t=Q_{t\wedge T}$ and
+$G_r$ the grid $k/(r+1)!$, $0\leq k\leq(r+1)(r+1)!$. Then
+\[
+ C_{G_r}(f,Q,T)\longrightarrow\int_{(0,T]}\Delta f_s\,d\eta_T(s).
+\]
+Consequently, for the same DDY decomposition, at every path and finite horizon,
+\[
+ E_{G_r}(N,T)-E_{G_r}(L,T)\longrightarrow
+ 2\int_{(0,T]}\Delta L_s\,d\eta_T(s)+\int_{(0,T]}\Delta Q_s\,d\eta_T(s).
+\]
+\end{lemma}
+\begin{proof}
+For the half-open cell $(a_r(s),b_r(s)]$ containing $s>0$, put
+$D_rf(s)=f(b_r(s)\wedge T)-f(a_r(s)\wedge T)$.
+The endpoints approach $s$ with $a_r(s)<s\leq b_r(s)$, so
+$D_rf(s)\to\Delta f_s$ for $s\leq T$. This also holds if $s$ itself is a
+mesh point. Compact boundedness of c\`adl\`ag paths gives
+$|D_rf(s)|\leq2\sup_{u\leq T}|f(u)|$.
+Dominated convergence under the finite measure $|\eta_T|$ makes the
+$L^1$ error over $(0,T]$ tend to zero, hence the signed integrals converge.
+The integral on each stopped cell equals
+$(f(b\wedge T)-f(a\wedge T))(Q(b\wedge T)-Q(a\wedge T))$.
+For sufficiently large $r$, the cells cover $(0,T]$, so the integral is
+the cross-increment sum. Apply this with $f=L$ and $f=Q$ and use the finite
+square expansion to obtain the second limit.
+\end{proof}
+\begin{lemma}[Jump integrals as series]
+For a real c\`adl\`ag path $f$ and a finite signed measure $\eta$,
+\[
+ \int_{(0,T]}\Delta f_t\,d\eta(t)
+ =\sum_{t\in(0,T]}\Delta f_t\,\eta(\{t\}).
+\]
+In particular, for $\eta_T$ and the same DDY components, pathwise,
+\[
+ E_{G_r}(N,T)-E_{G_r}(L,T)\longrightarrow
+ 2\sum_{0<t\leq T}\Delta L_t\Delta Q_t+
+ \sum_{0<t\leq T}(\Delta Q_t)^2.
+\]
+\end{lemma}
+\begin{proof}
+For each $n$, only finitely many times in $(0,T]$ have
+$|\Delta f_t|>1/(n+1)$. Thus the support of nonzero jumps is countable.
+The uniform bound on the measurable cell approximations passes to their
+limit $\Delta f$, making it bounded on $(0,T]$ and integrable for $|\eta|$.
+Decompose the support into disjoint singletons and sum the integrals to
+obtain the first identity. For a stopped FV path,
+$\eta_T(\{t\})=\Delta Q_t$ whenever $0<t\leq T$, including the terminal
+jump. Apply the identity with $f=L,Q$ and rewrite the preceding integral
+limit to obtain the series formula.
+\end{proof}
+\begin{lemma}[Nonnegativity of the corrected candidate]
+Let $V$ now denote the glued quadratic variation of $L$. On one full-measure
+set, $V_t+D_t\geq0$ for every $t$.
+\end{lemma}
+\begin{proof}
+On coordinate $n$, at times before its localizer and horizon, the original
+and stopped squared-increment sums agree on the same factorial grids.
+Use exactly the forward weights and cutoff retained by the construction
+of the quadratic variation of $L^{\tau_n}$. Full-sequence convergence of the
+correction is preserved by these weights. Hence the convex squared sums of
+$N^{\tau_n}$ tend to the coordinate variation plus $D_t$ and remain
+nonnegative. Coordinate agreement with $V$ and exhaustion remove the stops.
+Take the countable intersection of coordinate events before choosing $t$.
+\end{proof}
+\begin{lemma}[Regularity of the correction]
+The processes $D$ and $V+D$ are strongly adapted and are right-continuous
+and locally of finite variation on one full-measure set.
+\end{lemma}
+\begin{proof}
+On a finite horizon, the coefficients
+$a_s=2\Delta L_s\Delta Q_s+(\Delta Q_s)^2$ are absolutely summable.
+Dominated convergence for the series makes the cumulative sum
+$\sum_{s\leq t}a_s$ right-continuous. Write
+$a_s=(a_s+|a_s|)-|a_s|$; both cumulative sums are bounded increasing functions,
+so their difference has finite variation. These cumulative sums locally
+agree with $D$. Adaptation follows from the pathwise limit of the measurable
+finite-grid square differences at each time. Add the regular process $V$.
+\end{proof}
+\begin{lemma}[Monotonicity of the candidate]
+On one full-measure set $V+D$ is increasing at all times.
+\end{lemma}
+\begin{proof}
+Use the same convex convergence as in the nonnegativity argument. For $s\leq t$
+choose a coordinate whose localizer exceeds $t+1$. Approximate $s,t$ from the
+right by capped factorial grid points $u_r\leq v_r$ below that localizer.
+The tail condition on the weights ensures that later convex sums use grids
+refining this common coarse grid. Squared sums are increasing between grid
+points, so convex averaging preserves their order. Pass first to the convex
+limit, identify with the candidate, and then let $r\to\infty$ by right
+continuity. Coordinate events were intersected before choosing $s,t$.
+\end{proof}
+\begin{lemma}[An everywhere regular representative]
+Under the usual conditions there is a strongly adapted $A\sim V+D$ whose
+paths are right-continuous, increasing, locally BV, have left limits, and
+satisfy $A_0=0$.
+\end{lemma}
+\begin{proof}
+The set where right continuity or monotonicity fails is null, hence measurable
+at time zero. Replace entire paths there by zero. This preserves adaptation
+and indistinguishability. Initial values are zero by the empty jump sum and
+zero start of $V$. Increasing paths have local bounded variation and left limits.
+\end{proof}
+\begin{lemma}[Jump-square identity]
+On one full-measure set, $\Delta A_t=(\Delta N_t)^2$ for all times.
+\end{lemma}
+\begin{proof}
+For an absolutely summable local family $a_s$, dominated convergence as
+$u\uparrow t$ shows that the left limit of $\sum_{0<s\leq u}a_s$ is
+$\sum_{0<s<t}a_s$. Thus its jump at $t>0$ is $a_t$.
+Apply this to the correction and use $\Delta V_t=(\Delta L_t)^2$:
+\[
+ \Delta(V+D)_t=(\Delta L_t)^2+2\Delta L_t\Delta Q_t+(\Delta Q_t)^2
+ =(\Delta N_t)^2.
+\]
+Both sides are zero at time zero. Transfer the all-time identity to $A$
+by indistinguishability.
+\end{proof}
+\begin{lemma}[Closed stopping of the correction]
+For a finite cutoff $\tau$, the correction formed from $L^\tau,Q^\tau$ equals
+$D^\tau$. If $V^n$ is the quadratic coordinate at localizer $\tau_n$, then
+\[
+ A^{\tau_n}\sim(V^n)^{\tau_n}
+ +2\sum_{0<s\leq\cdot}\Delta L^{\tau_n}_s\Delta Q^{\tau_n}_s
+ +\sum_{0<s\leq\cdot}(\Delta Q^{\tau_n}_s)^2.
+\]
+\end{lemma}
+\begin{proof}
+Closed-stop jumps equal original jumps for $s\leq\tau$ and are zero afterward.
+Summing to $t$ is therefore summing original jumps to $t\wedge\tau$, including
+the boundary. Combine this pathwise identity with coordinate agreement for
+$V$ and $A\sim V+D$.
+\end{proof}
+\begin{lemma}[The finite-variation square residual]
+For a c\`adl\`ag locally BV path $Q$ and finite $T$,
+\[
+ Q_T^2-Q_0^2-\sum_{0<s\leq T}(\Delta Q_s)^2
+ =2\int_{(0,T]}Q_{s-}\,dQ_s.
+\]
+\end{lemma}
+\begin{proof}
+Factorial left-step approximations converge to $Q_{s-}$, since the left cell
+endpoint approaches every positive time strictly from below.
+Compact boundedness and finite Stieltjes variation give dominated convergence.
+On each finite grid the identity
+
+\[
+ 2\sum Q_u(Q_v-Q_u)+\sum(Q_v-Q_u)^2=Q_T^2-Q_0^2
+\]
+ telescopes, with endpoints
+capped at $T$. The preceding cross-increment and atomic integral results
+identify the square-sum limit. Pass to the limit.
+\end{proof}
+For the same DDY components, put $I_Q(t)=\int_{(0,t]}Q_{s-}\,dQ_s$.
+Since $Q_0=0$, on a common full-measure set,
+\[
+ N_t^2-A_t=(L_t^2-V_t)+
+ 2\left(L_tQ_t-\sum_{0<s\leq t}\Delta L_s\Delta Q_s+I_Q(t)\right).
+\]
+We next localize and pass martingale identities through dominated limits.
+\begin{lemma}[Common localization with integrable variation]
+For the same $L,Q$, choose finite $\rho_n\uparrow\infty$, $\rho_n\leq n+1$,
+such that $L^{\rho_n},Q^{\rho_n}$ are true martingales,
+
+\[
+ |L^{\rho_n}_t|\leq n+1+2c,\qquad |Q_s|\leq n+1\quad(s<\rho_n).
+\]
+The first bound holds at all times on one full-measure set. Moreover,
+$\Var_{[0,\rho_n]}Q$ is integrable and dominates every horizon variation of
+$Q^{\rho_n}$.
+\end{lemma}
+\begin{proof}
+The cumulative variation $A_t=\Var_{[0,t]}Q$ is adapted by finite-grid
+representation, right-continuous and increasing. Take the minimum of true
+localizers for both martingales, the level $n+1$ passages of $|L|$ and $A$,
+and the horizon $n+1$. This is exhaustive and preserves true martingales,
+using zero start to remove the time-zero indicators. The bounded jumps of
+$L$ give the closed-stop bound. Before the stop $|Q_s|\leq A_s\leq n+1$.
+With $a=n+1$, the variation jump identity gives
+\[
+ A_{\rho_n}\leq a+|\Delta Q_{\rho_n}|\leq2a+|Q_{\rho_n}|.
+\]
+The last stopped value is integrable by bounded optional sampling.
+Measurability and this domination give integrability of $A_{\rho_n}$;
+stopped variation equals $A_{t\wedge\rho_n}\leq A_{\rho_n}$.
+\end{proof}
+On this localization the finite-grid sums $I_G(Q^\rho,Q^\rho)$,
+$I_G(Q^\rho,L^\rho)$, and $I_G(L^\rho,Q^\rho)$ are true martingales.
+For the first two replace coefficients by $Q_s1_{\{s<\rho\}}$, which are
+bounded and adapted; the sums agree because integrator increments after
+stopping vanish. For the third use the closed-stop bound on $L$.
+Neither boundedness nor square integrability of $Q_\rho$ is needed.
+
+\begin{lemma}[Martingale limits under integrable domination]
+If martingales $M^k$ converge almost surely at each time to strongly adapted
+$Y$, and $|M^k_t|\leq B_t$ for one integrable $B_t$ at each time, then $Y$
+is a martingale.
+\end{lemma}
+\begin{proof}
+The limit is integrable by domination. For $s\leq t$ and $E\in\F_s$,
+dominated convergence in the identities $\int_E M^k_s=\int_E M^k_t$ yields
+$\int_EY_s=\int_EY_t$. Use the characterization of conditional expectation.
+\end{proof}
+\begin{lemma}[Self-integral and cross-term local martingales]
+The processes
+\[
+ I_t=\int_{(0,t]}Q_{s-}\,dQ_s,\qquad
+ K_t=L_tQ_t-\sum_{0<s\leq t}\Delta L_s\Delta Q_s
+\]
+are local martingales.
+\end{lemma}
+\begin{proof}
+Fix a common localization and write $\bar L=L^{\rho_n}$, $\bar Q=Q^{\rho_n}$,
+$a=n+1$, $b=n+1+2c$, and $A=\Var_{[0,\rho_n]}Q$.
+Strict-prefix coefficients give the full self-integral bound
+\[
+ |I_G(\bar Q,\bar Q)_t|\leq a\Var_{[0,t]}(\bar Q)\leq aA.
+\] Factorial sums converge to the stopped
+Stieltjes integral. Compare the square identities before and after stopping
+and use the stopped jump-square series to identify the limit with $I_{t\wedge\rho_n}$.
+For cross terms, the finite-grid product formula with last grid point $u_G$ is
+\[
+ I_G(\bar L,\bar Q)_t+I_G(\bar Q,\bar L)_t
+ =\bar L_{t\wedge u_G}\bar Q_{t\wedge u_G}-C_G(\bar L,\bar Q,t).
+\]
+The product is bounded by $bA$ and the cross sum by $2bA$, so the total is
+bounded by $3bA$. Its factorial limit is $K_{t\wedge\rho_n}$ by the
+cross-increment limit, the jump-series identity, and stopping compatibility.
+The pathwise limits retain strong adaptation. Integrability of $A$ and the
+preceding lemma make both closed stops true martingales. Zero start agrees
+with the localizing indicator convention. We need not separately construct
+a completed integral $\int Q_-\,dL$.
+\end{proof}
+
+\begin{theorem}[Quadratic variation of a local martingale]
+Every zero-start strongly adapted c\`adl\`ag local martingale $N$ on a
+filtered probability space satisfying the usual conditions has an adapted
+c\`adl\`ag increasing process $V$ with
+\[
+ V_0=0,\qquad\Delta V=(\Delta N)^2,\qquad N^2-V\text{ a local martingale}.
+\]
+The jump identity holds simultaneously at all times almost surely, and $V$
+is unique up to indistinguishability.
+\end{theorem}
+\begin{proof}
+Use the regularized corrected candidate. The square formula gives
+$N^2-V=(L^2-[L])+2(K+I)$.
+Transfer the second summand to the indistinguishable regular process
+$N^2-V-(L^2-[L])$, align localizers, and add the local martingales.
+For uniqueness, allow even adapted c\`adl\`ag locally BV candidates $V,W$
+without monotonicity, provided their initial values and jumps agree and both
+square residuals are local martingales. Then $D=V-W$ is a locally BV local
+martingale with zero jumps, hence has continuous paths almost surely.
+Stop at integer horizons. The left-limit process is predictable and agrees
+with this continuous process; correct the common null set and use predictable
+FV local-martingale rigidity to make the difference zero. Countably many
+horizons give all-time equality.
+\end{proof}
+Thus
+\[
+ [N]_T=[L]_T+D_T.
+\] Different DDY thresholds and schedules give
+indistinguishable certificates for the same source. Nonconvex full-sequence
+square-sum convergence is not inferred from this existence result alone.
+\begin{lemma}[Stopping consistency]
+For any stopping time $\tau$, possibly infinite,
+\[
+ [N^\tau]\sim[N]^\tau.
+\]
+The left-hand side may be independently constructed.
+\end{lemma}
+\begin{proof}
+A zero-start right-continuous local martingale remains one after arbitrary
+closed stopping: stop each true localized martingale again, commute stops,
+and remove the indicator at zero. Thus existence applies to $N^\tau$.
+The candidate $V^\tau$ retains adaptation, c\`adl\`ag regularity,
+monotonicity, and zero start. Before and at $\tau$ the jumps agree with the
+original ones and afterward are zero. Also
+
+\[
+ (N^\tau)^2-V^\tau=(N^2-V)^\tau
+\]
+ is a local martingale.
+Uniqueness for the stopped source proves the claim.
+\end{proof}
+\begin{lemma}[The root triangle inequality]
+For zero-start strongly adapted c\`adl\`ag local martingales $X,Y$,
+
+\[
+ \sqrt{[X+Y]_t}\leq\sqrt{[X]_t}+\sqrt{[Y]_t}
+\]
+ at all times almost surely.
+\end{lemma}
+\begin{proof}
+Write $V=[X]$, $W=[Y]$, $S=[X+Y]$. For real $a$ put
+
+\[
+ A^a=aS+(1-a)V+(a^2-a)W.
+\] This is adapted c\`adl\`ag locally BV with zero
+start, the correct squared jumps for $X+aY$, and square residual
+\[
+ (X+aY)^2-A^a=a((X+Y)^2-S)+(1-a)(X^2-V)+(a^2-a)(Y^2-W).
+\]
+The uniqueness comparison, which does not require monotonicity, gives
+$A^a\sim[X+aY]$. Intersect the events for rational $a$.
+At every time on this common event,
+\[
+ 0\leq aS_t+(1-a)V_t+(a^2-a)W_t
+ =W_ta^2+(S_t-V_t-W_t)a+V_t
+\]
+for all rational $a$, hence all real $a$ by continuity. Its discriminant gives
+$(S_t-V_t-W_t)^2\leq4V_tW_t$. Since $V_t,W_t\geq0$, the root bound follows.
+\end{proof}
+
+\begin{lemma}[Finite-grid $L^1$ Davis estimates]
+For a real discrete martingale $Y$, set
+
+\[
+ Y_n^*=\max_{0\leq k\leq n}|Y_k|,\qquad
+ R_n=\sqrt{Y_0^2+\sum_{k<n}(Y_{k+1}-Y_k)^2}.
+\]
+Both are integrable, and
+\[
+ E Y_n^*\leq6E R_n,\qquad E R_n\leq7E Y_n^*.
+\]
+No square-integrability hypothesis is needed.
+\end{lemma}
+\begin{proof}
+They are bounded respectively by $\sum_{k\leq n}|Y_k|$ and
+$|Y_0|+\sum_{k<n}|Y_{k+1}-Y_k|$, proving integrability.
+A bounded adapted coefficient times a martingale increment is integrable
+with zero conditional expectation; hence the finite left-endpoint integral
+has mean zero. Integrate the pathwise Davis inequality, whose coefficients
+are bounded by one, to obtain the first estimate.
+For the reverse inequality use, with $m\geq|x|$ and $m,q\geq0$,
+\[
+ F(x,m,q)=-2m+\sqrt{m^2+q}+\frac{m^2-x^2}{2\sqrt{m^2+q}},
+\]
+interpreting division by zero as zero. With $M=\max(m,|x+d|)$,
+\[
+ F(x+d,M,q+d^2)-F(x,m,q)
+ \leq-\frac{xd}{\sqrt{m^2+q}}+5(M-m).
+\]
+To check this put $r=\sqrt{m^2+q}$ and $u=\sqrt{M^2+q+d^2}$.
+For $r>0$ and $M\leq2m$, the square-root tangent estimate and $u\geq r$
+bound the left side plus $xd/r$ by
+$(M^2-m^2)/r-2(M-m)\leq M-m$.
+For $M>2m$, $M=|x+d|$, $|d|\leq M+m\leq3(M-m)$, and $u-r\leq4(M-m)$.
+Also $xd/r\leq|d|$. The new potential numerator $M^2-(x+d)^2$
+is zero and the old numerator is nonnegative, giving the stated bound. If $r=0$ then $x=m=q=0$ and direct calculation suffices.
+Sum with $x=Y_k,m=Y_k^*,q=R_k^2,d=Y_{k+1}-Y_k$.
+Since the initial potential is nonpositive and the final one at least
+$R_n-2Y_n^*$,
+\[
+ R_n\leq7Y_n^*-\sum_{k<n}
+ \frac{Y_k}{\sqrt{R_k^2+(Y_k^*)^2}}(Y_{k+1}-Y_k).
+\]
+The coefficients are adapted and bounded by one; take expectations.
+\end{proof}
+Apply these estimates on the same DDY common localizers to the original
+$N^{\rho_j}=L^{\rho_j}+Q^{\rho_j}$. Concavity prevents transferring the
+reverse estimate directly to roots of convexified energies; we first need
+convergence of the original square sums.
+\begin{lemma}[Unconvexified square sums of a bounded martingale]
+Under the usual conditions, let $M$ be a strongly adapted c\`adl\`ag
+martingale satisfying $|M_t|\leq C$ on every path up to a finite horizon $T$.
+On factorial grids $\pi_i$, put
+\[
+ I_i=2\sum_{[u,v]\in\pi_i}M_u(M_v-M_u),\qquad
+ E_i=\sum_{[u,v]\in\pi_i}(M_v-M_u)^2.
+\]
+If $Y,V$ are the martingale and increasing components retained by the
+quadratic construction, then $I_i\to Y_T$ and $E_i\to V_T$ in $L^2$.
+If the bound holds almost surely at all times on one common set, then
+$E_i\to V_T$ in probability as well.
+\end{lemma}
+\begin{proof}
+Let $\nu$ be the predictable energy measure of the same $V$.
+The grid left-endpoint coefficients $H_i$ are bounded predictable elementary
+processes converging pointwise to $M_-$ on $(0,T]$. The measure $\nu$ is
+finite and gives no mass to time zero or to times after $T$.
+Dominated convergence yields $H_i\to M_-$ in $L^2(\nu)$.
+The grid-independent isometry
+\[
+ \|((H_i-H_j)\cdot M)_T\|_{L^2(P)}
+ =\|H_i-H_j\|_{L^2(\nu)}
+\]
+makes $I_i$ Cauchy in $L^2(P)$; denote its limit by $I$.
+The retained forward convex weights preserve this limit. With those same
+weights, however, the integral sums converge almost surely to $Y_T$.
+Uniqueness of the probability limit gives $I=Y_T$.
+Use $I_i+E_i=M_T^2-M_0^2$ and the retained square decomposition to obtain
+$E_i\to V_T$.
+
+If the bound fails only on one common null set, the usual conditions put
+that set in $\F_0$. Replacing the process by zero there produces an
+everywhere bounded indistinguishable c\`adl\`ag martingale.
+The same weights and components supply quadratic data for this source too.
+Original square sums of indistinguishable sources agree almost surely,
+so their probability convergence transfers back.
+\end{proof}
+\begin{theorem}[Reverse Davis for general local martingales]
+Under the usual conditions let $N$ be a zero-start strongly adapted
+c\`adl\`ag local martingale. For any intrinsic quadratic variation and finite $T$,
+
+\[
+ E\sqrt{[N]_T}\leq7E N_T^*,
+\] allowing infinite expectations.
+\end{theorem}
+\begin{proof}
+At a common DDY stop $\rho_j$, the $L$ component is uniformly bounded almost
+surely, so its original square sums converge in probability. Their difference
+from the original $N^{\rho_j}$ sums converges pathwise to the FV correction.
+Stopping consistency identifies the sum limit with $[N]_{T\wedge\rho_j}$.
+Extract an almost-surely convergent subsequence and take roots. The grid
+maxima are bounded by $(N^{\rho_j})_T^*$, so finite-grid reverse Davis and
+Fatou give
+
+\[
+ E\sqrt{[N]_{T\wedge\rho_j}}\leq7E(N^{\rho_j})_T^*\leq7E N_T^*.
+\]
+Exhaustion makes the root eventually equal to $\sqrt{[N]_T}$ almost surely;
+apply Fatou again and use uniqueness to cover any certificate.
+\end{proof}
+\begin{lemma}[Uniform integrability of convex square roots]
+Fix a common stop and finite horizon. Let $E_i,B_i$ be the original and
+$L$-component factorial square sums. For any forward weights $W$,
+$\sqrt{W(E)_k}$ is uniformly integrable.
+\end{lemma}
+\begin{proof}
+Let $A=\Var(Q^{\rho_j})_\infty$, which is integrable. The grid root bound gives
+$\sqrt{E_i}\leq\sqrt{B_i}+A$, hence $E_i\leq2B_i+2A^2$.
+Convex weights imply
+
+\[
+ W(E)_k\leq2W(B)_k+2A^2,\qquad
+ \sqrt{W(E)_k}\leq2W(B)_k+2(1+A).
+\]
+The stopped $L$ is bounded, and its quadratic approximation estimates make
+$B_i$ uniformly integrable, as are their forward convex averages.
+The remaining majorant is one integrable function. Integrability of $A^2$
+is not needed.
+\end{proof}
+\begin{lemma}[Terminal root convergence after closed stopping]
+For a common stop $\rho$ and horizon $T$, let $V^L$ and its weights be from
+the finite-horizon quadratic construction for $L^\rho$, and $E_k$ the same
+weighted energies of $N^\rho$. With DDY correction $C$,
+
+\[
+ \sqrt{E_k(T)}\longrightarrow\sqrt{V^L_T+C_{T\wedge\rho}}
+ \quad\text{in }L^1,
+\]
+and the limit is integrable.
+\end{lemma}
+\begin{proof}
+Stopped grid increments are original increments evaluated at stopped times,
+so the correction limit holds even when $t>\rho$.
+The same weights give convergence of the $L$ energy and the correction,
+hence almost-sure energy convergence. Continuity of square root and the
+preceding uniform integrability permit Vitali's theorem.
+The $L^2$ terminal value of $L^\rho$ supplies the finite-horizon quadratic data.
+\end{proof}
+\begin{lemma}[Identification with the original stopped quadratic variation]
+If $V=[N]$, then
+\[
+ V^L_T+C_{T\wedge\rho}=V_{T\wedge\rho}
+\]
+ almost surely,
+and the preceding $L^1$ limit is $\sqrt{V_{T\wedge\rho}}$.
+\end{lemma}
+\begin{proof}
+Both $V^L$ and $[L]$ stopped at $\rho$ and $T$ are quadratic certificates
+for $(L^\rho)^T$: their residuals are martingales and jumps are the source
+squares. Uniqueness gives $V^L_T=[L]_{T\wedge\rho}$.
+The indistinguishable identity $V=[L]+C$ also holds at the random time
+$T\wedge\rho$. Substitute into the root limit.
+\end{proof}
+\begin{lemma}[Davis for a general local martingale]
+Under the usual conditions let $N$ be a zero-start strongly adapted
+c\`adl\`ag local martingale. For finite $T$,
+\[
+ E\sup_{t\leq T}|N_t|\leq6E\sqrt{[N]_T}
+\]
+ as extended
+nonnegative expectations. A finite right side implies integrability of the maximum.
+\end{lemma}
+\begin{proof}
+Fix a common stop $\rho$. A coarse factorial-grid maximum is below every
+later refined-grid maximum. Average with the tail weights, use finite-grid
+Davis, and then root concavity to bound its expectation by $6E\sqrt{E_k(T)}$.
+The preceding $L^1$ convergence replaces this by
+$6E\sqrt{[N]_{T\wedge\rho}}$ in the limit. Refine the coarse grid;
+right continuity and monotone convergence give
+\[
+ E\sup_{t\leq T}|N^\rho_t|\leq6E\sqrt{[N]_{T\wedge\rho}}.
+\]
+The stopped maximum is integrable at this stage.
+Now exhaust with $\rho_n$. Eventually the stopped maximum equals the original
+one almost surely; the right side is at most $6E\sqrt{[N]_T}$ by monotonicity.
+Fatou removes localization, and uniqueness removes the choice of certificate.
+\end{proof}
+
+\begin{lemma}[Infinite horizons and all-decomposition costs]
+Put $R_N=\sup_{t\geq0}\sqrt{[N]_t}$. Then
+\[
+ E\sup_t|N_t|\leq6ER_N.
+\]
+For zero-start $Y$, consider every indistinguishable decomposition $Y=N+A$
+with zero-start strongly adapted c\`adl\`ag local martingale $N$ and
+strongly adapted c\`adl\`ag locally FV $A$. Define
+\[
+ \mathcal J(Y)=\inf_{Y=N+A}E[R_N+\Var(A)_\infty].
+\]
+Then $E\sup_t|Y_t|\leq6\mathcal J(Y)$, with no finite-cost assumption and
+infimum of the empty family equal to infinity.
+\end{lemma}
+\begin{proof}
+Increase integer horizons and use monotone convergence for the first bound.
+The root supremum is measurable by integer-time detection and monotonicity.
+For each decomposition, zero start gives
+
+\[
+ \sup_t|Y_t|\leq\sup_t|N_t|+\Var(A)_\infty.
+\]
+Take expectations, apply Davis, and take the infimum over all decompositions.
+Existence and uniqueness of quadratic variation make its choices immaterial.
+\end{proof}
+\begin{lemma}[Closed stops and strict-prefix extension costs]
+For any stopping time $\tau$, possibly infinite, $\mathcal J(Y^\tau)\leq\mathcal J(Y)$.
+Set
+\[
+ \mathcal J_{\tau-}(Y)=\inf\{\mathcal J(L): L_t=Y_t\text{ for all }t<\tau\text{ a.s.}\}.
+\]
+Agreement uses one common null set. Then
+\[
+ \mathcal J_{\tau-}(Y)\leq\mathcal J(Y^\tau)\leq\mathcal J(Y),\qquad
+ E\sup_{t<\tau}|Y_t|\leq6\mathcal J_{\tau-}(Y).
+\]
+The empty supremum at $\tau=0$ is zero.
+\end{lemma}
+\begin{proof}
+Stop both components of each decomposition. Stopping consistency bounds the
+root by $R_N$; variation does not increase. Take the infimum.
+The stopped process itself extends the strict prefix. Every extension $L$
+satisfies $\sup_{t<\tau}|Y_t|\leq\sup_t|L_t|$ almost surely; apply the
+all-time estimate and take the extension infimum.
+\end{proof}
+\begin{lemma}[Triangle inequalities for both costs]
+Under the same assumptions,
+\[
+ \mathcal J(X+Y)\leq\mathcal J(X)+\mathcal J(Y),\qquad
+ \mathcal J_{\tau-}(X+Y)\leq\mathcal J_{\tau-}(X)+\mathcal J_{\tau-}(Y).
+\]
+The second inequality uses the same cutoff $\tau$, which need not be a
+stopping time.
+\end{lemma}
+\begin{proof}
+Add decompositions $X=N+A$ and $Y=M+B$ to obtain the admissible
+decomposition $X+Y=(N+M)+(A+B)$.
+The quadratic-root triangle inequality gives $R_{N+M}\leq R_N+R_M$
+almost surely, while variation subadditivity gives
+$\Var(A+B)_\infty\leq\Var(A)_\infty+\Var(B)_\infty$.
+All-time variation is the supremum of integer-horizon variations and is
+measurable for right-continuous adapted paths. We may therefore add the
+expectations, bounding the sum decomposition's cost by the two original
+costs. Taking independent infima over the two decomposition families proves
+the first inequality.
+Adding two global extensions of the same strict prefix gives an extension
+of the sum target. Apply the first inequality and take independent infima
+over extensions for the second. Infinite costs and empty families are included.
+\end{proof}
+\begin{lemma}[Negation and successive differences]
+Under the same assumptions, $\mathcal J(-X)=\mathcal J(X)$ and
+$\mathcal J_{\tau-}(-X)=\mathcal J_{\tau-}(X)$.
+For one fixed $\tau$, therefore,
+\[
+ \mathcal J_{\tau-}(Z_k-X)\longrightarrow0
+ \quad\Longrightarrow\quad
+ \mathcal J_{\tau-}(Z_{k+1}-Z_k)\longrightarrow0.
+\]
+\end{lemma}
+\begin{proof}
+A quadratic certificate for $N$ also satisfies the conditions for $-N$:
+the square residual is unchanged and squared jumps ignore the sign.
+Variation is invariant under negation too, so $(N,A)\mapsto(-N,-A)$
+preserves costs. Taking infima and applying negation twice proves the
+identity for $\mathcal J$. Negating extensions of the same prefix gives
+the corresponding identity for the outer infimum.
+The triangle inequality and symmetry give
+\[
+ \mathcal J_{\tau-}(Z_{k+1}-Z_k)
+ \leq\mathcal J_{\tau-}(Z_{k+1}-X)+\mathcal J_{\tau-}(Z_k-X).
+\]
+Combine this with nonnegativity for the limit. Infinite costs are allowed,
+but the lemma does not itself construct a common stop.
+\end{proof}
+\begin{lemma}[Components from finite strict-prefix cost]
+If $\tau\leq T$ is a finite stop and $\mathcal J_{\tau-}(X)<r$, there are
+$X'\sim X$, a local martingale $N$, and globally BV $A$, both adapted and
+c\`adl\`ag, such that $X'_t=N_t+A_t$ pointwise for $t<\tau$, and
+\[
+ E\sup_{t\leq T}|N_{t\wedge\tau}|+E\Var_{[0,T]}(A^{\tau-})<6r.
+\]
+\end{lemma}
+\begin{proof}
+Choose an extension $Y$ and decomposition $Y=N+B$ with cost less than $r$.
+Put $A=B^T$. Its strict-prefix variation is bounded by the original total
+variation, and all-time Davis bounds the stopped martingale maximum.
+Define $X'$ as $N+A$ on the strict prefix and as $X$ elsewhere.
+On the common event of extension and decomposition agreement, $X'=X$ at
+all times. This gives both the exact prefix identity and indistinguishability.
+\end{proof}
+\begin{lemma}[Component sequences from summable costs]
+Under the usual conditions let $\tau\leq T$ be one finite stopping time.
+If $\sum_k\mathcal J_{\tau-}(X_k)<\infty$, one can choose the preceding
+exact representatives $X'_k$ and components $(N_k,A_k)$ with
+\[
+ \sum_k\left(E\sup_{t\leq T}|N_{k,t\wedge\tau}|+
+ E\Var_{[0,T]}(A_k^{\tau-})\right)
+ \leq6\left(\sum_k\mathcal J_{\tau-}(X_k)+1\right)<\infty.
+\]
+On one full-measure set $X'_{k,t}=X_{k,t}$ for every $k,t$, and
+\[
+ \sum_k\left(\sup_{t\leq T}|N_{k,t\wedge\tau}|+
+ \Var_{[0,T]}(A_k^{\tau-})\right)<\infty.
+\]
+\end{lemma}
+\begin{proof}
+Put $c_k=\mathcal J_{\tau-}(X_k)$ and $\varepsilon_k=2^{-k-1}$.
+Each $c_k$ is finite, so $c_k<c_k+\varepsilon_k$. The preceding lemma
+supplies representatives and components with cost less than
+$6(c_k+\varepsilon_k)$.
+Sum and use $\sum_k\varepsilon_k=1$ to obtain the expectation bound.
+The martingale maxima and strict-prefix variations are measurable;
+Tonelli gives pathwise finiteness of their sum almost surely.
+Intersect with the countably many indistinguishability events to retain
+agreement with all original targets, at every time, on that same set.
+\end{proof}
+The common stop and summability are inputs here. These arbitrary decomposition
+components still require a separate bridge to actual original-price integrals.
+\begin{lemma}[Strict-prefix comparison and boundary jumps]
+For finite $\tau\leq T$,
+
+\[
+ \mathcal J(X^{\tau-})\leq2\mathcal J(X).
+\]
+If $X_0=0$, then
+
+\[
+ \mathcal J_{\tau-}(X)\leq\mathcal J(X^{\tau-})\leq2\mathcal J_{\tau-}(X).
+\]
+For zero-start adapted c\`adl\`ag $X$,
+\[
+ \mathcal J(X^\tau)\leq2\mathcal J_{\tau-}(X)+E|\Delta X_\tau|.
+\]
+Infinite costs are allowed.
+\end{lemma}
+\begin{proof}
+For $X=N+A$, stopping $A$ at $T$ leaves the prefix unchanged.
+Use the decomposition
+$X^{\tau-}=N^\tau+(A^{\tau-}-B^\tau(N))$, where $B^\tau$ is the boundary
+jump process. The jump-square identity and monotonicity give
+$|\Delta N_\tau|\leq\sqrt{[N]_\tau}$.
+The stopped root does not increase; variation increases by at most this
+jump, so the cost is at most twice the original. Take infima.
+An extension agreeing before $\tau$ has the same left limit there; at
+$\tau=0$ use zero start. Apply the same estimate to extension decompositions
+and take infima. The reverse bound follows because the strict prefix is
+itself an extension. Finally $B^\tau(X)$ is adapted zero-start FV with
+cost at most $E|\Delta X_\tau|$. Add it to $X^{\tau-}$ and use the triangle
+inequality.
+\end{proof}
+These results concern the zero-start core and its extension costs. The next
+subsection constructs common prelocal control and supplies the algebraic
+inputs for the main sequence. Nonzero initial values are separate coordinates.
+A finite $M^2$ quadratic root is not itself exact $j^1$, and the stopping-jump
+seminorm is distinct from the root-plus-variation cost. Quadratic variation
+does not detect constant martingales, which is why components are centered.

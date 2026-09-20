@@ -1,0 +1,74 @@
+\subsection{The bounded-source decomposition input}
+\label{sec:bounded-source}
+The decomposition input used below is the following bounded form of the
+Bichteler--Dellacherie theorem. We state explicitly which foundational result
+is used, separately from integral-range closedness.
+
+\begin{theorem}[Bounded good-integrator decomposition]
+\label{thm:bounded-source}
+Under the usual conditions, let $S$ be adapted and c\`adl\`ag with
+$\sup_t|S_t|\leq B$ almost surely for a deterministic $B<\infty$.
+Suppose elementary integration is continuous from uniform convergence of
+bounded predictable elementary coefficients to convergence in probability
+at every finite horizon. Then
+\[
+ S-S_0=M^S+A^S,
+\]
+where $M^S$ is a zero-start c\`adl\`ag local martingale and $A^S$ is zero-start,
+predictable, c\`adl\`ag and locally of finite variation. The centered
+components are unique up to indistinguishability. The measure remains the
+original measure, and no market assumption is required.
+\end{theorem}
+\begin{proof}
+We use the bounded case of the Bichteler--Dellacherie characterization as a
+standard foundational theorem: an adapted c\`adl\`ag good integrator on a
+finite interval is a local martingale plus an adapted c\`adl\`ag FV process.
+The continuity hypothesis is exactly the elementary-integral criterion in
+\cite[Definition 1.1 and Theorem 1.2]{BSV}; restriction to a finite interval
+and time rescaling give that formulation. Almost-sure and everywhere uniform
+bounds on elementary coefficients give the same criterion after modifying
+coefficients on a time-zero null set under the usual conditions.
+Thus, on a fixed horizon, write $S-S_0=N+D$, with zero-start components.
+Here $D$ is initially only adapted. Its predictable replacement needs the
+following additional argument; it is not supplied by arbitrary-decomposition
+uniqueness.
+
+Choose localizers making $N$ a true martingale up to this horizon and stop
+further at the first strict passages of $|N|$ and $\Var(D)$ above $r$.
+Let the resulting closed stop be $\sigma_r$. Before it both quantities are
+at most $r$. At the endpoint,
+\[
+ |\Delta D_{\sigma_r}|
+ \leq2B+|\Delta N_{\sigma_r}|
+ \leq2B+r+|N_{\sigma_r}|,
+ \qquad
+ \Var(D^{\sigma_r})\leq2r+2B+|N_{\sigma_r}|.
+\]
+Optional sampling of the localized true martingale makes the last bound
+integrable. These stops exhaust the fixed horizon, by pathwise boundedness
+and finite variation. The compensator theorem, stated with its norm estimate
+in Section~\ref{sec:canonical-cost}, applies to $D^{\sigma_r}$ and gives
+\[
+ S^{\sigma_r}-S_0
+ =\bigl(N^{\sigma_r}+D^{\sigma_r}-(D^{\sigma_r})^p\bigr)
+   +(D^{\sigma_r})^p.
+\]
+This is a special decomposition on each coordinate. On common stops, the
+difference of two predictable FV components is a zero-start predictable
+FV local martingale, hence zero. This proves compatibility and centered
+uniqueness. Glue the stopped martingale coordinates and the predictable FV
+coordinates, then glue over positive integer horizons. Countably many
+agreements and right continuity give one indistinguishability event.
+\end{proof}
+
+The Lean proof constructs the bounded decomposition directly: the sampled
+Doob rows have increments
+$\Delta A_j=E[\Delta S_j\mid\mathcal F_{t_j}]$ and
+$\Delta M_j=\Delta S_j-\Delta A_j$; predictable sign tests control their
+variation, and common stopping, Hilbert convexification and regularization
+produce compatible canonical limits. The mathematical account here takes
+the stated bounded characterization as a foundational theorem. It does not
+take any theorem about closedness of stochastic-integral ranges as input.
+In particular, the later decomposition of general good integrators uses only
+this bounded input, after removing large jumps and stopping the remainder;
+it does not feed back into this proof.

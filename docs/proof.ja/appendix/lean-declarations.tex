@@ -1,0 +1,105 @@
+\section{数学的段階とLean宣言の対応}
+公開入口は \path{FTAPTheorem42} である。下表の宣言はいずれも主定理の型または証明項の
+推移的依存に現れる。本文の $Q_*$ 上の成分評価と元測度上の一般積分実現は、別々の段階に対応する。
+
+\small
+\begin{longtable}{L{0.29\linewidth}L{0.64\linewidth}}
+\toprule
+数学的段階 & Lean宣言 \\
+\midrule\endfirsthead
+\toprule
+数学的段階 & Lean宣言 \\
+\midrule\endhead
+\bottomrule\endlastfoot
+主定理 & \path{FTAPTheorem42.BoundedSourceIntegralMarket.theorem42_generalMarket} \\
+一般積分の領域と終端集合 & \path{FTAPTheorem42.BoundedSourceIntegralMarket.truncatedTerminalClaimsBy_eq_generalMarket} \\
+元価格の一般積分領域の閉性 & \path{FTAPTheorem42.BoundedSourceIntegralMarket.exists_truncatedIntegralGraph_of_emeryConverges} \\
+元測度での全時間の実現 & \path{FTAPTheorem42.BoundedSourceIntegralMarket.exists_realized_truncatedGraph} \\
+補助測度での同時局所化 & \path{FTAPTheorem42.BoundedSourceIntegralMarket.exists_joint_actual_component_localization} \\
+elementary位相から補助costへ & \path{FTAPTheorem42.ElementaryMetricProcess.tendsto_r1_of_elementary} \\
+共通局所化と成分costの総和 & \path{FTAPTheorem42.J1Decomposition.exists_common_localizers_summable_component_costs} \\
+終端改善と最大性の矛盾 & \path{FTAPTheorem42.not_persistent_terminalGain_improvement_of_vanishing_lowerError} \\
+同じ列の二成分Cauchy評価 & \path{FTAPTheorem42.BoundedSourceIntegralMarket.exists_selected_original_componentCauchy} \\
+最大性からのFV変動評価 & \path{FTAPTheorem42.BoundedSourceIntegralMarket.original_finiteVariation_cauchyInProbability} \\
+最大閉包元の実現 & \path{FTAPTheorem42.BoundedSourceIntegralMarket.maximal_mem_general_K1} \\
+終端下界から全時刻下界へ & \path{FTAPTheorem42.BoundedSourceIntegralMarket.generalMarket_terminalLowerBoundControlsGain} \\
+Fatou閉性と弱スター閉性の組立て & \path{FTAPTheorem42.GainProcessModel.theorem42ConcreteWeakStar_from_gainProcessModel_K1_maximalRealization} \\
+有界切片の弱スター閉性 & \path{FTAPTheorem42.isClosed_linftyWeakStar_claimSlice} \\
+Fatou閉錐から弱スター閉性へ & \path{FTAPTheorem42.linftyWeakStarClosed_of_fatouCone} \\
+終端の凸コンパクト性（Proposition 3.1） & \path{FTAPTheorem42.BoundedSourceIntegralMarket.generalMarket_forwardConvexCandidates} \\
+最大性からの一様過程極限（Lemma 4.5） & \path{FTAPTheorem42.BoundedSourceIntegralMarket.exists_uniform_terminal_limit_of_maximal} \\
+添字付き族の最大関数評価（Lemma 4.7） & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_class_boundedInProbability} \\
+正規化による尾部評価（Lemma 4.8） & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_finiteTail_tendsToZero} \\
+全testに共通する尾部評価（Lemma 4.9） & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_tail_tests} \\
+同じ凸重みのM Cauchy性（Lemma 4.10） & \path{FTAPTheorem42.BoundedSourceIntegralMarket.exists_original_martingale_convexification} \\
+下に有界な凸集合のコンパクト性（Lemma A1.1） & \path{FTAPTheorem42.hasForwardConvexAELimit_of_lowerBounded_convexSet_aestronglyMeasurable} \\
+最大終端利得の存在（Lemma 4.3） & \path{FTAPTheorem42.exists_aeMaximal_ge_inMeasureSequentialClosure_of_mem} \\
+\end{longtable}
+\normalsize
+
+連続時間の利得同定は区別不能性を用いる。固定時刻ごとの零集合は、右連続性と
+可算時刻集合で全時刻に共通化する。$L^p$ の同値類と可測代表元を移すときは
+同じ下界と終端極限を保持する。弱スター位相は $L^1$ との積分pairingで定める。
+
+\noindent\begin{minipage}{\linewidth}
+\small
+\textbf{解析的入力の構成との対応}\par\medskip
+\begin{tabular}{L{0.29\linewidth}L{0.64\linewidth}}
+\toprule
+数学的段階 & Lean宣言 \\
+\midrule
+有界sourceの分解 & \path{FTAPTheorem42.HorizonFactorialGrid.exists_boundedSemimartingaleSource_globalSpecialDecompositionData} \\
+正準成分へのcost移行 & \path{FTAPTheorem42.ActualSIntegrableStrategy.centered_component_cost_le_witness_of_stopped} \\
+共通係数のenergy極限 & \path{FTAPTheorem42.LocalCompletedM2A.exists_intrinsicJointPassage_selectedIntegrand} \\
+同じ係数のFV同定 & \path{FTAPTheorem42.LocalCompletedM2A.intrinsicJointPassageSelectedIntegrand_ae_eq_rangeVariation} \\
+有限horizonの消失リスク戦略 & \path{FTAPTheorem42.LocalCompletedM2A.actualFirstLocalized_hahnPositive_stopDownside_of_originalHigh} \\
+\bottomrule
+\end{tabular}
+\end{minipage}\par
+
+\subsection*{本文と解析実装の境界}
+\path{Proof/Selection/} は下界制御、終端の凸コンパクト性、最大性による貼り合わせと
+一様過程極限を証明する。\path{Proof/Components/} は Lemma 4.7--4.10 に対応し、
+NFLVRから族評価を導き、尾部を正規化して、共通のHilbert凸平均を選ぶ。
+\path{Proof/OrientedSequence.lean} が同じ列の有限Hahn改善を組み立て、
+\path{Closedness/} が Lemma 4.11 に当たる最大性の矛盾とFV Cauchy性を証明する。
+終端の凸コンパクト性、最大元、最後の閉性に使う補題は
+\path{PositiveTail/}、\path{Trading/}、\path{Core/} にある。
+
+主部は \path{Stochastic/} を直接参照せず、第\ref{sec:graph}節の七つの解析命題を\path{Interface/}から受け取る。
+以下は実際の隔離検査と照合する22宣言の完全な一覧である。
+通常版では全ての入力を証明する。隔離版だけでこれらを仮定化し、主部を変更せず再ビルドする。
+本文の選択・凸化・最大性・閉性の定理を追加仮定にすることはない。
+
+\subsection*{隔離検査で仮定化する宣言の全体}
+識別子は第\ref{sec:graph}節の各項を指す。G0とM0はデータ、残る20項は命題である。
+\small
+\begin{longtable}{L{0.12\linewidth}L{0.81\linewidth}}
+\toprule
+入力 & Lean宣言 \\
+\midrule\endhead
+\bottomrule\endlastfoot
+\contractref{G0} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.GeneralIntegralGraph} \\
+\contractref{M0} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.generalMarket} \\
+\contractref{P1} & \path{FTAPTheorem42.AnalyticInterface.regular_uniform_limit} \\
+\contractref{P2} & \path{FTAPTheorem42.AnalyticInterface.regular_common_envelope} \\
+\contractref{P3} & \path{FTAPTheorem42.AnalyticInterface.equivalent_envelope_measure} \\
+\contractref{D1} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_specialDecomposition} \\
+\contractref{M1} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.generalAdmissibleClaims_eq_generalMarket} \\
+\contractref{M2} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.generalTerminalClaims_eq_generalMarket_K0} \\
+\contractref{M3} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.generalAdmissibleClaims_one_eq_generalMarket_K1} \\
+\contractref{M4} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.generalMarket_terminal_properties} \\
+\contractref{M5} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.generalMarket_operations} \\
+\contractref{M6} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalSpecialGain_finiteStop} \\
+\contractref{M7} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_convexCombination} \\
+\contractref{F1} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_finiteRisk} \\
+\contractref{F2} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_finiteTail_normalization} \\
+\contractref{F3} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_finiteTail_test_estimate} \\
+\contractref{F4} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_prefix_energy} \\
+\contractref{F5} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_prefix_regular} \\
+\contractref{A1} & \path{FTAPTheorem42.AnalyticInterface.emeryCauchy_of_uniform_approximations} \\
+\contractref{A2} & \path{FTAPTheorem42.AnalyticInterface.martingaleTestsCauchy_of_terminalL2} \\
+\contractref{H1} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_finiteHahn} \\
+\contractref{C1} & \path{FTAPTheorem42.BoundedSourceIntegralMarket.truncatedTerminalClaims_one_of_component_estimates} \\
+\end{longtable}
+\normalsize

@@ -1,0 +1,755 @@
+\subsection{Good-integrator性と位相比較}
+\label{sec:emery-completeness}
+\begin{lemma}[局所有限変動過程のgood-integrator性]
+強適合的で右連続な実数値過程 $A$ が全経路で局所有限変動を持つとする。
+有限測度の下で $A$ はelementary good integratorである。
+\end{lemma}
+\begin{proof}
+予測可能elementary integrands $H_n$ が全時間・全標本上で一様に零へ行くとする。
+固定した $T$ で $A$ を停止すると、全時間軸上で有限変動の経路を得る。
+時刻 $T$ のelementary gainは変わらず、各経路で
+\[
+ (H_n\mathbin{\cdot}A)_T
+ =\int 1_{(0,T]}(t)H_n(t)\,dA^T_t
+\]
+というStieltjes積分で表せる。被積分関数は各時刻で零へ行き、十分大きな $n$ では
+絶対値が1以下である。経路ごとの全変動測度は有限なので、ベクトル測度の支配収束により
+gainは各標本で零へ行く。
+強適合性と右連続性からsourceはprogressiveであり、elementary gainは可測である。
+従って有限測度下で確率収束を得る。
+strategyのblock数の上界や変動の期待値の有限性は使わない。
+\end{proof}
+
+零始点分解 $X=N+A$ にこれを適用すると、分解からgood-integrator性への方向は
+$N$ のelementary good-integrator性へ還元される。
+elementary gainは価格に線形であり、同じ全時刻の零集合の外で分解に沿って加算されるため、
+raw targetが例外集合上で非正則でも結論は保たれる。
+平方可積分な真のマルチンゲールには次の評価を適用し、DDY 分解と停止で一般の場合へ戻す。
+
+\begin{lemma}[elementary martingale積分の表現に依存しない評価]
+右連続な真のマルチンゲール $M$ と有限horizon $T$ に対して $M_T\in L^2$ とする。
+予測可能elementary integrand $H$ が $|H|\le B$ を全時間・全標本で満たし、$B\ge0$ なら
+\[
+ \|(H\mathbin{\cdot}M)_T\|_2
+ \le B\sqrt{E(M_T-M_0)^2}.
+\]
+従って各時刻で平方可積分な右連続マルチンゲールはelementary good integratorである。
+\end{lemma}
+\begin{proof}
+$M$ を $T$ で停止し、chronological factorial grid上で左端値による離散積分を作る。
+標本化されたsourceは平方可積分マルチンゲールであり、離散積分の等長性から
+その二乗期待値は $B^2E(M_T-M_0)^2$ 以下である。
+gridの終点は $T$ を覆い、停止sourceの終値は $M_T$、始点は $M_0$ である。
+右連続性からgrid積分は各経路でelementary gainへ収束する。
+$L^2$ seminormのFatou評価で極限へ上界を渡す。
+
+$H_n$ が一様に零へ行く場合、固定した $T$ について
+$C=\sqrt{E(M_T-M_0)^2}$ とおく。
+任意の $\varepsilon>0$ に対して、十分大きな $n$ では
+$|H_n|\le\varepsilon/(C+1)$ なのでgainの $L^2$ normは $\varepsilon$ 以下である。
+gainの可測性と $L^2$ 収束から確率収束を得る。
+この評価にはstrategyのblock数も係数の絶対値和も現れない。
+\end{proof}
+
+\begin{lemma}[good-integrator性の局所化解除]
+有限測度の下で $S$ は強適合かつ右連続とする。
+停止時刻列 $\tau_r\to\infty$ がほとんど確実に成り立ち、各 $S^{\tau_r}$ が
+elementary good integratorなら、$S$ もそうである。
+停止時刻列の単調性は不要である。
+\end{lemma}
+\begin{proof}
+固定した $T$ に対し $P(\tau_r\le T)\to0$ である。
+これは事象の指示関数の概収束と有限測度から従う。
+$\tau_r>T$ 上では、elementary gainに現れる全ての評価時刻が $T$ 以下なので、
+停止前後のgainは等しい。従って
+\[
+ P\bigl(|(H_n\mathbin{\cdot}S)_T|\ge\varepsilon\bigr)
+ \le P(\tau_r\le T)
+ +P\bigl(|(H_n\mathbin{\cdot}S^{\tau_r})_T|\ge\varepsilon\bigr).
+\]
+先に $r$ を固定し、次に $n\to\infty$ とすれば結論を得る。
+\end{proof}
+
+\begin{proposition}[分解可能過程のgood-integrator性]
+通常の条件を満たす確率空間上で、零始点の許容分解 $X=N+A$ を持つ過程は
+elementary good integratorである。
+\end{proposition}
+\begin{proof}
+DDY 分解を $N=L+Q$ と書く。$L$ は零始点の局所マルチンゲールで
+ジャンプが $2$ 以下、$Q$ は強適合な局所有限変動過程である。
+共通局所化は exhaustive な停止列 $\tau_r$ を与え、$L^{\tau_r}$ は
+真のマルチンゲールかつ決定論的定数で有界となる。
+従って各時刻で平方可積分であり、上の積分評価と局所化解除から $L$ はgood integratorである。
+有限変動成分 $Q+A$ を加え、区別不能なraw targetへ移送して $X$ の結論を得る。
+一般の $N$ 自体が局所平方可積分であることは使わない。
+\end{proof}
+
+\begin{lemma}[good-integrator性と有限停止]
+有限値停止時刻 $\tau$ に対し、$S$ がelementary good integratorなら $S^\tau$ もそうである。
+\end{lemma}
+\begin{proof}
+予測可能elementary strategyの停止を、元のstrategyから予測可能な停止後tailを引いて定める。
+そのintegrandは $1_{\{t\le\tau\}}H_t$ であるから、一様零収束は保たれる。
+有限和の各評価時刻について最小値を入れ替えると
+$(H\mathbin{\cdot}S^\tau)_T=((1_{\{t\le\tau\}}H)\mathbin{\cdot}S)_T$ となる。
+この同一性に元の可測性とgood-integrator性を適用する。
+\end{proof}
+
+\begin{proposition}[有界ジャンプgood integratorの停止分解]
+通常の条件の下で、$X$ は零始点、強適合、càdlàgなelementary good integratorとする。
+$c\ge0$ に対し $|\Delta X_t|\le c$ が全時刻共通の零集合の外で成り立つなら、
+\[
+ \sigma_n=\inf\{t:|X_t|>n+1\}\wedge(n+1)
+\]
+はexhaustiveな停止列であり、各 $X^{\sigma_n}$ は上界 $n+1+c$ の有界sourceとなる。
+従って有界sourceの分解定理（定理\ref{thm:bounded-source}）から、各座標のglobal special decompositionを得る。
+\end{proposition}
+\begin{proof}
+exhaustivenessはcàdlàg経路のコンパクト区間上の有界性から従う。
+初期値は閾値以下であり、停止直前までの上界と停止時のjump boundから
+$|X^{\sigma_n}_t|\le n+1+c$ となる。強適合性、右連続性、左極限は停止で保たれ、
+good-integrator性は前補題から従う。これらが定理\ref{thm:bounded-source}の全入力を供給する。
+\end{proof}
+
+\begin{proposition}[一般good integratorの大ジャンプ除去]
+通常の条件の下で、零始点・強適合・càdlàgなgood integrator $X$ と $c>0$ に対し、
+\[
+ J_t=\sum_{0<s\le t}\Delta X_s1_{\{|\Delta X_s|>c\}},\qquad Y=X-J
+\]
+を定める。$J$ は零始点の強適合càdlàg局所有限変動過程であり、$Y$ は零始点の
+強適合càdlàg good integratorである。全ての経路・時刻で $|\Delta Y_t|\le c$ が成り立つ。
+従って前命題は $Y$ に適用でき、各停止段階のglobal special decompositionを与える。
+\end{proposition}
+\begin{proof}
+有限horizon $T$ の有限大ジャンプ和を $J^T$ とする。
+horizonの整合性から、$t\le T$ なら $J^t_t=J^T_t$ である。
+そこで $J_t=J^t_t$ と置く。固定時刻での強適合性は $J^t$ から従い、
+右連続性は $t$ より大きなhorizon上の一致から、左極限と局所有限変動は
+各コンパクト区間上の一致から従う。零始点性も有限和から従う。
+$t>0$ では $Y$ と有限horizon $t$ の残差が時刻 $t$ まで一致するので、
+左極限を含む一致により残差のジャンプ上界を使える。時刻 $0$ のジャンプは零である。
+局所有限変動過程のgood-integrator性と、elementary積分の線形性・確率収束の減法安定性から
+$X-J$ のgood-integrator性を得る。前命題の全入力がこれで揃う。
+\end{proof}
+$J$ の補償過程はこの還元では必要なく、最終的に求める分解の有限変動成分は適合でよい。
+
+\begin{theorem}[正則零始点good integratorの許容分解]\label{thm:regular-gi-decomposition}
+通常の条件を満たす確率空間上で、零始点・強適合・càdlàgな過程 $X$ が
+elementary good integratorであることと、許容分解 $X=N+B$ を持つことは同値である。
+ここで $N$ は零始点のcàdlàg local martingale、$B$ は零始点の強適合càdlàg局所有限変動過程である。
+\end{theorem}
+\begin{proof}
+分解からgood integratorへの向きは既に示した。逆向きでは、前命題で $c=1$ とし、
+$X=Y+J$ と分ける。有界な停止source $Y^{\sigma_n}$ のspecial分解を $M^n+A^n$ とする。
+この分解は初期値が正規化されているとは限らないので、
+\[
+ \widehat M^n=(M^n-M^n_0)^{\sigma_n},\qquad
+ \widehat A^n=(A^n-A^n_0)^{\sigma_n}
+\]
+とする。初期値の大域的可積分性を仮定せずにlocal martingaleは中心化できる。
+予測可能な初期値の時間一定延長と有限停止は予測可能性を保つ。
+各経路で有限時刻に停止するため、$\widehat A^n$ は全時間上で有限変動である。
+停止sourceの零始点性と停止の冪等性から、なお
+$Y^{\sigma_n}=\widehat M^n+\widehat A^n$ が区別不能性の意味で成立する。
+
+$\rho=\sigma_n\wedge\sigma_m$ で二分解を再停止する。その有限変動成分の差は、
+二つの利得が同じであることからマルチンゲール成分の差と区別不能であり、local martingaleとなる。
+零始点・予測可能・右連続・全時間有限変動でもあるため、rigidityから零である。
+従って有限変動成分もマルチンゲール成分も共通停止上で区別不能となる。
+
+local martingaleのgluingと、予測可能有限変動過程のgluingをこの同じ列に適用する。
+得られる $M,A$ は各 $\sigma_n$ 上で対応する成分と一致し、停止列のexhaustivenessにより
+$Y=M+A$ が全時刻共通の零集合の外で成立する。$M$ は強適合càdlàg local martingaleであり、
+$A$ は予測可能・右連続・局所有限変動である。後者は左極限も持つ。
+gluing後の初期値を再中心化し、
+\[
+ N=M-M_0,\qquad B=A-A_0+J
+\]
+とする。$Y_0=0$ より $M_0+A_0=0$ が概至る所成立し、$X=N+B$ を得る。
+$J$ は適合局所有限変動過程なので $B$ もそうである。$B$ の予測可能性は結論しない。
+\end{proof}
+
+\begin{proposition}[一様elementary-test Cauchy評価の極限への移送]
+強発展可測で右連続な過程列 $X_n$ と過程 $Y$ について、$X_n\to Y$ がucpで成り立つとする。
+unit-bounded predictable elementary test $J$ に対し
+\[
+ \bar e_T^J(U,V)=\mathbb E\!\left[1\wedge\sup_{t\le T}|(J\cdot U)_t-(J\cdot V)_t|\right]
+\]
+と置く。各 $T,\varepsilon>0$ について、ある $N$ が存在し、全ての $m,n\ge N$ と全ての $J$ で
+$\bar e_T^J(X_m,X_n)\le\varepsilon$ なら、$\sup_J \bar e_T^J(X_n,Y)\to0$ である。
+逆に、この一様収束は前述のCauchy条件を含意する。
+\end{proposition}
+\begin{proof}
+固定した $J$ について、有限和評価は、test積分のcapped最大誤差を
+$\max(8\operatorname{length}(J),1)$ 倍の元の過程のcapped最大誤差で抑える。
+この定数は固定testにのみ使用する。ucp収束と $[0,1]$ 内の有界性から、
+$\bar e_T^J(X_m,Y)\to0$ を得る。
+
+$T,\varepsilon$ に対しCauchy条件の $N$ を先に選び、$n\ge N$ と $J$ を固定する。
+三角不等式から、全ての $m\ge N$ に対し
+\[
+ \bar e_T^J(X_n,Y)\le \bar e_T^J(X_m,X_n)+\bar e_T^J(X_m,Y)
+ \le\varepsilon+\bar e_T^J(X_m,Y).
+\]
+$m\to\infty$ として $\bar e_T^J(X_n,Y)\le\varepsilon$ を得る。
+$N$ は $J$ に依存しないので、ここで初めて全testの上限を取れる。
+逆向きは $Y$ を介する三角不等式と $\varepsilon/2$ の誤差評価による。
+\end{proof}
+この命題は正則なucp極限を入力とする。その存在は以下で構成する。
+極限のgood-integrator性と、同じ商上のelementary-test位相・完備性も以下で構成する。
+固定sourceの積分範囲の閉性は命題の証明に使用していない。
+
+\begin{proposition}[増大時間区間上の速い部分列]
+強発展可測で右連続な過程列 $(X_n)$ が上の一様elementary-test Cauchy条件を満たし、
+全ての $n$ で $X_n(0)=X_0(0)$ がほとんど確実に成り立つとする。
+このとき狭義増加列 $f$ が存在し、ほとんど全ての経路について、十分大きい全ての $k$ で
+\[
+ \sup_{t\le k+1}|X_{f(k+1)}(t)-X_{f(k)}(t)|\le 2^{-k-1}
+\]
+が成り立つ。特に、各有限時間区間では、十分後の隣接差の上限が経路ごとに可算和可能である。
+\end{proposition}
+\begin{proof}
+$J=1_{(0,T]}$ による積分は $t\le T$ で $X(t)-X(0)$ に等しい。
+従って共通初期値の仮定により、一様test Cauchy評価は
+\[
+ \mathbb E\!\left[1\wedge\sup_{t\le T}|X_m(t)-X_n(t)|\right]\le\varepsilon
+\]
+を十分大きい全ての $m,n$ に対して与える。
+$q_k=2^{-k-1}$ とし、$T=k+1$, $\varepsilon=q_k^2$ の閾値を $N_k$ とする。
+$f(0)=N_0$, $f(k+1)=\max(f(k)+1,N_{k+1})$ と選ぶ。
+隣接差のcapped最大値を $E_k$ とすれば、$\mathbb E E_k\le q_k^2$ である。
+Markov評価から $\mathbb P(E_k\ge q_k)\le q_k$ を得る。
+$\sum_k q_k<\infty$ なのでBorel--Cantelliにより、共通零集合の外で最終的に $E_k<q_k$ となる。
+$q_k<1$ であるからcapを外せる。停止factorial gridは右連続性により
+区間全体の最大値を検出するため、結論は全ての $t\le k+1$ に同時に成り立つ。
+\end{proof}
+この抽出を次の極限構成に使用する。
+
+\begin{proposition}[一様elementary-test Cauchy列の正則極限]
+フィルトレーションは通常の条件を満たすとする。
+強発展可測でcàdlàgな過程列 $(X_n)$ が一様elementary-test Cauchy条件を満たし、
+全ての $n$ で $X_n(0)=X_0(0)$ がほとんど確実に成り立つなら、
+強発展可測でcàdlàgな過程 $Y$ が存在し、
+\[
+ Y(0)=X_0(0)\quad\text{a.s.},\qquad
+ \sup_J \bar e_T^J(X_n,Y)\longrightarrow0\quad(T<\infty)
+\]
+が成り立つ。列全体は $Y$ にucp収束する。
+\end{proposition}
+\begin{proof}
+前の命題の部分列を選ぶ。共通零集合の外で、各有限時間区間上の十分後の隣接差は
+可算和可能な数列に支配される。三角不等式と級数のtail評価から局所一様Cauchy性を得る。
+実数の完備性により各時刻で極限 $Z(t)$ が存在し、局所一様収束となる。
+非収束点を含む全標本点に定義した可測な極限選択を使えば、各 $Z(t)$ は
+時刻 $t$ の情報に関して可測であり、$Z$ は強適合である。
+
+各経路を有限時刻で停止すると全時間上一様収束に帰着する。
+右連続性と左極限はこの一様極限に保存されるため、$Z$ はほとんど確実にcàdlàgである。
+通常の条件により例外集合は時刻零の情報に含まれる。
+その集合上で $Z$ を零に置き換え、強適合で全経路がcàdlàgな $Y$ を得る。
+右連続な強適合過程は強発展可測である。局所一様収束は共通零集合の外で保存され、
+時刻零の極限から $Y(0)=X_0(0)$ を得る。
+
+部分列の局所一様収束は各capped最大誤差の確率収束を与える。
+先の一様Cauchy評価の移送証明では、補助添字 $m$ を $f(m)$ に取り替えてもよい。
+$f(m)\to\infty$ なので同じCauchy閾値を使用でき、
+固定したtestについて $m\to\infty$ とした後、全test共通の誤差評価を得る。
+従って元の列全体がelementary-test収束する。共通初期値とunit testからucp収束も従う。
+\end{proof}
+この構成は近似過程のgood-integrator性や固定sourceの積分範囲の閉性を使用しない。
+
+\begin{proposition}[good-integrator性の極限安定性]\label{prop:gi-limit}
+強発展可測で右連続な過程 $X_n,Y$ について、$\sup_J \bar e_T^J(X_n,Y)\to0$ が
+各有限 $T$ で成り立ち、各 $X_n$ がgood integratorなら、$Y$ もgood integratorである。
+\end{proposition}
+\begin{proof}
+一様に零へ向かうpredictable elementary integrand列 $H_k$ と時刻 $T$ を固定する。
+任意の $\varepsilon,\delta>0$ に対して $a=\min(\varepsilon/2,1)>0$ と置く。
+一様test収束から、全unit-bounded test $J$ に対して
+$\bar e_T^J(X_m,Y)\le a\delta/4$ を満たす一つの $m$ を選ぶ。
+この $m$ を固定したまま、$X_m$ のGI性から、十分大きい $k$ で
+\[
+ \mathbb P\bigl(|(H_k\cdot X_m)_T|\ge\varepsilon/2\bigr)<\delta/2
+\]
+を得る。同じtailで $|H_k|\le1$ であるから、積分差のcapped最大値を $E_k$ とすれば
+$\mathbb E E_k\le a\delta/4$ であり、Markov評価より
+$\mathbb P(E_k\ge a)\le\delta/4$ である。
+右連続性により、時刻 $T$ のcapped積分差は $E_k$ 以下である。
+三角不等式から
+\[
+ \{|(H_k\cdot Y)_T|\ge\varepsilon\}
+ \subseteq \{|(H_k\cdot X_m)_T|\ge\varepsilon/2\}\cup\{E_k\ge a\}.
+\]
+従って左辺の確率は $\delta$ 未満となる。$\delta$ は任意なので確率収束を得る。
+gainの可測性は $Y$ の強発展可測性とelementary積分の有限和表示による。
+\end{proof}
+
+\begin{corollary}[分解可能な領域に属するCauchy極限]
+通常の条件と既述のフィルトレーションの$\sigma$有限性の下で、正則零始点のGI過程列が
+一様elementary-test Cauchy条件を満たすなら、正則零始点の極限 $Z$ が存在し、
+全列が $Z$ にelementary-test収束し、$Z$ は零始点局所マルチンゲールと適合局所有限変動過程の
+和に分解できる。
+\end{corollary}
+\begin{proof}
+前の極限生成から $Y$ を得て $Z_t=Y_t-Y_0$ と置く。
+中心化はelementary積分を変えず、正則性と強適合性を保つので、全列のtest収束も保存される。
+極限安定性から $Z$ はGIであり、零始点càdlàg GIからの分解定理を適用する。
+有限変動成分には適合性を要求し、predictabilityは要求しない。
+\end{proof}
+以上で過程列の極限とその分解を生成した。
+
+\begin{proposition}[同じ区別不能性商上のelementary gauge族]
+許容分解を持つ過程の区別不能性商を $\mathcal S$ とする。
+各有限 $T$ に対して
+\[
+ e_T([X],[Y])=\sup_J \bar e_T^J(X,Y)
+\]
+は代表元によらず定まる。全ての $T,\varepsilon>0$ に対し、十分大きい全ての $m,n$ で
+$e_T(x_m,x_n)\le\varepsilon$ となる列 $(x_n)$ には、$y\in\mathcal S$ が存在して
+$e_T(x_n,y)\to0$ が全ての $T$ で成り立つ。この極限は一意である。
+\end{proposition}
+\begin{proof}
+区別不能な価格過程は全時刻共通の零集合の外で一致するため、有限和である各elementary積分も
+全時刻で一致する。capped grid envelopeとその積分も保存され、testの上限へ降ろせる。
+
+元の代表元自身の適合性・経路正則性は要求しない。
+各許容分解 $X=N+A$ の成分和を代表元に選ぶと、強発展可測でcàdlàgな零始点過程が得られる。
+一様test Cauchy条件はこの置き換えで保存される。分解からのGI性を使い、前の系により
+同じ分解可能領域の極限を得る。区別不能な元の代表列へ戻してから商を取れば存在が従う。
+
+二つの極限があれば、両者と近似列を正則零始点代表元へ置き換える。
+固定testの極限の一意性とunit testによって両極限の増分が一致し、共通初期値から
+過程全体の区別不能性を得る。これは $\mathcal S$ の等号である。
+\end{proof}
+この極限生成では、補助距離の完備性・連続性を使用していない。
+同じ商を使用するため、補助距離の零距離と区別不能性の同定のみを利用している。
+\begin{proposition}[時間重み付きelementary距離]
+同じ商 $\mathcal S$ 上で
+\[
+ d_{\mathcal E}(x,y)=\sum_{n\ge0}2^{-n-1}e_{n+1}(x,y)
+\]
+は $1$ 以下の距離である。
+\end{proposition}
+\begin{proof}
+代表元のtest誤差も、正則代表元の誤差とのa.e.一致により可積分である。
+capped誤差は $[0,1]$ に値を取り、確率測度で積分するから $0\le e_T\le1$ である。
+誤差の対称性・三角不等式を積分して全testの上限を取れば、gaugeにもそれらが従う。
+時間区間の拡大に関する単調性は正則代表元を選んで全時刻supの単調性から得る。
+
+重みの和は $1$ なので級数は有限であり、$d_{\mathcal E}\le1$ となる。
+対称性・三角不等式・対角上の零は各項から従う。
+$d_{\mathcal E}(x,y)=0$ なら、各重みが正であるため、全ての $n$ で $e_{n+1}(x,y)=0$ である。
+horizon単調性から全ての有限 $T$ でも $e_T(x,y)=0$ となり、
+定数列 $x$ のgauge極限の一意性を $x,y$ に適用して $x=y$ を得る。
+\end{proof}
+\begin{proposition}[elementary距離の独立完備性]
+距離空間 $(\mathcal S,d_{\mathcal E})$ は完備である。
+\end{proposition}
+\begin{proof}
+$d_{\mathcal E}$-Cauchy列 $(x_j)$ を取る。有限 $T$ に対して $T\le k+1$ となる整数 $k$ を選ぶと、
+\[
+ 2^{-k-1}e_T(x_m,x_n)\le d_{\mathcal E}(x_m,x_n)
+\]
+である。重みは正なので、この列は全ての有限horizonでgaugeのCauchy条件を満たす。
+既に構成したgauge族の極限 $y\in\mathcal S$ を取る。
+固定 $k$ では $e_{k+1}(x_n,y)\to0$ であり、
+$0\le2^{-k-1}e_{k+1}(x_n,y)\le2^{-k-1}$ である。
+可算和の支配収束から $d_{\mathcal E}(x_n,y)\to0$ を得る。
+この証明は補助距離の完備性にも、固定sourceの積分範囲の閉性にも依存しない。
+\end{proof}
+\begin{proposition}[elementary距離と加法構造]
+商 $\mathcal S$ の自然な実線形構造について、$d_{\mathcal E}$ は平行移動不変であり、
+差の写像は積の最大距離に関して $2$-Lipschitzである。
+従って、この距離の一様構造は加法群構造と両立する。
+\end{proposition}
+\begin{proof}
+有限和積分の価格過程に関する線形性から、同じ過程を二つの引数に加えても
+test誤差は変わらない。積分と上限を取り、時間重みで足せば距離の平行移動不変性を得る。
+対称性と合わせて $d_{\mathcal E}(-x,-y)=d_{\mathcal E}(x,y)$ も従う。
+三角不等式と平行移動不変性により
+\[
+ d_{\mathcal E}(x-y,x'-y')
+ \le d_{\mathcal E}(x,x')+d_{\mathcal E}(y,y')
+ \le2\max\{d_{\mathcal E}(x,x'),d_{\mathcal E}(y,y')\}
+\]
+となる。これは差の一様連続性を与え、加法と負号の連続性も従う。
+\end{proof}
+\begin{proposition}[固定係数のスカラー倍]
+任意の $a\in\mathbb R$ に対して
+\[
+ d_{\mathcal E}(ax,ay)\le\max\{|a|,1\}\,d_{\mathcal E}(x,y)
+\]
+であり、固定係数のスカラー倍は連続である。
+\end{proposition}
+\begin{proof}
+$a>0$ の場合、有限和積分の線形性とcapped包絡の評価
+$1\wedge(au)\le\max\{a,1\}(1\wedge u)$ を使う。
+可積分なtest誤差を積分し、testの上限を取り、時間重みで足せば評価を得る。
+$a=0$ は直ちに従い、$a<0$ は負号が等距離写像であることから正の場合に帰着する。
+\end{proof}
+この上界の係数は $a\to0$ で零へ行かないため、次のGI評価を別途使う。
+
+\begin{lemma}[unit積分の最大値の一様確率有界性]
+強適合・右連続なGI過程 $S$ と有限 $T$ に対して、unit-bounded predictable elementary
+strategy $H$ 全体の $\sup_{t\le T}|(H\cdot S)_t|$ は一様に確率有界である。
+ここではフィルトレーションの右連続性を仮定する。
+\end{lemma}
+\begin{proof}
+GI性から、固定時刻 $T$ のunit積分全体は一様に確率有界である。
+尾確率の許容値に対してその上界を $r\ge0$ とし、$R=r+1$ と置く。
+$X=H\cdot S$ の絶対値が $R$ を初めて厳密に超える時刻を $\tau$ とする。
+右連続性と適合性により $\tau$ は停止時刻であり、有限なら $|X_\tau|\ge R$ である。
+$H$ を $\tau\wedge T$ で止めたstrategy $K$ は依然としてunit-boundedである。
+$\sup_{t\le T}|X_t|>R$ なら $\tau\le T$ であり、
+$|(K\cdot S)_T|\ge R>r$ となる。従って元の最大値の尾確率は
+停止strategyの固定時刻の尾確率以下である。
+\end{proof}
+
+\begin{proposition}[elementary距離のスカラー同時連続性]
+$(\mathcal S,d_{\mathcal E})$ は自然な実線形構造に関して完備実位相ベクトル空間である。
+\end{proposition}
+\begin{proof}
+まず固定 $x$ に対して $a\to0$ の連続性を示す。正則な代表元 $S$ を選ぶと、その分解から
+GI性が従う。有限 $T$ と $\varepsilon>0$ を固定し、前補題で最大値の尾確率が
+$\varepsilon/2$ 以下となる共通の $R>0$ を選ぶ。
+$|a|\le\varepsilon/(4R)$ なら、最大値が $R$ 以下の経路で
+\[
+ f=1\wedge\sup_{t\le T}|a(H\cdot S)_t|\le\varepsilon/4.
+\]
+従って可測な事象 $E=\{f\ge\varepsilon/2\}$ の確率は $\varepsilon/2$ 以下であり、
+$f\le\varepsilon/2+1_E$ を積分すれば $\mathbb E f\le\varepsilon$ となる。
+係数の閾値は $H$ に依存しないので、$e_T(ax,0)\to0$ である。
+gauge収束から距離収束への橋により $d_{\mathcal E}(ax,0)\to0$ を得る。
+
+$a_n\to a$, $x_n\to x$ に対して、平行移動不変性と三角不等式から
+\[
+ d_{\mathcal E}(a_nx_n,ax)
+ \le\max\{|a_n|,1\}d_{\mathcal E}(x_n,x)
+   +d_{\mathcal E}((a_n-a)x,0)\longrightarrow0.
+\]
+距離空間なので、この列による連続性が同時連続性を与える。
+加法構造と完備性は既に得られている。
+\end{proof}
+
+\begin{proposition}[補助距離に関する完備実位相ベクトル空間]
+許容分解を持つ過程の区別不能性商は、補助距離 $R$ と自然な加法・実スカラー倍について
+完備な距離付け可能実位相ベクトル空間である。
+\end{proposition}
+\begin{proof}
+分解の和、負号、スカラー倍から、許容過程は実ベクトル空間をなす。
+加法の連続性は三角不等式から従う。さらに積距離を最大値で定めると
+\[
+ R\bigl((X-Y)-(X'-Y')\bigr)
+ \le R(X-X')+R(Y-Y')
+ \le2\max\{R(X-X'),R(Y-Y')\}
+\]
+であり、差は一様連続である。
+スカラー倍の連続性は前補題による。
+これらの演算は分離商に降り、商写像は連続線形である。
+商における等号は区別不能性と一致し、完備性は既に証明した同じ距離の完備性である。
+\end{proof}
+
+\begin{proposition}[二つの位相の間の閉グラフ]
+同じ区別不能性商上の恒等写像
+$(\mathcal S,d_{\mathcal E})\to(\mathcal S,R)$ のグラフは閉集合である。
+\end{proposition}
+\begin{proof}
+elementary距離で $x_n\to y$、補助距離で $x_n\to z$ とする。
+各過程を分解成分の和による正則零始点代表元に置き換える。
+商の等号は区別不能性なので、両方の収束は保たれる。
+elementary距離の各項の重みは正であり、horizonについてgaugeは単調である。
+従って距離収束から任意の有限horizonでの全test共通gauge収束が従う。
+unit testと共通初期値から、$x_n-y$ のcapped factorial envelopeは測度収束で零となる。
+一方、補助距離の最大値尾確率評価と、同じenvelopeが有限horizonの最大値以下であることから、
+$x_n-z$ についても同じ収束を得る。
+右連続ucp極限の一意性により $y,z$ は区別不能である。
+積空間は距離付け可能なので、列によるこの閉性はグラフの閉性を与える。
+\end{proof}
+
+\begin{lemma}[平行移動不変な完備距離を持つ実TVSの開写像と閉グラフ]
+$E,G$ を平行移動不変な距離を持つ実位相ベクトル空間とする。
+$E$ が完備、$G$ がBaire空間なら、連続な全射線形写像 $f:E\to G$ は開写像である。
+両空間が完備なら、閉グラフを持つ線形写像は連続である。
+\end{lemma}
+\begin{proof}
+零近傍 $V\subset E$ は吸収的であり、$G=\bigcup_{n\ge0}(n+1)\overline{f(V)}$ である。
+Baireの定理と非零スカラー倍の同相性から $\overline{f(V)}$ の内部は非空である。
+任意の零近傍 $U$ に対し対称な $V$ を $V+V\subset U$ と選ぶと、内部の一点を引くことで
+$\overline{f(U)}$ が零近傍になる。
+
+$\varepsilon>0$ とし、各 $n$ で
+\[
+ 0<\delta_n\le2^{-n},\qquad
+ B_G(0,\delta_n)\subset
+ \overline{f\bigl(B_E(0,(\varepsilon/4)2^{-n})\bigr)}
+\]
+を選ぶ。$d_G(y,0)<\delta_0$ なら、$x_0=0$ から逐次補正して
+$d_G(f(x_n),y)<\delta_n$、
+$d_E(x_n,x_{n+1})\le(\varepsilon/4)2^{-n}$ とできる。
+完備性から $x_n\to x$、幾何級数評価から $d_E(x,0)\le\varepsilon/2$ であり、
+連続性と残差の消失から $f(x)=y$ となる。従って $f(B_E(0,\varepsilon))$ は零近傍である。
+平行移動により開写像性を得る。
+閉グラフは積空間の閉線形部分空間として完備であり、その第一射影に開写像性を適用すれば、
+逆写像と第二射影の合成である元の線形写像の連続性が従う。
+\end{proof}
+
+\begin{proposition}[elementary収束から補助cost収束と共通局所化へ]\label{prop:topology-localization}
+分解可能過程について $X_n\to X$ がelementary-test収束なら $R(X_n-X)\to0$ である。
+さらに、強発展可測なc\`adl\`ag GI過程 $S$ に対する実現されたelementary代表列のgainを $G_n$、
+指定された利得を $G$ とすると、一つの部分列 $(n_k)$ と一つのexhaustiveな停止列 $(\tau_r)$ を選べる。
+各 $\tau_r\le r+1$ で、$G_{n_k}-G$ のprelocal exact representationのcost $c_{r,k}$ は
+\[
+ \sum_k c_{r,k}\le6(r+4)<\infty,\qquad c_{r,k}\longrightarrow0
+\]
+を満たす。別の同時選択により、連続する $G_{n_{k+1}}-G_{n_k}$ のcostについても
+総和上界 $6(r+5)$ を得る。通常の条件とsigma-finite filtrationを仮定する。
+\end{proposition}
+\begin{proof}
+両距離は平行移動不変であり、恒等写像の閉グラフ性と前補題から
+$(\mathcal S,d_{\mathcal E})\to(\mathcal S,R)$ の連続性が従う。
+代表列については、各elementary gainのGI性と正則零始点性からJ1分解を生成する。
+独立に証明したelementary完備性により正則な分解可能極限を得て、共通ucp極限の一意性で
+指定された利得と区別不能であることを示す。従って $R(G_n-G)\to0$ である。
+補助costの部分列抽出と共通局所化を適用すると、主張の停止列とcost評価を得る。
+連続差については、まず $\sum_k R(G_{n_k}-G)\le1$ となる部分列を選ぶ。
+三角不等式から $\sum_k R(G_{n_{k+1}}-G_{n_k})\le2$ なので、
+再度の部分列抽出を行わずに総和可能列用の共通局所化を適用できる。
+この表示は極限gainの積分としての実現を前提にしない。
+\end{proof}
+
+この比較と局所化は固定sourceの積分範囲の閉性に依存しない。
+さらに有界sourceについて、次の同時選択を得た。
+
+\begin{proposition}[共通測度上のprelocal costと境界jumpの総和可能性]\label{prop:joint-costs}
+前命題の条件に加え、ある定数 $B$ に対して全 $t,\omega$ で
+$|S_t(\omega)|\le B$ とする。同値確率測度 $Q$、部分列 $(n_k)$、
+exhaustiveな停止列 $\tau_r\le r+1$ を一度に選べる。
+$Z_k=G_{n_{k+1}}-G_{n_k}$ のprelocal exact representationのwitness costは
+\[
+ \sum_k c_{r,k}\le6(r+5),\qquad
+ \sum_k\mathbb E_Q|\Delta Z_k(\tau_r)|<\infty
+\]
+を満たす。同時に非負可測な $\eta\in L^2(Q)$ を保持でき、$Q$ は $\eta$ による
+exponential tiltであり、その密度は上に有界である。
+各 $k$ について $[0,k+1]$ 上の $|G_{n_k}-G|$ は共通の確率1の集合上で
+$\eta$ 以下である。従って $\xi\in L^2(\mu)$ なら $\xi+\eta\in L^2(Q)$ である。
+\end{proposition}
+\begin{proof}
+まずgrowing-horizon誤差包絡から $Q$ を固定する。その後に補助cost収束を適用する。
+補助costとgrowing-horizon誤差の $L^1(Q)$ ノルムがともに零へ収束するため、
+二つの和を幾何級数以下にする部分列を選ぶ。部分列の添字が増えるので、
+誤差を測るhorizonを $k+1$ に縮めても包絡と総和上界1を保持する。
+三角不等式から連続差の補助cost総和は2以下であり、共通局所化を適用する。
+固定した $r$ について、$k+1\ge r+1$ のtailでは、誤差包絡を $a_k$ と書くと
+\[
+ |\Delta Z_k(\tau_r)|\le2(a_{k+1}+a_k)
+\]
+であるから期待値の総和は有限である。残る有限個の項は、有界sourceと各elementary
+strategyの有限な係数上界からgain自体を全時間で有界にでき、jumpの期待値も有限となる。
+追加の部分列抽出は行わず、同じ停止列で両方の総和可能性が成立する。
+\end{proof}
+
+残るのはbounded closed-stopごとのactual成分データと積分同定への接続である。
+その比較に必要な二次変分側については、同じwitnessから追加の入力を生成できる。
+$\widehat N_k=(N_k-N_k(0))^{\tau_r}$ とすると、一般の逆Davis評価により
+\[
+ \mathbb E_Q\sqrt{[\widehat N_k]_{r+1}}
+ \le7\mathbb E_Q\sup_{t\le r+1}|\widehat N_k(t)|
+ \le14c_{r,k}.
+\]
+最後の不等式は中心化後の最大値が元の停止マルチンゲールの最大値の2倍以下であることによる。
+通常の条件の下で内在的二次変分を生成してこの評価を適用するため、
+有界ジャンプや別途与えられたquadratic scheduleは不要である。
+従って同じ選択でroot期待値の総和も有限となる。
+両costの比較は次の構成で得られる。零始点性は確率1で仮定すれば十分である。
+元のwitnessを $N,A$ とし、
+\[
+ M=((N-N_0)^\tau)^T,\qquad
+ B=A^{\tau-}-A_0-\Delta N_\tau\mathbf1_{[\tau,\infty)}
+\]
+とする。$B$ はadaptedな零始点の大域有限変動過程であり、$M+B$ は $t<\tau$ 上で
+元の過程に一致する。$\tau=0$ ではこの一致条件は空であり、witnessの初期値に余分な条件は不要である。
+strict-prefix FVと境界jumpの変動評価から $\mathbb E\operatorname{Var}(B)\le2c$、
+上の逆Davis評価から $M$ の全時間root期待値は $14c$ 以下となる。
+従って実際のJ1分解を下限へ代入して
+\[
+ J_\tau(X)\le16c
+\]
+を得る。exact representationの区別不能性は、同じ零集合上で初期値とprefix一致に移送できる。
+この比較を同時局所化へ適用すると、同じ行の $\sum_k J_{\tau_r}(Z_k)$ も有限となる。
+さらに積分表示が与えられれば、補題\ref{lem:canonical-cost}と式\eqref{eq:actual-closed-cost}により
+\[
+ \mathbb E\sup_{t\le T}|M^{\mathrm{actual}}_t-M^{\mathrm{actual}}_0|
+ +\mathbb E\operatorname{Var}_{[0,T]}(A^{\mathrm{actual}})
+ \le30\bigl(32c+\mathbb E|\Delta X_\tau|\bigr)
+\]
+を得る。これは積分表示そのものの存在を主張しない。
+補助測度上のspecial certificateを元の測度へ無条件に移送することは用いない。
+
+\subsubsection{同じ選択からactual成分行を生成する}\label{sec:actual-series}
+元の有界source $S$ とelementary代表列から、上の $Q,f,\tau_r$ を選ぶ。
+価格の有界性は確率1で全時刻に共通の定数上界があれば十分である。
+境界jumpの総和評価で初めの有限個の項を支配する際にも、共通零集合の外で上界を使い、
+積分のa.e.単調性を適用できる。この上界は $Q\ll\mu$ により $Q$ へ移る。
+
+$Q$ を固定してから元の $S$ のsource分解とcompleted scheduleを構成する。
+連続差 $Z_k$ は二つのelementary strategyの差のgainであり、係数絶対値和は二つの行の
+上界の和で支配される。このelementary strategyを $\tau_r$ で停止した積分graphを
+前節の直接構成で作り、さらに $T_r=r+1$ で再停止する。
+$\tau_r\le T_r$ なのでgainは $Z_k^{\tau_r}$ のままであり、係数は
+\[
+ \mathbf1_{(0,\tau_r]}
+   \bigl(H^{f(k+1)}-H^{f(k)}\bigr)
+\]
+である。二成分は $T_r$ 後にそれぞれ一定で、FV成分は全時間上でBVである。
+これらは元の $S$ に対する積分表示を与える。
+
+成分評価は、停止した利得と積分表示された利得との区別不能性を
+入力にすれば、独立に構成したこのcertificateへ適用できる。
+各成分を $M^{r,k},A^{r,k}$ とすると、同じprelocal costとboundary jumpから
+\[
+ \sum_k\left(
+ \mathbb E_Q\sup_{t\le T_r}|M^{r,k}_t-M^{r,k}_0|
+ +\mathbb E_Q\operatorname{Var}_{[0,T_r]}(A^{r,k})\right)<\infty
+\]
+を得る。測度のtilt、密度上界、growing-horizon誤差包絡 $\eta\in L^2(Q)$ と
+元の $L^2(\mu)$ 包絡からの移送も、同じ選択の情報として保持する。
+
+\paragraph{全時間の成分級数}
+行 $r$ を固定し、初期値を引いた成分を $m_k=M^{r,k}-M^{r,k}_0$、
+$a_k=A^{r,k}-A^{r,k}_0$ とする。
+actual行は具体的なelementary representativeを再停止して構成し、M成分の左極限も保持する。
+$m_k$ はcàdlàgで $T_r$ 後に一定なので、可測な有限horizon包絡 $g_k$ が全時間で
+$|m_k(t)|\le g_k$ を満たす。前段のcost評価から $\sum_k\mathbb E_Qg_k<\infty$ である。
+各 $m_k$ はlocal martingaleであり、この可積分包絡によって真のmartingaleとなる。
+可積分包絡付きmartingale級数定理により
+\[
+ m(t)=\sum_k m_k(t)
+\]
+は真のmartingaleである。部分和は確率1で全時間上一様に $m$ へ収束する。
+
+FV成分については、初期値の差引きは変動を変えず、$T_r$ 後の定数性から
+\[
+ \operatorname{Var}_{[0,\infty)}(a_k)
+ \le\operatorname{Var}_{[0,T_r]}(A^{r,k})
+\]
+となる。Tonelliと有限な期待値総和から、変動の総和は確率1で有限である。
+変動級数定理を適用すると、$a(t)=\sum_k a_k(t)$ は確率1でglobal BVであり、
+部分和は全時間上一様に、かつ全時間の変動距離で $a$ へ収束する。
+各 $a_k$ は予測可能なので、点ごとの級数として定義した $a$ も予測可能である。
+これらは同じ $Q,f,\tau_r$ の選択から実際に生成した成分の結論である。
+
+\paragraph{初項を含むactual近似列と共通包絡}
+段階 $r$ では $G_k=H^{f(k)}\cdot S$ と置き、$G_r^{\tau_r}$ の直接構成済みactual
+certificateを初項 $P_{r,0}$ とする。同じactual増分行 $R_{r,k}$ を使ってraw層で
+\[
+ P_{r,n+1}=P_{r,n}+R_{r,r+n}
+\]
+と定義する。成分はこの加法で足される。係数とgainの有限和がtelescopingするため、
+$P_{r,n}$ の係数は $1_{(0,\tau_r]}H^{f(r+n)}$、gainは $G_{r+n}^{\tau_r}$ である。
+後者を直接構成したelementary certificateから、係数の等号とgainの区別不能性によって
+積分としての実現を移す。一般actual加法calculusは必要ない。初項と増分のM・FV成分はいずれも零始点である。
+
+各elementary gainの定数上界を $c_k$ とする。誤差包絡は
+$\sup_{t\le k+1}|G_k(t)-X(t)|\le\eta$ を全ての $k$ について同時に満たす。
+$\tau_r\le r+1\le r+n+1$ なので、全時間で
+\[
+ |G_{r+n}^{\tau_r}(t)|
+ \le |G_r^{\tau_r}(t)|
+   +|(G_{r+n}-X)^{\tau_r}(t)|+|(G_r-X)^{\tau_r}(t)|
+ \le c_r+2\eta=:\zeta_r .
+\]
+従って $\zeta_r\in L^2(Q)$ は同じactual近似列の共通包絡である。
+測度の選び直しも、指定された利得 $X$ の追加の $L^2$ 仮定も要らない。
+この有限和近似列と包絡は、元のsourceからの同時局所化の出力へ接続済みである。
+
+\paragraph{正則な成分極限とM\'emin入力}
+部分和の右連続性と左極限は全時間一様極限へ移る。
+通常の条件を使い、悪い経路を含む時刻0で可測な零集合上で増分級数を修正する。
+二成分のversionを取った後、その区別不能性を共通の確率1の集合にまとめる。
+Mの級数のmartingale性、FVのpredictability、全時間一様収束と変動距離収束を保持できる。
+この正則版に初項を加えた極限を $M_r^\infty,A_r^\infty$ とする。
+前者は全経路でcàdlàgなlocal martingale、後者は全経路で右連続かつglobal BVな予測可能過程である。
+これらは固定した $r$ の結論であり、停止を外した全過程のglobal BVは主張しない。
+
+隣接するraw有限和の成分差は、同じ増分行の成分に等しい。
+FV経路は $T_r$ 後に一定なので、そのcanonical signed Stieltjes measureの全変動は
+$[0,T_r]$ 上の経路変動に等しい。これは停止経路の全変動定理を使った等式であり、
+raw recordの補助measure欄を使うものではない。
+M成分についても任意のhorizon上の差分包絡は、$T_r$ 上の包絡以下である。
+従って元の期待costの総和可能性とTonelliにより、両種類の隣接差ノルムは確率1で総和可能となる。
+
+元の指定された利得との同定には、同じ測度選択で既に得た、より強い誤差の情報を保持する。
+\[
+ \sum_k\mathbb E_Q\sup_{t\le k+1}|G_k(t)-X(t)|\le1.
+\]
+Tonelliから包絡は経路ごとに総和可能であり、零へ収束する。
+同じ確率1の集合上で全時刻 $t$ について $G_k(t)\to X(t)$ となるので、
+$t\wedge\tau_r$ でも評価できる。$P_{r,n}$ のgainとの区別不能性と成分収束により
+\[
+ M_r^\infty+A_r^\infty\ \overset{\mathrm{indist}}=\ X^{\tau_r}
+\]
+を得る。新しい部分列や測度を選ぶ必要はない。
+
+以上を共通 $L^2(Q)$ 包絡 $\zeta_r$ と合わせ、M\'emin component recordの
+全フィールドとstored stopped gainの同定を、元のsourceと代表列から供給済みである。
+極限のactual realizationは、以下の直接joint-passage構成を定理へ渡して得る。
+
+
+\paragraph{停止則からの成分同定と有限加法}
+右連続local martingale $M$ の局所化列を $\rho_n$ とし、
+$B_n=\{\rho_n>0\}$ と置く。$1_{B_n}M$ を $\rho_n$ で停止した過程はmartingaleである。
+これをさらに停止時刻 $\sigma$ で停止し、indicatorと停止の可換性、
+$(M^{\rho_n})^{\sigma}=(M^{\sigma})^{\rho_n}$ を使うと、
+同じ局所化列が $M^{\sigma}$ のlocal martingale性を与える。
+この証明は $M_0=0$ を要求しない。
+
+有限停止はpredictable FV成分のpredictabilityを保ち、local BVをglobal BVへ移す。
+したがってraw strategyのgainと二成分を直接停止でき、各初期値も保持される。
+積分graphの一座標では、このraw停止とcompleted strategyが同じgainを持つので、
+中心化したcanonical成分の一意性からmartingale成分とFV成分を同定できる。
+さらに二つのgraphの停止列の最小値で同じ直接構成を行い、energy kernel、
+variation bridge、completed integralの停止同定を適用する。
+これにより共通schedule上の加法を実供給できる。
+以上と局所から全有限horizonへのStieltjes同定を合わせたFV calculusは、
+一般のpredictable restriction calculusを仮定せず構成済みである。
+同じ有限加法を使うintrinsic終端市場モデルも停止calculusを入力に取らない。
+これはspecial graphからの市場構成であり、一般の市場との同定を意味しない。
+joint-passage停止側も以下の構成で接続できる。
+
+
+\subsubsection{Joint-passageの直接構成と停止極限の実現}\label{sec:joint-realization}
+固定した外側の停止段階 $r$ で、近似列を $P_{r,k}$、その共通gain包絡を $\zeta_r$ とする。
+sourceのcompleted scheduleと全近似列のmartingale passageの共通部分から、
+有限horizon以下のexhaustiveな停止列 $\rho_{r,j}$ を作る。
+source prefixは前段の直接停止で構成する。
+各近似martingaleのpassage前の上界と、Corollary 2.4によるjump包絡を合わせると、
+停止時のovershootを含めて
+\[
+ \|M_{r,k}^{\rho_{r,j}}(T_j)\|_{L^2(Q)}
+ \le c_j+6\|\zeta_r\|_{L^2(Q)}
+\]
+を得る。この停止過程はlocal martingaleであり、積分可能な全時間包絡で支配されるため、
+支配収束による定理から真のmartingaleとなる。
+
+固定graph witnessのcompleted coordinateと直接停止したraw成分は同じgainを持つ。
+中心化した成分の一意性から、各近似成分の積分表示を同定する。
+上で得たFV隣接差の変動総和可能性と、共通座標でのM終端の $L^2$ 有界性を
+補題\ref{lem:joint-coefficient}へ渡す。同補題ではFV変動によるcontrolで元の係数列全体の
+極限を先に確保し、同じ係数のforward凸化をenergy座標で収束させる。
+その結果、一つの予測可能係数が両積分を同時に表す。
+energy測度が零となる部分のFV積分も、同補題の変動controlとの一致で同定される。
+exhaustiveな全座標を合わせたgraph witnessは、成分和の極限をactual strategyとして実現する。
+
+元のsourceと代表列から既に構成した同じ $Q$ と $\tau_r$ のcomponent dataをこの定理に渡すと、
+元の価格過程に対するactual strategy $V_r$ が得られ、
+\[
+ (V_r\cdot S)\sim_Q X^{\tau_r},\qquad
+ \tau_r\le r+1,\qquad \tau_r\longrightarrow\infty
+ \quad Q\text{-a.s.}
+\]
+が成り立つ。ここで左辺は $V_r$ が保持するgainを表す。
+新たな停止calculus、測度、近似列は入力に加えていない。
+これは $Q$ 上の各停止段階でのspecial certificateであり、
+元の測度上の一般graphへの復帰、停止区間の貼り合わせ、終端同定は、
+\ref{sec:integral-calculus}節で示した別の段階である。

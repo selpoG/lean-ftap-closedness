@@ -1,0 +1,215 @@
+\section{本文と確率解析の依存境界}
+\label{sec:graph}
+本文が解析側から受け取る結果を、この節の七つの命題にまとめる。
+各項の識別子は、Leanの隔離検査で仮定に置く一つの定理に対応する。
+七つの命題には合計20項があり、これに積分graphと市場の二つのデータ定義を加えたものが、
+解析実装を除いた主証明の入力の全体である。これらを認めれば、第\ref{sec:selection}節以降を含む
+本文全体を、付録の内部補題を参照せずに読める。
+通常の測度論、条件付き期待値、Doob不等式、任意抽出、Hilbert空間の凸コンパクト性は共通の基礎とする。
+NFLVR、最大性、凸平均列の選択、族全体の確率有界性、M/FVのCauchy性は、ここでは仮定せず本文で証明する。
+
+\subsection{二つのデータと記法}
+元の有界価格 $S$ と通常の条件を満たす $(\Omega,\F,(\F_t),\mu)$ を固定する。
+以下で $Q\sim\mu$ を使う場合も、$Q$ は確率測度であり、同じfiltrationは通常の条件を満たす。
+過程の等式と全時間の下界は、特記しない限り区別不能性または共通の確率1の集合上で解釈する。
+予測可能elementary test $J$ は有限個の停止区間と左端で可測な係数からなり、$|J|\leq1$ とする。
+任意の過程の増分の有限和として $J\cdot Y$ を定め、
+\[
+ e_T^J(Y,Z)=1\wedge\sup_{t\leq T}|(J\cdot(Y-Z))_t|,
+ \qquad d_T^Q(Y,Z)=\sup_J E_Q e_T^J(Y,Z)
+\]
+と書く。全ての有限 $T$ で $d_T^Q(Y_n,Y)\to0$ となることがÉmery収束である。
+Cauchy性では $\forall T,\varepsilon>0\ \exists N\ \forall n,k\geq N\ \forall J$ の順序を守る。
+
+\begin{definition}[元価格の積分graphと終端市場]\label{def:boundary-data}
+\leavevmode\par
+\begin{enumerate}
+\item \analyticcontract{G0}{FTAPTheorem42.BoundedSourceIntegralMarket.GeneralIntegralGraph}
+$H^{(n)}=H1_{\{|H|\leq n+1\}}$ とする。
+局所special積分とは、停止座標でのM成分のenergy積分とFV成分のStieltjes積分に
+\emph{同じ}予測可能係数を用いて貼り合わせた積分である。
+$H^{(n)}$ の局所special積分が、零始点・強適合・càdlàg代表元を持つ $X$ に
+Émery収束するとき $(H,X)\in\mathcal G_S$ とし、$X=H\cdot S$ と書く。
+$X$ 自体のspecial性や終端の存在は要求しない。
+\item \analyticcontract{M0}{FTAPTheorem42.BoundedSourceIntegralMarket.generalMarket}
+$\mathcal M_S$ は元価格のelementary積分のÉmery完成から得る利得過程モデルである。
+その戦略は実現された利得とその固有終端を持ち、利得と終端は線形演算と両立する。
+このモデルと $\mathcal G_S$ による市場との同定は、下の\contractref{M1}--\contractref{M3}で与える。
+\end{enumerate}
+$K_a=\{f:a>0,\ \exists(H,X)\in\mathcal G_S,\ X\geq-a,\ X_t\to f\ \as\}$、
+$K_0=\bigcup_{a>0}K_a$ とする。これらの集合の定義は隔離検査でも具体的なまま残る。
+「元市場の利得」は零始点・強適合・càdlàgな $Y$ と $(H,Y)\in\mathcal G_S$ の証拠をいう。
+「special利得」はさらに $Q$ の下で指定された零始点分解 $Y=M+A$ を持つものをいう。
+ここで $M$ はcàdlàg local martingale、$A$ は予測可能càdlàg局所有限変動過程である。
+「有限利得」は有限時刻後一定で、指定された $A$ が全時間BVであるspecial利得をいう。
+これらのデータの型も隔離検査で保持する。
+\end{definition}
+
+\subsection{七つの解析入力}
+\begin{proposition}[正則極限・共通包絡・同値測度]\label{input:paths}
+\leavevmode\par
+\begin{enumerate}
+\item \analyticcontract{P1}{FTAPTheorem42.AnalyticInterface.regular_uniform_limit}
+強適合càdlàg過程列 $Y_n$ が全時間上限について確率Cauchyなら、
+厳密増加する $f$ と強適合càdlàg過程 $X$ が存在し、$Y_{f(n)}\to X$ は全時間一様にa.s.成立する。
+\item \analyticcontract{P2}{FTAPTheorem42.AnalyticInterface.regular_common_envelope}
+同じCauchy列の各過程が有限の固有終端を持つなら、厳密増加する $f$ と
+有限非負の可測な $q$ が存在し、$|Y_{f(n)}(t)|\leq q$ が全 $n,t$ でa.s.成立する。
+\item \analyticcontract{P3}{FTAPTheorem42.AnalyticInterface.equivalent_envelope_measure}
+有限非負の可測な $q$ に対して、$q\in L^2(Q)$ となる同値確率 $Q\sim\mu$ が存在し、
+同じfiltrationは $Q$ の下でも通常の条件を満たす。
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}[指定された利得のspecial分解]\label{input:decomposition}
+\analyticcontract{D1}{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_specialDecomposition}
+元市場の利得 $Y$ が $|Y_t|\leq|q|$、$q\in L^2(Q)$ を満たすなら、
+同じ $Y$ の零始点special分解 $Y=M+A$ が存在する。
+分解は $Q$ の下で作り、元測度へのspecial性の移送を主張しない。
+\end{proposition}
+
+\begin{proposition}[市場の同定と有限操作]\label{input:market}
+\leavevmode\par
+\begin{enumerate}
+\item \analyticcontract{M1}{FTAPTheorem42.BoundedSourceIntegralMarket.generalAdmissibleClaims_eq_generalMarket}
+任意の実数 $a$ について、$K_a$ は $\mathcal M_S$ の $a$-admissibleな終端集合に等しい。
+\item \analyticcontract{M2}{FTAPTheorem42.BoundedSourceIntegralMarket.generalTerminalClaims_eq_generalMarket_K0}
+$K_0$ は $\mathcal M_S$ の許容終端集合に等しい。
+\item \analyticcontract{M3}{FTAPTheorem42.BoundedSourceIntegralMarket.generalAdmissibleClaims_one_eq_generalMarket_K1}
+$K_1$ は $\mathcal M_S$ の単位許容終端集合に等しい。
+\item \analyticcontract{M4}{FTAPTheorem42.BoundedSourceIntegralMarket.generalMarket_terminal_properties}
+このモデルの許容終端はa.e.強可測であり、許容下界 $-a$ は終端にも保たれる。
+\item \analyticcontract{M5}{FTAPTheorem42.BoundedSourceIntegralMarket.generalMarket_operations}
+モデルの利得は零始点・強適合・càdlàgで、固有終端を持ち、$\mathcal G_S$ に実現される。
+終端をa.e.等しい代表元へ取り替えても同じ利得を使える。
+利得 $Y,Z$、有界停止時刻 $\tau\leq T$、$E\in\F_\tau$ に対し、
+$E$ 上で $Y_{t\wedge\tau}+Z_t-Z_{t\wedge\tau}$、$E^c$ 上で $Y_t$ となる切替戦略が存在する。
+その終端は $E$ 上で $Z_\infty+Y_\tau-Z_\tau$、$E^c$ 上で $Y_\infty$ である。
+\item \analyticcontract{M6}{FTAPTheorem42.BoundedSourceIntegralMarket.originalSpecialGain_finiteStop}
+special利得 $Y=M+A$ と有限 $T>0$ に対し、$Y^T=M^T+A^T$ は有限利得として実現される。
+\item \analyticcontract{M7}{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_convexCombination}
+special利得列の有限凸結合は、利得・M成分・FV成分の三つに\emph{同じ重み}を用いて実現できる。
+特に指定したforward convex weightsについてこの実現を取れる。
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}[有限尺度の定量評価]\label{input:finite}
+以下はNFLVRを仮定しない。
+\leavevmode\par
+\begin{enumerate}
+\item \analyticcontract{F1}{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_finiteRisk}
+special利得 $Y=M+A\geq-1$ が $|Y|\leq\xi$、$\|\xi\|_2\leq B$ を満たすとする。
+$0<\alpha\leq1/4$、正整数 $n$、$T>0$ とし、
+\[
+ k=\lfloor\alpha n/4\rfloor>0,\quad 6B\leq n^2,\quad (B/n)^2\leq\alpha,
+ \quad m=\alpha^2-(4B/(\alpha n^2))^2\geq0.
+\]
+$Q(\sup_{t\leq T}|M_t|>n^3)>8\alpha$ なら、a.e.可測な $f\in K_0-L^0_+(Q)$ が存在して
+\[
+ f\geq-n^{-1/4}-\frac2{nk},\qquad
+ Q\left(f\geq\frac{\alpha m}4-n^{-1/4}\right)
+ \geq\frac m2-\frac{16\sqrt n}{k}
+\]
+となる。
+\item \analyticcontract{F2}{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_finiteTail_normalization}
+有限利得列 $Y_i=M_i+A_i\geq-1$ が共通の $|q|\in L^2(Q)$ に支配され、$\{M_i^*\}$ が確率有界とする。
+$\tau_i(c)=\inf\{t:|M_i(t)|>c\}$、$L^{w,c}=\sum_iw_i(M_i-M_i^{\tau_i(c)})$ とし、
+$B(w,c,\varepsilon)$ を $|L^{w,c}|$ の水準 $\varepsilon$ へのpassageが有限となる事象とする。
+任意の $\varepsilon>0$ に対し $N\geq0$ が存在し、
+各 $0<\delta\leq\varepsilon/4$ に対して $c_0\geq0$ を取れる。
+全ての有限凸重み $w$ と $c\geq c_0$ について、
+$Q(B(w,c,\varepsilon))>\varepsilon$ なら元市場のspecial利得 $V=M^V+A^V$ と包絡 $g$ が存在し、
+\[
+ V\geq-1,\quad |V|\leq g,\quad \|g\|_2\leq1,\quad
+ Q((M^V)^*>\varepsilon/[2(1+N)\delta])>\varepsilon/2.
+\]
+\item \analyticcontract{F3}{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_finiteTail_test_estimate}
+前項の有限利得列・共通包絡・M最大関数の確率有界性を仮定するが、下界 $-1$ は不要である。
+任意の $\eta>0$ に対し $c_0\geq0$ が存在し、全ての有限凸重み $w$、$c\geq c_0$、$T>0$、$J$ に対し
+\[
+ E_Q e_T^J(L^{w,c},0)\leq4\eta+Q(B(w,c,\eta)).
+\]
+\item \analyticcontract{F4}{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_prefix_energy}
+special利得 $Y=M+A$、$q\in L^2(Q)$、$|Y|\leq q$、$c\geq0$、$T>0$ に対し、
+$P=M^{\tau(c)\wedge T}$ は真のマルチンゲールで、$P_T\in L^2(Q)$、
+$\|P_T\|_2\leq c+6\|q\|_2$ である。
+\item \analyticcontract{F5}{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_prefix_regular}
+同じ停止成分 $P=M^{\tau(c)\wedge T}$ は、包絡の仮定なしに、任意の実数 $c$ と $T\geq0$ で
+右連続かつ $P_0=0$ a.s.である。
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}[マルチンゲール近似と全test一様性]\label{input:approximation}
+\leavevmode\par
+\begin{enumerate}
+\item \analyticcontract{A1}{FTAPTheorem42.AnalyticInterface.emeryCauchy_of_uniform_approximations}
+強進行可測な列 $X_n$ に対し、各 $T,\varepsilon>0$ ごとに強進行可測な列 $P_n$ が存在し、
+$\sup_n d_T^Q(X_n,P_n)\leq\varepsilon$ かつ $P_n$ がこの $T$ で全test一様にCauchyなら、
+$X_n$ はÉmery Cauchyである。
+\item \analyticcontract{A2}{FTAPTheorem42.AnalyticInterface.martingaleTestsCauchy_of_terminalL2}
+右連続・零始点の真のマルチンゲール列 $P_n$ と有限 $U\geq0$ に対し、
+$(P_n(U))$ が $L^2(Q)$ でCauchyなら、任意の $\varepsilon>0$ に対し $N$ が存在し、
+全 $n,k\geq N$、全 $T\leq U$、全 $J$ で $E_Qe_T^J(P_n,P_k)\leq\varepsilon$ となる。
+\end{enumerate}
+\end{proposition}
+
+\begin{proposition}[二つの指定利得に対する有限Hahn取引]\label{input:hahn}
+\analyticcontract{H1}{FTAPTheorem42.BoundedSourceIntegralMarket.originalGain_finiteHahn}
+special利得 $Y=M_Y+A_Y$、$Z=M_Z+A_Z$ が共通の $q\in L^2(Q)$ に支配され、共に $-1$ 以上とする。
+$T>0$、$\delta\geq0$ を固定し、全 $J$ に対し
+$E_Qe_T^J(M_Y,M_Z)\leq b$ と逆順の同じ評価を仮定する。
+両向きに以下のデータを同時に選べる。向き $(Y,Z)$ について $L=M_Y-M_Z$、$A=A_Y-A_Z$ と書く。
+強適合な $N,C$ と $V=N+C$ が存在し、$N$ は右連続、$C_0=0$ であり、
+\[
+ 0\leq C_c-C_a,\quad A_{c\wedge T}-A_{a\wedge T}\leq C_c-C_a\quad(a\leq c),
+ \qquad E_Q[1\wedge\sup_{t\leq T}|N_t|]\leq b.
+\]
+$\tau=\inf\{t:N_t-\max(L_t,0)<-\delta\}$、$\sigma=\tau\wedge T$、$E=\{T<\tau\}$ と置く。
+$0<\delta\leq1$ なら $Q(\tau\leq T)\leq8b/\delta$ であり、任意の $U\geq T$ に対し
+\[
+ Z^{\rm paste}_t=(Z+V)_{t\wedge\sigma}
+       +1_E\bigl(Z_{t\wedge U}-Z_{t\wedge T}\bigr),\qquad
+ Z^{\rm paste}_U\in K_{1+\delta}.
+\]
+逆向きのFV成分を $C'$ とすると、任意の実数 $\alpha$ に対し
+\[
+ Q(\Var_{[0,T]}A>\alpha)>\alpha
+ \ \Longrightarrow\ Q(C_T>\alpha/2)>\alpha/2
+ \ \text{または}\ Q(C'_T>\alpha/2)>\alpha/2.
+\]
+これは二つの利得に対する有限構成であり、列のCauchy性、NFLVR、最大性を仮定しない。
+\end{proposition}
+
+\begin{proposition}[成分評価による固有終端の実現]\label{input:realization}
+\analyticcontract{C1}{FTAPTheorem42.BoundedSourceIntegralMarket.truncatedTerminalClaims_one_of_component_estimates}
+$(H_n,Y_n)\in\mathcal G_S$ とし、$Y_n$ は強適合・右連続とする。
+零始点・強適合・càdlàgな $X\geq-1$ に全時間一様にa.s.収束し、$X_t\to h$ a.s.とする。
+$Q\sim\mu$ の下で同じ利得が $Y_n=M_n+A_n$ と分解され、$A_n$ は右連続、
+全ての差 $A_m-A_n$ は各経路で局所BVとする。
+全ての有限 $T$ と $\varepsilon>0$ に対し $N$ が存在し、全 $m,n\geq N$ と全 $J$ で
+\[
+ Q(e_T^J(M_m,M_n)>\varepsilon)\leq\varepsilon,
+ \qquad Q(\Var_{[0,T]}(A_m-A_n)>\varepsilon)\leq\varepsilon
+\]
+なら、$h\in K_1$ である。ここでは $M_n$ 自体のマルチンゲール性は追加仮定しない。
+\end{proposition}
+
+\subsection{証明の所在と分離検査}
+七命題の証明は\ref{sec:input-proofs}にまとめる。
+\begin{center}\small
+\begin{tabular}{ll}
+\toprule 入力 & 証明の所在\\\midrule
+命題\ref{input:paths} & \ref{sec:path-inputs}節\\
+命題\ref{input:decomposition}、\ref{input:market} & \ref{sec:integral-background}--\ref{sec:auxiliary-transforms}節\\
+命題\ref{input:finite} & \ref{sec:ds-estimates}、\ref{sec:approximation-inputs}節\\
+命題\ref{input:approximation} & \ref{sec:approximation-inputs}節\\
+命題\ref{input:hahn} & \ref{sec:finite-hahn-proof}節\\
+命題\ref{input:realization} & \ref{sec:component-realization}節\\\bottomrule
+\end{tabular}\end{center}
+\ref{sec:construction}--\ref{sec:emery-realization}はその内部構成を三段階に分ける。
+本文を読むために、それらの内部定理を同時に把握する必要はない。
+Lean対応表には各識別子の完全修飾名を記す。隔離検査は、日英の対応表と実際に仮定化する
+22宣言の集合が一致することを検査し、\path{Stochastic/} なしで未変更の主証明を再ビルドする。
+さらに、その主定理が指定した22入力を全て使い、それ以外の解析公理を使わないことを検査する。
+これは形式的な依存境界の検証である。数学文とLeanの型の意味が一致するかは、
+この節の仮定・結論と対応する型を照合して確認する事項である。

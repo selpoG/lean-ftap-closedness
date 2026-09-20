@@ -1,0 +1,81 @@
+\subsection{A Doléans--Dade--Yen decomposition}
+A general local martingale need not be locally $M^2$. An $L^1$ bound on its
+running supremum neither makes the unobserved jump at first passage square
+integrable nor bounds that jump deterministically. Thus an $M^2$ localizing
+sequence cannot be assumed for an arbitrary local martingale.
+
+Let $N$ be the local-martingale component of a given special decomposition.
+We first need a Doléans--Dade--Yen decomposition
+\[
+ N=L+B,
+\]
+where $L$ is a local martingale with deterministically bounded jumps after
+localization, and $B$ is adapted and locally of finite variation.
+The construction has four steps:
+\begin{enumerate}
+\item A c\`adl\`ag path has finitely many jumps above any positive threshold
+on a finite interval.
+\item Enumerate these jumps chronologically by stopping times, obtaining an
+adapted c\`adl\`ag finite-variation process.
+\item Choose an exhaustive localization with integrable variation and take
+predictable projections.
+\item Control the compensated martingale jumps at announced times and prove
+compatibility with stopping.
+\end{enumerate}
+The enumeration order of a nonmonotone dense skeleton cannot be used as
+chronological jump order.
+
+For the deterministic path argument, let $x$ be real-valued and c\`adl\`ag,
+$c>0$, and $T<\infty$. The set
+\[
+ J_{c,T}=\{t\in(0,T]:c<|x_t-x_{t-}|\}
+\]
+is finite. Form the finite step path retaining those jumps in time order:
+\[
+ P_t=\sum_{s\in J_{c,T},\ s\leq t}(x_s-x_{s-}).
+\]
+It starts at zero, is right-continuous with left limits, and has exactly
+the retained jumps, with zero jump at every other time. Its cumulative
+absolute jump sum $C$ is increasing. For $0\leq u\leq v$, its real
+variation satisfies the exact extended-real identity
+\[
+ \operatorname{eVariationOn}(P,[u,v])
+ =\operatorname{ofReal}(C(v)-C(u)).
+\]
+The increment $C(v)-C(u)$ is the finite sum of absolute retained jumps in
+$(u,v]$. This identity holds for each of the finite step paths.
+Local oscillation events on the factorial skeleton give a measurable,
+pathwise description of a large left jump occurring before a given time.
+The infimum of the finite jump set, clamped to the horizon if it is empty,
+is therefore a stopping time. When the set is nonempty, that time attains
+its earliest member.
+
+Passing to stochastic processes requires iteration of the chronological
+debut, not merely measurability at each fixed time. This specialized first
+debut uses factorial-skeleton oscillations and infima of finite sets;
+it does not assume a generic optional debut theorem. Restrict to the portion
+after the preceding stop by deterministic path operations. A countable
+union over rational times describes the successor before $T$; when testing
+times beyond $T$, include the jump at $T$ explicitly. Iteration produces
+stopping times whose active coordinates are strictly increasing, belong
+to the exact jump set including its endpoint $T$, and cover every large
+left jump. After this finite set is exhausted, the coordinates equal $\top$.
+
+For the chronological sum put
+\[
+ J^{(n)}_t(\omega)=1_{\{\tau_n(\omega)\leq t\}}
+ (N_{\tau_n(\omega)}-N_{\tau_n(\omega)-})(\omega),
+\]
+with value zero when $\tau_n=\top$, and set $J=\sum_nJ^{(n)}$.
+Strong adaptation of stopped values and indicators of stopping-time events
+makes each coordinate strongly adapted; the countable sum is measurable.
+Pathwise the enumeration becomes inactive after all large jumps have been
+listed, so this sum agrees exactly with the finite step path above.
+It inherits zero start, right continuity, left limits, global and local
+bounded variation, and the exact cumulative-variation identity.
+It copies every jump larger than $c$ in $(0,T]$ and has zero left jump at
+other times. It is constant after $T$, and its finite partial sums are
+eventually equal to the whole process on each path.
+This constructs the finite large-jump process. Neither right-continuous
+level hitting nor debut on a predictable interval algebra is being used
+as a substitute for debut of a general optional graph.

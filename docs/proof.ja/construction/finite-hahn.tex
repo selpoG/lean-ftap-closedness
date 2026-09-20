@@ -1,0 +1,156 @@
+\subsection{有限Hahn取引の構成と閉停止評価}
+\label{sec:finite-hahn-proof}
+\begin{proposition}[単位有界completed変換と有限horizonのHahn利得]
+通常の条件を満たす確率空間上で、$Y=M+A$ とし、$Y,M,A$ は強適合・右連続であり、
+$A$ は予測可能な全時間有界変動過程とする。
+$M$ は真のマルチンゲールで、固定した $T$ に対し $M_T\in L^2$ とする。
+任意の単位有界elementary test $J$ に対して
+\[
+ \mathbb E\left[1\wedge\sup_{t\leq T}|(J\cdot M)_t|\right]\leq b
+\]
+が成り立つとする。単位有界な予測可能係数 $k$ の有限horizonのcompleted積分を
+$I^k=(k\mathbf 1_{(0,T]})\cdot M$ とすると、同じ $b$ で全elementary testに対する
+$I^k$ の評価が成り立つ。
+
+さらに、$A$ の正のHahn集合 $B$ と有限horizonの積分利得
+$R=\mathbf 1_{B\cap(0,T]}\cdot Y$ を構成できる。
+同じ $R=N+C$ について、ほとんど確実に全ての $0\leq a\leq c\leq T$ で
+\[
+ 0\leq C_c-C_a,\qquad A_c-A_a\leq C_c-C_a
+\]
+となり、$N$ の全elementary testの上界と
+$\mathbb E[1\wedge\sup_{t\leq T}|N_t|]\leq b$ が成り立つ。
+\end{proposition}
+\begin{proof}
+定理\ref{thm:integral-input}の第4項により、単位有界変換は同じ全test上界 $b$ を保つ。第5項のHahn集合を $[0,T]$ に制限し、第2項で同じ利得を $N+C$ と分解する。右端を含むStieltjes増分が二つの増分不等式を与える。零始点 $N$ にhorizonの単位testを適用すれば、capped最大関数にも上界 $b$ を得る。
+\end{proof}
+
+\begin{proposition}[局所積分の変換への評価移送と元価格への帰還]
+通常の条件を満たす確率空間で、$Y=M+A$ を正則な局所special sourceとする。
+積分表示の停止座標ではM成分は真のL²マルチンゲールであり、その停止列は全時間を尽くすとする。
+固定した $T$ で $M$ の全単位elementary testのcapped期待値上界が $b$ であるとする。
+$|k|\leq1$ のintrinsic 実現された積分 $k\cdot Y=N+C$ は、同じ $T$ で
+$N$ の全単位test上界 $b$ を持つ。$N_0=0$ なら、そのcapped最大関数の期待値も $b$ 以下である。
+$A,C$ には局所有限変動で十分であり、未停止 $M,N$ の大域L²性を仮定しない。
+
+さらに、$Y$ が元の有界価格 $S$ に実現され、零始点の正規化された成分を持ち、
+$|Y_t|\leq\xi$、$\xi\in L^2$ とする。
+$Y^T$ の正のHahn集合を生成して作る積分利得 $V=N+C$ について、同時に
+\[
+ 0\leq C_c-C_a,\qquad A_{c\wedge T}-A_{a\wedge T}\leq C_c-C_a
+ \quad(0\leq a\leq c),
+ \qquad
+ \mathbb E[1\wedge\sup_{t\leq T}|N_t|]\leq b
+\]
+と全単位test上界が成り立ち、$V$ の一般積分graphを元の $S$ へ戻せる。
+成分評価の測度が元測度と同値なら、一般積分graphのみを元測度へ移送する。
+\end{proposition}
+\begin{proof}
+定理\ref{thm:integral-input}の局所版の変換評価を固定した $T$ で使う。局所化を除く際の誤差は停止が $T$ 以前となる確率であり、上界 $b$ はそのまま残る。Hahn成分は同定した同じFV積分を用い、前命題の増分評価を保つ。L²包絡を持つ元市場の利得の場合には、系\ref{cor:market-operations}を同じHahn利得へ適用する。移送するのは一般積分graphである。
+\end{proof}
+
+\paragraph{二つの指定利得への適用}
+$R_n=\widetilde M_n+\widetilde A_n$、$R_k=\widetilde M_k+\widetilde A_k$ を、二つの指定されたspecial利得とする。共通包絡 $q\in L^2(Q)$、
+下界 $-1$、固定 $T$ での両順序のM差の全test上界 $b$ を仮定する。
+差の利得は $2q$ に支配され、指定した成分差をそのまま分解として持つ。
+定理\ref{thm:decomposition-input}のL²停止座標と前命題をこの差に適用する。
+得られる $V_{n,k}=N+C$ は零始点で、元価格の一般graphを持ち、
+$C$ は非減少かつFV差の停止増分を支配し、$N$ の全testとcapped最大関数の上界は $b$ である。
+ここで添字 $n,k$ は二利得を区別する記号にすぎず、列の選択、NFLVR、最大性は使わない。
+以下の三命題をこの同じ取引に適用する。
+
+\begin{proposition}[Hahn改善利得の閉じた有限停止と許容性]
+上で構成した同じ利得を $V_{n,k}=N+C$、二つの入力を $R_n,R_k$ とする。
+$\delta\geq0$ に対し
+\[
+ D_t=N_t-\max\{\widetilde M_n(t)-\widetilde M_k(t),0\},\qquad
+ \tau=\inf\{t\geq0:D_t<-\delta\},\qquad \sigma=\tau\wedge T
+\]
+とおく。$\sigma$ は有限停止時刻であり、
+$B=(R_k+V_{n,k})^\sigma$ は全時刻で $B\geq-(1+\delta)$ を満たす。
+その固有終端 $B_\infty=(R_k+V_{n,k})_\sigma$ は、元市場の $K_{1+\delta}$ に属する。
+\end{proposition}
+\begin{proof}
+$D$ は強適合かつ右連続なので、下方passageとその有限切断は停止時刻である。
+成分は零始点であり、$t\leq T$ では
+$C_t\geq0$、$C_t\geq\widetilde A_n(t)-\widetilde A_k(t)$ である。
+$t<\sigma$ なら $D_t\geq-\delta$ なので
+\[
+ (R_k+V_{n,k})_t\geq\max\{R_n(t),R_k(t)\}-\delta.
+\]
+従って停止直前にも、左極限を取った同じ不等式が成り立つ。
+実際のHahn制限のジャンプは、正のHahn集合では $\Delta(R_n-R_k)$、
+その補集合では零である。この恒等式は $t=T$ を含む。
+従って $R_k+V_{n,k}$ の停止時のジャンプは $\Delta R_n$ または $\Delta R_k$ に一致する。
+左極限の不等式に選ばれた入力のジャンプを加え、その入力の下界 $-1$ を使えば
+$B_\sigma\geq-(1+\delta)$ となる。$\sigma=0$ では零始点性を使う。
+
+二つの一般積分graphを元価格の実現へ戻して加え、元市場の一般graphの有限停止則を適用する。
+$\sigma\leq T$ により $T$ 後は一定であり、上の下界と合わせて、同じ有限終端の
+$K_{1+\delta}$ への帰属を得る。成分評価は $Q$ に保ち、一般graphと下界を元測度へ戻す。
+\end{proof}
+
+\begin{proposition}[成功事象での元利得の継続と失敗確率]
+前命題の $\tau,\sigma$ と $E=\{T<\tau\}$ を使い、任意の有限 $U\geq T$ に対して
+\[
+ Z_t=(R_k+V_{n,k})_{t\wedge\sigma}
+       +1_E\bigl(R_k(t\wedge U)-R_k(t\wedge T)\bigr)
+\]
+とおく。$Z$ は元市場の一般積分graphを持ち、全時刻で $Z\geq-(1+\delta)$ であり、
+$Z_U\in K_{1+\delta}$ となる。$E$ 上では
+\[
+ Z_U=R_k(U)+V_{n,k}(T).
+\]
+また、$N$ と $\widetilde M_n-\widetilde M_k$ の $[0,T]$ でのcapped最大関数の期待値が
+ともに $b$ 以下なら、$0<\delta\leq1$ に対し
+\[
+ Q(\tau\leq T)\leq\frac{8b}{\delta}.
+\]
+この確率評価は $U$ に依存しない。
+\end{proposition}
+\begin{proof}
+$E\in\mathcal F_T$ なので、元市場の実現のevent-tail制限を $T$ から適用できる。
+$T$ までの停止利得と、この取引を $U$ で停止した利得を加え、同じ $Z$ の一般graphを得る。
+$E^c$ 上では閉じた停止の下界を使う。$E$ 上では $\sigma=T$ であり、$T$ 以前も同じ下界を持つ。
+$T$ 以後は $Z_t=R_k(t\wedge U)+V_{n,k}(T)$ である。
+$D_T\geq-\delta$ と $C_T\geq0$ から $V_{n,k}(T)\geq-\delta$ なので下界を保つ。
+$U$ 後は一定であり、固有終端の帰属も従う。
+
+二つのcapped最大関数がともに $\delta/4$ 未満なら、$\delta/4<1$ により
+$|N_t|,|\widetilde M_n(t)-\widetilde M_k(t)|<\delta/4$ が全 $t\leq T$ で成り立つ。
+従って $D_t\geq-\delta/2$ である。$T$ での右連続性はこの厳密な余裕を
+$T$ より少し先まで保つので、$\tau>T$ となる。よって $\{\tau\leq T\}$ は、二つのcapped最大関数の
+いずれかが $\delta/4$ 以上となる事象の和に含まれる。Markov不等式と和の評価から結論を得る。
+元のM差の期待値上界は、零始点性とhorizonの単位testにより、仮定した有限尺度のtest評価から得る。
+\end{proof}
+
+\begin{proposition}[両向きのHahn増分による変動支配と向きの選択]
+指定した二つの利得の成分差 $A=\widetilde A_n-\widetilde A_k$ と逆向きの差 $-A$ に、
+上の積分構成をそれぞれ適用する。そのFV成分を $C^+,C^-$ とすると、ほとんど確実に
+\[
+ \operatorname{Var}_{[0,T]}(A)\leq C^+_T+C^-_T.
+\]
+従って $Q(\operatorname{Var}_{[0,T]}(A)>\alpha)>\alpha$ なら、
+少なくとも一方の符号について
+\[
+ Q(C^{\pm}_T>\alpha/2)>\alpha/2
+\]
+となる。各向きの利得は同じ構成から得たM上界、downside失敗確率、
+任意の有限 $U\geq T$ での元市場の終端帰属を保持する。
+\end{proposition}
+\begin{proof}
+$C^+,C^-$ は零始点の単調過程である。$0\leq a\leq c\leq T$ に対して
+\[
+ A_c-A_a\leq C^+_c-C^+_a,\qquad
+ -(A_c-A_a)\leq C^-_c-C^-_a.
+\]
+よって $|A_c-A_a|\leq(C^+_c-C^+_a)+(C^-_c-C^-_a)$ である。
+任意の有限分割に沿って和を取り、上限を取ると変動支配を得る。
+局所BVの経路を $T$ で停止したStieltjes測度の全変動は、
+右連続性によりこの区間の経路変動と一致するため、成分Cauchy消費側と同じ変動量を評価している。
+大きな変動の事象は $\{C^+_T>\alpha/2\}\cup\{C^-_T>\alpha/2\}$ に零集合を除いて含まれる。
+確率の劣加法性から向きの選択が従う。
+両順序のtest上界 $b$ を仮定しているので、両向きの構成は同時に使える。
+\end{proof}
+
+これらの構成は\contractref{H1}の全結論を同じ二つの利得について供給する。

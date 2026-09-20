@@ -1,0 +1,62 @@
+\subsection{有界sourceの分解という基礎入力}
+\label{sec:bounded-source}
+以下で使う分解の入力は、Bichteler--Dellacherie定理の次の有界版である。
+積分の値域閉性とは分けて、採用する基礎定理の範囲を明示する。
+
+\begin{theorem}[有界good integratorの分解]\label{thm:bounded-source}
+通常の条件の下で、$S$ は適合càdlàg過程であり、決定論的な $B<\infty$ により
+$\sup_t|S_t|\leq B$ がほとんど確実に成り立つとする。
+有界な予測可能elementary係数の一様収束に対し、各有限horizonでのelementary積分が
+確率収束するという連続性を仮定する。このとき
+\[
+ S-S_0=M^S+A^S
+\]
+と分解できる。$M^S$ は零始点càdlàg local martingale、$A^S$ は零始点、
+予測可能、càdlàg、局所有限変動の過程である。
+中心化した成分は区別不能性を除いて一意である。測度は元の測度のままで、市場の仮定は不要である。
+\end{theorem}
+\begin{proof}
+標準的な基礎定理として、Bichteler--Dellacherieの特徴付けの有界な場合を使う。
+すなわち有限区間の適合càdlàg good integratorはlocal martingaleと適合càdlàg FV過程の和である。
+連続性の仮定は\cite[Definition 1.1 and Theorem 1.2]{BSV}のelementary積分による条件である。
+有限区間への制限と時間の再尺度化によってその定式化に帰着する。
+elementary係数のほとんど確実な一様上界と全点での一様上界は、通常の条件の下で
+時刻0の零集合上の係数を修正することにより、同じ判定条件を与える。
+従って固定horizonで $S-S_0=N+D$ と零始点成分に分けられる。
+この段階では $D$ は適合であるだけである。予測可能成分への置換には以下の議論が必要であり、
+任意の分解の一意性だけでは得られない。
+
+$N$ をこのhorizonまで真のマルチンゲールにする局所化を選び、さらに $|N|$ と
+$\Var(D)$ が $r$ を初めて厳密に超える時刻で停止する。
+得た閉停止を $\sigma_r$ とする。その直前までは両量とも $r$ 以下である。停止時には
+\[
+ |\Delta D_{\sigma_r}|
+ \leq2B+|\Delta N_{\sigma_r}|
+ \leq2B+r+|N_{\sigma_r}|,
+ \qquad
+ \Var(D^{\sigma_r})\leq2r+2B+|N_{\sigma_r}|
+\]
+となる。局所化した真のマルチンゲールの任意抽出により最後の上界は可積分である。
+経路の有界性と有限変動性から、これらの停止は固定horizonを尽くす。
+付録の\ref{sec:canonical-cost}節でノルム評価とともに明記する補償定理を
+$D^{\sigma_r}$ に適用して
+\[
+ S^{\sigma_r}-S_0
+ =\bigl(N^{\sigma_r}+D^{\sigma_r}-(D^{\sigma_r})^p\bigr)
+   +(D^{\sigma_r})^p
+\]
+を得る。各座標でspecial分解が得られた。
+共通停止上で二つの予測可能FV成分の差は零始点予測可能FV local martingaleであるから零である。
+これが整合性と中心化した成分の一意性を与える。
+停止マルチンゲール座標と予測可能FV座標を貼り合わせ、さらに正整数horizonで貼り合わせる。
+可算個の一致と右連続性から、共通の区別不能性の事象を得る。
+\end{proof}
+
+Leanではこの有界分解を直接構成する。標本化したDoob分解の増分を
+$\Delta A_j=E[\Delta S_j\mid\mathcal F_{t_j}]$、
+$\Delta M_j=\Delta S_j-\Delta A_j$ とし、予測可能な符号testで変動を制御する。
+共通停止、Hilbert凸化、正則化から整合的な正準極限を得る。
+本稿の数学的説明では、明示した有界な特徴付けを基礎定理として採用する。
+確率積分の値域の閉性は外部入力にしない。
+特に後の一般good integratorの分解は、大ジャンプを除去して残差を停止した後、
+この有界な入力だけを使うものであり、本証明へ循環して戻るものではない。

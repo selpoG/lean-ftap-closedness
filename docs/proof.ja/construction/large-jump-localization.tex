@@ -1,0 +1,54 @@
+\subsection{有限大ジャンプ過程の可積分局所化}
+
+零始点 c\`adl\`ag 局所 martingale $N$ の有限大ジャンプ過程を
+\[
+ J_t=\sum_{0<s\leq t\wedge T,\,|\Delta N_s|>c}\Delta N_s,
+ \qquad
+ V_t=\sum_{0<s\leq t\wedge T,\,|\Delta N_s|>c}|\Delta N_s|
+\]
+と書く。càdlàg経路は有限区間に大きさ $c>0$ を超えるjumpを有限個しか持たないため、
+$J$ は有限変動であり、$T$ の後では一定である。決定論的 horizon
+\[
+ H_n=T+(n+1)
+\]
+を用い、$V$ の最初の strict passage によって
+\[
+ \rho_n=\min\bigl\{H_n,\inf\{s:V_s>n+1\}\bigr\}
+\]
+を定める。$H_n$ は cofinal であり、$\rho_n$ は variation level と horizon の双方の単調性から増加する停止時刻列である。有限変動性と $T$ 後の constancy により、各 sample path では有限段階の後に
+\[
+ \rho_n=H_n
+\]
+となる。従って $(\rho_n)$ は $\top$ に発散する genuine な localizing sequence である。
+
+各段階では閉じた停止過程ではなく strict-prefix 過程
+\[
+ C^n_t=
+ \begin{cases}
+ J_t,&t<\rho_n,\\
+ J_{\rho_n-},&t\geq\rho_n
+ \end{cases}
+\]
+を source とする。この過程は適応 càdlàg 有限変動過程であり、停止時刻 $H_n$ までの累積変動は level $n+1$ 以下であるため、terminal cumulative variation は $L^1$ に属する。従って各 $C^n$ から、正規化された適応 càdlàg 有限変動 $L^1$ data を構成し、value truncation の定理によって predictable 有限変動極限と martingale residual を得る。source と strict-prefix の一致は $t<\rho_n$ の開いた prefix 上で厳密に保持される。
+
+さらに $\rho_n$ を martingale localizer
+$\lambda_n$ と absolute-passage localizer $\kappa_n$ で refineして
+$\tau_n=\rho_n\wedge\lambda_n\wedge\kappa_n$ とする。これは有限停止時刻であり、
+\[
+ \operatorname{Var}(J^{\tau_n};[0,H_n])
+ \le n+1+|\Delta J_{\tau_n}|.
+\]
+右辺の jump項は次節の評価で可積分となる。従って各 closed source $J^{\tau_n}$ からも
+有限変動 $L^1$ data と value-truncation predictable projection が得られる。全ての $n$ に
+対する選択を一つの family に固定する。$(\rho_n)$、$(\lambda_n)$、$(\kappa_n)$ はいずれも
+a.e. increasing な localizing sequence なので、$(\tau_n)$ も a.e. increasing かつ exhaustive
+である。従って $m\le n$ なら停止の吸収則により
+\[
+  (J^{\tau_n})^{\tau_m}\sim J^{\tau_m}
+\]
+を得る。この主張は全点での単調性を要求せず、process indistinguishability として述べる。
+さらに $m\le n$ とする。上位の predictable projectionを $\tau_m$ で停止したものと下位の
+projectionとの差は、上の closed-source identityによって local martingaleである。一方、この差は
+strongly predictable、right-continuousかつ有限変動である。予測可能有限変動 local martingaleの
+rigidityと、両 projectionの初期値が a.e. に零であることから、この差は indistinguishably 零である。
+従って level 間の predictable projections は ordered overlap 上で compatible になった。

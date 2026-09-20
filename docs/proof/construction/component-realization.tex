@@ -1,0 +1,50 @@
+\subsection{Terminal realization from component estimates}
+\label{sec:component-realization}
+\begin{lemma}[From component estimates to Émery Cauchy estimates]
+For finite $T$, put
+\[
+ U^J_{n,k}=1\wedge\sup_{t\leq T}|(J\cdot(\widetilde M_n-\widetilde M_k))_t|,
+ \qquad V_{n,k}=\Var_{[0,T]}(\widetilde A_n-\widetilde A_k).
+\]
+Suppose that for every $\delta>0$,
+\[
+ \begin{aligned}
+ \sup_J Q_*(U^J_{n,k}>\delta)&\longrightarrow0,\\
+ Q_*(V_{n,k}>\delta)&\longrightarrow0
+ \end{aligned}
+ \qquad(n,k\longrightarrow\infty).
+\]
+Then $R_n$ is Émery Cauchy. The two indices tend to infinity independently:
+the cutoff for each probability error is fixed before $n,k$ and the test $J$.
+\end{lemma}
+\begin{proof}
+The variation estimate for Stieltjes integrals bounds the maximal test integral
+of the finite-variation difference by $V_{n,k}$. The capped test error
+$Z^J_{n,k}$ of the gain difference satisfies $0\leq Z^J_{n,k}\leq1$ and
+$Z^J_{n,k}\leq U^J_{n,k}+V_{n,k}$. For $0<\delta<1/2$,
+\[
+ E_{Q_*}Z^J_{n,k}\leq2\delta+Q_*(U^J_{n,k}>\delta)+Q_*(V_{n,k}>\delta).
+\]
+Choose $\delta$ and then the two probability bounds. The resulting cutoff is
+independent of $J$. Markov's inequality supplies the martingale probability
+estimate from the previously obtained expectation estimate.
+\end{proof}
+\begin{lemma}[Émery convergence to the same uniform limit]
+If $R_n$ is Émery Cauchy and converges ucp to a regular process $X$, then it
+converges to $X$ in Émery topology.
+\end{lemma}
+\begin{proof}
+For each fixed elementary test the finite-sum integral preserves ucp limits,
+and the capped error expectations tend to zero. Choose the Cauchy cutoff $N$
+for a prescribed error uniformly over all tests. For $n,k\geq N$ use the
+triangle inequality, then send $k\to\infty$ for fixed $n,J$. The remaining
+error between $R_n$ and $X$ has the same bound. Now take the supremum over $J$.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{input:realization}]
+Apply the preceding two lemmas to the same $Y_n=M_n+A_n$.
+The cutoffs for small probability errors are common to all tests, so $Y_n\to X$ in Emery topology under $Q$.
+Transfer convergence to the original measure by Theorem~\ref{thm:integral-input} and realize the same $X$
+as an original-price general integral by Theorem~\ref{thm:graph-closure}.
+The specified bound $X\geq-1$ and intrinsic terminal $X_\infty=h$ give $h\in K_1$.
+\end{proof}

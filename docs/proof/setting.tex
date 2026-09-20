@@ -1,0 +1,140 @@
+\section{Setting and main theorem}
+Fix a probability space $(\Omega,\F,\Pp)$ and a filtration $(\F_t)_{t\geq0}$
+satisfying the usual conditions. The price $S$ is a bounded real-valued
+adapted c\`adl\`ag semimartingale. Boundedness means that one deterministic
+constant $B$ satisfies $\sup_{t\geq0}|S_t|\leq B$ almost surely.
+The Lean source chooses an everywhere c\`adl\`ag representative; the bound is
+required almost surely. The public theorem also explicitly includes
+\path{SigmaFiniteFiltration}, which holds because restrictions of a probability
+measure to the filtration are finite.
+
+Semimartingale behavior is expressed by the good-integrator property.
+An elementary predictable strategy $J$ has a pathwise finite-sum integral;
+its value at each finite time is required to be measurable up to completion.
+If a sequence $J^n$ satisfies
+\[
+ \forall\varepsilon>0\ \exists N\ \forall n\geq N\ \forall(t,\omega),
+ \qquad |J^n_t(\omega)|\leq\varepsilon,
+\]
+then $(J^n\cdot S)_T\to0$ in probability for every finite $T$.
+Section~\ref{sec:graph} constructs integrals of general predictable coefficients
+from these assumptions. We write $H\cdot S$ for such an integral, always with
+initial value zero.
+
+\begin{definition}
+An integrable strategy $H$ is $a$-admissible if, on one set of probability one,
+\[
+ (H\cdot S)_t\geq-a\qquad\text{for every }t\geq0.
+\]
+Let $K_0$ be the terminal gains of strategies admissible for some finite
+constant and possessing a finite almost-sure limit as $t\to\infty$.
+Let $K_1$ be the terminal gains of such $1$-admissible strategies. Set
+\[
+ C_0=K_0-L^0_+,\qquad C=C_0\cap L^\infty.
+\]
+\end{definition}
+The set $K_0$ is a convex cone and $K_1$ is convex, with $K_1\subseteq K_0$.
+The cone $C_0$ is downward solid for the almost-sure order. NFLVR means
+\[
+ \overline C^{\,\|\cdot\|_\infty}\cap L^\infty_+=\{0\}.
+\]
+A set $D\subseteq L^0$ is Fatou closed if $f_n\in D$, a common constant lower
+bound on $f_n$, and $f_n\to f$ almost surely imply $f\in D$.
+
+For the implementation, distinguish $C_0\subseteq L^0$ from its raw-function
+extension
+\[
+ \widehat C_0=\{f:\Omega\to\mathbb R:\exists g\in K_0,\ f\leq g\text{ a.s.}\}.
+\]
+Here $K_0$ denotes raw representatives of terminal gains.
+Lean uses $\widehat C_0$. If $f$ is measurable up to completion, then so is
+$g-f$, because terminal gains are measurable up to completion. Thus
+$f\in\widehat C_0$ if and only if $f=g-h$ almost surely for some $g\in K_0$
+and an $h$ measurable with respect to completion and nonnegative almost surely.
+Passing to almost-sure
+classes recovers exactly $C_0=K_0-L^0_+$. The raw Fatou-closedness result
+therefore implies the stated $L^0$ result, and its intersection with $L^\infty$
+gives exactly the same cone $C$ and NFLVR condition.
+
+\begin{theorem}[Delbaen--Schachermayer]\label{thm:main}
+Assume NFLVR. Then $C_0$ is Fatou closed, and $C$ is closed in the topology
+$\sigma(L^\infty,L^1)$.
+\end{theorem}
+The integral in this statement is the general integral graph of
+Section~\ref{sec:graph}: bounded coefficients are integrated in a local
+$M^2\oplus A^1$ completion, and general gains arise as limits of coefficient
+truncations uniformly over elementary tests. A terminal claim is the
+continuous-time almost-sure limit of its own gain process.
+Lean's definition of Fatou closedness normalizes the common lower bound to
+$-1$. For a cone stable under positive scaling, divide a sequence bounded below
+by $-b$ by $\max(1,b)$ and then scale its limit back.
+
+This is the real-valued version of \cite[Theorem~4.2]{DS}.
+The essential probabilistic step realizes an almost-sure maximal element of
+$\clprob{K_1}$ as an admissible integral's terminal value.
+Weak-star closedness then follows by functional analysis.
+
+\subsection{Proof structure}
+First construct the general integral and its closedness under regular Émery
+limits. This construction does not assume market closedness.
+NFLVR gives boundedness in probability and forward convex compactness of $K_1$.
+For a maximal closure claim $h$, chronological pasting yields integral gains
+converging uniformly over all time to a process $X$ with $X_\infty=h$.
+Choose one equivalent measure $Q_*$ and decompose each selected gain separately.
+Common convex weights make the martingale components Cauchy by tail estimates
+and Hilbert convexification. Hahn improvements and maximality make the
+finite-variation components Cauchy. These estimates imply Émery convergence of
+the same gains. Integral closedness yields $h\in K_1$, from which the two
+closedness conclusions follow.
+The market argument ends in Section~\ref{sec:fatou}.
+Its boundary with the appendices consists of the seven analytic propositions (twenty clauses) and two data definitions in Section~\ref{sec:graph}.
+Each clause corresponds to one input in the Lean isolation check. The main proof uses only these conclusions.
+A reader wishing to check an input can turn to its indicated appendix proof.
+
+For decomposition, the appendix explicitly cites the bounded
+Bichteler--Dellacherie characterization and existence of dual predictable
+projections as standard results, with their hypotheses specified.
+Lean constructs these too. Integral-range closedness, simultaneous
+realization by one coefficient, and original-market component estimates
+are proved within this account. The final appendix relates the mathematical
+stages to Lean declarations.
+
+\subsection{Correspondence with the original proof}
+\label{sec:original-proof}
+The main argument follows Delbaen--Schachermayer\cite[Section 4]{DS}:
+selection of a maximal closure claim, pasting, common convexification under
+an equivalent measure, and a maximality contradiction using Hahn improvements.
+The table matches the content used in the main proof; it does not restate
+every original result in its full generality.
+
+\begin{center}
+\small
+\begin{tabular}{L{0.24\linewidth}L{0.66\linewidth}}
+\toprule
+Original paper & Corresponding argument here \\
+\midrule
+Lemma A1.1 & Proposition~\ref{prop:forward}: forward convex compactness in a lower-bounded convex set \\
+Lemma 4.3 & Proposition~\ref{prop:maximal}: existence of a maximal terminal claim \\
+Lemma 4.5 & Proposition~\ref{prop:all-time-cauchy}: all-time Cauchy estimates from maximality \\
+Lemma 4.7 & Proposition~\ref{prop:indexed-maximal}: class bounds for martingale maxima \\
+Lemma 4.8 & Proposition~\ref{prop:convex-tails} and its corollary: convex stopped-tail estimates \\
+Lemma 4.9 & Proposition~\ref{prop:test-uniform-tails}: test-uniform tail estimates \\
+Lemma 4.10 & Proposition~\ref{prop:martingale-convexification}: common martingale convexification \\
+Lemma 4.11 & Section~\ref{sec:fv-cauchy}: finite-horizon FV variation Cauchy estimates from Hahn improvements \\
+Role of Lemma A3.1 & Lemma~\ref{lem:persistent-improvement}: persistent terminal improvement contradicts maximality \\
+Final use of M\'emin's theorem & Proposition~\ref{input:realization} and Section~\ref{sec:realization}: realizing the limit as an original-price integral \\
+Use of Theorem 2.1 & Proposition~\ref{prop:weakstar}: from Fatou to weak-star closedness \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+We obtain maximal elements by convex compactness and maximization of a
+functional, replacing the original transfinite induction. Component estimates
+allow separate gain decompositions, but every contradiction strategy returns
+to the same original market. For martingale components we first establish
+Cauchy estimates and identify the limit later; for FV components we prove the
+needed finite-horizon estimates and combine them with the separately retained
+infinite-time terminal limit. Proposition~\ref{input:finite} supplies the finite-scale analytic estimates needed in Lemmas 4.7--4.9.
+The integral-range closedness cited by the original paper enters the proof of terminal realization, Proposition~\ref{input:realization}. These are reorganizations
+preserving the roles of the original argument, not a claim to a new proof
+strategy for the closedness theorem.

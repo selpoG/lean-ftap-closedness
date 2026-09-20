@@ -1,0 +1,35 @@
+\subsection{Passing to test-uniform limits}
+Let $X^n$ be the elementary integral representatives of a realized strategy
+over a strongly progressive right-continuous source, with designated gain $X$.
+Write $e_T$ for the capped absolute envelope at horizon $T$ and put
+\[
+ \Phi_{K,T}(Y)=E[e_T(K\cdot Y)],\qquad
+ g_{n,T}=\sup\bigl(\{0\}\cup\{\Phi_{K,T}(X^n-X):|K|\leq1\}\bigr).
+\]
+These are finite-sum elementary test integrals; no general predictable
+integral is used in their definition.
+\begin{lemma}[Cauchy estimates and fixed-test limits]
+For these representatives, $g_{n,T}\to0$ for every finite $T$, and
+\[
+ \sum_{r\geq0}2^{-r-1}g_{n,r+1}\longrightarrow0.
+\]
+\end{lemma}
+\begin{proof}
+Fix $\varepsilon,T>0$. The representatives' Émery Cauchy property supplies a
+cutoff $N$ common to every $K$, with
+$\Phi_{K,T}(X^m-X^n)<\varepsilon$ for $m,n\geq N$.
+Only now fix $n\geq N$ and $K$. Fixed-test errors tend to zero in probability;
+extract an auxiliary subsequence in $m$ whose capped errors tend to zero
+almost surely. They are bounded by one, so their expectations vanish.
+The triangle inequality gives
+\[
+ \Phi_{K,T}(X^n-X)\leq
+ \Phi_{K,T}(X^m-X^n)+\Phi_{K,T}(X^m-X)
+ \leq\varepsilon+\Phi_{K,T}(X^m-X).
+\]
+Pass to the auxiliary limit, then take the supremum over $K$ using the common
+$N$. Since $0\leq g_{n,T}\leq1$, dominated convergence for the geometric
+series gives the second assertion.
+\end{proof}
+This is precisely convergence against the elementary tests defining the
+topology in this account; no extension to general predictable tests is needed.

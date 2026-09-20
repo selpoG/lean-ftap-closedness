@@ -1,0 +1,48 @@
+\subsection{成分評価からの終端実現}
+\label{sec:component-realization}
+\begin{lemma}[成分評価からÉmery Cauchy性へ]
+有限 $T$ について
+\[
+ U^J_{n,k}=1\wedge\sup_{t\le T}|(J\cdot(\widetilde M_n-\widetilde M_k))_t|,
+ \qquad V_{n,k}=\Var_{[0,T]}(\widetilde A_n-\widetilde A_k)
+\]
+と置く。任意の $\delta>0$ について
+\[
+ \begin{aligned}
+ \sup_J Q_*(U^J_{n,k}>\delta)&\longrightarrow0,\\
+ Q_*(V_{n,k}>\delta)&\longrightarrow0
+ \end{aligned}
+ \qquad(n,k\longrightarrow\infty).
+\]
+が成り立つなら、$R_n$ はÉmery Cauchyである。ここで二つの添字は独立に無限大へ送る。
+すなわち、各確率誤差に対する閾値は $n,k$ と test $J$ を選ぶ前に固定する。
+\end{lemma}
+\begin{proof}
+Stieltjes積分の変動評価より、FV差のtest積分の最大値は $V_{n,k}$ 以下である。
+利得差のcapped test誤差を $Z^J_{n,k}$ と書けば、$0\leq Z^J_{n,k}\leq1$ かつ
+$Z^J_{n,k}\leq U^J_{n,k}+V_{n,k}$ である。従って $0<\delta<1/2$ について
+\[
+ E_{Q_*}Z^J_{n,k}\leq2\delta+Q_*(U^J_{n,k}>\delta)+Q_*(V_{n,k}>\delta).
+\]
+$\delta$ と二つの確率上界を先に小さく選ぶと、全ての $J$ に共通のCauchy閾値が得られる。
+M成分の期待値評価から確率評価への移行はMarkov不等式である。
+\end{proof}
+
+\begin{lemma}[同じ一様極限へのÉmery収束]
+$R_n$ がÉmery Cauchyで、正則過程 $X$ へucp収束するなら、$R_n\to X$ はÉmery収束である。
+\end{lemma}
+\begin{proof}
+一つのtestを固定すると有限和の増分積分はucp極限と両立し、capped誤差の期待値も零へ収束する。
+$\varepsilon$ に対するCauchy閾値 $N$ を全test共通に取る。
+$n,k\geq N$ に対し三角不等式を適用し、固定した $n,J$ について $k\to\infty$ とすれば、
+$R_n$ と $X$ の期待値誤差は $\varepsilon$ 以下となる。最後に全testにわたる上限を取る。
+\end{proof}
+
+
+\begin{proof}[命題\ref{input:realization}の証明]
+同じ $Y_n=M_n+A_n$ に上の二補題を適用する。各確率誤差を小さくするcutoffは全testに共通である。
+従って $Y_n\to X$ は $Q$ の下でÉmery収束する。
+定理\ref{thm:integral-input}の同値測度移送で収束を元測度へ戻し、
+定理\ref{thm:graph-closure}で同じ $X$ を元価格の一般積分に実現する。
+指定された $X\geq-1$ と $X_\infty=h$ により $h\in K_1$ である。
+\end{proof}

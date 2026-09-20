@@ -1,0 +1,286 @@
+\subsection{積分則の構成と移送}
+\label{sec:integral-calculus}
+ここでは定理\ref{thm:integral-input}を証明する。局所special積分と一般graphは定義\ref{def:general-graph}のものとする。
+
+\begin{lemma}[分解を仮定しない elementary-test 収束の測度不変性]
+過程列 $X_n$ と $Y$ は強発展可測とする。全ての有限 $T$ と $\epsilon>0$ に対し、
+ある $N$ が存在して、$n\ge N$ と全てのunit-bounded予測可能elementary test $J$ について
+\[
+ E_\mu\left[1\wedge\sup_{t\le T}
+   |(J\mathbin{\cdot}X_n)_t-(J\mathbin{\cdot}Y)_t|\right]\le\epsilon
+\]
+となる性質は、同値確率測度間で不変である。
+経路が右連続でない場合には、上式のsupを可算horizon skeleton上で取る。
+\end{lemma}
+\begin{proof}
+各testのcapped envelopeは可測で $[0,1]$ に値を取る。
+移送先で一様零収束が失敗すれば、ある $\epsilon>0$ と $n_k\ge k$、test列 $J_k$ を取り、
+移送先の積分を常に $\epsilon$ より大きくできる。
+元の測度ではtailがtestに一様なので、この選択後のenvelope列の積分も零へ収束する。
+有界な非負関数列の積分零収束を確率収束へ移し、絶対連続性で移送し、
+再び有界性から積分零収束を得ると矛盾する。逆方向も同じである。
+この議論にspecial分解は不要である。
+\end{proof}
+elementary代表列の一様誤差評価は、有限和の結合則によりこの過程の収束を与える。
+ただしtestは増分しか測らないので、零始点性は別途必要である。
+この位相的事実だけで極限integrandの存在や一般integral graph membershipを結論しない。
+
+\begin{lemma}[初期値を固定した極限の一意性]
+強発展可測な過程列が上の意味で右連続な二過程 $Y,Z$ に収束し、
+$Y_0=Z_0$ が概至る所成り立つなら、$Y,Z$ は区別不能である。
+\end{lemma}
+\begin{proof}
+一つのelementary testを固定すると、capped envelopeの積分零収束は確率収束を与える。
+コンパクト一様極限の一意性より、testを積分した二過程は区別不能となる。
+固定時刻 $T$ に対し $(0,T]$ のunit testを選び、時刻 $T$ で評価すると、
+$Y_T-Y_0=Z_T-Z_0$ を得る。初期値の一致と、可算な右稠密集合上の一致を右連続性で拡張して結論する。
+\end{proof}
+
+\begin{proposition}[切断graphの一意性と移送の還元]
+固定sourceに対し、同じ $H$ に対応する切断graphのgainは区別不能である。
+また、同値測度間で有界係数のspecial graphを移送できれば、切断graphも移送できる。
+\end{proposition}
+\begin{proof}
+二つのcertificate列について、各行の係数は同じ $H^{(n)}$ なので、固定sourceの
+graph一意性から行ごとのgainが区別不能となる。これで一つの共通近似列に揃え、
+前補題を零始点の正則極限へ適用する。
+測度移送では $|H^{(n)}|\le n+1$ により有界係数の移送を各行に適用する。
+選び直した実現された利得は元の行のgainと区別不能であり、過程の収束の測度不変性と
+区別不能な行への置換により、同じ正則極限と指定された利得を得る。
+極限のspecial性を移送する操作はない。
+\end{proof}
+
+$|H|\le1$ の積分表示なら全ての切断が $H$ と等しいため、
+零始点性と左極限を確認すれば定数近似列からこのgraphに入る。
+
+\begin{proposition}[非有界係数の切断列と座標ごとの誤差制御]
+大域積分graphの係数を $H$ とする。各 $n$ について
+$H1_{\{|H|\le n+1\}}$ の局所積分表示を同じsourceに対して構成できる。
+元のcompleted scheduleの座標 $k$ の係数を $h_k$、energy measureを $q_k$、
+variation measureを $v_k$ とし、$r_{k,n}=h_k1_{\{|h_k|>n+1\}}$ とおくと、
+\[
+ \|r_{k,n}\|_{L^1(v_k)}\longrightarrow0,\qquad
+ \|r_{k,n}\|_{L^2(q_k)}\longrightarrow0.
+\]
+同じ相補切断のcompletedマルチンゲール積分の終端 $L^2$ normも零へ収束する。
+\end{proposition}
+\begin{proof}
+各座標の係数を同じ予測可能集合に制限し、整合したcompleted座標をgluingする。
+座標の係数はもともと両control空間に属するので、可積分関数の大きな値のtail評価により
+上記の二つのnormが消失する。control measureの全質量が有限であるという追加仮定は不要である。
+completedマルチンゲール積分の終端normはhorizonで制限した係数のenergy normに等しく、
+元の係数tailのenergy norm以下である。
+\end{proof}
+\begin{proposition}[非有界係数の一様切断収束と包含]
+固定sourceのマルチンゲール成分が左極限を持つとする。
+非有界係数を含む全ての大域・局所special積分表示は、
+元の係数と指定された利得を保って、全時間の切断graphに入る。
+\end{proposition}
+\begin{proof}
+まず一つのcompleted座標を固定する。零始点の平方可積分マルチンゲール $M$ と、
+表されたintegrandが $|J|\le1$ を満たす任意の予測可能elementary testに対して、
+離散積分の $L^2$ 縮小評価、chronological grid極限、Doob評価から
+\[
+ \mathbb E\!\left[1\wedge\sup_{t\le T}|(J\mathbin{\cdot}M)_t|\right]
+ \le 2\|M_T\|_2
+\]
+を得る。testの項数や係数絶対値和への上界は不要である。
+マルチンゲール積分はcompleted horizon後で定数なので、同じ評価を任意のtest horizonに使える。
+
+有限変動部分では、variation可積分な係数 $r$ のcompleted積分 $B$ を
+経路ごとのStieltjes積分と区別不能に同定する。符号付きStieltjes測度の密度表示より、
+\[
+ |dB|(\mathbb R_+)\le \int |r_t|\,d|A|_t,\qquad
+ \sup_t |(J\mathbin{\cdot}B)_t|\le |dB|(\mathbb R_+).
+\]
+右辺の $L^1$ normはcanonical variation normで抑えられる。
+reference measureから元の確率への確率収束の移送と上界1の支配により、
+切断した右辺の期待値も零へ収束する。これは全testに共通の支配である。
+
+両成分の相補係数tailにこれらを適用し、加法性でbounded cutとtailの和を元の積分と同定する。
+従って各座標でbounded cutの利得が元の利得へ一様test収束する。
+停止列の座標を先に選んで $\mathbb P(\tau_k\le T)$ を小さくし、次にその座標の行閾値を選ぶ。
+停止前では全testの利得が一致し、停止後のcapped誤差は1以下であるため、局所化を外せる。
+これで大域graphの包含を得る。
+
+局所graphでは、各正の整数時刻での停止が大域積分graphを持つ。
+一つのsource schedule上で有界切断係数を積分し、固定sourceの一意性により、
+その各停止を停止graphのbounded cutと同定する。前段の停止ごとの収束から再び局所化を外す。
+停止ごとの正則代表元を可算共通零集合の外で元の局所gainへ移し、通常の条件で零集合を補正する。
+これにより全経路で正則な代表元と零始点性も得られる。
+非有界な局所係数自体の共通schedule表示は用いない。
+\end{proof}
+
+\begin{proposition}[有界な大域certificateの包含]
+固定sourceのマルチンゲール成分が左極限を持つとする。
+任意の有限定数 $b$ に対し、$|H|\le b$ を満たす大域積分表示のgraphは切断graphに入る。
+また、有界係数を持つ局所graphを任意の正の有限時刻 $T$ で停止したgraphも切断graphに入る。
+\end{proposition}
+\begin{proof}
+大域certificateの各completed座標の係数を予測可能集合 $\{|H|\le n+1\}$ に制限する。
+座標全体で同じ切断係数を持つため、整合性とgluingから各切断の局所積分表示を得る。
+その全ての有限時刻停止の積分としての実現も、同じschedule上のcompleted停止則から従う。
+$n+1\ge b$ となるtailでは係数が元の $H$ と等しいため、固定sourceの一意性から利得も区別不能である。
+元のwitnessを自己refinementして、sourceの左極限を持つ座標を選ぶ。
+completedマルチンゲール座標のcàdlàg gluingと局所有限変動座標のgluingを加えると、
+固定sourceの一意性により元の利得と区別不能な正則代表元を得る。
+その零始点性はcompleted graphから得られる。
+tail上ではこの代表元と各切断利得が区別不能なので、全test共通の誤差積分は零となり、必要な収束を得る。
+保存された利得とは区別不能性で結ぶ。
+
+局所graphは時刻 $T$ で停止すると大域積分表示を持つ。
+停止係数 $1_{(0,T]}H$ の上界は $\max(b,0)$ であり、利得は $X_{t\wedge T}$ と区別不能である。
+前半をこの停止certificateへ適用する。停止前の利得に大域有限変動の分解を要求する必要はない。
+\end{proof}
+
+\begin{proposition}[有界予測可能係数の生成と局所graph全体の包含]
+元の有界sourceと任意の有界な予測可能係数 $H$ から、同じsourceに対する
+局所積分graphと切断graphを生成できる。さらに、有界係数の局所graphは
+保存された利得を保ったまま、全時間の切断graphに入る。
+\end{proposition}
+\begin{proof}
+元のsourceから直接構成したcompleted scheduleを使う。各座標のcanonical variation
+measureとquadratic energy measureは有限である。従って $|H|\le b$ から、
+前者に関する $L^1$ 可積分性と後者に関する $L^2$ 可積分性を得る。
+全座標の係数を同じ $H$ としてgluingへ渡せば、局所積分graphが得られる。
+各座標のマルチンゲールが左極限を持つようscheduleを自己refinementし、
+càdlàgマルチンゲールのgluingと局所有限変動成分を加えて正則代表元を得る。
+零始点性はcompleted graphの時刻0での同定から従う。
+
+各 $H^{(n)}$ にも同じ構成を適用する。$n+1\ge b$ のtailでは $H^{(n)}=H$ なので、
+固定sourceのgraph一意性により全利得が区別不能である。従って全elementary testに
+共通のtailで誤差は零となり、切断graphの要求する収束が従う。
+局所graphの利得とは、同じ $H$ のgraph一意性をもう一度使って同定する。
+
+\end{proof}
+
+\begin{proposition}[同値確率測度間の積分graphの移送]
+同じ有界価格過程 $S$ のsourceを同値確率測度 $\mu,\nu$ の下に持つとする。
+有界予測可能係数の局所積分graphは、係数と利得を保って移送できる。
+従って一般切断graphも移送でき、Mémínの停止付き実現は元の $\mu$ 上のgraphへ戻る。
+\end{proposition}
+\begin{proof}
+まず両測度に有界係数の大域certificateがあるとする。
+二つのschedule座標のenergy controlの和とvariation controlの和は有限測度であり、
+時刻0のsliceに質量を持たない。有界予測可能係数はそれぞれの $L^2,L^1$ に属する。
+共通のelementary密度により、両controlで同時に収束する同じ列 $J_n$ を取る。
+completed積分の差は、係数のenergy $L^2$ とvariation $L^1$ の消失から
+全test一様に零へ収束する。各座標のelementary積分は、元の $S$ に対する
+$J_n\mathbin{\cdot}S$ をその座標の停止時刻で止めたものと一致する。
+
+二つの座標の停止時刻の最小値でさらに停止する。
+有限値の停止はtest積分のcapped envelopeを増加させず、収束を保つ。
+従って両測度の積分は同じ停止付きelementary列の極限となる。
+収束の同値測度不変性と零始点の極限一意性により、停止した利得は区別不能である。
+最小値の停止列もexhaustiveなので停止を除ける。
+各決定論的停止にこの議論を適用すれば、局所certificateの利得も同定できる。
+
+移送先では有界予測可能係数のgraphをsourceから直接構成する。
+先の一意性で指定された利得を同定すれば有界graphの移送が得られる。
+一般graphは各有界切断へこの移送を適用し、正則な極限への収束を移送する。
+停止付きMémín実現にもこれを適用し、停止列のexhaustivenessは絶対連続性で移す。
+非有界利得のspecial分解を移す操作は含まない。
+\end{proof}
+
+\begin{proposition}[停止区間の貼り合わせによる全時間の実現]
+元の有界sourceの零始点で正則な選択利得 $X$ が、有限値のexhaustiveな停止列の各段階で
+一般切断graphを持つなら、一つの予測可能係数 $H$ の全時間graphとして実現できる。
+\end{proposition}
+\begin{proof}
+まず、有界係数のgraphをsourceの直接構成した共通scheduleに載せる。
+各completed座標の停止則により、任意の停止時刻で止めた利得の積分graphを生成できる。
+有限停止はelementary-test収束を保つので、一般切断graphにも停止則が渡る。
+さらに $\sigma\le\tau$ なら、二つの停止を同じ切断行に適用し、その差を取ることで
+$(\sigma,\tau]$ への係数制限と利得 $X^\tau-X^\sigma$ を得る。
+この係数制限と大きさによる切断は可換である。
+
+停止列の単調性と発散が失敗する共通零集合は時刻0で可測である。
+その上で停止時刻を決定論的な $n+1$ に置き換え、全経路で単調な列 $\upsilon_n$ を得る。
+元の停止graphの利得はこの修正後も区別不能である。
+最初の $(0,\upsilon_0]$ と後続の $(\upsilon_n,\upsilon_{n+1}]$ 上に
+各段階の係数を制限する。これらの台は交わらないので、係数の大きさによる切断は
+有限和と可換となり、積分近似列の加法性と収束の加法性で有限和のgraphを構成できる。
+利得はtelescopingにより $X^{\upsilon_n}$ と一致する。
+
+係数の有限和は $(0,\upsilon_n]$ 上でそれ以降変化しない。
+点ごとの極限 $H$ は予測可能であり、この区間への制限は対応する有限和と全点で等しい。
+$H$ の各有界切断の実現された積分を元のsourceから直接生成する。
+その停止利得を有限和graphの切断行と一意性で同定し、局所化誤差を消して全時間収束を得る。
+これが $(H,X)$ の一般切断graphである。係数のoverlap一致は使っていない。
+
+\end{proof}
+
+
+
+
+\paragraph{単位有界変換とHahn成分}
+定理\ref{thm:integral-input}の第4・5項の証明を与える。以下の局所化座標は有限horizonで真のL²成分を持つ。
+
+\begin{proposition}[単位有界completed変換と有限horizonのHahn利得]
+通常の条件を満たす確率空間上で、$Y=M+A$ とし、$Y,M,A$ は強適合・右連続であり、
+$A$ は予測可能な全時間有界変動過程とする。
+$M$ は真のマルチンゲールで、固定した $T$ に対し $M_T\in L^2$ とする。
+任意の単位有界elementary test $J$ に対して
+\[
+ \mathbb E\left[1\wedge\sup_{t\leq T}|(J\cdot M)_t|\right]\leq b
+\]
+が成り立つとする。単位有界な予測可能係数 $k$ の有限horizonのcompleted積分を
+$I^k=(k\mathbf 1_{(0,T]})\cdot M$ とすると、同じ $b$ で全elementary testに対する
+$I^k$ の評価が成り立つ。
+
+さらに、$A$ の正のHahn集合 $B$ と有限horizonの積分利得
+$R=\mathbf 1_{B\cap(0,T]}\cdot Y$ を構成できる。
+同じ $R=N+C$ について、ほとんど確実に全ての $0\leq a\leq c\leq T$ で
+\[
+ 0\leq C_c-C_a,\qquad A_c-A_a\leq C_c-C_a
+\]
+となり、$N$ の全elementary testの上界と
+$\mathbb E[1\wedge\sup_{t\leq T}|N_t|]\leq b$ が成り立つ。
+\end{proposition}
+\begin{proof}
+正規化したvariation measureとmartingale energy measureはいずれも有限である。
+単位有界な予測可能集合環密度により、$|J_n|\leq1$ を保ち、
+同じ係数 $k\mathbf 1_{(0,T]}$ へL² energyとL¹ variationの両方で収束する
+一つのelementary列を取る。
+energy連続性とelementary積分との一致から、$J_n\cdot M$ は $I^k$ へ
+elementary-Émery収束する。gain側も同じ列でcompleted積分に収束するが、
+M側の収束の評価にvariation誤差は不要である。
+
+別の単位test $J$ に対し、有限horizon内では
+$J\cdot(J_n\cdot M)=(JJ_n)\cdot M$ であり、$|JJ_n|\leq1$ である。
+従って近似積分のtest上界は全て $b$ 以下となる。
+極限とのtest誤差に三角不等式を適用し、任意の正の誤差を零へ送ると、
+completed積分も同じ上界を満たす。$b$ は係数やtestを選ぶ前の上界のままである。
+
+正規化したFV bridgeからHahn集合を生成し、horizonの単位実現された積分をこの集合で制限する。
+completed FV成分とStieltjes積分の一致により、$C_c-C_a$ は
+$B$ の時間切片と $(a,c]$ の交わりのsigned massとなる。
+Hahn分解の正部分の性質が二つの増分評価を与える。区間は右端を含む。
+Mのtest上界は既に示したcompleted変換の上界から従う。
+completed Mの零始点性を使ってhorizonの単位testを選べば、capped最大関数の上界も得られる。
+\end{proof}
+
+局所版では、次のように停止を除く。
+
+積分graph自身の局所化列を $\sigma_r$、その有限completion horizonを $U_r$ とする。
+正規化した積分表示されたM成分の停止は、被積分過程 $k$ のcompleted martingale積分と区別不能である。
+係数を $(0,U_r]$ に切ってもenergy measure上の同値類は変わらず、単位有界性も保たれる。
+従って前命題の単位近似を各座標へ適用できる。
+
+ここでtest horizonは $T$ に固定したままとする。
+elementary積分を $U_r$ で停止してから $J$ でtestしても、そのcapped最大関数は
+停止しない $(JJ_n)\cdot M^{\sigma_r}$ のもの以下である。
+また $M^{\sigma_r}$ の各testは、右連続性と停止したelementary gainの恒等式により、
+同じ $T$ 上の $M$ のtest以下となる。$U_r$ と $T$ の大小関係は不要である。
+これで全座標の上界を同じ $b$ にできる。
+
+$\{\sigma_r>T\}$ では停止したtestと未停止のtestが一致する。
+補集合での誤差は1以下なので、未停止testの期待値は
+$b+\mathbb P(\sigma_r\leq T)$ 以下である。$r\to\infty$ として上界 $b$ を得る。
+中心化はelementary gainを変えない。局所FVの積分graphは $T+1$ で停止してから適用し、
+$[0,T]$ での一致を使う。
+
+
+
+一般graphのelementary密度は、各有界切断行の密度と整数horizonでの対角選択から得る。
+その利得は命題\ref{prop:gi-limit}によりgood integratorである。

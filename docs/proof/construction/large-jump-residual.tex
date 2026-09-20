@@ -1,0 +1,45 @@
+\subsection{Removing finite large jumps}
+Subtract the finite large-jump process from the original local martingale:
+\[
+ R_t=N_t-J_t,\qquad
+ J_t=\sum_{0<s\leq t\wedge T,\,|\Delta N_s|>c}\Delta N_s.
+\]
+The left limits give the exact identity, at every time,
+\[
+ \Delta R_t=\Delta N_t-\Delta J_t.
+\]
+For $0<t\leq T$, the jump $\Delta J_t$ equals $\Delta N_t$ when
+$|\Delta N_t|>c$, and is zero otherwise. Consequently,
+\[
+ 0<t\leq T\quad\Longrightarrow\quad |\Delta R_t|\leq c.
+\]
+For $t>T$, $\Delta J_t=0$ and hence $\Delta R_t=\Delta N_t$.
+This bound concerns the source residual. Subtracting a predictable
+projection or compensator of $J$ requires an additional jump estimate,
+using announced times or conditional expectations; that estimate does not
+follow merely from the displayed identity. The nested overlaps of the
+closed sources and their predictable projections allow us to glue a global
+predictable process $P$. Exhaustion of the stopping sequence then makes
+$Q=J-P$ a local martingale. The following subsection constructs this $P$
+and proves the required predictable-jump estimate.
+
+Integrability of the jump introduced by closed stopping follows after a
+further localization. Suppose $\tau\leq H$ for a deterministic $H<\infty$,
+and that $\tau$ lies below both one local-martingale localizing coordinate
+and the absolute strict passage at level $r$. The first condition identifies
+$N_\tau$ with a bounded optional sample of a true martingale, so it is
+integrable. The passage condition and existence of left limits imply
+\[
+ |N_{\tau-}|\leq r.
+\]
+Since the jump of $J$ is either the corresponding jump of $N$ or zero,
+\[
+ |\Delta J_\tau|
+ \leq |N_\tau|+|N_{\tau-}|
+ \leq |N_\tau|+r.
+\]
+Thus $\Delta J_\tau$ is integrable. No announcement of $\tau$ is needed,
+and the boundary correction itself need not be predictable.
+In the preceding common refinement the bound $\tau_n\leq H_n$ supplies
+the deterministic horizon. This estimate therefore gives integrable total
+variation of the closed stopped slices and permits their predictable projections.

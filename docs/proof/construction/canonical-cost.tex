@@ -1,0 +1,102 @@
+\subsection{From an arbitrary decomposition to canonical component bounds}
+\label{sec:canonical-cost}
+We use the compensator theorem in the following precise form.
+For an adapted zero-start c\`adl\`ag process $D$ of integrable total variation,
+constant after a finite deterministic time, there is a predictable zero-start
+c\`adl\`ag process $D^p$ of integrable variation such that $D-D^p$ is a
+uniformly integrable martingale. It is the \emph{dual predictable projection},
+characterized by
+\[
+ E\int K\,dD^p=E\int K\,dD
+ \quad\text{for every bounded predictable }K.
+\]
+This is the compensator theorem, not the assertion that
+$D^p_t=E[D_t\mid\mathcal F_{t-}]$.
+Existence is the standard dual-projection theorem; the characterization and
+jump formula are recalled in \cite[Section 4.3]{Nikeghbali}.
+Its variation bound is
+\begin{equation}\label{eq:compensator-variation}
+ E\Var(D^p)\leq E\Var(D).
+\end{equation}
+Indeed, apply the defining identity to a predictable Hahn sign for $dD^p$;
+the left side is its expected total variation and the right side is bounded
+by $E\Var(D)$. Equivalently compensate the two increasing Jordan components
+separately and use positivity. For $K=1_F1_{(s,t]}$, $F\in\mathcal F_s$,
+the same identity proves the martingale property of $D-D^p$.
+The Lean construction obtains this compensator by truncation and limits of
+predictable finite-variation approximants. In this account the existence
+theorem is used explicitly as a standard foundational result.
+
+\begin{lemma}[Canonical cost of a constant-after-horizon gain]
+\label{lem:canonical-cost}
+Let $X$ be zero-start and c\`adl\`ag, constant after $T<\infty$, with a
+canonical decomposition $X=M^{\rm can}+A^{\rm can}$.
+Under the usual conditions,
+\[
+ \begin{aligned}
+ E\Var_{[0,T]}(A^{\rm can})&\leq12\mathcal J(X),\\
+ E\sup_{t\leq T}|M^{\rm can}_t-M^{\rm can}_0|
+       +E\Var_{[0,T]}(A^{\rm can})&\leq30\mathcal J(X).
+ \end{aligned}
+\]
+These are extended-value inequalities. The infimum defining $\mathcal J$
+allows adapted, rather than necessarily predictable, FV components.
+\end{lemma}
+\begin{proof}
+Fix a finite-cost decomposition in that infimum, of cost $j$.
+The strict-prefix witness construction gives, at the deterministic stop
+$\sigma=T+1$, components $N,B$ representing $X$ before $\sigma$, with
+\[
+ c_N=E\sup_t|N^\sigma_t|,\qquad
+ c_B=E\Var(B^{\sigma-}),\qquad c_N+c_B\leq6j.
+\]
+Keep their initial values. With $J^N_t=\Delta N_\sigma1_{[\sigma,\infty)}(t)$,
+put
+\[
+ D=B^{\sigma-}-B_0-J^N.
+\]
+This is adapted and of integrable variation, since
+\[
+ E\Var(D)\leq c_B+E|\Delta N_\sigma|\leq c_B+2c_N.
+\]
+Compensate this specific remainder. The processes
+\[
+ \widehat M=N^\sigma+D-D^p,\qquad \widehat A=B_0+D^p
+\]
+form a special decomposition of $(N+B)^{\sigma-}=X$.
+The last equality uses constancy of $X$ after $T$, not just agreement on
+an open interval. By \eqref{eq:compensator-variation},
+\[
+ E\Var(\widehat A)\leq c_B+2c_N\leq2(c_N+c_B)\leq12j.
+\]
+Now, and only now, canonical uniqueness identifies the centered components
+of this constructed decomposition with those of $X$.
+Take the infimum over $j$ to obtain the first bound.
+Zero start gives
+\[
+ \sup_{t\leq T}|M^{\rm can}_t-M^{\rm can}_0|
+ \leq\sup_t|X_t|+\Var_{[0,T]}(A^{\rm can}).
+\]
+The already proved maximal estimate $E\sup_t|X_t|\leq6\mathcal J(X)$
+therefore gives $6+12+12=30$. Infinite costs cause no difficulty.
+\end{proof}
+
+For a prelocal witness for a regular zero-start $X$ before $\tau\leq T$,
+let $c$ be its sum of expected martingale-maximum and variation costs.
+The witness comparison in the $r^1$ localization subsection below gives
+$\mathcal J_{\tau-}(X)\leq16c$.
+The boundary-jump correction in the quadratic-cost subsection gives
+\[
+ \mathcal J(X^\tau)\leq2\mathcal J_{\tau-}(X)+E|\Delta X_\tau|
+ \leq32c+E|\Delta X_\tau|.
+\]
+If an independently constructed actual integral has gain $X^\tau$, apply
+Lemma~\ref{lem:canonical-cost} to that same constant-after-$T$ gain. Thus
+\begin{equation}\label{eq:actual-closed-cost}
+ E\sup_{t\leq T}|M^{\rm actual}_t-M^{\rm actual}_0|
+ +E\Var_{[0,T]}(A^{\rm actual})
+ \leq30\bigl(32c+E|\Delta X_\tau|\bigr).
+\end{equation}
+Existence of the actual integral is supplied separately. This argument
+transfers a quantitative bound to its components; uniqueness alone does not
+provide that bound.

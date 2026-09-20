@@ -1,0 +1,36 @@
+\subsection{Prefix energy and martingale approximation}
+\label{sec:approximation-inputs}
+\begin{proof}[Proof of \contractref{F3}--\contractref{F5}]
+For \contractref{F3}, use only the envelope part of the proof of Lemma~\ref{lem:quantitative-tails},
+which does not use a gain lower bound. The convex-tail gain envelope $G^{w,c}$ satisfies
+$\sup_w\|G^{w,c}\|_2\to0$. Lemma~\ref{lem:explicit-jump-envelope} gives a jump envelope
+$\xi_T^{w,c}$ for its M component with
+\[\sup_w\|\xi_T^{w,c}\|_2\leq6\sup_w\|G^{w,c}\|_2.\]
+For $\eta>0$, first choose a cutoff making this bound at most $\eta$.
+Stop $L^{w,c}$ at its level-$\eta$ passage and at $T$.
+The pre-passage bound and jump envelope bound the all-time maximum of the resulting process $R$ by $\eta+\xi_T^{w,c}$.
+This $L^2$ envelope removes the local martingale's localizers, so $R$ is a true $L^2$ martingale with $\|R_T\|_2\leq2\eta$.
+The test estimate of Theorem~\ref{thm:integral-input} gives $E_Qe_T^J(R,0)\leq4\eta$.
+Off the finite-passage event, the stopped and original tails agree; removing the stop costs at most $Q(B(w,c,\eta))$ in capped expectation.
+This proves \contractref{F3}.
+
+For \contractref{F4}, apply the same argument to the original $M$ at level $c$.
+Lemma~\ref{lem:explicit-jump-envelope} gives $\|\xi_T\|_2\leq6\|q\|_2$, and
+$\sup_t|M_{t\wedge\tau(c)\wedge T}|\leq c+\xi_T$.
+Thus the stopped process is a true martingale with $\|P_T\|_2\leq c+6\|q\|_2$.
+Clause \contractref{F5} follows from preservation of right continuity and the zero initial value under closed stopping of c\`adl\`ag paths, without an envelope.
+\end{proof}
+
+\begin{proof}[Proof of Proposition~\ref{input:approximation}]
+For \contractref{A1}, choose an approximating sequence with error $\varepsilon/3$ for a prescribed $\varepsilon>0$.
+Make its Cauchy error at most $\varepsilon/3$ and use the triangle inequality for the two approximation errors and the middle difference.
+All bounds are uniform in the test, so the resulting cutoff is test-independent.
+
+For \contractref{A2}, stop $P_n-P_k$ at $U$.
+The $L^2$ test estimate of Theorem~\ref{thm:integral-input}, optional sampling and conditional-expectation contraction give
+\[
+ E_Qe_T^J(P_n,P_k)\leq2\|P_n(U)-P_k(U)\|_2
+\]
+for every $T\leq U$ and $J$.
+Terminal $L^2$ Cauchy convergence supplies one cutoff making the right side at most $\varepsilon$.
+\end{proof}

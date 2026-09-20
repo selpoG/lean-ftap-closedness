@@ -1,0 +1,74 @@
+name: Lean Action CI
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v5
+
+      - name: Check module layout and documentation references
+        run: python3 scripts/check_structure.py
+
+      # Mathlib's binary cache and this project's build artifacts do not fit
+      # reliably alongside every preinstalled Ubuntu runner toolchain.  None
+      # of these SDKs is used by the Lean build.
+      - name: Free disk space for Lean
+        run: |
+          df -h /
+          sudo rm -rf /usr/local/lib/android
+          sudo rm -rf /usr/share/dotnet
+          sudo rm -rf /opt/ghc
+          sudo rm -rf /usr/local/share/boost
+          df -h /
+
+      # Cache only this repository's build output.  Caching all of .lake also
+      # archives the much larger Mathlib package tree and exhausts runner disk.
+      # The restore prefix reuses the preceding commit as an incremental-build
+      # base when the toolchain and dependency manifest have not changed.
+      - name: Cache project Lean build
+        uses: actions/cache@v5
+        with:
+          path: .lake/build
+          key: >-
+            project-build-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            project-build-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-
+
+      - uses: leanprover/lean-action@v1
+        with:
+          # The Mathlib cache is still downloaded by lean-action.  Caching the
+          # whole .lake directory duplicates those large artifacts and can
+          # exhaust the runner while actions/cache archives them.
+          use-github-cache: "false"
+
+      - name: Check Lean source style
+        run: lake exe lint-style FTAPTheorem42
+
+      - name: Audit theorem dependencies and source declaration closure
+        run: python3 scripts/check_declaration_closure.py
+
+      - name: Audit all project declarations for unproved terms
+        run: lake env lean scripts/AuditProject.lean
+
+      - name: Rebuild the analytic consumer without Stochastic
+        run: python3 scripts/check_analytic_isolation.py
+
+  documentation:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Install Japanese and English TeX tools
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends texlive-lang-japanese texlive-latex-extra texlive-fonts-recommended lmodern
+      - name: Build both proof PDFs and check references and typesetting
+        run: python3 scripts/build_docs.py --output-dir docs/build/pdfs

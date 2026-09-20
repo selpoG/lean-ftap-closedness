@@ -1,0 +1,213 @@
+\subsection{予測可能補償過程の貼り合わせと jump bound}
+
+各 $n$ について、$J^{\tau_n}$ の双対予測可能射影（補償過程）を $P^n$、martingale residualを
+$Q^n=J^{\tau_n}-P^n$ と書く。局所構成で得た ordered overlap は
+\begin{equation}
+ m\leq n\quad\Longrightarrow\quad (P^n)^{\tau_m}\sim P^m
+ \label{eq:compensator-ordered}
+\end{equation}
+である。一方、局所有限変動過程の貼り合わせが要求する形は
+\begin{equation}
+ (P^n)^{\tau_n\wedge\tau_m}\sim
+ (P^m)^{\tau_n\wedge\tau_m}\qquad(n,m\in\mathbb N)
+ \label{eq:compensator-minimum}
+\end{equation}
+である。式~\eqref{eq:compensator-ordered}で $m=n$ とすれば各 coordinate の自己停止が得られる。また一つの
+full-measure set上で $(\tau_n)$ は増加するので、$m\leq n$ なら
+$\tau_n\wedge\tau_m=\tau_m$ である。二重停止の吸収則と自然数の全順序を使えば
+式~\eqref{eq:compensator-minimum}が従う。これにより ordered overlapを貼り合わせ定理のall-pairs入力へ移した。
+
+式~\eqref{eq:compensator-minimum}から pointwise に eventually constantな局所極限を作ると、予測可能性は極限で保たれる。
+compatibilityとscheduleのa.e. 増加性・exhaustionをそのまま用いることで、right continuityと
+局所有限変動性がa.e. に得られる。そのpath-regularityの例外集合上で過程全体を零にすれば、
+全sample pathでright-continuousかつ局所有限変動な予測可能version $P$ を得る。
+compatibilityや $(\tau_n)$ 自体をpointwiseなdataへ置き換える必要はない。ただし各 $P^n_0=0$ は
+a.e. の等式なので、貼り合わせだけでは $P_0=0$ も
+a.e. にしか得られない。$\{P_0\neq0\}$ は時刻零で可測な零集合であり、そこでも過程全体を零にして
+$P_0=0$ をpathwiseに正規化する。この二度目の正規化はpredictability、right continuity、
+局所有限変動性、および各coordinateとのstopped indistinguishabilityを保つ。この構成により、同じ
+versionの $P$ についてこれら全ての性質が得られた。
+
+closed sourcesにも式~\eqref{eq:compensator-minimum}と同じminimum-stop compatibilityがあり、差を取ることで $(Q^n)$ にも
+同じcompatibilityを得た。各 $Q^n$ は c\`adl\`ag true martingaleなので、martingale
+貼り合わせ定理から、一つのstrongly adaptedな c\`adl\`ag local martingale $\widetilde Q$ を得る。この
+$\widetilde Q$ は全ての $n$ について、$\tau_n$ で停止すると $Q^n$ とindistinguishableである。各
+$\tau_n$ で
+\[
+ J^{\tau_n}\sim \widetilde Q^{\tau_n}+P^{\tau_n}
+\]
+が成り立つ。可算個のstopped agreementとexhaustionの共通full-measure set上では、任意の時刻 $t$ に
+対し $t\leq\tau_n$ となる $n$ を選べる。従って $J\sim\widetilde Q+P$ である。正規化後の同じ
+representative上で $Q=J-P$ と定めれば $Q\sim\widetilde Q$ である。従って $Q$ は
+局所 martingaleであると同時に、適合 c\`adl\`ag 局所有限変動過程であり、$Q_0=0$ である。
+この残差を局所 martingaleと示す際には、local propertyの時刻零indicatorを直接展開せず、
+true-martingale coordinatesの貼り合わせとindistinguishabilityによる移送を用いる。
+
+$L=N-Q=R+P$ と置けば $N=L+Q$ であり、$L$ も c\`adl\`ag 局所 martingaleである。しかし
+$|\Delta R|\leq c$ に加え、次の補償過程の評価を用いる。
+
+\begin{lemma}[補償過程の jump estimate]
+\label{lem:compensator-jump-bound}
+固定した $c>0$ と $T<\infty$ に対し、一つの full-measure set上で
+\[
+ 0<t\leq T\quad\Longrightarrow\quad
+ |\Delta P_t|\leq c,
+ \qquad |\Delta L_t|\leq 2c .
+\]
+\end{lemma}
+
+\begin{proof}
+$R=L+(-P)$ を時刻 $T$ で停止する。予測可能 c\`adl\`ag 有限変動過程 $P^T$ の全ての非零jumpは、
+累積変動の有理level crossingから作る可算個のannounced predictable stopping graphs
+$(\sigma_k)$ で覆われる。完成した各時刻は $T+1$ 以下である。局所化と条件付き期待値の評価を
+$L^T$ と $-P^T$ に適用すると、元の局所martingaleのjump全体の可積分性を仮定せずに
+\[
+ |\Delta (P^T)_{\sigma_k}|
+ \leq
+ \mathbb E[c\mid\mathcal F_{\sigma_k-}]=c
+ \quad\text{a.s.}
+\]
+を得る。入力の評価は $|\Delta(R^T)_t|\leq c$ であり、$t>T$ では停止済み過程のjumpが零である。
+可算個の零集合をまとめ、$(\sigma_k)$ のcoverageを用いれば、$P$ のjumpが零である時刻も含めて
+最初の結論が従う。最後に $\Delta L=\Delta R+\Delta P$ と三角不等式を用いる。
+$T=0$ は空な時間区間として分け、enumerationのdummy value $T+1$ では停止過程のjumpが零であることを使う。
+\end{proof}
+
+従って補償後に必要なestimateは、$Q=J-P$ 自身に対する $c$ boundではなく、まず
+$|\Delta P|\leq c$、次にbounded-jump martingale $L=N-Q$ に対する $2c$ boundである。
+これにより、元の零始点c\`adl\`ag local martingale $N$、$c>0$、有限horizon $T$、usual conditionsから
+大jumpの局所化列と補償過程を構成し、同じ $L,Q$ に対する $N=L+Q$ を得る。
+両成分は零始点c\`adl\`ag local martingaleであり、$Q$ は適合局所有限変動過程である。
+$Q$ の予測可能性は主張しない。任意のpathwise stop $\rho\leq T$ についても、同じ零集合の外で
+$|\Delta(L^\rho)_t|\leq2c$ が全時刻で成り立つ。これはjump評価の停止安定性である。
+得られる分解は固定horizonに依存する。
+
+\begin{lemma}[Horizon間の整合性]
+各horizon $T$ で得た成分を $P^{(T)},Q^{(T)},L^{(T)}=N-Q^{(T)}$ と書く。
+$U\leq T$ なら
+\[
+ (J^{c,T})^U=J^{c,U}
+\]
+が経路ごとに成り立ち、一つのfull-measure set上で全時刻について
+\[
+ (P^{(T)})^U=(P^{(U)})^U,\qquad
+ (Q^{(T)})^U=(Q^{(U)})^U,\qquad
+ (L^{(T)})^U=(L^{(U)})^U
+\]
+が成り立つ。各horizon内部のlocalizing sequenceを共通に選ぶ必要はない。
+\end{lemma}
+
+\begin{proof}
+$(0,U]$ の大jump時刻集合は $(0,T]$ のものの部分集合である。
+後者にのみ属する時刻は $U$ より大きく、時刻 $t\wedge U$ での有限和には寄与しない。
+これにより最初の等式が従う。残りについては
+\[
+ A=(P^{(T)})^U-(P^{(U)})^U
+   =(Q^{(U)})^U-(Q^{(T)})^U
+\]
+を考える。左辺は予測可能で、有限horizonで停止したため全時間軸で有限変動を持つ。
+右辺はc\`adl\`ag local martingaleの差である。従ってpredictable FV local-martingale rigidityから
+$A$ は初期値とindistinguishableである。初期値は零であるため、$P$ の一致が従い、同じ式から $Q$、
+さらに $L=N-Q$ の一致を得る。$U=0$ は零初期値から直接従う。
+\end{proof}
+
+元の零始点local martingaleから各 $T_n=n+1$ の分解を構成し、上の補題をその同じ成分へ適用する。
+可算交叉により、全 $m\leq n$ と全時刻でのoverlapを一つのfull-measure set上に揃えられる。
+また同じ $P^{(T_n)}$ のjump boundも全 $n$ で共通のfull-measure set上に揃えられる。
+
+\begin{lemma}[予測可能成分の全時刻への貼り合わせ]
+元の零始点local martingaleから上記のcoherent familyと、
+零始点の予測可能な右連続局所有限変動過程 $P$ を構成でき、
+一つのfull-measure set上で全 $n,t$ に対して
+$P_{t\wedge T_n}=P^{(T_n)}_{t\wedge T_n}$ が成り立つ。
+さらに一つのfull-measure set上で全 $t$ に対し $|\Delta P_t|\leq c$ である。
+\end{lemma}
+
+\begin{proof}
+各 $P^{(T_n)}$ を $T_n$ で停止して全時間軸で有限変動の座標とする。
+二つのindexの大小に応じてoverlapを適用すれば、両座標は $T_n\wedge T_m$ で停止した後に一致する。
+決定論的停止時刻列 $T_n$ は単調で無限大へ発散するため、予測可能な有限変動過程の貼り合わせを
+適用できる。得られた過程の初期値はほとんど確実に零である。その例外集合はusual conditionsにより
+時刻零で可測なので、その集合上で全pathを零に修正する。
+可算交叉で全horizonの一致を同時に確保する。
+任意の $t$ に対し $t\leq T_n$ となる $n$ を取り、停止前および停止時刻のleft jump一致から
+$|\Delta P_t|=|\Delta P^{(T_n)}_t|\leq c$ を得る。
+\end{proof}
+
+\begin{lemma}[Local-martingale座標の共通細分]
+零始点c\`adl\`ag local martingales $X^n$ が、ほとんど確実に単調でexhaustiveな停止時刻列 $(\tau_n)$ に対し、
+$(X^n)^{\tau_n\wedge\tau_m}\sim(X^m)^{\tau_n\wedge\tau_m}$ を満たすとする。
+このときc\`adl\`ag local martingale $Y$ が存在し、全 $n$ で
+$Y^{\tau_n}\sim(X^n)^{\tau_n}$ である。
+\end{lemma}
+
+\begin{proof}
+$X^n$ のlocalizing sequenceを $(\eta^n_j)_j$ とする。
+可算な列の抽出により、$\sigma_n=\tau_n\wedge\eta^n_{k(n)}$ がほとんど確実に無限大へ発散するように
+$k(n)$ を選べる。$\rho_n=\inf_{j\geq n}\sigma_j$ と置くと、filtrationの右連続性により停止時刻であり、
+単調に無限大へ発散し、$\rho_n\leq\tau_n\wedge\eta^n_{k(n)}$ である。
+零初期値はlocalizing stopに付く時刻零のindicatorを除去するため、optional stoppingから
+$(X^n)^{\rho_n}$ はtrue martingaleである。
+元のcompatible familyの点ごとの極限を $W$ とすると、$W^{\rho_n}\sim(X^n)^{\rho_n}$ である。
+これにより細分した座標もcompatibleであり、true-martingale gluingを適用できる。
+得られた $Y$ は全 $\rho_n$ で $W$ と一致するため、exhaustionから $Y\sim W$ である。
+元の $\tau_n$ で停止し直すと所望の一致を得る。
+\end{proof}
+
+\begin{proposition}[全時刻のDoléans--Dade--Yen分解]
+零始点c\`adl\`ag local martingale $N$ と $c>0$ に対し、零始点c\`adl\`ag local martingales
+$L,Q$ が存在し、$N=L+Q$、$Q$ は局所有限変動であり、一つのfull-measure set上で全時刻について
+$|\Delta L_t|\leq2c$ が成り立つ。
+\end{proposition}
+
+\begin{proof}
+同じhorizon familyの $Q^{(T_n)}$ に共通細分とgluingを適用する。
+各horizonでの一致からlocal BVと初期値零がほとんど確実に従う。
+例外集合は時刻零で可測であり、その上でpathを零に修正して全pathのlocal BVと零初期値を得る。
+同じfamilyから貼った $P,Q$ は、全horizonの共通零集合上で
+$(J^{c,T_n})^{T_n}=(Q+P)^{T_n}$ を満たす。
+$L=N-Q$ と置けば、$t\leq T_n$ に対して
+$\Delta L_t=\Delta(N-J^{c,T_n})_t+\Delta P_t$ である。
+任意の正の $t$ を含むhorizonを選び、それぞれのbound $c$ を加える。
+時刻零のjumpは零である。$L$ の残りの性質はlocal martingalesの差から従う。
+\end{proof}
+
+この同じ大域 $L$ に次のquadratic constructionを適用する。
+有限horizonの $L^T$ への適用も同じ構成の別の入力である。
+
+\begin{lemma}[Bounded-jump local martingaleのquadratic局所化]
+零始点c\`adl\`ag local martingale $M$ が、各整数horizon $n+1$ で一つのfull-measure set上の
+jump bound $|\Delta M_t|\leq b_n$ を持つとする。ここで $b_n\geq0$ は定数である。
+$M$ のlocal-martingale localizing sequenceを $(\eta_n)$ とし、
+\[
+ \theta_n=\inf\{t\geq0:|M_t|>n+1\},\qquad
+ \rho_n=\eta_n\wedge\theta_n\wedge(n+1)
+\]
+と置く。この列はexhaustiveであり、各 $M^{\rho_n}$ はtrue martingaleで、全時刻共通に
+\[
+ |M^{\rho_n}_t|\leq n+1+b_n\quad\text{a.s.}
+\]
+が成り立つ。従って各座標の終端値は $L^2$ に属する。
+\end{lemma}
+
+\begin{proof}
+absolute passageをhorizonで切った列と $(\eta_n)$ はともにlocalizing sequenceであり、その最小値も
+同じ性質を持つ。零初期値により、$\eta_n=0$ のpathでもindicator付きlocalizing stopと通常のclosed stopが
+一致する。従って $M^{\eta_n}$ はtrue martingaleである。$\rho_n\leq\eta_n$ でのbounded optional stoppingから
+$M^{\rho_n}$ のtrue-martingale性を得る。passage直前の絶対値は $n+1$ 以下であり、境界で加わるjumpは
+$b_n$ 以下であるため、表示した全時刻評価が従う。定数の $L^2$ majorantにより終端値の二乗可積分性を得る。
+\end{proof}
+
+各座標に有限horizon quadratic constructionを適用し、minimum-stop compatibilityとgluingを用いて
+一つのglobal optional quadratic variation $V$ を得る。同じ $V$ のlocalizer rootと座標のterminal rootは
+a.e. に一致し、その期待値costも一致する。各座標でDavis評価を適用すると
+\[
+ \mathbb E\sup_{t\leq n+1}|M^{\rho_n}_t|
+ \leq 6\,\mathbb E\sqrt{V_{\rho_n}}
+\]
+を得る。ここでsupremumはc\`adl\`ag性により可算な時刻集合から検出する。
+
+固定horizon DDY分解では $M=L^T$、$b_n=2c$ としてこの全構成を適用する。
+元の零始点local martingaleからDDY成分を選び、その同じ $L^T$ に対するquadratic/Davis評価まで得られる。
+この $V$ は $L^T$ のquadratic variationであり、元の $N$ のものではない。また各座標の評価から
+unstopped $L^T$ のglobal $H^1$ 可積分性は主張しない。

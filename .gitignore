@@ -1,0 +1,11 @@
+.lake/
+__pycache__/
+.task/
+docs/build/
+docs/*.aux
+docs/*.dvi
+docs/*.log
+docs/*.out
+docs/*.bkm
+docs/*.synctex.gz
+docs/*.toc

@@ -1,0 +1,239 @@
+\section{同じ凸平均列の成分評価}
+\label{sec:components}
+前節で得る $Y_i\to X$、$X_\infty=h$ と一つの同値測度 $Q_*$ を固定する。
+共通の $L^2(Q_*)$ 包絡から各 $Y_i$ の零始点special分解
+$Y_i=M_i+A_i$ を構成する。補助分解は添字ごとに異なる。
+以下では、各補助利得の変換を同じ元価格の一般積分に戻して市場のNFLVRを使う。
+
+\subsection{予測可能変換と族全体の最大関数評価}
+次の命題は\cite[Lemma 4.7]{DS}の族評価に対応する。本稿では添字ごとに補助分解を許し、全ての反証用取引を同じ元市場へ戻す。
+
+\begin{proposition}[元市場のNFLVRによる添字付き補助分解の評価]\label{prop:indexed-maximal}
+元の有界価格 $S$ の一般積分市場がNFLVRを満たすとする。
+$Q\sim P$ を固定し、任意の添字集合 $I$ に対して、その市場に実現される利得
+$Y_i=M_i+A_i$ の族を考える。補助分解は $Q$ の下でspecialであり、
+$M_i(0)=0$、$A_i$ は局所有界変動であるとする。さらに
+\[
+ Y_i\geq-1,\qquad |Y_i(t)|\leq \xi_i\quad(\forall t),\qquad
+ \sup_{i\in I}\|\xi_i\|_{L^2(Q)}\leq B<\infty
+\]
+が成り立つなら、$\{\sup_t|M_i(t)|:i\in I\}$ は $Q$ に関して確率有界である。
+補助sourceを族全体で共通にする仮定は不要である。
+\end{proposition}
+\begin{proof}
+確率有界性が破れると仮定する。càdlàg経路の全時間最大関数は整数horizonの最大関数の増大極限である。
+従って固定した $0<\alpha\leq1/4$ に対し、各十分大きな $n$ で添字 $i_n$ と有限 $T_n>0$ を選び、
+$Q(\sup_{t\leq T_n}|M_{i_n}(t)|>n^3)>8\alpha$ とできる。
+\contractref{F1}をこの利得に適用する。$k_n=\lfloor\alpha n/4\rfloor$ とすると、
+同項の有限尺度の仮定は十分大きい $n$ で全て成立する。
+得られる $f_n\in K_0-L^0_+(Q)$ は
+\[
+ f_n\geq-\delta_n,\qquad \delta_n=n^{-1/4}+2/(nk_n)\to0,
+ \qquad Q(f_n\geq\eta)>p
+\]
+を固定した $\eta,p>0$ について満たす。実際、同項の利益水準は $\alpha^3/4$ へ、
+確率下界は $\alpha^2/2$ へ収束する。
+同じ市場の許容性は同値測度間で変わらず、確率収束位相も一致する。
+従ってNFLVRを $Q$ に移し、この消失リスクの終端claim列へ適用すると矛盾する。
+ここでは $f_n$ を利得過程に持ち上げ直す必要はない。
+\end{proof}
+
+最大閉包元から得た近似列の全時刻一様極限 $X$ とその終端値 $h$ は、
+包絡を選ぶ部分列と指定された利得を選ぶ部分列を通して保持する。
+上の族評価を選択利得に適用する際も、同じ測度・分解・極限の証拠を使う。
+
+\begin{corollary}[選択成分の有限凸族の確率有界性]
+前命題の族が共通の $q\in L^2(Q)$ によって $|Y_i|\leq q$ と抑えられるならば、
+全ての有限凸重み $w$ に対する $\sum_i w_iM_i$ の全時刻最大関数も一様に確率有界である。
+\end{corollary}
+\begin{proof}
+\contractref{M7}で $Y^w=\sum_iw_iY_i$ と同じ重みの成分
+$M^w=\sum_iw_iM_i$、$A^w=\sum_iw_iA_i$ を元市場に実現する。
+凸性から $Y^w\geq-1$ と $|Y^w|\leq q$ が全時刻で成り立つ。
+従って $w$ を新しい添字とした族そのものに前命題を適用できる。
+一般の確率有界集合の凸包に関する閉性は用いない。
+\end{proof}
+
+\subsection{停止後tailと共通Hilbert凸化}
+次の命題とその系は\cite[Lemma 4.8]{DS}の凸尾部評価に対応する。まず有限停止族で示し、その後に停止を除く。
+
+\begin{proposition}[有限停止した選択族の凸尾部評価]\label{prop:convex-tails}
+上の共通包絡を持つ選択族について、正の有限時刻列 $T_i$ を指定し、
+$\bar Y_i(t)=Y_i(t\wedge T_i)$ と同じ停止を施した成分 $\bar M_i,\bar A_i$ を考える。
+$\tau_i(c)$ を $|\bar M_i|$ の水準 $c$ への最初のpassageとし、
+有限凸重み $w$ に対して
+\[
+ L^{w,c}=\sum_i w_i(\bar M_i-\bar M_i^{\tau_i(c)})
+\]
+と置く。任意の $\varepsilon>0$ に対し $c_0\geq0$ が存在し、$c\geq c_0$ なら、
+$L^{w,c}$ の絶対値が水準 $\varepsilon$ を超える有限passageの事象は、
+全ての有限凸重みについて確率 $\varepsilon$ 以下となる。
+\end{proposition}
+\begin{proof}
+\contractref{M6}により同じ停止成分を持つ有限利得列を得る。下界と共通包絡は保たれる。
+命題\ref{prop:indexed-maximal}でそのM最大関数の確率有界性を得て、\contractref{F2}へ渡す。
+結論が偽なら、ある $\varepsilon>0$ について任意のcutoff以上に
+有限passage確率が $\varepsilon$ を超える尾部を選べる。
+\contractref{F2}の $N$ を固定し、
+\[
+ \delta_r=\frac{\varepsilon}{4(N+1)(r+1)}\qquad(r\geq0)
+\]
+と置く。各 $r$ で先に\contractref{F2}のcutoffを取り、その後に違反する重みと水準を選ぶ。
+得られる元市場の利得 $V_r=M^{V_r}+A^{V_r}$ は
+$V_r\geq-1$、$|V_r|\leq g_r$、$\|g_r\|_2\leq1$ を満たし、
+\[
+ Q\bigl((M^{V_r})^*>2(r+1)\bigr)>\varepsilon/2
+\]
+となる。命題\ref{prop:indexed-maximal}をこの正規化族そのものに適用すると、
+ある $R\geq0$ に対し全ての $r$ で
+$Q((M^{V_r})^*>R)\leq\varepsilon/4$ となる。
+$2(r+1)>R$ となる $r$ を取れば矛盾する。
+各反証用利得の補助分解が異なっても、帰還先が同じ元市場であるためこの適用は有効である。
+\end{proof}
+
+ここで $c_0$ は指定した列 $(T_i)$ に依存してよい。
+次の可算族への適用により、元の未停止列のtailも制御できる。
+
+\begin{corollary}[未停止選択族の全時刻凸尾部評価]
+前命題の結論は、元の $M_i$ とそのpassage tailについても成立する。
+\end{corollary}
+\begin{proof}
+添字 $(i,r)\in\mathbb N^2$ を一つの自然数で符号化し、
+$Y_i^{r+1}$ とその同じ停止成分を一つの族とする。
+元の価格への実現、許容下界、共通L²包絡を保つため、前命題をこの族全体に適用できる。
+従って、passage水準の閾値は $r$ を選ぶ前に固定される。
+
+元の有限凸重みを、第二座標が $r$ の添字へ同じ重みのまま埋め込む。
+個々の過程 $M$ の絶対値passageを $\tau(c)$、$M^{r+1}$ のpassageを
+$\tau^{r+1}(c)$ とすると、
+\[
+ \tau^{r+1}(c)\wedge(r+1)=\tau(c)\wedge(r+1).
+\]
+よって $M^{r+1}-(M^{r+1})^{\tau^{r+1}(c)}$
+は $(M-M^{\tau(c)})^{r+1}$ と一致する。
+これはhorizonとpassage時の値も含む恒等式である。
+従って元の凸tailが時刻 $r+1$ までに所定の水準を超える事象にも、同じ確率上界が成り立つ。
+この事象の $r$ に関する増大和が全時刻の事象となるので、測度の下からの連続性で結論を得る。
+\end{proof}
+
+次の命題は\cite[Lemma 4.9]{DS}のÉmery尾部評価に対応し、elementary testと有限horizonに一様な形で述べる。
+
+\begin{proposition}[凸尾部の全elementary test一様な評価]\label{prop:test-uniform-tails}
+元の未停止成分のpassage tailの凸和を $L^{w,c}$ とする。
+任意の $\varepsilon>0$ に対し $c_0\geq0$ が存在し、全ての有限凸重み $w$、
+$c\geq c_0$、$T>0$、$|J|\leq1$ のelementary predictable testについて
+\[
+ \mathbb E_Q\left[1\wedge\sup_{t\leq T}|(J\cdot L^{w,c})_t|\right]\leq\varepsilon
+\]
+が成り立つ。
+\end{proposition}
+\begin{proof}
+まず添字と整数horizonを符号化した有限停止族を使う。
+$\eta=\varepsilon/5$ と置き、\contractref{F3}のcutoffと
+命題\ref{prop:convex-tails}で水準 $\eta$ のpassage確率を $\eta$ 以下とするcutoffの最大を取る。
+全ての重み・horizon・testに対して $E_Qe_T^J(L^{w,c},0)\leq4\eta+\eta=\varepsilon$ となる。
+この選択は重み、horizon、testに依存しない。
+元の未停止列に対しては $T\leq r+1$ となる整数 $r$ を選び、重みを第二座標 $r$ へ埋め込む。
+前系の停止恒等式により利得は $[0,T]$ 上で一致する。
+同じ有限和のtest積分も一致するので、求める評価が戻る。
+\end{proof}
+
+次の命題は\cite[Lemma 4.10]{DS}の共通凸化に対応する。ここではまずM成分のÉmery Cauchy性を得て、極限の同定は後段で行う。
+
+\begin{proposition}[同じ選択列のマルチンゲール成分の共通凸化]\label{prop:martingale-convexification}
+上の選択列に対し、一つのforward convex weight列 $w_n$ が存在し、
+$\widetilde M_n=\sum_iw_{n,i}M_i$ は $Q$ の下でelementary-Émery Cauchyである。
+同じ重みの利得 $\widetilde Y_n=\sum_iw_{n,i}Y_i$ は元測度の下で
+同じ $X$ へ全時刻一様収束し、その固有終端は引き続き $h$ である。
+\end{proposition}
+\begin{proof}
+$P_{i,j}=M_i^{\tau_i(j+1)\wedge(j+1)}$ と置く。
+\contractref{F4}と\contractref{F5}により、$P_{i,j}$ は右連続・零始点の真のマルチンゲールであり、
+\[
+ \|P_{i,j}(j+1)\|_2\leq j+1+6\|q\|_2
+\]
+が全ての $i$ について成り立つ。
+有限な座標別上界を幾何級数で正規化してHilbert直和へ入れ、共通凸化定理を一度適用する。
+これにより、同じ $w_n$ について $\sum_iw_{n,i}P_{i,j}(j+1)$ が全ての $j$ でL² Cauchyとなる。
+
+$T$ と誤差 $\varepsilon$ を固定する。前命題のtail閾値と $T$ の両方を超える
+整数座標 $j+1$ を選ぶ。\contractref{A2}により、停止前凸和は全てのhorizon $t\leq T$ とtestに一様にCauchyとなる。
+この区間では $M_i-P_{i,j}=M_i-M_i^{\tau_i(j+1)}$ である。
+停止前凸和は\contractref{F5}と適合性から強進行可測であり、
+前命題のtail誤差と\contractref{A1}から $\widetilde M_n$ のCauchy性を得る。
+列のcutoffはtestを選ぶ前に固定される。
+
+forward convex weightsは元の利得列の全時刻一様極限を保つため、極限は同じ $X$ である。
+$X$ の無限時刻極限は元の構成の証拠を保持する。
+\end{proof}
+
+この命題単独の結論はM成分のCauchy性である。同じ重みのFV変動評価と最大閉包元の実現は、以下のHahn改善と最大性矛盾で証明する。
+最大元から得た同じ選択列のまま議論し、全時刻一様極限や無限時刻の終端を選び直さない。
+
+\subsection{同じ列への有限Hahn入力の適用}
+\begin{proposition}[ペアに共通するHahn改善データ]\label{prop:sequence-hahn}
+前命題の同じ重みにより、$R_n=\sum_iw_{n,i}Y_i$ と
+$\widetilde M_n,\widetilde A_n$ を元市場に実現できる。
+各 $T,b>0$ に対し共通のcutoffがあり、その先の全てのペアと任意の $\delta\geq0$ に対し、
+\contractref{H1}の両向きの改善データを得る。同じ $X$ と $X_\infty=h$ を保持する。
+\end{proposition}
+\begin{proof}
+\contractref{M7}により利得と両成分を同じ重みで取る。凸性から $R_n\geq-1$、$|R_n|\leq q$ である。
+M成分のÉmery Cauchy性で全ペア・全test共通のcutoffを取り、各順序で上界 $b$ を得る。
+そこで指定した二つの利得に\contractref{H1}を適用する。
+forward凸平均は全時間一様極限を保つので、同じ $X,h$ が残る。
+\end{proof}
+
+\subsection{最大性による有限変動Cauchy性}\label{sec:fv-cauchy}
+この節は\cite[Lemma 4.11]{DS}の最大性によるFV評価に対応する。本稿では各有限horizonの変動Cauchy性を示し、無限時刻の終端は先に得た全時間一様極限から保持する。
+
+\begin{proposition}[正規化した終端差と最大性矛盾]
+固定した $T>0$ でFV変動のCauchy性が成り立たないと仮定する。
+ある $\alpha>0$ に対し、任意のcutoffより先に
+$Q_*(\operatorname{Var}_{[0,T]}(\widetilde A_n-\widetilde A_k)>\alpha)>\alpha$
+となるペアが存在する。次を取る。
+\[
+ c=\min(\alpha/8,1),\qquad
+ \delta_r=c2^{-(r+1)},\qquad b_r=\delta_r^2/8,\qquad
+ U_r=\max(T,r+1).
+\]
+M評価の誤差を $b_r$ に指定した共通cutoff以上かつ $r$ 以上のペアを選び、
+前命題で $Q_*(C_r(T)>\alpha/2)>\alpha/2$ となる向きを選ぶ。
+対応する基底の添字を $\ell_r\geq r$、貼り合わせ利得を $Z_r$ とし、
+\[
+ g_r=\frac{Z_r(U_r)}{1+\delta_r},\qquad
+ f_r=\frac{R_{\ell_r}(U_r)}{1+\delta_r}
+\]
+とおく。この列は最大性に矛盾する。
+\end{proposition}
+\begin{proof}
+正のスカラー倍は元市場の積分戦略と終端値を保ち、下界を同じ係数で変えるので、
+$Z_r(U_r)\in K_{1+\delta_r}$ から $g_r\in K_1$ となる。
+失敗事象 $D_r=\{\tau_r\leq T\}$ は
+\[
+ Q_*(D_r)\leq\frac{8b_r}{\delta_r}=\delta_r
+\]
+を満たす。選んだ向きのM成分の差を $L_r$ と書く。
+生存事象では $N_r(T)-\max(L_r(T),0)\geq-\delta_r$ より
+$N_r(T)\geq-\delta_r$ である。従って
+\[
+ g_r-f_r\geq\frac{C_r(T)-\delta_r}{1+\delta_r}.
+\]
+$C_r(T)\geq0$ なので $(f_r-g_r)^+\leq\delta_r$ である。
+また $E_r=\{C_r(T)>\alpha/2\}\setminus D_r$ 上では
+$g_r-f_r\geq\alpha/8$ であり、
+$Q_*(E_r)>\alpha/2-\delta_r\geq\alpha/4$ となる。
+別のM誤差事象は必要ない。向きは各 $r$ で一つを選び、標本点ごとには選び直さない。
+
+$\sum_r Q_*(D_r)<\infty$ なので、Borel--Cantelliによりほとんど確実に最終的には生存する。
+よって $(f_r-g_r)^+\to0$ a.s. である。
+同じ $X$ への全時間一様収束、$\ell_r\to\infty$、$U_r\to\infty$ と $X_\infty=h$ から
+$R_{\ell_r}(U_r)\to h$ a.s. となり、$\delta_r\to0$ より $f_r\to h$ a.s. となる。
+各 $R_n$ に新たな無限時刻終端を要求する必要はない。
+
+同じ元市場の $K_1$、forward convex candidateの存在、確率収束閉包と最大性は、
+相互絶対連続性により $Q_*$ へ移る。従って、可測な比較基底 $f_r$、元市場の $g_r\in K_1$、
+a.s.に消える下方誤差、正の確率下界を持つ改善事象 $E_r$ は、最大性矛盾の条件を満たす。
+比較基底の $K_1$ 帰属や、全段階で共通の改善事象は要求しない。
+これにより各 $T>0$ のFV変動Cauchy性を得る。$T=0$ では経路変動は零である。
+\end{proof}

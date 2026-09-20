@@ -1,0 +1,230 @@
+\subsection{Gluing predictable compensators and bounding jumps}
+For each $n$, let $P^n$ be the dual predictable projection (compensator) of $J^{\tau_n}$ and
+$Q^n=J^{\tau_n}-P^n$ its martingale residual. The local construction gives
+ordered overlaps
+\begin{equation}
+ m\leq n\quad\Longrightarrow\quad (P^n)^{\tau_m}\sim P^m.
+ \label{eq:compensator-ordered}
+\end{equation}
+The gluing theorem for locally finite-variation processes instead requires
+\begin{equation}
+ (P^n)^{\tau_n\wedge\tau_m}\sim
+ (P^m)^{\tau_n\wedge\tau_m}\qquad(n,m\in\mathbb N).
+ \label{eq:compensator-minimum}
+\end{equation}
+Taking $m=n$ in \eqref{eq:compensator-ordered} shows that each coordinate is unchanged by its own
+stop. On one full-measure set the sequence $(\tau_n)$ is increasing; hence
+$\tau_n\wedge\tau_m=\tau_m$ when $m\leq n$.
+Stopping absorption and the total order on the indices prove \eqref{eq:compensator-minimum}.
+Thus the ordered overlaps supply the all-pairs compatibility needed for gluing.
+
+The local limit in \eqref{eq:compensator-minimum} is eventually constant at each point, and
+predictability passes to that limit. Compatibility and the almost-sure
+monotonicity and exhaustion of the schedule give right continuity and
+local finite variation almost surely. Set the whole path to zero on the
+exceptional null set, obtaining a predictable version $P$ with these path
+properties everywhere. No replacement of the original compatibility or
+schedule by pointwise monotone data is necessary.
+Initially, however, $P^n_0=0$ and therefore $P_0=0$ hold only almost surely.
+The exceptional set $\{P_0\ne0\}$ is measurable at time zero. Set the whole
+path to zero there too. This second normalization preserves predictability,
+right continuity, local finite variation and stopped indistinguishability
+with every coordinate. All these properties now hold for the same version $P$.
+
+The closed sources have the same minimum-stop compatibility as \eqref{eq:compensator-minimum};
+subtracting the projections gives it for $(Q^n)$ too. These coordinates
+are c\`adl\`ag true martingales. Martingale gluing produces one strongly
+adapted c\`adl\`ag local martingale $\widetilde Q$, whose stop at every
+$\tau_n$ is indistinguishable from $Q^n$. Thus
+\[
+ J^{\tau_n}\sim\widetilde Q^{\tau_n}+P^{\tau_n}.
+\]
+Intersect the countably many stopped-agreement events with the exhaustion
+event. For any $t$, some $n$ satisfies $t\leq\tau_n$, proving
+$J\sim\widetilde Q+P$. On the normalized representatives define $Q=J-P$.
+Then $Q\sim\widetilde Q$, so $Q$ is a local martingale; it is also adapted,
+c\`adl\`ag, locally of finite variation, and zero-start.
+This proof uses gluing of true-martingale coordinates and transfer by
+indistinguishability, rather than expanding the time-zero indicators in
+the definition of a local property.
+
+Set $L=N-Q=R+P$. Then $N=L+Q$, and $L$ is a c\`adl\`ag local martingale.
+In addition to $|\Delta R|\leq c$, we need the following compensator estimate.
+\begin{lemma}[Compensator jump estimate]\label{lem:compensator-jump-bound}
+For fixed $c>0$ and $T<\infty$, on one full-measure set,
+\[
+ 0<t\leq T\quad\Longrightarrow\quad
+ |\Delta P_t|\leq c,\qquad |\Delta L_t|\leq2c.
+\]
+\end{lemma}
+\begin{proof}
+Stop $R=L+(-P)$ at $T$. All nonzero jumps of the predictable c\`adl\`ag
+finite-variation process $P^T$ are covered by countably many announced
+predictable stopping graphs $(\sigma_k)$, constructed from rational level
+crossings of cumulative variation. Each completed time is at most $T+1$.
+Apply the localized conditional-expectation estimate to $L^T$ and $-P^T$.
+Without assuming integrability of all jumps of the original local
+martingale, this gives
+\[
+ |\Delta(P^T)_{\sigma_k}|
+ \leq E[c\mid\F_{\sigma_k-}]=c\quad\text{a.s.}
+\]
+Its input is $|\Delta(R^T)_t|\leq c$; after $T$ the stopped process has
+zero jumps. Combine the countably many null sets and use the graph
+coverage. Times with zero jump of $P$ satisfy the estimate automatically.
+This proves the first bound. The second follows from
+$\Delta L=\Delta R+\Delta P$ and the triangle inequality.
+For $T=0$ the relevant interval is empty. At the dummy enumeration value
+$T+1$, the stopped process has zero jump.
+\end{proof}
+Thus compensation first gives the bound $c$ for $\Delta P$, and then the
+bound $2c$ for $\Delta L$; it does not assert a bound $c$ for $\Delta Q$.
+From the original zero-start c\`adl\`ag local martingale, a threshold,
+a finite horizon, and the usual conditions, the construction supplies
+$N=L+Q$ with these same components. Both components are zero-start
+c\`adl\`ag local martingales and $Q$ is adapted and locally of finite
+variation. Predictability of $Q$ is not asserted.
+For every pathwise stop $\rho\leq T$, the bound
+$|\Delta(L^\rho)_t|\leq2c$ also holds at every time outside the same null
+set. The decomposition at this stage depends on the fixed horizon.
+
+\begin{lemma}[Compatibility between horizons]
+Write $P^{(T)},Q^{(T)}$ for the components at horizon $T$ and
+$L^{(T)}=N-Q^{(T)}$. For $U\leq T$ we have pathwise
+\[
+ (J^{c,T})^U=J^{c,U}.
+\]
+On one full-measure set, at every time,
+\[
+ (P^{(T)})^U=(P^{(U)})^U,\qquad
+ (Q^{(T)})^U=(Q^{(U)})^U,\qquad
+ (L^{(T)})^U=(L^{(U)})^U.
+\]
+The localizing sequences used within the individual horizons need not agree.
+\end{lemma}
+\begin{proof}
+The large-jump set in $(0,U]$ is contained in that in $(0,T]$.
+Any time in the difference exceeds $U$ and does not contribute to the
+finite sum at $t\wedge U$. This proves the first identity. Next consider
+\[
+ A=(P^{(T)})^U-(P^{(U)})^U
+   =(Q^{(U)})^U-(Q^{(T)})^U.
+\]
+The first expression is predictable and has finite variation over the
+whole time axis, because of the finite horizon stop. The second is a
+difference of c\`adl\`ag local martingales. Predictable finite-variation
+rigidity makes $A$ indistinguishable from its initial value, which is zero.
+This proves the identity for $P$, then for $Q$, and finally for $L=N-Q$.
+When $U=0$, the identities follow directly from zero initial values.
+\end{proof}
+Construct these decompositions for $T_n=n+1$, always starting from the
+same original local martingale. A countable intersection gives all ordered
+overlaps, for all times and all $m\leq n$, on one full-measure set.
+The jump bounds of the same $P^{(T_n)}$ can also be made simultaneous in $n$.
+
+\begin{lemma}[Gluing the predictable component over all time]
+The coherent horizon family gives a zero-start predictable,
+right-continuous locally finite-variation process $P$ such that, on one
+full-measure set, for every $n,t$,
+$P_{t\wedge T_n}=P^{(T_n)}_{t\wedge T_n}$.
+On one full-measure set $|\Delta P_t|\leq c$ for every $t$.
+\end{lemma}
+\begin{proof}
+Stop $P^{(T_n)}$ at $T_n$ to obtain coordinates of global finite variation.
+Apply the appropriate ordered overlap according to the order of the two
+indices: the coordinates agree after stopping at $T_n\wedge T_m$.
+The deterministic schedule is increasing and exhaustive, so predictable
+finite-variation gluing applies. Its initial value is almost surely zero.
+The usual conditions make the exceptional set measurable at time zero;
+set the whole path to zero on that set.
+Take a countable intersection to preserve every horizon identity at once.
+For a given $t$, choose $n$ with $t\leq T_n$. The left-jump identity before
+and at the closed stop gives
+$|\Delta P_t|=|\Delta P^{(T_n)}_t|\leq c$.
+\end{proof}
+
+\begin{lemma}[Common refinement of local-martingale coordinates]
+Suppose zero-start c\`adl\`ag local martingales $X^n$ satisfy
+$(X^n)^{\tau_n\wedge\tau_m}\sim(X^m)^{\tau_n\wedge\tau_m}$ for an
+almost-surely increasing exhaustive stopping sequence $(\tau_n)$.
+There is a c\`adl\`ag local martingale $Y$ such that
+$Y^{\tau_n}\sim(X^n)^{\tau_n}$ for every $n$.
+\end{lemma}
+\begin{proof}
+Let $(\eta^n_j)_j$ localize $X^n$. Choose $k(n)$ by a countable extraction
+so that $\sigma_n=\tau_n\wedge\eta^n_{k(n)}$ tends to infinity almost surely.
+Put $\rho_n=\inf_{j\geq n}\sigma_j$. Right continuity of the filtration
+makes it a stopping time; the sequence increases to infinity and satisfies
+$\rho_n\leq\tau_n\wedge\eta^n_{k(n)}$.
+Zero initial values remove the time-zero indicator in a localizing stop,
+and optional stopping makes $(X^n)^{\rho_n}$ a true martingale.
+If $W$ is the pointwise limit of the original compatible family, then
+$W^{\rho_n}\sim(X^n)^{\rho_n}$. The refined coordinates are therefore
+compatible, and true-martingale gluing applies. Its result $Y$ agrees with
+$W$ at all $\rho_n$, hence $Y\sim W$ by exhaustion. Stopping again at the
+original $\tau_n$ proves the required identities.
+\end{proof}
+
+\begin{proposition}[A global Doléans--Dade--Yen decomposition]
+For a zero-start c\`adl\`ag local martingale $N$ and $c>0$, there are
+zero-start c\`adl\`ag local martingales $L,Q$ with $N=L+Q$, with $Q$ locally
+of finite variation, and with $|\Delta L_t|\leq2c$ for every time on one
+full-measure set.
+\end{proposition}
+\begin{proof}
+Apply common refinement and gluing to $Q^{(T_n)}$ from the same horizon
+family. The horizon identities give local bounded variation and zero
+initial value almost surely. Correct the paths to zero on the exceptional
+time-zero measurable set, making both properties hold everywhere.
+The processes $P,Q$ glued from that family satisfy
+$(J^{c,T_n})^{T_n}=(Q+P)^{T_n}$ simultaneously over all horizons.
+Set $L=N-Q$. For $t\leq T_n$,
+$\Delta L_t=\Delta(N-J^{c,T_n})_t+\Delta P_t$.
+For any positive $t$ choose a horizon containing it and add the two bounds
+$c$. The time-zero jump is zero. The other properties of $L$ follow by
+subtracting local martingales.
+\end{proof}
+Apply the quadratic construction below to this same global $L$.
+Its application to a finite-horizon $L^T$ is another instance of that construction.
+
+\begin{lemma}[Quadratic localization of a bounded-jump local martingale]
+Let $M$ be a zero-start c\`adl\`ag local martingale, with deterministic
+jump bounds $|\Delta M_t|\leq b_n$ on each integer horizon $n+1$, where
+$b_n\geq0$. Let $(\eta_n)$ be a local-martingale localizing sequence and put
+\[
+ \theta_n=\inf\{t\geq0:|M_t|>n+1\},\qquad
+ \rho_n=\eta_n\wedge\theta_n\wedge(n+1).
+\]
+This sequence is exhaustive, each $M^{\rho_n}$ is a true martingale, and
+simultaneously at all times
+\[
+ |M^{\rho_n}_t|\leq n+1+b_n\quad\text{a.s.}
+\]
+In particular, each coordinate's terminal value belongs to $L^2$.
+\end{lemma}
+\begin{proof}
+Both the horizon-capped absolute passages and $(\eta_n)$ are localizing
+sequences, as is their minimum. At zero, the zero initial value identifies
+the indicator-corrected localizing stop with the usual closed stop, even
+on paths with $\eta_n=0$. Thus $M^{\eta_n}$ is a true martingale.
+Bounded optional stopping at $\rho_n\leq\eta_n$ gives the same property
+for $M^{\rho_n}$. Before passage the left-limit magnitude is at most
+$n+1$, and the boundary jump adds at most $b_n$. This proves the all-time
+bound. The deterministic majorant is in $L^2$, so the terminal value is
+square integrable.
+\end{proof}
+Apply the quadratic construction on each finite horizon and glue at the
+minimum of the coordinate stops, obtaining one global optional
+quadratic variation $V$. The localizer root of this same $V$ equals the
+coordinate's terminal root almost surely, so their expectation costs agree.
+Applying Davis's inequality to each coordinate gives
+\[
+ E\sup_{t\leq n+1}|M^{\rho_n}_t|\leq6E\sqrt{V_{\rho_n}}.
+\]
+The supremum is detected on a countable time set by c\`adl\`ag regularity.
+
+For the fixed-horizon decomposition take $M=L^T$ and $b_n=2c$.
+Thus the quadratic and Davis estimates apply to the same chosen DDY component.
+This $V$ is the quadratic variation of $L^T$, not of the original $N$.
+The coordinate estimates do not assert global $H^1$ integrability of
+unstopped $L^T$.

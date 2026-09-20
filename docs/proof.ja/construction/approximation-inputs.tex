@@ -1,0 +1,36 @@
+\subsection{停止前energyとマルチンゲールの近似}
+\label{sec:approximation-inputs}
+\begin{proof}[\contractref{F3}--\contractref{F5}の証明]
+\contractref{F3}には、補題\ref{lem:quantitative-tails}の証明の包絡部分だけを使う。
+この部分は利得の下界を使わない。凸尾部の利得包絡を $G^{w,c}$ とすると、
+$\sup_w\|G^{w,c}\|_2\to0$ であり、補題\ref{lem:explicit-jump-envelope}から
+そのM成分のjump包絡 $\xi_T^{w,c}$ を $\sup_w\|\xi_T^{w,c}\|_2\leq6\sup_w\|G^{w,c}\|_2$ と取れる。
+$\eta>0$ に対して、この上界が $\eta$ 以下となるcutoffを先に選ぶ。
+凸尾部 $L^{w,c}$ を水準 $\eta$ へのpassageと $T$ で停止すると、停止前の大きさと
+jump包絡から停止過程 $R$ の全時間上限は $\eta+\xi_T^{w,c}$ 以下となる。
+局所マルチンゲールの停止列をこの $L^2$ 包絡で外せるので、$R$ は真のL²マルチンゲールで、
+$\|R_T\|_2\leq2\eta$ である。
+定理\ref{thm:integral-input}のtest評価から $E_Q e_T^J(R,0)\leq4\eta$ を得る。
+passageが有限でない経路では元のtailと同じなので、停止を外すcapped誤差は
+$Q(B(w,c,\eta))$ 以下である。これが\contractref{F3}である。
+
+\contractref{F4}でも同じ議論を元の $M$ の水準 $c$ で使う。
+補題\ref{lem:explicit-jump-envelope}の $\|\xi_T\|_2\leq6\|q\|_2$ と
+$\sup_t|M_{t\wedge\tau(c)\wedge T}|\leq c+\xi_T$ から、真のマルチンゲール性と
+$\|P_T\|_2\leq c+6\|q\|_2$ を得る。
+\contractref{F5}はcàdlàg経路の閉停止による右連続性と零始点性から従い、包絡を必要としない。
+\end{proof}
+
+\begin{proof}[命題\ref{input:approximation}の証明]
+\contractref{A1}について、所定の誤差 $\varepsilon>0$ に対し、近似誤差を $\varepsilon/3$ とする列を選ぶ。
+そのCauchy誤差も $\varepsilon/3$ とし、二つの近似誤差と中央の差の三角不等式を使う。
+全ての上界がtestに一様なので、得られるcutoffもtestに依存しない。
+
+\contractref{A2}では $P_n-P_k$ を $U$ で停止する。
+定理\ref{thm:integral-input}のL² test評価と任意抽出・条件付き期待値の縮小性より、
+全ての $T\leq U$ と $J$ に対して
+\[
+ E_Qe_T^J(P_n,P_k)\leq2\|P_n(U)-P_k(U)\|_2.
+\]
+終端のL² Cauchy性から、右辺を $\varepsilon$ 以下にする共通のcutoffを選ぶ。
+\end{proof}

@@ -1,0 +1,625 @@
+\subsection{Auxiliary topology and common localization}
+\begin{lemma}[Pathwise finiteness from capped series]
+For concrete zero-start decompositions $X_k=N_k+A_k$, set
+
+\[
+ B_k(t)=\sqrt{[N_k]_t}+\Var_{[0,t]}A_k.
+\]
+If $\sum_k E[1\wedge B_k(n)]<\infty$ for every integer $n\geq0$, then
+$\sum_kB_k(t)<\infty$ for all times on one full-measure set.
+\end{lemma}
+\begin{proof}
+The clocks are finite, nonnegative, increasing and measurable at each time.
+At integer $n$, Tonelli gives almost-sure finiteness of the capped sum.
+Its terms tend to zero, hence eventually $B_k(n)<1$ and the cap disappears.
+The finitely many initial terms are finite too. Intersect over integers;
+for any $t$ use monotonicity and an integer above $t$.
+\end{proof}
+This does not imply integrability of the uncapped sum.
+\begin{lemma}[Monotonicity and right continuity of the sum]
+On one full-measure set, $U_t=\sum_kB_k(t)$ is finite, increasing and
+right-continuous.
+\end{lemma}
+\begin{proof}
+Cumulative variation of a right-continuous locally BV path is right-continuous:
+its right jump is the absolute right jump of the path, hence zero.
+Each clock is therefore right-continuous. On $t\leq s<t+1$ it is dominated
+by the summable $B_k(t+1)$. Dominated convergence for series gives right
+continuity of the sum; monotonicity is termwise.
+\end{proof}
+\begin{lemma}[A common passage for concrete decompositions]
+Under the usual conditions choose a strongly adapted c\`adl\`ag version of
+$U$. Its strict absolute passage above $r+1$, capped at horizon $r+1$, defines
+one localizing sequence $\tau_r\leq r+1$. On one full-measure set,
+
+\[
+ \sum_kB_k(t)\leq r+1
+\]
+ for every $r$ and $t<\tau_r$.
+\end{lemma}
+\begin{proof}
+Cumulative variation at $t$ is recovered from a countable supremum of finite
+grid variations before $t$, so is $\F_t$-measurable. The quadratic clocks
+and their sum are adapted. Finite increasing paths have left limits;
+right continuity gives c\`adl\`ag regularity. Correct the exceptional null
+set at time zero. The c\`adl\`ag absolute-passage construction is increasing
+and exhaustive. Before passage its magnitude is at most $r+1$;
+indistinguishability returns the bound to the sum.
+\end{proof}
+The capped estimates are inputs here. The closed-graph comparison below will
+supply them from Émery convergence.
+\begin{lemma}[Boundary correction for a stopped quadratic root]
+On one full-measure set,
+\[
+ \sqrt{[N]_t}\leq\sqrt{[N]_{t-}}+|\Delta N_t|
+\]
+
+for every $t$. For finite-valued stopping time $\tau$,
+\[
+ E\sup_{t\geq0}\sqrt{[N^\tau]_t}
+ \leq E[\sqrt{[N]_{\tau-}}+|\Delta N_\tau|].
+\]
+A deterministic bound on $\tau$ and finite expectations are unnecessary.
+\end{lemma}
+\begin{proof}
+Use $[N]_t=[N]_{t-}+(\Delta N_t)^2$ with nonnegative left limit.
+The stopped increasing process attains its all-time supremum at $\tau$.
+Evaluate the pathwise inequality there and integrate. At zero use the
+left-limit convention and zero initial variation.
+\end{proof}
+\begin{lemma}[Prelocal cost from prefix components and jumps]
+Under the usual conditions, for a zero-start decomposition $X=N+A$ and
+finite stopping time $\tau\leq T$,
+\[
+ \mathcal J_{\tau-}(X)\leq
+ E[\sqrt{[N]_{\tau-}}+|\Delta N_\tau|]+E[\Var(A)_{\tau-}].
+\]
+Local finite variation of $A$ suffices; expectations may be infinite.
+\end{lemma}
+\begin{proof}
+First stop $A$ at the deterministic horizon $T$. This gives global bounded
+variation without changing $A$ on $[0,\tau)$ or its strict prefix.
+Monotonicity of cumulative variation gives
+\[
+ \Var(A)_t\leq\Var(A)_{\tau-}\quad(t<\tau).
+\]
+The strict-prefix variation estimate therefore yields
+\[
+ \Var(A^{\tau-})_\infty\leq\Var(A)_{\tau-}.
+\]
+The process $N^\tau+A^{\tau-}$ extends $X$ before $\tau$, with these two
+components as an admissible decomposition. Bound the martingale cost by
+the preceding quadratic-root boundary estimate, and integrate the global
+variation bound for the other component. Finally take the defining infima
+over extensions and decompositions.
+\end{proof}
+\begin{lemma}[Left-limit sums at the common passage]
+For the same common passages constructed from the capped-series assumption,
+on one full-measure set, for every $r$,
+\[
+ \sum_k\left(\sqrt{[N_k]_{\tau_r-}}+\Var(A_k)_{\tau_r-}\right)\leq r+1.
+\]
+\end{lemma}
+\begin{proof}
+The left limit of each clock is the sum of the square root of the left
+limit of quadratic variation and the left limit of cumulative variation.
+Fix a finite partial sum. For $t<\tau_r$ it is at most the full clock sum,
+hence at most $r+1$. If $\tau_r>0$, take the left limit of this finite sum.
+Then take the supremum over finite subsets to obtain the nonnegative-series
+bound. If $\tau_r=0$, every left limit equals the zero initial value,
+so the same conclusion holds.
+\end{proof}
+\begin{lemma}[Summable costs and witnesses at common stops]
+The same $\tau_r$ satisfies
+\[
+ \sum_k\mathcal J_{\tau_r-}(X_k)\leq r+1+\sum_kE|\Delta N_{k,\tau_r}|.
+\]
+Define
+\[
+ s(N)=\sup_{\tau\text{ bounded stopping time}}E|\Delta N_\tau|.
+\]
+If $\sum_ks(N_k)<\infty$, exact prefix-representation witnesses can be
+chosen at each $r$ with total cost at most
+
+\[
+ 6(r+1+\sum_ks(N_k)+1).
+\]
+\end{lemma}
+\begin{proof}
+Stopped jumps are measurable. Sum the preceding single-decomposition cost
+bounds over finite subsets; integrate the left-limit clock bound to get
+$r+1$, then take the supremum over subsets. Each bounded $\tau_r$ makes the
+jump term at most $s(N_k)$. Approximate the summable prelocal infima with
+positive errors totaling one and apply the component selection bound with
+Davis constant $6$.
+\end{proof}
+These are witnesses for arbitrary decompositions, not yet original-price
+integral certificates.
+\begin{definition}[The zero-start auxiliary cost]
+For one decomposition $D=(N,A)$ and its quadratic variation, put
+\[
+ c_{r^1}(D)=s(N)+\sum_{n=0}^\infty2^{-n-1}
+ E[1\wedge(\sqrt{[N]_n}+\Var(A)_n)],\qquad
+ R(X)=\inf_{X\sim N+A}c_{r^1}(N,A).
+\]
+The two terms use the same decomposition before taking their joint infimum.
+Infinite values are permitted.
+\end{definition}
+\begin{lemma}[Finiteness on all decomposable zero-start processes]
+If $X$ has an admissible zero-start decomposition, $R(X)\leq3$.
+Conversely $R(X)<\infty$ implies such a decomposition exists.
+Finite global cost $\mathcal J(X)$ is not required.
+\end{lemma}
+\begin{proof}
+Apply all-time DDY with threshold $1$ to the martingale component:
+$N=L+Q$, with $|\Delta L|\leq2$. Then $X\sim L+(Q+A)$ is admissible.
+Its bounded-stop jump cost is at most $2$; each capped expectation is at most
+one and the weights total one. The joint cost is at most $3$.
+Conversely the infimum over no decompositions is infinity.
+\end{proof}
+Regular zero-start good integrators enter this space by the decomposition
+construction and elementary completeness proved later.
+\begin{lemma}[Comparison with global cost]
+$R(X)\leq2\mathcal J(X)$ as extended values. Thus vanishing global costs
+imply vanishing auxiliary costs.
+\end{lemma}
+\begin{proof}
+Fix a decomposition $D=(N,A)$ and denote its global cost by
+\[
+ j(D)=E\left[\sup_t\sqrt{[N]_t}+\Var(A)_\infty\right].
+\]
+The jump-square identity and monotonicity give, on one event for all times,
+\[
+ |\Delta N_\sigma|\leq\sqrt{[N]_\sigma}\leq\sup_t\sqrt{[N]_t}.
+\]
+Take expectations and the supremum over bounded stopping times to get
+$s(N)\leq j(D)$. Every clock is bounded by the all-time root plus total
+variation, so each capped expectation is also at most $j(D)$.
+The geometric weights total one, hence $c_{r^1}(D)\leq2j(D)$.
+Take the infimum over decompositions. All these inequalities hold for
+extended values; no conversion of an infinite cost to a real number is needed.
+Finally $0\leq R(X_k)\leq2\mathcal J(X_k)$ gives the convergence assertion.
+\end{proof}
+\begin{lemma}[Auxiliary triangle inequalities and differences]
+Under the usual conditions,
+\[
+ R(X+Y)\leq R(X)+R(Y),\qquad R(-X)=R(X),\qquad
+ R(X-Y)\leq R(X)+R(Y).
+\]
+In particular, $R(Z_k-X)\to0$ implies $R(Z_{k+1}-Z_k)\to0$.
+\end{lemma}
+\begin{proof}
+Fix two admissible decompositions and add their components. Construct
+quadratic variation of the martingale sum. The root triangle inequality
+and subadditivity of variation bound its clock by the sum of the two clocks.
+Integrate $1\wedge(a+b)\leq(1\wedge a)+(1\wedge b)$, multiply by the
+positive weights, and sum to obtain subadditivity of the capped term.
+For the jump term, integrate the jump triangle inequality at each bounded
+stopping time and then take the supremum. Measurability of stopped jumps
+permits separation of the nonnegative integrals.
+Take infima over decompositions and quadratic variations, keeping both
+cost coordinates attached to the same decomposition throughout.
+Negation preserves quadratic variation, variation, and absolute jumps,
+so it preserves $R$. The difference estimate follows by addition and
+negation. Apply it to
+$Z_{k+1}-Z_k=(Z_{k+1}-X)-(Z_k-X)$ for the convergence assertion.
+\end{proof}
+\begin{lemma}[Auxiliary cost under closed stopping]
+For any stopping time $\tau$, $R(X^\tau)\leq R(X)$.
+If $\sigma\leq\tau$, then $R(X^\sigma)\leq R(X^\tau)$.
+Thus arbitrary termwise stopped versions of a vanishing-cost sequence also
+have vanishing cost.
+\end{lemma}
+\begin{proof}
+Stop both components. At any bounded stopping time the stopped jump equals
+the original jump before or at $\tau$ and zero afterward, so its jump cost
+cannot increase. Stopped quadratic variation and variation bound the clocks.
+Take the joint infimum. Apply absorption for the second assertion and squeeze
+for convergence.
+\end{proof}
+\begin{lemma}[Common localization from vanishing auxiliary costs]
+If $R(X_k)\to0$, choose one strictly increasing subsequence $f$ and one
+localizing sequence $\tau_r\leq r+1$. At every $r$, exact prefix witnesses
+for $X_{f(k)}$ have total cost at most $6(r+4)$, and their costs tend to zero.
+\end{lemma}
+\begin{proof}
+First suppose $\sum_kR(X_k)<\infty$. Approximate the infima with errors
+totaling one, giving decompositions whose joint cost sum is at most
+$\sum_kR(X_k)+1$. Their jump costs are summable. For each fixed integer
+horizon the positive time weight implies summability of capped expectations.
+Apply the common-localization theorem to these same decompositions.
+The witness sum is at most $6(r+1+\sum_kR(X_k)+2)$.
+For a general null sequence choose $R(X_{f(k)})<2^{-k-1}$, giving the bound
+$6(r+4)$. Finite nonnegative sums imply termwise convergence to zero.
+\end{proof}
+The later topology comparison supplies this hypothesis from Émery convergence.
+The global-cost comparison already supplies it when $\mathcal J(X_k)\to0$.
+\begin{lemma}[Separation]
+Indistinguishable processes have equal auxiliary costs. Under the usual conditions,
+\[
+ R(X)=0\ \Longleftrightarrow\ X\sim0,\qquad
+ R(X-Y)=0\ \Longleftrightarrow\ X\sim Y.
+\]
+\end{lemma}
+\begin{proof}
+Transfer each decomposition and its quadratic variation to an
+indistinguishable target without changing its cost; the infima agree.
+If $R(X)=0$, the constant sequence $X_k=X$ has cost sum zero.
+Choose near-minimizing decompositions and apply common localization.
+For every $r$, $\sum_k\mathcal J_{\tau_r-}(X)<\infty$.
+This is a constant nonnegative series, so $\mathcal J_{\tau_r-}(X)=0$.
+For adapted right-continuous $X$ and fixed $t$, the random variable
+$|X_t|1_{\{t<\tau_r\}}$ is measurable and has expectation zero by the
+prefix maximal estimate. Intersect over $r$ and use exhaustion to obtain
+$X_t=0$. Intersect next over a countable right-dense skeleton and extend
+the equality to every time by right continuity.
+For an arbitrary raw target, $R(X)<1$ supplies an admissible decomposition;
+its component sum is a regular representative to which the argument applies.
+The zero decomposition and zero quadratic variation prove the converse,
+together with invariance under indistinguishability. Applying this equivalence
+to differences proves the second assertion.
+\end{proof}
+\begin{lemma}[Summable costs imply pathwise uniform summability]
+If $\sum_kR(X_k)<\infty$, then almost surely, for every finite $T$,
+
+\[
+ \sum_k\sup_{t\leq T}|X_k(t)|<\infty.
+\]
+A vanishing-cost sequence has one subsequence with this property.
+\end{lemma}
+\begin{proof}
+For regular targets define $G_{k,r}$ as the supremum of $|X_k|$ over the
+countable right-dense skeleton strictly before $\tau_r$.
+It is measurable and $EG_{k,r}\leq6\mathcal J_{\tau_r-}(X_k)$.
+Tonelli gives summability almost surely for all countably many $r$.
+For any $T$ choose $r$ with $T<\tau_r$; right-continuous approximation by
+skeleton points bounds the whole horizon supremum by $G_{k,r}$.
+For raw targets use regular sums of near-minimizing decompositions and
+countable indistinguishability. Extract a summable-cost subsequence for the
+last assertion.
+\end{proof}
+\begin{lemma}[Auxiliary convergence implies ucp convergence]
+If $R(X_k-X)\to0$, then for each finite $T$ and $\varepsilon>0$,
+
+\[
+ P\{\exists t\leq T:|X_k(t)-X(t)|>\varepsilon\}\to0.
+\]
+No extra measurability or path regularity of the raw targets is assumed.
+\end{lemma}
+\begin{proof}
+For summable costs use regular decompositions and factorial envelopes to
+obtain maxima that are measurable up to completion. The preceding lemma makes
+them finite and tending to zero almost surely. Their real-valued versions
+converge in probability; finiteness identifies their tails with the extended
+maximal envelopes. From any subsequence of a vanishing-cost sequence extract
+a summable one. The subsequence criterion gives convergence of the original
+tail probabilities. Apply to differences; a strict exceedance at some time
+is contained in the corresponding maximal tail event.
+\end{proof}
+Cost contraction also gives ucp convergence after arbitrarily selected
+termwise stopping times.
+\begin{proposition}[Metric quotient and Cauchy sequences]
+Let $\mathcal D_0$ be the zero-start processes with admissible decompositions.
+The finite pseudometric $d(X,Y)=R(X-Y)$ has separated quotient equal to the
+indistinguishability quotient. Metric convergence is equivalent to vanishing
+$R$-error and implies ucp convergence. Every Cauchy sequence has one strictly
+increasing $f$ with
+
+\[
+ \sum_kR(X_{f(k+1)}-X_{f(k)})\leq1;
+\] these same differences have common
+localizers and exact witnesses with cost sum at most $6(r+4)$ at stage $r$.
+\end{proposition}
+\begin{proof}
+Differences remain decomposable, so DDY gives finiteness. The auxiliary
+algebra gives symmetry and triangle; separation identifies the quotient.
+Its distance is precisely the representative cost.
+For a Cauchy sequence choose tail bounds $b_n\to0$ and increasing $f$ with
+$b_{f(k)}<2^{-k-1}$. Sum the adjacent-distance bounds, then apply the
+summable-cost common-localization theorem to exactly these differences.
+\end{proof}
+\begin{lemma}[A locally uniform limit for the same subsequence]
+If $\sum_kR(Y_{k+1}-Y_k)<\infty$, there is one process $Y$ such that,
+on one full-measure set, $Y_k\to Y$ uniformly on every finite interval.
+This applies to the same Cauchy subsequence carrying the common-localization
+witnesses in the preceding proposition.
+\end{lemma}
+\begin{proof}
+Summability of auxiliary costs gives, simultaneously for all finite $T$,
+\[
+ \sum_kq_k(T)<\infty,\qquad
+ q_k(T)=\sup_{t\leq T}|Y_{k+1}(t)-Y_k(t)|.
+\]
+Each term is finite. At any fixed time, the series of distances between
+successive values is bounded by this series. Completeness of the real
+numbers gives a pointwise limit. Define $Y_t$ by that limit.
+The summable uniform step bounds $q_k(T)$ upgrade pointwise convergence to
+uniform convergence on $[0,T]$. The definition of $Y_t$ does not depend
+on the horizon. The previously chosen subsequence has summable difference
+costs, so this construction applies without a further extraction.
+\end{proof}
+This is initially a raw limit. We next retain global component series to
+construct its decomposition and prove convergence of all cost coordinates.
+\begin{lemma}[Martingale component sums at a fixed stop]
+If true martingales $M_k$ satisfy $|M_k(t)|\leq g_k$ for all times with
+measurable $g_k\geq0$ and $\sum_kEg_k<\infty$, then $M_t=\sum_kM_k(t)$
+is a strongly adapted true martingale. This applies to the centered stopped
+witness components
+\[
+ \sum_k(N_k-N_k(0))_{t\wedge\tau_r}
+\]
+ at each fixed stage.
+\end{lemma}
+\begin{proof}
+Tonelli makes $G=\sum_kg_k$ integrable and finite almost surely.
+The component series is absolutely convergent at all times on that event,
+and its sum is measurable at every time. Finite sums are martingales dominated
+by $G$, so the dominated martingale-limit lemma applies.
+For witnesses the stopped centered components are true martingales, and the
+finite-horizon envelope dominates them at all times because the stop is
+bounded by that horizon. Centering increases cost by at most a factor of two,
+preserving envelope summability.
+\end{proof}
+\begin{lemma}[Centered finite-variation series]
+Zero-start paths $a_k$ with $\sum_k\Var(a_k)<\infty$ have a uniformly
+convergent all-time sum $a$ of finite variation, and
+\[
+ \Var\left(a-\sum_{k<n}a_k\right)\longrightarrow0.
+\]
+At a fixed witness stage this applies almost surely to
+$a_k=A_k^{\tau-}-A_k^{\tau-}(0)$.
+\end{lemma}
+\begin{proof}
+Zero start bounds $|a_k(t)|$ by variation, giving uniform convergence of the
+series. The finite-variation limit and variation-distance convergence follow
+from summable variation of consecutive partial-sum differences.
+For witnesses, centering does not change variation and the strict prefix
+is constant after the stop, so its all-time variation is bounded by the
+finite-horizon witness variation. Tonelli gives summability almost surely.
+Centering removes initial constants that variation alone cannot control.
+\end{proof}
+We now keep one global decomposition per difference rather than choose
+components independently at successive localization stages.
+\begin{lemma}[Common estimates retaining global decompositions]
+For a Cauchy sequence in the quotient, choose one strictly increasing $f$
+and global decompositions of its actual neighboring differences,
+$X_{f(k+1)}-X_{f(k)}\sim N_k+A_k$.
+Their auxiliary costs sum to at most $2$, and one localizing sequence
+$\tau_r\leq r+1$ satisfies
+\[
+ \sum_k\left(E\sqrt{[N_k]_{\tau_r}}+
+ E\Var(A_k^{\tau_r-})\right)\leq r+3.
+\]
+The variation is over the entire time axis.
+\end{lemma}
+\begin{proof}
+Choose the subsequence with adjacent auxiliary distances summing to at most
+one. Approximating the infima by positive errors totaling one gives one
+sequence of decompositions with total cost at most two.
+Stop using the common clock of these same decompositions. The expected
+sum of the pre-stop roots and cumulative variations is at most $r+1$.
+For each term,
+\[
+ \sqrt{[N_k]_{\tau_r}}\leq
+ \sqrt{[N_k]_{\tau_r-}}+|\Delta N_{k,\tau_r}|,\qquad
+ \Var(A_k^{\tau_r-})\leq\Var_{[0,\tau_r)}(A_k).
+\]
+The boundary-jump expectations are bounded by the same decompositions'
+costs of jumps at bounded stopping times, whose sum is at most two.
+Pass from finite sums of nonnegative integrals to their supremum to obtain
+the claim. Since stopped quadratic variation is increasing and constant
+after the stop, its root at the stop is its all-time root supremum.
+\end{proof}
+\begin{lemma}[Sum of the same global martingale components]
+Set $M_t=\sum_kN_k(t)$. Each $M^{\tau_r}$ is a true martingale, and $M$
+is a zero-start local martingale.
+\end{lemma}
+\begin{proof}
+For fixed $r$, Davis gives
+
+\[
+ \sum_kE\sup_t|N_k(t\wedge\tau_r)|\leq6\sum_kE\sqrt{[N_k]_{\tau_r}}<\infty.
+\]
+A measurable finite-horizon envelope dominates the stopped component for all
+time. Its integrability upgrades the stopped component to a true martingale;
+the dominated series lemma then applies. Evaluation at a stopped time
+commutes with the pointwise sum, giving exactly $M^{\tau_r}$.
+Zero initial values remove the localizing indicator, proving the local property.
+\end{proof}
+\begin{lemma}[A regular representative of the martingale sum]
+The same $M$ is indistinguishable from an everywhere c\`adl\`ag, strongly
+adapted, zero-start local martingale.
+\end{lemma}
+\begin{proof}
+At every common stop the envelope expectations are summable; Tonelli gives
+pathwise uniform convergence of the stopped finite sums. Uniform c\`adl\`ag
+limits are c\`adl\`ag. Intersect over the stops. For any time $t$, exhaustion
+places $[0,t+1)$ before one stop, transferring that regularity to the global
+sum. Each time value is measurable. Replace nonregular paths by zero on the
+time-zero measurable exceptional set and transfer the local-martingale property
+by indistinguishability.
+\end{proof}
+\begin{lemma}[Sum of the same global finite-variation components]
+For the same decomposition sequence set $A_t=\sum_kA_k(t)$.
+On one full-measure set $A$ is locally of finite variation and, for every finite $T$,
+\[
+ \sum_{k<n}A_k\longrightarrow A\quad\text{uniformly on }[0,T],\qquad
+ \Var_{[0,T]}\left(A-\sum_{k<n}A_k\right)\longrightarrow0.
+\]
+\end{lemma}
+\begin{proof}
+The capped-clock estimates give
+$\sum_k\Var_{[0,T]}(A_k)<\infty$ for every $T$ on one full-measure set.
+Fix $T$ and put $a_k(t)=A_k(t\wedge T)$. Its all-time variation is at most
+$\Var_{[0,T]}(A_k)$ and $a_k(0)=0$.
+The zero-start variation-series theorem shows that $\sum_ka_k$ has global
+finite variation and that its partial sums converge both uniformly and
+in all-time variation distance. On $[0,T]$ we have $a_k=A_k$, so both
+convergences transfer back to the original components. Every compact
+interval is contained in some $[0,T]$, proving local finite variation of $A$.
+\end{proof}
+\begin{lemma}[A regular representative of the variation sum]
+The preceding sum has an indistinguishable zero-start strongly adapted
+representative with everywhere c\`adl\`ag locally BV paths.
+\end{lemma}
+\begin{proof}
+Measurability of each series value gives adaptation. Local uniform convergence
+of right-continuous finite sums gives right continuity of the limit.
+Correct the common exceptional set for right continuity and local BV using
+the usual conditions at time zero. Zero start is preserved, and local BV
+gives left limits.
+\end{proof}
+The global components were fixed once: equality of sums would not by itself
+identify separate components in decompositions with merely adapted FV parts.
+\begin{lemma}[A limit inside the decomposable-process space]
+Every auxiliary-Cauchy sequence has a subsequence $X_{f(n)}$ converging almost
+surely locally uniformly to an admissibly decomposable process $Y$.
+Its pointwise limit is indistinguishable from this $Y$ and also decomposable.
+\end{lemma}
+\begin{proof}
+Use the same regular sums $M,A$ and set $Y=X_{f(0)}+M+A$.
+Add the base term's decomposition to those of the sums.
+On the common event of all component identities and convergence, choose
+$\tau_r>T$ to transfer stopped martingale uniform convergence to $[0,T]$.
+The FV sums also converge uniformly there. Telescoping gives
+
+\[
+ X_{f(0)}+\sum_{k<n}(N_k+A_k)=X_{f(n)},
+\] hence convergence to $Y$.
+Uniqueness of each time limit on that event gives indistinguishability and
+transfers the decomposition.
+\end{proof}
+\begin{lemma}[Stopped-jump lower semicontinuity]
+If martingale components $U_n$ tend almost surely locally uniformly to a
+process $U$ with left limits, then $s(U)\leq\liminf_ns(U_n)$.
+In particular the same regular sum satisfies
+\[
+ s(M)\leq\sum_ks(N_k).
+\]
+\end{lemma}
+\begin{proof}
+Fix bounded $\sigma\leq T$. Uniform convergence after deterministic stopping
+at $T$ gives convergence of left limits and hence of jumps at $\sigma$.
+Fatou yields $E|\Delta U_\sigma|\leq\liminf_ns(U_n)$, with bound independent
+of $\sigma$; take the supremum. Apply to finite sums, whose jump cost is at
+most the sum of their costs, using the already proved local uniform convergence.
+\end{proof}
+\begin{lemma}[Component-series tails]
+For the same regular sums $M,A$ and original decompositions, for every $n$,
+\[
+ s\left(M-\sum_{k<n}N_k\right)\leq\sum_{k=0}^{\infty}s(N_{k+n}).
+\]
+The left side tends to zero. At every finite horizon $T$ we also have
+\[
+ E\left[\min\left\{\Var_{[0,T]}
+       \left(A-\sum_{k<n}A_k\right),1\right\}\right]\longrightarrow0.
+\]
+\end{lemma}
+\begin{proof}
+Fix $n$ and shift the original decomposition sequence by $n$.
+Its martingale partial sums converge locally uniformly to
+$M-\sum_{k<n}N_k$ on the same full-measure set.
+Apply stopped-jump lower semicontinuity to this sequence for the first
+inequality. Its right side tends to zero since $\sum_ks(N_k)<\infty$.
+For finite variation, use the pathwise variation convergence already proved.
+The regular sum and every partial sum are strongly adapted and
+right-continuous, so the variation of their difference on a finite interval
+is measurable. Transfer to the same representatives by indistinguishability
+and apply dominated convergence with the constant bound one.
+\end{proof}
+\begin{lemma}[Quadratic-root tails of the same martingale sum]
+Let $U_n=M-\sum_{k<n}N_k$. At a common bounded stop $\tau$ with summable
+original root expectations,
+\[
+ E\sqrt{[U_n]_\tau}\leq42\sum_{k\geq n}E\sqrt{[N_k]_\tau}\longrightarrow0.
+\]
+The intrinsic quadratic variation of each tail is independent of this stop.
+\end{lemma}
+\begin{proof}
+If partial sums converge uniformly on $[0,T]$ to local martingale $U$, then
+
+\[
+ U_T^*\leq\sum_k(N_k)_T^*,
+\] allowing an infinite envelope sum.
+Reverse Davis, Tonelli, and forward Davis give
+
+\[
+ E\sqrt{[U]_T}\leq7EU_T^*\leq7\sum_kE(N_k)_T^*
+\leq42\sum_kE\sqrt{[N_k]_T}.
+\]
+Apply this to the stopped components and their tail series. Their summable
+envelope expectations give all-time uniform convergence almost surely to
+$U_n^\tau$. Choose deterministic $T\geq\tau$ and use stopping consistency.
+The right side is the tail of a summable nonnegative series.
+\end{proof}
+\begin{lemma}[Removing common stops from capped roots]
+Suppose $\tau_r\to\infty$ almost surely and
+$E\sqrt{[U_n]_{\tau_r}}\to0$ for every $r$. Then for each finite $T$,
+\[
+ E[\min\{\sqrt{[U_n]_T},1\}]\longrightarrow0.
+\]
+\end{lemma}
+\begin{proof}
+Monotonicity of quadratic variation gives
+\[
+ \min\{\sqrt{[U_n]_T},1\}
+ \leq\sqrt{[U_n]_{\tau_r}}+1_{\{\tau_r\leq T\}}.
+\]
+The second term's expectation tends to zero as $r\to\infty$ by exhaustion
+and dominated convergence. First fix $r$ making this error small, then
+send $n\to\infty$ in the first term.
+\end{proof}
+\begin{theorem}[Completeness of the auxiliary metric]
+Under the usual conditions, the indistinguishability quotient of all
+zero-start processes admitting a decomposition is complete for
+$d(X,Y)=R(X-Y)$.
+\end{theorem}
+\begin{proof}
+Choose a fast subsequence $X_{f(k)}$ of a Cauchy sequence in the quotient,
+retaining decompositions $(N_k,A_k)$ of its actual neighboring differences.
+Let $M,A$ be the regular component sums constructed above and put
+$X=X_{f(0)}+M+A$. This process admits a decomposition.
+Subtracting the first $n$ terms from these same sums decomposes
+$X-X_{f(n)}$ into
+\[
+ U_n=M-\sum_{k<n}N_k,\qquad B_n=A-\sum_{k<n}A_k.
+\]
+The identification of the target is the telescoping identity for the
+original adjacent differences. The jump-tail estimate gives $s(U_n)\to0$,
+and at each finite $T$,
+\[
+ E\min\{\sqrt{[U_n]_T},1\}\to0,\qquad
+ E\min\{\Var_{[0,T]}(B_n),1\}\to0.
+\]
+The inequality $\min\{a+b,1\}\leq\min\{a,1\}+\min\{b,1\}$ therefore
+makes the capped clock expectation of this same decomposition tend to
+zero at every integer horizon. These expectations are at most one, so
+dominated convergence also applies to their geometric weighted sum.
+The decomposition's $r^1$ cost tends to zero, and hence so does its
+infimum $R(X-X_{f(n)})$. Negation invariance gives convergence of the
+subsequence to $X$ in the quotient. A Cauchy sequence with a convergent
+subsequence converges entirely to the same limit. Any quotient sequence
+can be lifted to representatives for this argument, proving completeness.
+\end{proof}
+\begin{lemma}[Continuous scalar multiplication]
+For every decomposable zero-start process $X$,
+\[R(cX)\leq\max(1,|c|)R(X).\]
+If $a_k\to a$ and $R(X_k-X)\to0$, then $R(a_kX_k-aX)\to0$.
+\end{lemma}
+\begin{proof}
+Scale one decomposition. The jump and square-residual characterizations give
+$[cN]=c^2[N]$, so clocks and jump costs scale by $|c|$.
+Use $1\wedge(|c|b)\leq\max(1,|c|)(1\wedge b)$ and take joint infima.
+For a fixed $X$ and $a_k\to0$, that inequality alone is insufficient.
+Choose a DDY decomposition with finite jump cost. Its scaled jump cost
+vanishes; each finite clock is finite pathwise, so its scaled capped
+expectation vanishes by bounded convergence. Apply dominated convergence
+also to the geometric series. Hence $R(a_kX)\to0$.
+Now split
+\[
+ a_kX_k-aX=a_k(X_k-X)+(a_k-a)X
+\]
+ and use boundedness of $(a_k)$,
+the triangle inequality, and the fixed-process conclusion. Sequential
+continuity in these metric spaces gives continuity, descending to the quotient.
+\end{proof}

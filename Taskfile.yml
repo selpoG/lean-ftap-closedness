@@ -1,0 +1,32 @@
+version: '3'
+
+tasks:
+  verify:
+    desc: Build and check style, module layout, declaration dependencies, and axioms.
+    cmds:
+      - python3 scripts/check_structure.py
+      - lake build
+      - lake exe lint-style FTAPTheorem42
+      - python3 scripts/check_declaration_closure.py
+      - lake env lean scripts/AuditProject.lean
+      - python3 scripts/check_analytic_isolation.py
+
+  docs:
+    desc: Build the Japanese and English proof PDFs and check references and typesetting.
+    cmds:
+      - python3 scripts/build_docs.py
+    sources:
+      - scripts/build_docs.py
+      - docs/proof.ja.tex
+      - docs/proof.tex
+      - docs/proof/**/*.tex
+      - docs/proof.ja/**/*.tex
+    generates:
+      - docs/proof.ja.pdf
+      - docs/proof.pdf
+
+  docs:clean:
+    desc: Remove generated documentation artifacts.
+    cmds:
+      - rm -rf docs/build
+      - rm -f docs/*.aux docs/*.dvi docs/*.log docs/*.out docs/*.synctex.gz docs/*.toc docs/*.bkm

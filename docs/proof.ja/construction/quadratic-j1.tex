@@ -1,0 +1,828 @@
+\subsection{一般 quadratic variation と exact \texorpdfstring{$j^1$}{j1}}
+
+bounded-jump martingaleに対しては、有限 horizonの $M^2$ quadratic process、停止整合性、
+局所化列上の貼り合わせ、一意性、terminal root、および定数6の一方向 Davis estimateが得られている。
+local martingaleへの適用では、horizonごとのjump boundを入力とする。
+固定horizon DDYの $L^T$ ではその入力を分解自身から生成した。
+
+\begin{lemma}[有限変動jump補正の絶対収束]
+上で構成した同じDDY分解 $N=L+Q$ に対し、$V_T=\operatorname{Var}_{[0,T]}(Q)$ と置く。
+一つのfull-measure set上で全 $T\geq0$ について
+\[
+ \sum_{0<t\leq T}|\Delta Q_t|\leq V_T,\qquad
+ \sum_{0<t\leq T}|\Delta L_t\Delta Q_t|\leq2cV_T,\qquad
+ \sum_{0<t\leq T}(\Delta Q_t)^2\leq V_T^2
+\]
+が成り立ち、各級数は絶対収束する。さらに
+\[
+ D_T:=\sum_{0<t\leq T}\bigl((\Delta N_t)^2-(\Delta L_t)^2\bigr)
+   =2\sum_{0<t\leq T}\Delta L_t\Delta Q_t+
+      \sum_{0<t\leq T}(\Delta Q_t)^2,\qquad
+ |D_T|\leq4cV_T+V_T^2
+\]
+であり、$D_T$ を定める級数も絶対収束する。
+\end{lemma}
+
+\begin{proof}
+まず右連続BV path $A$ のsigned Stieltjes measureを $\nu$ とする。
+各singletonのJordan total variationは $|\nu\{t\}|=|\Delta A_t|$ である。
+$(0,T]$ の任意の有限部分集合上の和は $|\nu|((0,T])=\operatorname{Var}_{[0,T]}(A)$ 以下であり、
+非負項級数のsummabilityと表示したboundが従う。
+locally BV pathには $T$ で停止してこの結果を適用する。停止時刻までのjumpと変動量は元のpathに一致する。
+同じ $Q$ に適用すると第一の評価を得る。
+$|\Delta L_t|\leq2c$ と $|\Delta Q_t|\leq V_T$ を掛ければ残り二つの評価が従う。
+最後に $\Delta N=\Delta L+\Delta Q$ を二乗展開し、絶対収束する級数を加える。
+三角不等式から $D_T$ のboundを得る。全時刻の $L$ のjump boundが成立する一つの集合上で
+任意の $T$ を扱うため、$T$ ごとに例外集合を取り直さない。
+\end{proof}
+
+\begin{lemma}[同じ有限グリッド上の二乗和]
+有限の単調な時刻列 $u_0\leq\cdots\leq u_m$ に対し
+\[
+ \begin{aligned}
+ E_G(Y,t)&=\sum_{k<m}(Y_{t\wedge u_{k+1}}-Y_{t\wedge u_k})^2,\\
+ C_G(Y,Z,t)&=\sum_{k<m}(Y_{t\wedge u_{k+1}}-Y_{t\wedge u_k})
+                         (Z_{t\wedge u_{k+1}}-Z_{t\wedge u_k}).
+ \end{aligned}
+\]
+と置く。同じDDY分解の全pathと全時刻で
+\[
+ E_G(N,t)=E_G(L,t)+2C_G(L,Q,t)+E_G(Q,t),
+\]
+\[
+ \left|\sqrt{E_G(N,t)}-\sqrt{E_G(L,t)}\right|
+   \leq\operatorname{Var}_{[0,t]}(Q)
+\]
+である。この評価はグリッドに依存する定数を含まない。
+\end{lemma}
+
+\begin{proof}
+各cellの増分を二乗展開すると第一式を得る。Cauchy--Schwarzから
+$C_G(Y,Z,t)\leq\sqrt{E_G(Y,t)}\sqrt{E_G(Z,t)}$ であり、二乗展開と合わせれば
+$\sqrt{E_G(Y+Z,t)}\leq\sqrt{E_G(Y,t)}+\sqrt{E_G(Z,t)}$ である。
+また単調なcell chainの絶対増分和はpath variation以下なので、
+\[
+ \sqrt{E_G(Q,t)}\leq\sum_{k<m}|Q_{t\wedge u_{k+1}}-Q_{t\wedge u_k}|
+    \leq\operatorname{Var}_{[0,t]}(Q).
+\]
+$N=L+Q$ と $L=N-Q$ の両方へrootの三角不等式を適用する。
+\end{proof}
+
+\begin{lemma}[階乗分割の交差項の積分極限]
+$f$ を実数値càdlàg path、$Q$ を右連続locally BV pathとする。
+$Q^T_t=Q_{t\wedge T}$ のsigned Stieltjes measureを $\eta_T$ とし、
+$G_r$ を時刻 $k/(r+1)!$、$0\leq k\leq(r+1)(r+1)!$ のグリッドとする。このとき
+\[
+ C_{G_r}(f,Q,T)\longrightarrow\int_{(0,T]}\Delta f_s\,d\eta_T(s).
+\]
+従って同じDDY分解に対して、全pathと全有限horizonで
+\[
+ E_{G_r}(N,T)-E_{G_r}(L,T)
+ \longrightarrow
+ 2\int_{(0,T]}\Delta L_s\,d\eta_T(s)+\int_{(0,T]}\Delta Q_s\,d\eta_T(s).
+\]
+\end{lemma}
+
+\begin{proof}
+$s>0$ を含む半開cell $(a_r(s),b_r(s)]$ を取り、
+$D_r f(s)=f(b_r(s)\wedge T)-f(a_r(s)\wedge T)$ と置く。
+$a_r(s)<s\leq b_r(s)$ で両端は $s$ へ収束するため、
+$s\leq T$ なら $D_r f(s)\to\Delta f_s$ である。
+この主張は $s$ 自体がmesh上にある場合も成り立つ。
+càdlàg pathのcompact boundから $|D_r f(s)|\leq2\sup_{u\leq T}|f(u)|$ である。
+有限測度 $|\eta_T|$ の下で優収束を適用すると、$(0,T]$ 上の $L^1$ 誤差が零へ収束し、
+符号付き積分も収束する。
+各停止済みcell上の積分は
+$(f(b\wedge T)-f(a\wedge T))(Q(b\wedge T)-Q(a\wedge T))$ に等しい。
+$r$ が十分大きければこれらのcellは $(0,T]$ を覆うので、積分は交差増分和に一致する。
+$f=L,Q$ の二回の適用と有限和の二乗展開から第二式を得る。
+\end{proof}
+
+\begin{lemma}[jump積分の級数表示]
+$f$ を実数値càdlàg path、$\eta$ を有限signed measureとすると、
+\[
+ \int_{(0,T]}\Delta f_t\,d\eta(t)
+   =\sum_{t\in(0,T]}\Delta f_t\,\eta(\{t\}).
+\]
+特に、上の $\eta_T$ と同じDDY分解に対し、全pathで
+\[
+ E_{G_r}(N,T)-E_{G_r}(L,T)\longrightarrow
+ 2\sum_{0<t\leq T}\Delta L_t\Delta Q_t+\sum_{0<t\leq T}(\Delta Q_t)^2.
+\]
+\end{lemma}
+
+\begin{proof}
+各 $n$ について $|\Delta f_t|>1/(n+1)$ となる $(0,T]$ 上の時刻は有限なので、
+非零jumpのsupportは可算である。cell近似の一様boundを極限へ移すと
+$\Delta f$ も $(0,T]$ 上で有界であり、近似の可測性と合わせて $|\eta|$ 可積分となる。
+supportをsingletonの可算非交和に分けて積分を足し合わせれば、第一式を得る。
+停止済みFV pathのStieltjes原子は $0<t\leq T$ で
+$\eta_T(\{t\})=\Delta Q_t$ である。終端時刻のjumpも保持される。
+$f=L,Q$ に第一式を適用し、前補題の積分極限を書き換える。
+\end{proof}
+
+\begin{lemma}[補正後の候補の非負性]
+同じDDY分解の補正級数を $D_t$、$L$ のglued quadratic variationを $V_t$ とする。
+一つのfull-measure set上で全時刻 $t$ に対して $V_t+D_t\geq0$ である。
+\end{lemma}
+
+\begin{proof}
+有限horizon座標 $n$ の局所化時刻を $\tau_n$、horizonを $T_n$ とする。
+$t\leq\tau_n\wedge T_n$ では、停止済みsourceの二乗増分和は
+元のsourceの同じ階乗grid上の和に等しい。
+$L^{\tau_n}$ のquadratic構成が保存するforward-convex weightsとcutoffを使う。
+補正の全列収束はそのweightsの下でも保たれるため、$L^{\tau_n}$ のconvex二乗増分和の極限に加えると、
+同じweightsを用いた $N^{\tau_n}$ の二乗増分和は座標variationと $D_t$ の和へ収束する。
+各近似は非負なので極限も非負である。
+座標variationと $V$ の停止後の一致、ならびに $\tau_n\to\infty$ を使って全時刻へ移す。
+座標について可算交叉を取った後に $t$ を選ぶので、零集合は時刻に依存しない。
+\end{proof}
+
+\begin{lemma}[補正と候補の経路正則性]
+補正過程 $D$ と候補 $V+D$ はstrongly adaptedであり、一つのfull-measure set上で
+右連続かつ局所有限変動である。
+\end{lemma}
+
+\begin{proof}
+固定horizon $T$ では補正の係数
+$a_s=2\Delta L_s\Delta Q_s+(\Delta Q_s)^2$ は絶対summableである。
+累積和 $\sum_{s\in(0,T]}a_s\mathbf1_{\{s\leq t\}}$ の各項は右連続であり、
+$|a_s|$ による級数の優収束から累積和も右連続である。
+係数を $(a_s+|a_s|)-|a_s|$ と書くと、両累積和は非負・単調・有界なので、差は有限変動である。
+$t\leq T$ でこの累積和は $D_t$ に等しいことから局所的な結論を得る。
+adaptednessについては、各有限gridの二乗増分和の差が時刻 $t$ で可測であり、
+全pathで $D_t$ に収束することを使う。$V$ の正則性と加法性から候補にも同じ結論が従う。
+\end{proof}
+
+\begin{lemma}[補正後の候補の単調性]
+一つのfull-measure set上で、候補 $V+D$ は全時刻に関して単調増加である。
+\end{lemma}
+
+\begin{proof}
+前の非負性の証明で用いた同じweightsによる収束を使う。
+$s\leq t$ を固定し、$t+1<\tau_n$ となる局所化座標を選ぶ。
+$s,t$ をhorizonで切った右factorial近似 $u_r,v_r$ で近似する。
+十分大きい $r$ では $u_r\leq v_r<\tau_n$ であり、両時刻は同じ粗いgridに属する。
+weightsのtail条件から、十分先のconvex近似が使う全てのgridはこの粗いgridを含む。
+二乗増分和はgrid時刻間では単調なので、同じ非負weightsで平均した値も順序を保つ。
+まずconvex近似の極限を取り、停止一致で $V+D$ へ戻す。
+次に $r\to\infty$ とし、右連続性から $(V+D)_s\leq(V+D)_t$ を得る。
+座標の収束と停止一致に関する可算交叉を先に取るため、同じevent上で任意の $s,t$ を選べる。
+\end{proof}
+
+\begin{lemma}[全経路で正則な代表元]
+usual conditionsの下で、同じ候補 $V+D$ にindistinguishableなstrongly adapted過程 $A$ が存在し、
+全経路で右連続・単調増加・局所有限変動であり、左極限を持ち、$A_0=0$ である。
+\end{lemma}
+
+\begin{proof}
+候補の右連続性または単調性が破れる標本の集合を $B$ とする。前補題から $B$ は零集合であり、
+usual conditionsにより時刻 $0$ のsigma algebraに属する。
+$B$ 上で全時刻の値を零に置き換え、それ以外では候補をそのまま保つ。
+この変更はstrong adaptednessとindistinguishabilityを保つ。
+候補の初期値はglued variationの初期値と空のjump和から零であり、変更後も零である。
+全経路の単調性から局所有限変動性が従い、局所有限変動性から左極限が得られる。
+\end{proof}
+
+\begin{lemma}[補正後のjump-square同定]
+上の正則代表元 $A$ は一つの確率1の集合上で、全時刻について
+$\Delta A_t=(\Delta N_t)^2$ を満たす。
+\end{lemma}
+
+\begin{proof}
+各有限horizonで絶対summableな係数 $a_s$ に対し、累積和
+$F(u)=\sum_{0<s\le u}a_s$ を考える。
+$u\uparrow t$ のとき各項のindicatorは $\mathbf1_{\{s<t\}}$ に収束し、
+$|a_s|$ で支配される。級数の優収束により
+$F(t-)=\sum_{0<s<t}a_s$ となり、$t>0$ で $\Delta F_t=a_t$ を得る。
+これを $a_s=2\Delta L_s\Delta Q_s+(\Delta Q_s)^2$ に適用する。
+glued variationについて $\Delta V_t=(\Delta L_t)^2$ であるから、
+\[
+ \Delta(V+D)_t=(\Delta L_t)^2+2\Delta L_t\Delta Q_t+(\Delta Q_t)^2
+ = (\Delta N_t)^2.
+\]
+時刻0では左jumpの規約から両辺とも零である。
+級数の局所絶対収束とglued variationのjump等式は共通event上で全時刻に成立する。
+最後に全時刻の経路一致を用いて正則代表元 $A$ に同じ等式を移す。
+\end{proof}
+
+\begin{lemma}[補正の閉停止と同じquadratic座標との一致]
+有限値のcutoff $\tau$ に対して、閉停止した $L,Q$ のjumpから計算した補正は $D^\tau$ に等しい。
+特に、scheduleの局所化時刻を $\tau_n$、そのquadratic座標を $V^n$ とすると、
+同じ正則代表元 $A$ は
+\[
+ A^{\tau_n}=(V^n)^{\tau_n}
+   +2\sum_{0<s\le\cdot}\Delta L^{\tau_n}_s\Delta Q^{\tau_n}_s
+   +\sum_{0<s\le\cdot}(\Delta Q^{\tau_n}_s)^2
+\]
+をindistinguishabilityの意味で満たす。
+\end{lemma}
+
+\begin{proof}
+閉停止した過程のjumpは $s\le\tau$ で元のjumpと一致し、$s>\tau$ で零となる。
+従って閉停止成分の補正和を $0<s\le t$ 上で取ることは、元の成分の和を
+$0<s\le t\wedge\tau$ 上で取ることに等しい。
+この等式は経路ごとに成立し、停止時刻でのjumpも含む。
+glued variationの座標一致 $V^{\tau_n}=(V^n)^{\tau_n}$ と
+$A\sim V+D$ を組み合わせれば結論を得る。
+\end{proof}
+
+\begin{lemma}[有限変動成分の二乗残差]
+右連続で左極限を持つ局所有限変動過程 $Q$ について、各経路と各 $T$ で
+\[
+ Q_T^2-Q_0^2-\sum_{0<s\le T}(\Delta Q_s)^2
+   =2\int_{(0,T]}Q_{s-}\,dQ_s.
+\]
+右辺は $Q$ を $T$ で停止して得られるsigned Stieltjes measureに関する積分である。
+\end{lemma}
+
+\begin{proof}
+factorial gridの各セル $(u,v]$ で左端点値 $Q_u$ を使う。
+正の時刻を常に厳密に左から近似するため、この階段関数は $Q_{s-}$ に収束する。
+有限horizon上のcadlag pathは有界であり、integratorの全変動measureは有限である。
+従って優収束で左端点和がStieltjes積分へ収束する。
+各有限gridで
+\[
+ 2\sum Q_u(Q_v-Q_u)+\sum(Q_v-Q_u)^2=Q_T^2-Q_0^2
+\]
+が成立する。右辺の端点はhorizonで切り、十分細かいgridでは $T$ に達する。
+二乗増分和の極限は有限変動cross-increment極限とjump積分の級数表示から
+$\sum_{0<s\le T}(\Delta Q_s)^2$ である。両辺の極限を取って結論を得る。
+\end{proof}
+
+同じDDY成分にこの公式を適用し、$I_Q(t)=\int_{(0,t]}Q_{s-}\,dQ_s$ と置くと、
+正則代表元 $A$ について共通event上の全時刻で
+\[
+ N_t^2-A_t=(L_t^2-V_t)+
+   2\left(L_tQ_t-\sum_{0<s\le t}\Delta L_s\Delta Q_s+I_Q(t)\right)
+\]
+を得る。ここでは $Q_0=0$ を用いた。
+このpathwiseな等式に、以下の共通局所化と可積分支配極限を適用する。
+
+\begin{lemma}[全変動が可積分となる共通局所化]
+同じDDY成分 $L,Q$ に対して有限値の局所化列 $\rho_n\uparrow\infty$ を選べ、
+$\rho_n\le n+1$、$L^{\rho_n},Q^{\rho_n}$ はtrue martingalesであり、
+\[
+ |L^{\rho_n}_t|\le n+1+2c,\qquad
+ |Q_s|\le n+1\quad(s<\rho_n)
+\]
+が成立する。前者は共通の確率1の集合上で全時刻の評価である。
+さらに $\operatorname{Var}_{[0,\rho_n]}(Q)$ は可積分であり、
+$Q^{\rho_n}$ の全horizonの変動量を支配する。
+\end{lemma}
+
+\begin{proof}
+$A_t=\operatorname{Var}_{[0,t]}(Q)$ と置く。有限gridによる変動量の表示から $A$ は適合的であり、
+局所有限変動と右連続性から右連続・単調で左極限を持つ。
+両local martingalesのtrue localizers、$|L|$ と $A$ のlevel $n+1$ のpassages、
+決定論的horizon $n+1$ の最小値を $\rho_n$ とする。
+passage localizerとlocal martingale localizerの最小値なので、これは局所化列である。
+零初期値によりlocalizerの時刻0のindicatorを除け、追加停止後もtrue martingale性が保たれる。
+$L$ のjump boundからclosed-stop評価を得る。
+$s<\rho_n$ では $|Q_s|\le A_s\le n+1$ である。
+変動量の左jumpは $|\Delta Q|$ なので、$a=n+1$ とすると
+\[
+ A_{\rho_n}\le a+|\Delta Q_{\rho_n}|
+ \le 2a+|Q_{\rho_n}|.
+\]
+最後の停止値はtrue martingaleの有界停止値であり可積分である。
+停止した累積変動の可測性とこの支配から $A_{\rho_n}$ の可積分性を得る。
+停止pathの変動量は $A_{t\wedge\rho_n}$ であり、$A_{\rho_n}$ 以下である。
+\end{proof}
+
+この同じ局所化上で、全ての有限gridについて
+$I_G(Q^{\rho_n},Q^{\rho_n})$、$I_G(Q^{\rho_n},L^{\rho_n})$、
+$I_G(L^{\rho_n},Q^{\rho_n})$ はtrue martingalesとなる。
+最初の二つでは係数を $Q_s\mathbf1_{\{s<\rho_n\}}$ に置き換える。
+これは適合的で有界であり、停止後のintegrator増分が零なので元の有限和と等しい。
+最後の和ではclosed $L$ の有界性を使う。従って $Q_{\rho_n}$ の有界性も二乗可積分性も不要である。
+
+\begin{lemma}[可積分支配下のマルチンゲール極限]
+マルチンゲール列 $M^k$ が各時刻でほとんど確実に強適合的過程 $Y$ へ収束し、
+各 $t$ に対して可積分な $B_t$ が存在して $|M^k_t|\le B_t$ がほとんど確実に全ての $k$ で成立するとする。
+このとき $Y$ はマルチンゲールである。
+\end{lemma}
+\begin{proof}
+極限も $B_t$ に支配されるので可積分である。
+$s\le t$ と $E\in\mathcal F_s$ に対して、$E$ 上の積分に支配収束を適用すると
+$\int_E Y_s\,d\mu=\int_E Y_t\,d\mu$ を得る。条件付き期待値の特徴付けから結論が従う。
+\end{proof}
+
+\begin{lemma}[自己積分と交差項の局所マルチンゲール性]
+同じDDY成分について
+\[
+ I_t=\int_{(0,t]}Q_{s-}\,dQ_s,\qquad
+ K_t=L_tQ_t-\sum_{0<s\le t}\Delta L_s\Delta Q_s
+\]
+は局所マルチンゲールである。
+\end{lemma}
+\begin{proof}
+共通局所化を一つ固定し、$\bar L=L^{\rho_n}$、$\bar Q=Q^{\rho_n}$、
+$a=n+1$、$b=n+1+2c$、$A=\operatorname{Var}_{[0,\rho_n]}(Q)$ と書く。
+有限grid $G$ 上の自己積分和は、strict-prefix係数への置換により
+\[
+ |I_G(\bar Q,\bar Q)_t|
+ \le a\operatorname{Var}_{[0,t]}(\bar Q)\le aA
+\]
+を満たす。その階乗grid極限は停止pathに対するStieltjes積分である。
+停止前後の二乗公式と
+$\sum_{s\le t}(\Delta Q^{\rho_n}_s)^2=\sum_{s\le t\wedge\rho_n}(\Delta Q_s)^2$
+を比較すれば、この極限は元の $I_{t\wedge\rho_n}$ と等しい。
+
+交差項には、零から始まる有限gridの終端を $u_G$ として
+\[
+ I_G(\bar L,\bar Q)_t+I_G(\bar Q,\bar L)_t
+ =\bar L_{t\wedge u_G}\bar Q_{t\wedge u_G}-C^G_t
+\]
+という積の公式を用いる。ここで $C^G$ は同じcell上の交差増分和である。
+$|\bar Q_s|\le\operatorname{Var}_{[0,s]}(\bar Q)$ と $|\bar L_s|\le b$ から積は $bA$ 以下、
+また各 $\bar L$ の増分は絶対値 $2b$ 以下なので $|C^G_t|\le2bA$ である。
+従って二つの積分和の和は $3bA$ に支配される。
+交差増分和のStieltjes極限とjump級数表示、jumpの停止整合性から、
+和全体の階乗grid極限は $K_{t\wedge\rho_n}$ となる。
+
+両極限は全pathの時刻ごとの極限なので、有限和の強適合性も継承する。
+$A$ の可積分性と前補題によって、両closed stopsはtrue martingalesである。
+両過程の初期値は零なので、局所化の時刻0のindicator規約とも一致し、結論を得る。
+この証明は $\int Q_-\,dL$ を別個のcompleted integralとして構成する必要がない。
+\end{proof}
+
+\begin{theorem}[元の局所マルチンゲールの二次変分]
+usual conditionsを満たすfiltered probability space上の零始点・強適合的c\`adl\`ag
+局所マルチンゲール $N$ に対して、適合的c\`adl\`ag増加過程 $V$ が存在し、
+\[
+ V_0=0,\qquad \Delta V=(\Delta N)^2,\qquad N^2-V\text{ は局所マルチンゲール}
+\]
+を満たす。jump等式は一つの共通の確率1の集合上で全時刻に成立する。
+この $V$ は区別不能性を除いて一意である。
+\end{theorem}
+\begin{proof}
+存在には正則化済み補正過程 $V$ をそのまま使う。
+二乗公式は $N^2-V=(L^2-[L])+2(K+I)$ を与える。
+$K+I$ は同じ共通局所化で局所マルチンゲールである。
+その倍数を区別不能な正則過程 $N^2-V-(L^2-[L])$ に移してから、
+ $L^2-[L]$ と局所化列をそろえて加えると、同じ $V$ の二乗残差の局所マルチンゲール性を得る。
+
+一意性では、より一般に、適合的c\`adl\`ag・局所FV候補 $V,W$ が同じ初期値とjumpを持ち、
+$N^2-V,N^2-W$ が局所マルチンゲールであるとする。候補の単調性はここでは不要である。
+差 $D=V-W$ は局所FVの局所マルチンゲールであり、$\Delta D=0$ からほとんど確実に連続である。
+各決定論的整数horizonで停止すると経路の全変動は有限になる。
+停止過程の左極限はpredictableであり、連続なpath上では元の過程と等しい。
+これを共通零集合上で正則化して、predictable FV局所マルチンゲールの剛性を適用すると、
+各horizonで差は初期値の零に等しい。可算個のhorizonの共通eventを取れば全時刻で $V=W$ となる。
+\end{proof}
+
+従って、同じ $L$ のquadratic/Davis構成から得た補正は
+\[
+ [N]_T=[L]_T+D_T
+\]
+という二次変分の等式を与える。DDY閾値やscheduleが異なっても、同じsourceのcertificateは区別不能である。
+この結果だけで非convexな二乗増分和の全列収束は主張しない。
+同じscheduleの座標との停止整合性は上記の補題で得られる。
+さらに任意の停止時刻との整合性も次のとおり得られる。
+
+\begin{lemma}[二次変分の停止整合性]
+上の仮定の下で、$\tau$ を無限大を取り得る任意の停止時刻とする。このとき
+\[
+ [N^\tau]\sim[N]^\tau.
+\]
+左辺は停止後のsourceから独立に構成してよい。
+\end{lemma}
+\begin{proof}
+零始点の右連続局所マルチンゲールは、任意のclosed stoppingで局所マルチンゲールのままである。
+実際、元のlocalizerで停止したtrue martingaleをさらに $\tau$ で止め、
+二つの停止の交換と時刻0のindicatorの除去を用いればよい。
+従って $N^\tau$ にも存在定理を適用できる。
+
+$V=[N]$ とすると、$V^\tau$ の強適合性、c\`adl\`ag性、単調性と零初期値は停止で保たれる。
+単調性から局所有限変動性も得る。
+$t\le\tau$ では停止前後のjumpが同じであり、$\tau<t$ では両jumpとも零だから
+$\Delta(V^\tau)=(\Delta(N^\tau))^2$ である。
+二乗残差は
+\[
+ (N^\tau)^2-V^\tau=(N^2-V)^\tau
+\]
+であり、右辺は零始点の局所マルチンゲールを停止した過程である。
+これで $V^\tau$ は $N^\tau$ の二次変分の全条件を満たす。
+停止後のsourceに対する一意性から、独立に構成したどの二次変分とも区別不能となる。
+\end{proof}
+
+\begin{lemma}[二次変分の平方根の三角不等式]
+零始点・強適合的c\`adl\`ag局所マルチンゲール $X,Y$ に対して、共通の確率1の集合上で
+\[
+ \sqrt{[X+Y]_t}\le\sqrt{[X]_t}+\sqrt{[Y]_t}\qquad(t\ge0)
+\]
+が成立する。
+\end{lemma}
+\begin{proof}
+$V=[X]$、$W=[Y]$、$S=[X+Y]$ と書く。実数 $a$ に対して
+\[
+ A^a=aS+(1-a)V+(a^2-a)W
+\]
+は零始点の適合的c\`adl\`ag・局所FV過程である。
+二乗残差には
+\[
+ (X+aY)^2-A^a
+ =a\bigl((X+Y)^2-S\bigr)+(1-a)(X^2-V)+(a^2-a)(Y^2-W)
+\]
+が成立するので、これは局所マルチンゲールである。
+また $\Delta A^a=(\Delta X+a\Delta Y)^2$ である。
+従って、単調性を要求しない一意性の比較を用いると、$A^a\sim[X+aY]$ を得る。
+
+各有理数 $a$ について $X+aY$ に二次変分の存在定理を適用し、可算交叉を取る。
+すると一つのevent上で全時刻 $t$ と全有理数 $a$ に対して
+\[
+ 0\le aS_t+(1-a)V_t+(a^2-a)W_t
+   =W_ta^2+(S_t-V_t-W_t)a+V_t
+\]
+となる。時刻とpathを固定した二次式の連続性から全実数 $a$ でも非負である。
+判別式を評価すると $(S_t-V_t-W_t)^2\le4V_tW_t$ を得る。
+$V_t,W_t\ge0$ なので $S_t\le(\sqrt{V_t}+\sqrt{W_t})^2$ となり、結論が従う。
+\end{proof}
+
+\begin{lemma}[有限グリッド上の $L^1$ Davis 評価]
+離散時間の実数値マルチンゲール $Y$ に対して
+\[
+ Y_n^*=\max_{0\le k\le n}|Y_k|,\qquad
+ R_n=\sqrt{Y_0^2+\sum_{k<n}(Y_{k+1}-Y_k)^2}
+\]
+とおく。この二つは可積分であり、
+\[
+ E[Y_n^*]\le6E[R_n],\qquad E[R_n]\le7E[Y_n^*]
+\]
+が成立する。
+各時刻の二乗可積分性は要求しない。
+\end{lemma}
+\begin{proof}
+それぞれ $\sum_{k\le n}|Y_k|$ と
+$|Y_0|+\sum_{k<n}|Y_{k+1}-Y_k|$ で抑えられるので可積分である。
+有界な適合的係数 $H_k$ に対し、$H_k(Y_{k+1}-Y_k)$ は可積分であり、
+$\mathcal F_k$ に関する条件付き期待値は零である。
+従って左端係数による有限積分和は零始点のマルチンゲールとなる。
+経路ごとのDavis不等式に現れる係数は絶対値が $1$ 以下なので、
+その不等式を積分すると補正積分の期待値が消え、結論を得る。
+
+逆向きには、$m\ge|x|$, $m,q\ge0$ に対して
+\[
+ F(x,m,q)=-2m+\sqrt{m^2+q}+\frac{m^2-x^2}{2\sqrt{m^2+q}}
+\]
+を使う。零除算は零とする。$M=\max\{m,|x+d|\}$ とおくと
+\[
+ F(x+d,M,q+d^2)-F(x,m,q)
+ \le-\frac{xd}{\sqrt{m^2+q}}+5(M-m).
+\]
+この一段階評価は次のように得る。$r=\sqrt{m^2+q}>0$,
+$u=\sqrt{M^2+q+d^2}$ とする。
+$M\le2m$ の場合、平方根の接線評価と $u\ge r$ により、左辺に $xd/r$ を加えたものは
+$(M^2-m^2)/r-2(M-m)\le M-m$ 以下である。
+$M>2m$ の場合は $M=|x+d|$, $|d|\le M+m\le3(M-m)$ であり、
+$u-r\le4(M-m)$ と $xd/r\le|d|$ を使う。
+新しいpotentialの分子 $M^2-(x+d)^2$ は零、古い分子は非負なので、目的の上界を得る。
+$r=0$ なら $x=m=q=0$ となり、直接計算で評価できる。
+
+$x=Y_k$, $m=Y_k^*$, $q=R_k^2$, $d=Y_{k+1}-Y_k$ として和を取る。
+$F(Y_0,|Y_0|,Y_0^2)\le0$ と $F(Y_n,Y_n^*,R_n^2)\ge R_n-2Y_n^*$ から
+\[
+ R_n\le7Y_n^*-\sum_{k<n}
+ \frac{Y_k}{\sqrt{R_k^2+(Y_k^*)^2}}(Y_{k+1}-Y_k)
+\]
+を得る。同じ絶対値1以下の適合係数を使っているので、この積分和の期待値も零である。
+\end{proof}
+
+DDY分解の共通局所化 $\rho_j$ では、$L^{\rho_j}$ と $Q^{\rho_j}$ がともに
+マルチンゲールである。従って元の過程 $N^{\rho_j}=L^{\rho_j}+Q^{\rho_j}$ を
+任意の有限時刻グリッドで標本化した列にも、この評価が適用できる。
+ここで停止列は、閉じて停止した $Q$ の全変動が可積分となるものと同じである。
+平方根は凹関数なので、個々のグリッドの逆評価を凸結合したenergyの平方根へそのまま移せない。
+そこで元の二乗増分和の収束を示す。
+
+\begin{lemma}[有界マルチンゲールの元の二乗増分和]
+usual conditionsの下で、$M$ を強適合的c\`adl\`agマルチンゲールとし、
+有限horizon $T$ まで $|M_t|\le C$ が全pathで成立するとする。
+階乗グリッドを $\pi_i$ とし、
+\[
+ I_i=2\sum_{[u,v]\in\pi_i}M_u(M_v-M_u),\qquad
+ E_i=\sum_{[u,v]\in\pi_i}(M_v-M_u)^2
+\]
+とおく。保存済みの二次変分構成のmartingale成分を $Y$、増加成分を $V$ とすると、
+$I_i\to Y_T$ および $E_i\to V_T$ が $L^2$ で成立する。
+有界性が全時刻共通にほとんど確実に成立する場合にも、$E_i\to V_T$ は確率収束する。
+\end{lemma}
+\begin{proof}
+同じ $V$ の予測可能エネルギー測度を $\nu$ とする。
+グリッド左端係数 $H_i$ は有界予測可能初等過程であり、$(0,T]$ 上で $M_-$ に各点収束する。
+$\nu$ は有限であり、時刻零と $T$ より後を測度零にする。
+従って支配収束により $H_i\to M_-$ が $L^2(\nu)$ で成立する。
+格子によらない等長性
+\[
+ \|(H_i-H_j)\mathbin{\cdot}M_T\|_{L^2(P)}
+ =\|H_i-H_j\|_{L^2(\nu)}
+\]
+から $I_i$ は $L^2(P)$ でCauchyである。その極限を $I$ とする。
+保存済みのforward convex weightsを $I_i$ に適用しても極限は $I$ のままである。
+一方、その同じ重みによる積分和はほとんど確実に $Y_T$ へ収束する。
+確率極限の一意性から $I=Y_T$ である。
+$I_i+E_i=M_T^2-M_0^2$ と保存済みの二乗分解から $E_i\to V_T$ を得る。
+
+有界性の例外が共通零集合に含まれる場合、usual conditionsによりその集合は
+$\mathcal F_0$ に属する。そこで $M$ を零に置き換えると、全pathで有界な
+区別不能のc\`adl\`agマルチンゲールを得る。
+同じ重みと同じ二つの成分はこのsourceにも二次変分dataを与える。
+元の二乗増分和も区別不能なsource間でほとんど確実に等しいので、確率収束を移せる。
+\end{proof}
+
+\begin{theorem}[一般局所マルチンゲールの逆Davis評価]
+usual conditionsの下で、$N$ を零始点・強適合的c\`adl\`ag局所マルチンゲールとする。
+任意の内在的二次変分と有限 $T$ に対して
+\[
+ E\sqrt{[N]_T}\le7E[N_T^*]
+\]
+が成立する。期待値は無限でもよい。
+\end{theorem}
+\begin{proof}
+DDY共通停止列の一つ $\rho_j$ を固定する。$L^{\rho_j}$ はほとんど確実に一様有界であり、
+前補題から元の二乗増分和がその二次変分へ確率収束する。
+$N^{\rho_j}$ と $L^{\rho_j}$ の二乗増分和の差は、有限変動補正へpathwiseに収束する。
+和を取り、停止整合性を使うと、元の $N^{\rho_j}$ の二乗増分和が
+$[N]_{T\wedge\rho_j}$ へ確率収束する。
+ほとんど確実に収束する部分列を選び、平方根を取る。
+各グリッドの最大値は $(N^{\rho_j})_T^*$ 以下なので、有限グリッドの逆評価とFatouの補題から
+\[
+ E\sqrt{[N]_{T\wedge\rho_j}}
+ \le7E[(N^{\rho_j})_T^*]\le7E[N_T^*]
+\]
+を得る。ほとんど確実に $\rho_j\to\infty$ なので、同じ確率1の集合上で左辺の被積分関数は最終的に
+$\sqrt{[N]_T}$ と等しい。再びFatouを使い、二次変分の一意性で任意のcertificateへ移す。
+\end{proof}
+
+同じDDY局所化は、次の平方根の一様可積分性にも使える。
+
+\begin{lemma}[凸結合した二乗増分和の平方根の一様可積分性]
+上の共通停止列の一つと有限horizonを固定する。
+元の停止過程とその $L$ 成分のfactorial grid上の二乗増分和を、それぞれ $E_i,B_i$ とする。
+任意のforward convex weights $W$ に対し、$\sqrt{W(E)_k}$ は一様可積分である。
+\end{lemma}
+\begin{proof}
+$A=\operatorname{Var}(Q^{\rho_j})_\infty$ とおくと、$A\ge0$ は可積分である。
+同じグリッドの平方根の三角不等式と有限変動評価から
+$\sqrt{E_i}\le\sqrt{B_i}+A$、従って $E_i\le2B_i+2A^2$ となる。
+重みの非負性と和が $1$ であることから
+\[
+ W(E)_k\le2W(B)_k+2A^2,\qquad
+ \sqrt{W(E)_k}\le2W(B)_k+2(1+A).
+\]
+停止した $L$ は有界なマルチンゲールなので、そのterminal valueは二乗可積分である。
+二次変分近似の評価により $B_i$ は一様可積分であり、任意のforward convexification
+$W(B)_k$ も一様可積分である。右辺の残りは一つの可積分関数なので、結論が従う。
+この証明では $A^2$ の可積分性は使わない。
+\end{proof}
+
+\begin{lemma}[閉じた停止後の終端平方根の $L^1$ 極限]
+同じ共通停止列の一つ $\rho$ と有限horizon $T$ を固定する。
+$L^\rho$ の二次変分構成から得た有限horizonの候補を $V^L$、その構成の重みと部分列による
+元の停止sourceの凸結合energyを $E_k$ とする。DDYのjump補正を $C$ とすると、
+\[
+ \sqrt{E_k(T)}\longrightarrow
+ \sqrt{V^L_T+C_{T\wedge\rho}}\quad\text{in }L^1,
+\]
+かつ右辺は可積分である。
+\end{lemma}
+\begin{proof}
+停止した過程のgrid上の増分和は、元の過程を $t\wedge\rho$ で評価した増分和に等しい。
+従ってjump補正のgrid極限を、$t\le\rho$ に制限することなく適用できる。
+同じ重みで $L^\rho$ 側のenergyが $V^L$ に収束し、補正項が $C_{t\wedge\rho}$ に収束するので、
+$E_k(T)\to V^L_T+C_{T\wedge\rho}$ がほとんど確実に成立する。
+平方根の連続性と上の一様可積分性から、Vitaliの定理によって結論を得る。
+$L^\rho$ の終端は二乗可積分なので、ここで使う有限horizonの二次変分データは実際に構成できる。
+\end{proof}
+
+\begin{lemma}[元の二次変分の停止値との同定]
+上の記号の下で、元の過程 $N$ の正則化済み二次変分を $V$ とすると、
+\[
+ V^L_T+C_{T\wedge\rho}=V_{T\wedge\rho}\quad\text{a.s.}
+\]
+従って同じ凸結合energyについて
+$\sqrt{E_k(T)}\to\sqrt{V_{T\wedge\rho}}$ が $L^1$ で成立し、極限は可積分である。
+\end{lemma}
+\begin{proof}
+有限horizonの候補 $V^L$ は $(L^\rho)^T$ の二次変分の条件を満たす。
+実際、その構成のマルチンゲールは二乗残差に等しく、jumpはsourceのjumpの二乗である。
+一方、大域的に構成した $[L]$ を $\rho$ と $T$ で順に停止した過程も、
+停止整合性により同じsourceの二次変分となる。
+一意性から $V^L_T=[L]_{T\wedge\rho}$ を得る。
+正則化済みの $V$ は $[L]+C$ と区別不能なので、ランダム時刻 $T\wedge\rho$ でも
+この等式を使える。最後に上の $L^1$ 極限の終端値をこの等式で置き換える。
+\end{proof}
+
+\begin{lemma}[一般の局所マルチンゲールのDavis評価]
+usual conditionsの下で、$N$ を零始点・強適合的c\`adl\`ag局所マルチンゲールとする。
+任意の有限horizon $T$ に対し、非負拡張実数の期待値として
+\[
+ E\sup_{t\le T}|N_t|\le6E\sqrt{[N]_T}
+\]
+が成立する。右辺が有限なら、左辺の最大値も可積分である。
+\end{lemma}
+\begin{proof}
+まず共通局所化の一つ $\rho$ を固定する。
+一つのcoarse factorial gridの最大値は、それ以後の各gridの最大値以下である。
+従ってtail convex weightsによる平均を取り、有限グリッドのDavis評価と
+平方根の凹性を使うと、その最大値の期待値は $6E\sqrt{E_k(T)}$ 以下となる。
+上の $L^1$ 収束で $k\to\infty$ として、右辺を
+$6E\sqrt{[N]_{T\wedge\rho}}$ に置き換えられる。
+coarse gridを細かくすると、右連続性と単調収束により、全時刻の最大値に対して
+\[
+ E\sup_{t\le T}|N^\rho_t|\le6E\sqrt{[N]_{T\wedge\rho}}
+\]
+を得る。この時点で左辺の可積分性も従う。
+次に共通停止列 $\rho_n\to\infty$ を使う。
+ほとんど全ての経路では最終的に $\rho_n\ge T$ となるため、停止過程の最大値は元の最大値に等しくなる。
+右辺は二次変分の単調性から $6E\sqrt{[N]_T}$ 以下である。
+Fatouの補題により停止を除去できる。二次変分の一意性から、構成に用いた候補を
+同じsourceの任意の二次変分に置き換えても結論が成立する。
+\end{proof}
+
+\begin{lemma}[無限horizonと全分解上の最大値評価]
+同じ仮定の下で $R_N:=\sup_{t\ge0}\sqrt{[N]_t}$ とおくと、
+\[
+ E\sup_{t\ge0}|N_t|\le6E R_N
+\]
+が非負拡張実数の期待値として成立する。
+零始点の過程 $Y$ に対し、$Y=N+A$ が区別不能の意味で成立する全ての零始点分解を考える。
+ここで $N$ は強適合的c\`adl\`ag局所マルチンゲール、$A$ は強適合的c\`adl\`ag局所有限変動過程である。
+\[
+ \mathcal J(Y):=\inf_{Y=N+A}E[R_N+\Var(A)_\infty]
+\]
+とおくと、$E\sup_{t\ge0}|Y_t|\le6\mathcal J(Y)$ が成立する。
+下限では有限costを仮定せず、空の分解族の下限は $\infty$ とする。
+\end{lemma}
+\begin{proof}
+整数horizonでの最大値は単調に全時刻の最大値へ増加する。
+有限horizonのDavis評価の右辺を $6E R_N$ で抑え、単調収束により最初の主張を得る。
+二次変分の単調性により $R_N$ は整数時刻で検出できるので可測である。
+各分解について、$A_0=0$ と全変動の定義から
+\[
+ \sup_t|Y_t|\le\sup_t|N_t|+\Var(A)_\infty.
+\]
+期待値を取りDavis評価を使うと、右辺は
+$6E R_N+E\Var(A)_\infty\le6E[R_N+\Var(A)_\infty]$ 以下となる。
+全ての分解について下限を取ればよい。
+各 $N$ の二次変分は存在し、全時刻共通の零集合を除いて一意であるため、
+二次変分の構成上の選択はcostに影響しない。
+\end{proof}
+
+\begin{lemma}[閉じた停止と停止直前の延長の下限]
+任意の停止時刻 $\tau$ に対し、$\mathcal J(Y^\tau)\le\mathcal J(Y)$ である。
+停止時刻には $\infty$ を許す。さらに
+\[
+ \mathcal J_{\tau-}(Y):=
+ \inf\{\mathcal J(L):L_t=Y_t\text{ for all }t<\tau\text{ a.s.}\}
+\]
+と置く。ただし一致は全時刻共通の零集合を除いて要求する。このとき
+\[
+ \mathcal J_{\tau-}(Y)\le\mathcal J(Y^\tau)\le\mathcal J(Y),\qquad
+ E\sup_{t<\tau}|Y_t|\le6\mathcal J_{\tau-}(Y).
+\]
+$\tau=0$ で空となるsupremumは $0$ とする。
+\end{lemma}
+\begin{proof}
+分解 $Y=N+A$ を同じ $\tau$ で停止すると、
+$Y^\tau=N^\tau+A^\tau$ は再び許容される零始点分解となる。
+停止した二次変分は $[N]^\tau$ なので、その全時刻平方根は $R_N$ 以下である。
+時刻を $t\wedge\tau$ に制限しても全変動は増えない。
+従って停止した分解のcostは元のcost以下であり、全分解について下限を取れる。
+また $Y^\tau$ は停止直前まで $Y$ と一致する大域延長なので、外側の下限の上界を与える。
+最後に任意の延長 $L$ について $\sup_{t<\tau}|Y_t|\le\sup_t|L_t|$ がa.s.で成立する。
+既に得た最大値評価を適用し、延長について下限を取れば最後の不等式を得る。
+\end{proof}
+
+\begin{lemma}[二つの下限の三角不等式]
+同じ仮定の下で
+\[
+ \mathcal J(X+Y)\le\mathcal J(X)+\mathcal J(Y),\qquad
+ \mathcal J_{\tau-}(X+Y)\le\mathcal J_{\tau-}(X)+\mathcal J_{\tau-}(Y)
+\]
+が成立する。後者の $\tau$ は同じものであり、その停止時刻性は必要ない。
+\end{lemma}
+\begin{proof}
+二つの分解 $X=N+A$、$Y=M+B$ の成分を足すと、$X+Y=(N+M)+(A+B)$ の許容分解を得る。
+二次変分の三角不等式から $R_{N+M}\le R_N+R_M$ がa.s.で成立する。
+全変動の劣加法性から $\Var(A+B)_\infty\le\Var(A)_\infty+\Var(B)_\infty$ でもある。
+全時刻variationは整数horizonのvariationのsupremumであり、右連続な適合過程について可測である。
+従って期待値を足し合わせることができ、和の分解のcostは二つのcostの和以下となる。
+二つの分解族について独立に下限を取ると最初の主張を得る。
+同じstrict prefixに一致する二つの大域延長を足せば、和のsourceの大域延長になる。
+最初の不等式を適用して二つの延長族について下限を取れば後半を得る。
+この議論は無限costや空の分解族も含む。
+\end{proof}
+
+\begin{lemma}[符号反転とsuccessive differences]
+同じ仮定の下で、$\mathcal J(-X)=\mathcal J(X)$ および
+$\mathcal J_{\tau-}(-X)=\mathcal J_{\tau-}(X)$ である。
+従って一つの固定した $\tau$ について
+\[
+ \mathcal J_{\tau-}(Z_k-X)\longrightarrow0
+ \quad\Longrightarrow\quad
+ \mathcal J_{\tau-}(Z_{k+1}-Z_k)\longrightarrow0.
+\]
+\end{lemma}
+\begin{proof}
+$N$ の二次変分はそのまま $-N$ の二次変分の条件を満たす。
+二乗残差は変わらず、jumpの符号反転は二乗で消えるからである。
+また全変動も符号反転で不変である。従って分解 $(N,A)$ を $(-N,-A)$ に移すとcostは保存される。
+下限を取り、符号反転を二度適用すれば $\mathcal J$ の等式を得る。
+同じprefix上で一致する延長も符号反転できるため、外側の下限にも同じ議論を適用できる。
+三角不等式とこの対称性から
+\[
+ \mathcal J_{\tau-}(Z_{k+1}-Z_k)
+ \le\mathcal J_{\tau-}(Z_{k+1}-X)+\mathcal J_{\tau-}(Z_k-X)
+\]
+となり、非負性と合わせて結論を得る。無限costも許すが、共通停止時刻の存在をこの補題からは主張しない。
+\end{proof}
+
+\begin{lemma}[有限costからの局所成分の構成]
+usual conditionsの下で、$\tau\le T$ を有限停止時刻とする。
+$\mathcal J_{\tau-}(X)<r$ なら、$X$ と区別不能な過程 $X'$ と、
+$t<\tau$ で点ごとに $X'_t=N_t+A_t$ を満たす局所マルチンゲール $N$、
+大域的有限変動過程 $A$ が存在し、
+\[
+ E\sup_{t\le T}|N_{t\wedge\tau}|
+ +E\Var_{[0,T]}(A^{\tau-})<6r
+\]
+となる。両成分は適合的で右連続かつ左極限を持ち、左辺の二項は有限である。
+\end{lemma}
+\begin{proof}
+下限の定義から延長 $Y$ と分解 $Y=N+B$ を選び、そのcostを $r$ 未満にする。
+このcostは有限である。$A=B^T$ と置くと経路の大域的有限変動性を得る。
+停止前の全変動は $B$ の全変動以下であり、停止した $N$ の最大値には
+全時間のDavis評価を適用できる。従って左辺は選んだcostの6倍以下となる。
+$t<\tau$ では $X'_t=N_t+A_t$、それ以外では $X'_t=X_t$ と定義する。
+延長と分解の一致が成立する共通の確率1の集合上で、全時刻 $X'=X$ となる。
+これにより停止前の点ごとの等式と、元の過程との区別不能性が同時に得られる。
+\end{proof}
+
+\begin{lemma}[和可能なcostからの成分列]
+usual conditionsの下で、$\tau\le T$ を一つの有限停止時刻とする。
+$\sum_k\mathcal J_{\tau-}(X_k)<\infty$ なら、前の補題のexact代表元 $X'_k$ と成分 $(N_k,A_k)$ を選び、
+\[
+ \sum_k\left(E\sup_{t\le T}|N_{k,t\wedge\tau}|
+       +E\Var_{[0,T]}(A_k^{\tau-})\right)
+ \le6\left(\sum_k\mathcal J_{\tau-}(X_k)+1\right)<\infty
+\]
+とできる。さらに一つの確率1の集合上で、全 $k,t$ について $X'_{k,t}=X_{k,t}$ であり、
+\[
+ \sum_k\left(\sup_{t\le T}|N_{k,t\wedge\tau}|
+       +\Var_{[0,T]}(A_k^{\tau-})\right)<\infty
+\]
+となる。
+\end{lemma}
+\begin{proof}
+$c_k=\mathcal J_{\tau-}(X_k)$、$\varepsilon_k=2^{-k-1}$ と置く。
+各 $c_k$ は有限なので $c_k<c_k+\varepsilon_k$ であり、前の補題からcostが
+$6(c_k+\varepsilon_k)$ 未満の代表元と成分を選べる。
+$\sum_k\varepsilon_k=1$ より期待値の総和の評価を得る。
+各martingale最大値とstrict-prefix全変動は可測であり、Tonelliにより経路ごとの総和はa.s.有限である。
+全 $k$ の区別不能性のeventとの可算交叉を取れば、同じ集合上で元の過程との全時刻一致も得る。
+\end{proof}
+ここで $\tau$ と和可能なcostは入力であり、共通局所化の構成は含めない。
+また成分は一般の分解から選ばれるので、original-sourceの実現された積分への所属は別に証明する必要がある。
+
+\begin{lemma}[停止直前の比較と境界jump]
+usual conditionsの下で、$\tau\le T$ を有限停止時刻とする。このとき
+\[
+ \mathcal J(X^{\tau-})\le2\mathcal J(X).
+\]
+さらに $X_0=0$ なら
+\[
+ \mathcal J_{\tau-}(X)\le\mathcal J(X^{\tau-})\le2\mathcal J_{\tau-}(X).
+\]
+$X$ が零始点の適合的c\`adl\`ag過程なら
+\[
+ \mathcal J(X^\tau)\le2\mathcal J_{\tau-}(X)+E|\Delta X_\tau|.
+\]
+いずれも無限costを許す。
+\end{lemma}
+\begin{proof}
+分解 $X=N+A$ を固定する。$A$ を決定論的な $T$ で停止してもstrict prefixは変わらない。
+従って $X^{\tau-}=N^\tau+(A^{\tau-}-B^\tau(N))$ を許容分解にできる。
+二次変分の単調性、零初期値とjump条件より
+$|\Delta N_\tau|\le\sqrt{[N]_\tau}$ である。
+停止したマルチンゲールのroot costは元のroot cost以下であり、
+有限変動成分の全変動は元の全変動に $|\Delta N_\tau|$ を加えたもの以下となる。
+従ってこの分解のcostは元のcostの2倍以下であり、下限を取れば第一式を得る。
+次に停止前で一致する延長の分解を選ぶ。その成分の和と $X$ の左極限は、
+$\tau>0$ では停止前の一致から、$\tau=0$ では零初期値から一致する。
+第一式の分解ごとの評価を適用して延長と分解の下限を取れば第二式の上側評価を得る。
+下側評価は $X^{\tau-}$ 自身が延長であることによる。
+最後に境界過程 $B^\tau(X)$ は適合的な零始点FV過程であり、
+零マルチンゲールとの分解から $\mathcal J(B^\tau(X))\le E|\Delta X_\tau|$ となる。
+$X^\tau=X^{\tau-}+B^\tau(X)$ に三角不等式を適用すれば第三式を得る。
+\end{proof}
+
+これらは零始点coreと外側の下限の評価、および具体的な局所成分の構成である。
+主定理の零始点の代表列に必要な代数・共通prelocal制御・入力生成は、次節の位相比較と共通局所化で供給する。
+一般の非零初期値は別座標として扱い、この零始点costに隠さない。
+
+有限 $M^2$ quadratic rootは exact $j^1$ そのものではない。
+stopping-time jump seminormは、二次変分と全変動の和からなるcostとは別に扱う。
+quadratic variationは定数 martingaleを検出しないので、$N-N_0$ を用い、一般過程の距離には
+初期値を別座標として持たせる。

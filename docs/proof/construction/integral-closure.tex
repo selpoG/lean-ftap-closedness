@@ -1,0 +1,81 @@
+\subsection{Proof of closedness of the general integral graph}
+\label{sec:closure-proof}
+\begin{proof}[Proof of Theorem~\ref{thm:graph-closure}]
+\emph{Choose one original-price approximation.}
+The common null event on which the price bound fails belongs to the initial sigma-field by the usual conditions. Set the price to zero there; this gives an everywhere bound without changing gains up to indistinguishability. Apply bounded truncation and elementary density from
+Theorem~\ref{thm:integral-input} to each $Y_n$.
+Diagonalize with geometrically small test-uniform errors on integer horizons
+to obtain elementary original-price gains $P_n$ converging to the same $X$
+in Emery topology. By assumption $X$ is zero-start, strongly adapted and
+c\`adl\`ag. Proposition~\ref{prop:gi-limit} makes it a good integrator, and
+Theorem~\ref{thm:regular-gi-decomposition} gives a decomposition in the domain
+of the auxiliary topology. No integral representation of $X$ is assumed.
+
+\emph{Localize the same sequence.}
+Apply Proposition~\ref{prop:topology-localization} to $P_n-X$ to obtain
+vanishing auxiliary $r^1$ cost. Its topology comparison uses completeness
+of the space of decomposable processes and a closed-graph theorem,
+independently of integral-range closedness. Take a faster subsequence with
+summable adjacent costs. Proposition~\ref{prop:joint-costs} chooses this
+subsequence, one equivalent measure $Q$, and one stopping sequence $\tau_r$
+so that prelocal component costs and expected boundary jumps are jointly
+summable. It retains $\tau_r\leq r+1$ and $\tau_r\to\infty$.
+
+\emph{Pass the bounds to actual stopped integral components.}
+Each $P_n^{\tau_r}$ is an already realized original-price integral.
+Lemma~\ref{lem:canonical-cost} and equation~\eqref{eq:actual-closed-cost}
+transfer the bounds obtained from arbitrary decompositions to the canonical
+components of this same gain. Subsection~\ref{sec:actual-series} applies the
+bounds to every adjacent difference at the same $r$ and constructs component
+series. Their limits are locally uniform on the M side and in variation on
+the FV side; their sum is $X^{\tau_r}$. No unrelated sequence or independently
+selected decomposition is substituted.
+
+\emph{Realize both components with one coefficient.}
+The joint stops of Subsection~\ref{sec:joint-realization} give terminal
+$L^2(Q)$ bounds on the approximating M components, uniform in their index.
+Together with summable adjacent FV variations, these are precisely the
+hypotheses of Lemma~\ref{lem:joint-coefficient}. That lemma matches the
+coefficient limit under the FV variation control with the energy limit
+of convex averages of the same coefficients. One predictable coefficient
+therefore represents both stopped components, whose sum is the same
+$X^{\tau_r}$. The FV control also determines the coefficient where the energy
+measure vanishes; no absolute continuity between the two measures is needed.
+
+\emph{Return to the original measure and all time.}
+Truncation inclusion and measure transfer from
+Theorem~\ref{thm:integral-input} return each stopped general graph to the
+original measure. Apply the stopping-interval pasting proved in
+Section~\ref{sec:integral-calculus} to this stopping sequence.
+Joining coefficients on disjoint intervals, equality of the stopped gains
+and $\tau_r\to\infty$ give the all-time original-price graph $(H,X)$.
+Pasting needs indistinguishable gains, not agreement of independently chosen
+coefficients on overlaps. The auxiliary special decomposition is not itself
+transferred between measures.
+\end{proof}
+
+\paragraph{Gain domains and terminal sets}
+An elementary-test realization consists of elementary predictable strategies
+with a deterministic bound on the sum of coefficient magnitudes in each row,
+and a strongly adapted c\`adl\`ag ucp limit of their gains, where the gains
+are Cauchy uniformly over elementary tests.
+\begin{proposition}[Identification of gains and terminal claims]
+For the same bounded source, the gain domains of the general truncation graph
+and elementary-test realizations agree up to indistinguishability.
+Their $a$-admissible terminal claim sets, defined using each candidate's own
+finite terminal limit, agree as well.
+\end{proposition}
+\begin{proof}
+Each elementary row has bounded coefficient, hence belongs to the general
+graph. Its Émery Cauchy property and ucp limit give Émery convergence to that
+same limit; apply Theorem~\ref{thm:graph-closure}.
+Conversely approximate each bounded truncation row by elementary integrals
+of the original source. Removing a stop costs at most its probability of
+occurring before the horizon, independently of the test. Combine this with
+truncation convergence. At integer horizon $n+1$ choose error at most
+$1/(n+1)$. Horizon monotonicity gives convergence on every finite horizon,
+then the common test Cauchy bound and zero start give the required ucp limit.
+Indistinguishability transfers all-time lower bounds and the candidate's own
+terminal limit. Existence of a terminal limit is never inferred from
+finite-horizon convergence alone.
+\end{proof}

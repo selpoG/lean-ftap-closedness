@@ -1,0 +1,42 @@
+\subsection{有限大ジャンプを除いた residual}
+
+元の局所 martingale $N$ から有限大ジャンプ過程を差し引いた residual を
+\[
+ R_t=N_t-J_t,
+ \qquad
+ J_t=\sum_{0<s\le t\wedge T,\,|\Delta N_s|>c}\Delta N_s
+\]
+と定める。left limit を用いると全時刻で
+\[
+ \Delta R_t=\Delta N_t-\Delta J_t
+\]
+が厳密に成り立つ。$0<t\le T$ では、$|\Delta N_t|>c$ のとき
+$\Delta J_t=\Delta N_t$ であり、それ以外では $\Delta J_t=0$ である。従って
+\[
+ 0<t\le T\quad\Longrightarrow\quad |\Delta R_t|\le c .
+\]
+さらに $t>T$ では $\Delta J_t=0$ なので $\Delta R_t=\Delta N_t$ である。
+この境界は source-level の residual に限られる。$J$ の predictable projection や
+compensator を差し引いた過程について同じ jump bound を主張するには、announced-time または
+conditional-expectation による別の estimate が必要であり、ここでは仮定していない。closed source
+と predictable projection の nested overlap に加え、貼り合わせたglobal predictable process $P$ も得た。
+さらに停止列のexhaustionにより、同じ $P$ に対する $Q=J-P$ が局所martingaleであることを得た。
+この $P$ のpredictable jump estimateも以下で得る。
+
+一方、closed stop が追加する境界 jump については、局所化をさらに細かくすれば可積分性を
+得られる。決定論的な $H<\infty$ に対して $\tau\leq H$ を満たす停止時刻 $\tau$ が、ある
+local-martingale localizer と level $r$ の absolute strict passage の双方以下であるとする。
+前者によって $N_\tau$ は true martingale の bounded optional sample と同一視できるので可積分であり、
+後者と左極限の存在によって
+\[
+  |N_{\tau-}|\le r
+\]
+である。有限大ジャンプ過程 $J$ の jump は $\Delta N_\tau$ または $0$ なので、
+\[
+  |\Delta J_\tau|
+  \le |N_\tau|+|N_{\tau-}|
+  \le |N_\tau|+r .
+\]
+従って $\Delta J_\tau$ は可積分である。この議論には $\tau$ の announcement は不要であり、
+境界 correction が predictable であるとも主張しない。この estimate は上の共通 refinement に
+実際に用いられ、closed stopped slice の可積分全変動と予測可能射影を与える。

@@ -1,0 +1,91 @@
+\subsection{任意の分解から正準成分への定量評価}
+\label{sec:canonical-cost}
+補償定理を次の形で用いる。適合的・零始点・càdlàg な過程 $D$ が可積分な全変動を持ち、
+有限の決定論的時刻以後一定なら、予測可能・零始点・càdlàg で可積分変動を持つ $D^p$ が存在し、
+$D-D^p$ は一様可積分マルチンゲールとなる。
+これは\emph{双対予測可能射影}であり、
+\[
+ E\int K\,dD^p=E\int K\,dD
+ \quad\text{（任意の有界予測可能な }K\text{）}
+\]
+で特徴付けられる。これは $D^p_t=E[D_t\mid\mathcal F_{t-}]$ という主張ではない。
+存在は標準的な双対射影定理による。その特徴付けと jump 公式は
+\cite[Section 4.3]{Nikeghbali}を参照されたい。必要な変動評価は
+\begin{equation}\label{eq:compensator-variation}
+ E\Var(D^p)\leq E\Var(D)
+\end{equation}
+である。実際、$dD^p$ の予測可能 Hahn 符号を $K$ に選ぶと、左辺は期待全変動となり、
+右辺は $E\Var(D)$ 以下である。二つの増加 Jordan 成分を別々に補償し、正値性を使ってもよい。
+$K=1_F1_{(s,t]}$、$F\in\mathcal F_s$ に対する同じ等式が $D-D^p$ のマルチンゲール性を与える。
+Lean では切断と予測可能有限変動近似の極限からこの補償過程を構成している。
+本稿では存在定理自体を標準的な基礎定理として明示的に使用する。
+
+\begin{lemma}[有限 horizon 後一定な利得の正準成分 cost]
+\label{lem:canonical-cost}
+零始点・càdlàg な $X$ は $T<\infty$ 以後一定で、
+正準分解 $X=M^{\rm can}+A^{\rm can}$ を持つとする。通常条件の下で
+\[
+ \begin{aligned}
+ E\Var_{[0,T]}(A^{\rm can})&\leq12\mathcal J(X),\\
+ E\sup_{t\leq T}|M^{\rm can}_t-M^{\rm can}_0|
+       +E\Var_{[0,T]}(A^{\rm can})&\leq30\mathcal J(X)
+ \end{aligned}
+\]
+が拡張値の不等式として成立する。$\mathcal J$ の下限で許す FV 成分は、
+予測可能とは限らず適合的でよい。
+\end{lemma}
+\begin{proof}
+下限を定める一つの有限 cost $j$ の分解を固定する。
+strict-prefix witness の構成により、決定論的停止 $\sigma=T+1$ の前で $X$ を表す
+成分 $N,B$ を
+\[
+ c_N=E\sup_t|N^\sigma_t|,\qquad
+ c_B=E\Var(B^{\sigma-}),\qquad c_N+c_B\leq6j
+\]
+となるように選べる。初期値をそのまま保持し、
+$J^N_t=\Delta N_\sigma1_{[\sigma,\infty)}(t)$ として
+\[
+ D=B^{\sigma-}-B_0-J^N
+\]
+と置く。これは適合的であり、
+\[
+ E\Var(D)\leq c_B+E|\Delta N_\sigma|\leq c_B+2c_N
+\]
+より可積分変動を持つ。この具体的な残差を補償する。
+\[
+ \widehat M=N^\sigma+D-D^p,\qquad \widehat A=B_0+D^p
+\]
+は $(N+B)^{\sigma-}=X$ の special 分解である。
+最後の等式には、開区間上の一致だけでなく、$X$ が $T$ 以後一定であることを用いる。
+式\eqref{eq:compensator-variation}より
+\[
+ E\Var(\widehat A)\leq c_B+2c_N\leq2(c_N+c_B)\leq12j
+\]
+となる。ここで初めて正準分解の一意性を適用し、構成した分解の中心化成分を
+$X$ の正準成分に同定する。$j$ の下限を取れば第一の評価を得る。
+零始点性より
+\[
+ \sup_{t\leq T}|M^{\rm can}_t-M^{\rm can}_0|
+ \leq\sup_t|X_t|+\Var_{[0,T]}(A^{\rm can})
+\]
+である。既証の最大値評価 $E\sup_t|X_t|\leq6\mathcal J(X)$ と合わせて、
+$6+12+12=30$ を得る。無限 cost の場合も拡張値のまま扱える。
+\end{proof}
+
+正則な零始点 $X$ と $\tau\leq T$ に対する prelocal witness の
+M 最大値 cost と変動 cost の和を $c$ とする。
+後の $r^1$ 局所化小節で示す witness と strict-prefix infimum の比較より $\mathcal J_{\tau-}(X)\leq16c$ である。
+二次変分 cost の節で示した境界 jump 補正より
+\[
+ \mathcal J(X^\tau)\leq2\mathcal J_{\tau-}(X)+E|\Delta X_\tau|
+ \leq32c+E|\Delta X_\tau|
+\]
+となる。独立に構成した actual integral の利得が $X^\tau$ なら、
+この同じ $T$ 以後一定な利得に補題\ref{lem:canonical-cost}を適用して
+\begin{equation}\label{eq:actual-closed-cost}
+ E\sup_{t\leq T}|M^{\rm actual}_t-M^{\rm actual}_0|
+ +E\Var_{[0,T]}(A^{\rm actual})
+ \leq30\bigl(32c+E|\Delta X_\tau|\bigr)
+\end{equation}
+を得る。actual integral の存在自体は別途供給する。
+この議論はその正準成分に定量評価を渡すものであり、一意性だけで評価が得られるわけではない。

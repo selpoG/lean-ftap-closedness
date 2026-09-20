@@ -1,0 +1,63 @@
+\section{Fatou and weak-star closedness}\label{sec:fatou}
+\subsection{Propagating a terminal lower bound}
+\begin{lemma}\label{lem:terminal-running}
+Let $Y$ already be admissible for a finite constant $b>0$ and have a finite
+terminal limit. Under NFLVR, $Y_\infty\geq-a$ almost surely, with $a>0$,
+implies $Y_t\geq-a$ almost surely for all times on one common full-measure set.
+\end{lemma}
+\begin{proof}
+Suppose $B=\{Y_t<-a\}\in\F_t$ has positive probability for a deterministic $t$.
+On $B$ start trading only after $t$: set $V_u=1_B(Y_u-Y_t)$ for $u>t$ and
+$V_u=0$ for $u\leq t$. Clause \contractref{M5}, switching from the zero strategy at time $t$, gives an integral
+against the original price. Since $Y_t<0$ on $B$, it remains bounded below
+by $-b$. Its terminal claim $1_B(Y_\infty-Y_t)$ is nonnegative and positive
+on $B$. Truncating this claim above by $1$ gives a nonzero element of
+$C\cap L^\infty_+$, contradicting NFLVR. The bound therefore holds at each
+deterministic time; use a countable dense time set and right continuity to
+obtain one common null set.
+\end{proof}
+
+\subsection{Fatou closedness}
+\begin{theorem}\label{thm:fatou}
+$C_0$ is Fatou closed.
+\end{theorem}
+\begin{proof}
+Normalize a common lower bound to $-1$ by positive scaling. Let $f_n\in C_0$,
+$f_n\geq-1$, and $f_n\to f$ almost surely. Choose $f_n\leq G_n\in K_0$.
+Since $G_n\geq-1$, the preceding lemma makes its gain $1$-admissible, so
+$G_n\in K_1$. Forward convex compactness provides averages
+$\widetilde G_n\to g$ almost surely. The same averages of $f_n$ tend to $f$,
+hence $f\leq g$. Choose a maximal closure claim $h\geq g$ and use
+Theorem~\ref{prop:realization} to obtain $h\in K_1\subseteq K_0$.
+The inequality $f\leq h$ gives $f\in K_0-L^0_+=C_0$.
+\end{proof}
+
+\subsection{Bounded slices in \texorpdfstring{$L^1$}{L1}}
+\begin{lemma}
+Let $D$ be an almost-surely saturated, downward-solid convex cone which is
+Fatou closed. For every $R\geq0$, the slice
+$D_R=\{f\in D\cap L^\infty:\|f\|_\infty\leq R\}$ is weak-star closed.
+\end{lemma}
+\begin{proof}
+On a finite measure space use the embedding $L^\infty\hookrightarrow L^1$.
+Any $L^1$-convergent sequence in the image of $D_R$ has an almost-surely
+convergent subsequence. Choose representatives in $[-R,R]$; the limit stays
+in this interval and belongs to $D$ by Fatou closedness. The image is therefore
+norm-closed and convex in $L^1$, and Hahn--Banach separation makes it weakly closed.
+The embedding from weak-star $L^\infty$ to weak $L^1$ is continuous: an $L^1$
+dual test is an $L^\infty$ function, which belongs to $L^1$ on a finite measure
+space, so the composed integral pairing is weak-star continuous. The inverse
+image of the image slice is exactly $D_R$, proving the assertion.
+\end{proof}
+The passage to the next conclusion corresponds to the use of \cite[Theorem 2.1]{DS}. Here we explicitly combine closedness of bounded slices with the Krein--\v Smulian theorem.
+
+\begin{proposition}\label{prop:weakstar}
+$C=C_0\cap L^\infty$ is $\sigma(L^\infty,L^1)$-closed.
+\end{proposition}
+\begin{proof}
+The preceding lemma applies to the solid convex cone $C_0$, so every
+norm-bounded slice of $C$ is weak-star closed. Identify $L^\infty=(L^1)^*$
+on the finite measure space and apply Krein--\v Smulian to obtain closedness
+of $C$ itself. No separability assumption on $L^1$ is required.
+\end{proof}
+This proves both conclusions of Theorem~\ref{thm:main}.

@@ -1,0 +1,32 @@
+\subsection{分解・市場操作の入力への接続}
+\label{sec:auxiliary-transforms}
+\begin{proof}[命題\ref{input:decomposition}の証明]
+元市場の利得 $Y$ は定理\ref{thm:integral-input}のelementary近似によりgood integratorである。
+その性質を $Q$ に移し、同じ利得と包絡 $|q|$ に定理\ref{thm:decomposition-input}を適用する。
+$Y_0=0$ a.s.なので、得た零始点成分は同じ $Y$ のspecial分解となる。
+\end{proof}
+
+\begin{proof}[命題\ref{input:market}の証明]
+\contractref{M1}--\contractref{M3}は\ref{sec:closure-proof}節の利得領域・終端集合の同定である。
+$a=1$ と全ての正の $a$ に関する合併も同じ候補の終端証拠を保つ。
+\contractref{M4}の可測性は、適合な利得の整数時刻での値の極限として終端を表すことによる。
+同じ可算時刻での下界を共通の確率1の集合に集めて極限に渡せば、終端下界を得る。
+
+\contractref{M5}の正則性・零始点性・固有終端は実現モデルのデータであり、
+graph帰属は上の同定が与える。終端をa.e.等しい代表元に置き換えても、同じ利得がその終端へ収束する。
+切替えの係数は、元の係数 $H,K$ を用いて
+$H+1_E1_{(\tau,\infty)}(K-H)$ と書ける。
+$E\in\F_\tau$ と有界停止時刻の条件により予測可能であり、
+系\ref{cor:market-operations}の停止・制限・加法で指定した利得を得る。
+$t\to\infty$ とすると、両利得の固有終端と有限の停止値から指定した終端公式が従う。
+
+\contractref{M6}は定理\ref{thm:integral-input}の閉停止則を利得と両成分に同時に適用したものである。
+局所BVの経路を有限 $T$ で停止すると全時間BVとなる。
+\contractref{M7}では一般graphの線形性を有限和に適用する。
+同じ係数でM/FV成分も加えれば、予測可能性、局所BV性、局所マルチンゲール性、零始点性を保つ。
+従って成分を選び直すことなく、指定した重みの三つの有限和を同時に実現できる。
+\end{proof}
+
+以下の有限構成では、補助分解上に実現した積分を元価格へ戻す。
+これは系\ref{cor:market-operations}による。同系は非有界な実現済み係数も切断で扱い、
+下界と有限時刻後の定数性を保つ。同値測度間で移すのは一般graphであり、special性ではない。

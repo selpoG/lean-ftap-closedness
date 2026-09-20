@@ -1,0 +1,132 @@
+\section{設定と主定理}
+
+確率空間 $(\Omega,\F,\Pp)$ と通常の条件を満たすフィルトレーション
+$(\F_t)_{t\geq0}$ を固定する。$S$ はこのフィルトレーションに関する実数値の有界
+c\`adl\`ag セミマルチンゲールである。有界性とは、一つの決定論的定数 $B$ に対し
+$\sup_{t\geq0}|S_t|\leq B$ が概至る所で成り立つことをいう。
+Leanのsourceは全経路でc\`adl\`agな代表元を記録し、上界だけを概至る所で要求する。
+公開定理の文脈には確率測度と \path{SigmaFiniteFiltration} も明示されるが、
+後者は確率測度の各制限が有限であることから成立する。
+
+Leanで採用するセミマルチンゲール性はgood-integratorの定式化である。
+予測可能な初等戦略 $J$ の積分は有限和として定め、各有限時刻 $T$ における値の
+可測性を要求する。さらに、初等戦略列 $J^n$ が
+\[
+ \forall\varepsilon>0\ \exists N\ \forall n\geq N\ \forall(t,\omega),
+ \qquad |J^n_t(\omega)|\leq\varepsilon
+\]
+を満たせば、各有限時刻 $T$ で $(J^n\mathbin{\cdot}S)_T\to0$ が確率収束で成り立つ。
+一般の予測可能過程 $H$ の積分は、この仮定から第\ref{sec:graph}節で構成する。
+これを $H\mathbin{\cdot}S$ と書き、その初期値を零とする。
+
+\begin{definition}
+$H$ が $a$-admissibleであるとは、$H$ が $S$-可積分であり、
+\[
+ (H\mathbin{\cdot}S)_t\geq-a
+ \quad\text{for every }t\geq0
+\]
+が一つの確率1の集合上で成り立つことをいう。ある有限定数に対して admissibleであり、
+終端極限 $(H\mathbin{\cdot}S)_\infty$ を持つ戦略の終端利得全体を $K_0$、
+1-admissibleな戦略の終端利得全体を $K_1$ とする。さらに
+\[
+ C_0:=K_0-\Lzero_+,
+ \qquad
+ C:=C_0\cap\Linfty
+\]
+と置く。
+\end{definition}
+
+$K_0$ は凸錐、$K_1$ は凸集合であり、$K_1\subseteq K_0$ である。
+$C_0$ は凸錐で、概至る所の順序に関して solidである。NFLVRとは
+\[
+ \overline C^{\,\|\cdot\|_\infty}\cap\Linfty_+=\{0\}
+\]
+をいう。$D\subseteq\Lzero$ が Fatou closedであるとは、$f_n\in D$ が一つの定数で
+下から抑えられ、$f_n\to f$ a.e. ならば $f\in D$ となることをいう。
+
+実装上は、$C_0\subseteq\Lzero$ と、生の関数全体への拡張
+\[
+ \widehat C_0=\{f:\Omega\to\mathbb R:\exists g\in K_0,\ f\leq g\text{ a.s.}\}
+\]
+を区別する。この式の $K_0$ は終端利得の代表元全体を表す。
+Lean が用いるのは $\widehat C_0$ である。
+$f$ が完備化に関して可測なら、終端利得の可測性から $g-f$ も完備化に関して可測である。
+したがって $f\in\widehat C_0$ であることと、ある $g\in K_0$ および完備化に関して可測な
+概非負の $h$ により $f=g-h$ a.e. と表せることは同値である。
+概同値類へ移れば、ちょうど $C_0=K_0-\Lzero_+$ が得られる。
+従って生の関数に対する Fatou 閉性から上記の $\Lzero$ 上の結論が従い、
+$\Linfty$ との共通部分は同じ錐 $C$ と同じ NFLVR 条件を与える。
+
+\begin{theorem}[Delbaen--Schachermayer]
+\label{thm:main}
+$S$ が NFLVR を満たすならば、$C_0$ は Fatou closedであり、
+$C$ は $\sigma(\Linfty,L^1)$-closedである。
+\end{theorem}
+
+本稿の確率積分は第\ref{sec:graph}節の一般積分graphで定める。
+有界係数の積分を局所 $M^2\oplus A^1$ 完備化で構成し、その切断列の
+全elementary testに一様な極限を一般の積分利得とする。
+終端値はこの利得過程自身の $t\to\infty$ の概収束極限である。
+Leanの主定理では共通下界を $-1$ に正規化したFatou閉性を結論する。
+正の定数倍で閉じる錐に対しては、任意の共通下界 $-b$ に対し
+$\max(1,b)$ で割って正規化し、極限を戻せば上記の形を得る。
+
+これは Delbaen--Schachermayer~\cite[Theorem~4.2]{DS} の一変数版である。
+第一の結論の核心は、$\clprob{K_1}$ の a.e. maximal elementを実際の admissible
+確率積分の終端値として実現することである。第二の結論は第一の結論から関数解析的に従う。
+
+\subsection{証明の構成}
+最初に一般積分の定義・演算と、その正則なÉmery極限に関する閉性を構成する。
+この積分閉性の証明は、以下で示す市場の閉性を用いない。
+NFLVRから $K_1$ の確率有界性と凸コンパクト性を得て、最大閉包元 $h$ を固定する。
+貼り合わせにより元価格の積分列の全時間一様極限 $X$ と固有終端 $X_\infty=h$ を得る。
+一つの同値測度 $Q_*$ の下で各選択利得を個別にspecial分解し、同じ凸重みの二成分を扱う。
+マルチンゲール成分には停止後tail評価とHilbert凸化を使い、有限変動成分にはHahn改善と
+$h$ の最大性を使う。両評価が同じ利得列のÉmery Cauchy性を与える。
+これを積分閉性へ渡して $h\in K_1$ を得ると、Fatou閉性と弱スター閉性が従う。
+
+本文の市場の議論は第\ref{sec:fatou}節までで完結する。
+付録への依存境界は、第\ref{sec:graph}節の七つの解析命題（合計20項）と二つのデータ定義である。
+各項はLeanの隔離検査の一つの入力に対応する。本文はこれらの結論だけを使う。
+証明を確認したい入力については、付録の対応する箇所を読む構成とする。
+
+付録の分解構成では、有界なBichteler--Dellacherieの特徴付けと
+双対予測可能射影の存在を、適用条件を明示した標準結果として引用する。
+Leanではこれらも構成されている。積分値域の閉性、同一係数による両成分の実現、
+元市場の成分評価は本稿内で証明する。数学的段階とLean宣言の対応は最後にまとめる。
+
+\subsection{原論文との対応}
+\label{sec:original-proof}
+本稿の主証明は、Delbaen--Schachermayer\cite[Section 4]{DS}の方針に従う。
+最大閉包元の選択、貼り合わせ、同値測度上での共通凸化、Hahn改善による最大性矛盾が
+その中心である。次の表は主証明で用いる内容の対応を示すものであり、
+原論文の各命題を同じ一般性で再掲するものではない。
+
+\begin{center}
+\small
+\begin{tabular}{L{0.24\linewidth}L{0.66\linewidth}}
+\toprule
+原論文 & 本稿での対応 \\
+\midrule
+Lemma A1.1 & 命題\ref{prop:forward}：下に有界な凸集合でのforward凸コンパクト性 \\
+Lemma 4.3 & 命題\ref{prop:maximal}：最大終端利得の存在 \\
+Lemma 4.5 & 命題\ref{prop:all-time-cauchy}：最大性から全時間のCauchy性 \\
+Lemma 4.7 & 命題\ref{prop:indexed-maximal}：M成分の最大関数の族評価 \\
+Lemma 4.8 & 命題\ref{prop:convex-tails}と続く系：停止後の凸尾部評価 \\
+Lemma 4.9 & 命題\ref{prop:test-uniform-tails}：全test一様な尾部評価 \\
+Lemma 4.10 & 命題\ref{prop:martingale-convexification}：M成分の共通凸化 \\
+Lemma 4.11 & 第\ref{sec:fv-cauchy}節：Hahn改善から有限horizonのFV変動Cauchy性 \\
+Lemma A3.1の役割 & 補題\ref{lem:persistent-improvement}：持続する終端改善と最大性の矛盾 \\
+最後のM\'emin定理の適用 & 命題\ref{input:realization}と第\ref{sec:realization}節：元価格の積分への極限実現 \\
+Theorem 2.1の利用 & 命題\ref{prop:weakstar}：Fatou閉性から弱スター閉性へ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+最大元の存在は、原論文の超限帰納法に代えて、凸コンパクト性と目的関数の最大化で示す。
+成分評価では選択利得ごとの分解を許すが、反証用取引の帰還先は同じ元市場に固定する。
+M成分についてはまずCauchy性を得て後段で極限を同定し、FV成分については必要な
+有限horizonの評価を示して、別途保持した無限時刻終端と合わせる。
+命題\ref{input:finite}はLemmas 4.7--4.9で必要な有限尺度の解析評価を供給する。
+原論文が引用する積分値域の閉性は、命題\ref{input:realization}にまとめた終端実現の証明に用いる。
+これらは主証明の役割を保った再構成であり、閉性定理自体の新しい証明方針を主張するものではない。

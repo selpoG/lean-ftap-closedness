@@ -1,0 +1,34 @@
+\subsection{包絡を持つ過程の分解の導出}
+\label{sec:interface-decomposition}
+\begin{proof}[定理\ref{thm:decomposition-input}の証明]
+まず $Y-Y_0$ に定理\ref{thm:regular-gi-decomposition}を適用し、零始点の
+$Y-Y_0=N+D$ を得る。ここで $N$ は局所マルチンゲール、$D$ は適合的な局所FV過程である。
+この定理は、有界sourceの分解、大ジャンプの除去、停止後の貼り合わせから得ており、積分値域の閉性を使わない。
+$|Y-Y_0|\leq2q$ であり、$q\in L^2(Q)\subseteq L^1(Q)$ である。
+
+有限horizonを固定し、$N$ が真のマルチンゲールとなる局所化を先に施す。
+さらに $|N|$ と $\Var(D)$ の水準 $r$ への同時passageで停止する。
+閉停止を $\sigma_r$ とすると、停止直前の上界と
+$\Delta D=\Delta Y-\Delta N$ から
+\[
+ \Var(D^{\sigma_r})\leq2r+2q+|N_{\sigma_r}|
+\]
+となる。右辺は任意抽出と $q\in L^1$ により可積分である。
+付録の\ref{sec:canonical-cost}節の補償定理を、この有限horizon後一定な過程に適用する。
+\[
+ M^{(r)}=N^{\sigma_r}+D^{\sigma_r}-(D^{\sigma_r})^p,
+ \qquad A^{(r)}=(D^{\sigma_r})^p
+\]
+はspecial分解を与える。予測可能FV局所マルチンゲールは零始点なら零なので、
+成分は重なる停止区間で一致する。経路の有界性と局所有限変動性から停止列は各horizonを尽くす。
+局所化を除き、整数horizonで貼り合わせると所要の分解と一意性を得る。
+補題\ref{lem:explicit-jump-envelope}を、この存在が得られた分解と包絡 $2q$ に適用する。
+固定した $T$ で $M$ のjumpは一つのL²確率変数 $\xi_T$ で抑えられる。
+$|M|$ の水準 $n$ へのpassageと $T$ で停止すると、閉停止した最大値は $n+\xi_T$ 以下である。
+従って支配された局所マルチンゲールは真のL²マルチンゲールである。
+$T=n$ として水準も増加させれば、経路の局所有界性から停止列は全時間を尽くす。
+このjump補題は、既に与えられたspecial分解への条件付き期待値とDoob評価から証明され、
+本定理による分解の存在を逆に仮定するものではない。
+最後に、good-integrator性は有限時刻の確率収束の条件であるため、同値測度間で保存される。
+ここで移送するのはこの条件であり、得たspecial成分ではない。
+\end{proof}

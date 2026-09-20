@@ -1,0 +1,81 @@
+\section{Maximality, uniform path limits, and a common envelope}\label{sec:selection}
+Fix an almost-sure maximal $h\in\clprob{K_1}$. Choose $1$-admissible integral
+gains $Y_n$ with their own terminal values satisfying $Y_n(\infty)\to h$
+almost surely. We first obtain uniform convergence of the paths over all time;
+test-uniform Cauchy estimates are proved separately in the next section.
+
+\subsection{Excluding persistent terminal improvements}
+The next lemma serves the role of \cite[Lemma A3.1]{DS} in the original proof of Lemma 4.11: persistent improvement contradicts maximality, here allowing a vanishing lower error.
+
+\begin{lemma}[Vanishing lower error and maximality]\label{lem:persistent-improvement}
+Suppose $f_n$ are measurable, $f_n\to h$ almost surely, $g_n\in K_1$, and
+$(f_n-g_n)^+\to0$ almost surely. There cannot exist fixed $\eta,p>0$ and
+measurable events $E_n$ such that $\Pp(E_n)\geq p$ and $g_n-f_n\geq\eta$
+on $E_n$ for every $n$.
+\end{lemma}
+\begin{proof}
+Put $e_n=(f_n-g_n)^+$ and $b_n=f_n-e_n=\min(f_n,g_n)$.
+Then $b_n\leq g_n$ and $b_n\to h$ almost surely. Apply forward convex
+compactness to the uncorrected claims $g_n\in K_1$. For the resulting weights
+$W_n$, we have $W_ng\to g\in\clprob{K_1}$ and $W_nb\to h$ almost surely.
+Thus $g\geq h$, and maximality gives $g=h$ almost surely.
+The nonnegative gaps $d_n=g_n-b_n$ exceed $\eta$ on $E_n$.
+Their truncations $c_n=\min(d_n,\eta)$ satisfy $\E c_n\geq\eta p$ and
+\[
+ 0\leq W_nc\leq\min(W_nd,\eta),\qquad \E(W_nc)\geq\eta p.
+\]
+But $W_nd=W_ng-W_nb\to0$ almost surely, so bounded convergence forces
+$\E(W_nc)\to0$, a contradiction. No membership assumption on $f_n$ is used.
+\end{proof}
+
+\subsection{Chronological pasting}
+The next proposition corresponds to \cite[Lemma 4.5]{DS}: maximality and time-ordered pasting give Cauchy estimates for the all-time supremum.
+
+\begin{proposition}\label{prop:all-time-cauchy}
+After extraction, the approximating gains satisfy
+\[
+ \sup_{t\geq0}|Y_n(t)-Y_k(t)|\longrightarrow0
+ \quad\text{in probability}\quad(n,k\longrightarrow\infty).
+\]
+\end{proposition}
+\begin{proof}
+Failure supplies pairs in every tail whose gap exceeds a fixed positive
+amount with probability bounded below. Right continuity reduces the all-time
+supremum to a countable time set; approximate its event by a finite subset,
+order it chronologically, and choose one of the two orientations with
+positive probability bounded below. Hold the higher candidate until the first
+grid time detecting the positive gap, then follow the other candidate's
+increments. The decision is measurable at the switching time, so \contractref{M5}
+supplies this strategy and its specified terminal value. The positive gap preserves the lower bound $-1$.
+The terminal gain equals the other candidate's terminal value plus the detected
+gap when switching occurs. Both original terminal sequences converge to $h$;
+therefore the pasted claims have vanishing lower error and persistent positive
+improvement, contradicting the preceding lemma. The countable enumeration
+only detects the supremum; trades always switch on the chronological grid.
+\end{proof}
+\begin{proposition}
+A further subsequence converges almost surely, uniformly over all time, to a
+zero-start strongly adapted c\`adl\`ag process $X$ with $X\geq-1$ and
+$X_t\to h$ almost surely as $t\to\infty$.
+\end{proposition}
+\begin{proof}
+Apply \contractref{P1} to obtain a subsequence with a strongly adapted c\`adl\`ag uniform limit.
+The initial value and lower bound pass to the limit.
+Finally,
+\[
+ |X_t-h|\leq\sup_u|X_u-Y_n(u)|+
+ |Y_n(t)-Y_n(\infty)|+|Y_n(\infty)-h|.
+\]
+First choose large $n$, then large $t$, to identify the terminal limit of
+this same $X$ with $h$.
+\end{proof}
+
+\subsection{One measure and separate gain decompositions}
+Use \contractref{P2} for a further subsequence and a common finite nonnegative measurable envelope $q$.
+Then \contractref{P3} supplies one equivalent measure $Q_*$ with $q\in L^2(Q_*)$.
+Apply \contractref{D1} to each $Y_i$ to obtain the zero-start special decomposition
+$Y_i=M_i+A_i$ of the same gain, with predictable locally finite-variation $A_i$.
+Each gain's $L^2$ envelope feeds the decomposition construction separately;
+the auxiliary source may depend on $i$. The next section estimates arbitrary
+indexed classes, including the convex and normalized tail families themselves.
+All selections retain the same measure, gains, path limit $X$, and terminal $h$.

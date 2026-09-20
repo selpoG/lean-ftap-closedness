@@ -1,0 +1,228 @@
+\subsection{Quantitative auxiliary-gain estimates}
+\label{sec:ds-estimates}
+We give the numerical arguments used in Section~\ref{sec:components}.
+All components below are canonical, zero-start, and considered under one
+probability $Q$. The price to which the trading strategies return remains
+$S$. The constructions use only bounded predictable restriction, addition,
+positive scaling, and closed stopping. Corollary~\ref{cor:market-operations}
+realizes every constructed admissible gain in the original market.
+The argument follows \cite[Lemmas 4.7--4.10]{DS}; its formulation in terms of
+realized gains allows the auxiliary decomposition to vary with the index.
+
+\begin{lemma}[An explicit jump envelope]\label{lem:explicit-jump-envelope}
+Let $Y=M+A$ be a regular special process with predictable FV part and
+$|Y_t|\leq q$ for all $t$, where $q\geq0$ belongs to $L^2(Q)$.
+For each finite $T$ there is a nonnegative $\xi_T\in L^2(Q)$ with
+\[
+ |\Delta M_t|\leq\xi_T\quad(0<t\leq T),\qquad
+ \|\xi_T\|_2\leq6\|q\|_2.
+\]
+\end{lemma}
+\begin{proof}
+Let $Z_t=E_Q[q\mid\mathcal F_t]$ be its c\`adl\`ag martingale version and put
+$Z_T^*=\sup_{t\leq T}|Z_t|$.
+At a predictable stopping time $\sigma\leq T$, conditional expectation of
+the jump in the canonical decomposition gives
+\[
+ \Delta A_\sigma=E_Q[\Delta Y_\sigma\mid\mathcal F_{\sigma-}],\qquad
+ |\Delta A_\sigma|\leq2Z_{\sigma-}.
+\]
+To use the identity for local components, localize first and announce
+$\sigma$ from below; conditional expectations pass to the jump using the
+integrable envelope of $Y$. Predictable jump enumeration covers all nonzero
+jumps of $A$ by countably many such times. On their common full-measure set,
+$|\Delta A_t|\leq2Z_T^*$ for every $0<t\leq T$.
+Thus one can take
+\[
+ \xi_T=2q+2Z_T^*,\qquad
+ \|\xi_T\|_2\leq2\|q\|_2+4\|q\|_2=6\|q\|_2,
+\]
+by Doob's $L^2$ inequality. This is the jump estimate of
+\cite[Corollary 2.4]{DS}, with the envelope and horizon explicitly specified.
+\end{proof}
+
+\begin{lemma}[The finite-horizon vanishing-risk construction]
+\label{lem:quantitative-47}
+Let $Y=M+A$ be a realized original-market gain with $Y\geq-1$,
+$|Y|\leq q$, and $\|q\|_2\leq B$.
+Suppose, for $0<\alpha\leq1/4$, integer $n>0$, and finite $T>0$,
+\[
+ Q\left(\sup_{t\leq T}|M_t|>n^3\right)>8\alpha.
+\]
+Set $k=\lfloor\alpha n/4\rfloor$, and assume $k>0$,
+$6B\leq n^2$, $(B/n)^2\leq\alpha$, and
+$m_n=\alpha^2-(4B/(\alpha n^2))^2\geq0$.
+There is an original-market gain $V_n$, constant after $T$, such that
+\[
+ \begin{aligned}
+ V_n(t)&\geq-n^{-1/4}-\frac{2}{nk}\quad(\forall t),\\
+ Q\left(V_n(T)\geq\frac{\alpha m_n}{4}-n^{-1/4}\right)
+ &\geq\frac{m_n}{2}-\frac{16\sqrt n}{k}.
+ \end{aligned}
+\]
+\end{lemma}
+\begin{proof}
+Take the first joint passage and the rescaled gain
+\[
+ \theta=T\wedge\inf\{t:|M_t|>n^3\text{ or }|Y_t|>n\},\qquad
+ L=n^{-2}Y^\theta=N+B^L.
+\]
+The gain bound before passage and $Y\geq-1$ imply, including the jump at
+$\theta$, that $\Delta L\geq-(n+1)/n^2\geq-2/n$.
+Also $L^*\leq q/n^2$. The preceding lemma gives a jump envelope for $N$
+of $L^2$ norm at most $6B/n^2\leq1$.
+Before passage $|N|\leq n$, so $N$ has an integrable all-time envelope
+bounded by $n$ plus this jump envelope. It is consequently a true
+$L^2$ martingale. Chebyshev's inequality removes the gain-cap event, and
+right continuity at the first passage gives
+\[
+ Q(N_T^*>n/2)>8\alpha-(B/n)^2\geq7\alpha.
+\]
+The radius $n/2$ avoids any issue about strict inequality at the passage.
+
+Starting at $\kappa_0=0$, successively stop at the first displacement of $N$
+strictly exceeding $1$ after $\kappa_{j-1}$, or at $T$ if there is none.
+Let $F_j=N_{\kappa_j}-N_{\kappa_{j-1}}$ for $1\leq j\leq k$.
+The jump envelope yields $\|F_j\|_2\leq2$, and optional sampling gives
+$E_QF_j=0$. If the first $k$ excursions have not been completed, the running
+maximum is bounded by the sum of their stopped excursion maxima.
+Doob bounds each such maximum in $L^2$ by $4$. Hence
+\[
+ Q(N_T^*>n/2,\ \text{fewer than }k\text{ completed excursions})
+ \leq\left(\frac{4k}{n/2}\right)^2\leq\alpha.
+\]
+In particular $Q(|F_j|\geq1)>6\alpha$ for every $j\leq k$.
+Therefore $E F_j^-=E|F_j|/2>3\alpha$.
+For $E_j=\{F_j^->\alpha\}$, we have
+$E[F_j^-1_{E_j}]>2\alpha$, whereas Cauchy--Schwarz bounds this expectation
+by $2\sqrt{Q(E_j)}$. Thus $Q(E_j)>\alpha^2$.
+The corresponding gain increment has $L^2$ norm at most $2B/n^2$.
+Chebyshev at level $\alpha/2$ and $B^L=L-N$ give
+\[
+ Q(B^L_{\kappa_j}-B^L_{\kappa_{j-1}}\geq\alpha/2)\geq m_n.
+\]
+
+Choose one predictable positive Hahn set $P$ for $dB^L$ and form the
+actual gain
+\[
+ R=(1_P1_{(0,\kappa_k]})\cdot L=N^R+C.
+\]
+The process $C$ is increasing and its increment over every excursion
+is at least the corresponding increment of $B^L$.
+For the count $Z$ of the $k$ events just obtained, $0\leq Z\leq k$ and
+$EZ\geq km_n$. From
+$EZ\leq km_n/2+kQ(Z\geq km_n/2)$ we obtain
+\[
+ Q(C_T\geq k\alpha m_n/4)\geq m_n/2.
+\]
+No independence of excursion events is used.
+Predictable restriction contracts the $L^2$ norm of each martingale
+excursion. Orthogonality of disjoint stopped increments consequently gives
+$E|N^R_T|^2\leq4k$, so
+\[
+ Q\left(\sup_{t\leq T}|N^R_t|>d\right)\leq16k/d^2.
+\]
+Here all martingales are true $L^2$ martingales at the fixed horizon;
+optional sampling and the isometry justify the contraction and orthogonality.
+
+Finally set
+\[
+ d=kn^{-1/4},\qquad
+ \lambda=T\wedge\inf\{t:R_t<-d\},\qquad V_n=k^{-1}R^\lambda.
+\]
+Restriction to a positive Hahn set selects either a gain jump or zero,
+so $\Delta R\geq-2/n$. The closed stop therefore satisfies
+$R^\lambda\geq-d-2/n$, including its overshoot.
+Outside the martingale maximal event above, $R=N^R+C\geq-d$ up to $T$,
+and $R_T\geq C_T-d$. Intersect with the event for $C_T$ and divide by $k$.
+Since $16k/d^2=16\sqrt n/k$, this proves both bounds.
+All operations defining $L,R,V_n$ have the original-market realizations
+specified at the start of this subsection; the final stop makes the
+terminal value exactly $V_n(T)$.
+\end{proof}
+The NFLVR contradiction using this finite-scale construction is proved in
+Proposition~\ref{prop:indexed-maximal}.
+
+\begin{lemma}[Convex tails: admissibility and their explicit envelope]
+\label{lem:quantitative-tails}
+Let $Y_i=M_i+A_i\geq-1$ be a realized family, each gain constant after a
+finite time, with common envelope $q\geq0$ in $L^2(Q)$. Assume that
+$\{M_i^*\}_i$ is bounded in probability. Put $\tau_i(c)=\inf\{t:|M_i(t)|>c\}$ and
+$E_i(c)=\{\tau_i(c)<\infty\}$.
+For any finite convex weights $w$, the tail gain and its M component are
+\[
+ Z^{w,c}=\sum_iw_i(Y_i-Y_i^{\tau_i(c)}),\qquad
+ L^{w,c}=\sum_iw_i(M_i-M_i^{\tau_i(c)}).
+\]
+Their common gain envelope is
+\[
+ G^{w,c}=2q\sum_iw_i1_{E_i(c)},\qquad
+ \sup_w\|G^{w,c}\|_2\leq2\sup_i\|q1_{E_i(c)}\|_2\longrightarrow0.
+\]
+On every finite horizon the family has a jump envelope $\xi_T^{w,c}$ satisfying
+\[
+ \sup_w\|\xi_T^{w,c}\|_2\leq6\sup_w\|G^{w,c}\|_2\to0.
+\]
+The cutoff for this bound is independent of $T$.
+Moreover, for each $\varepsilon>0$ there is $N\geq0$ such that, for every
+$0<\delta\leq\varepsilon/4$, one can choose $c_0$ before the weights.
+If $c\geq c_0$ and the finite passage of $L^{w,c}$ at level $\varepsilon$
+has probability greater than $\varepsilon$, there are an original-market
+gain $V=M^V+A^V$ and an envelope $g$ satisfying
+\[
+ V\geq-1,\qquad |V|\leq g,\qquad \|g\|_2\leq1,\qquad
+ Q\!\left((M^V)^*>\frac{\varepsilon}{2(N+1)\delta}\right)>\frac\varepsilon2.
+\]
+This constructs one finite convex tail at one scale and does not assume NFLVR.
+
+\end{lemma}
+\begin{proof}
+The assumed boundedness in probability of the maxima implies
+$\sup_iQ(E_i(c))\to0$ (use a slightly smaller passage level if necessary).
+Absolute continuity of the integral of $q^2$ gives
+$\sup_i\|q1_{E_i(c)}\|_2\to0$.
+Each tail is zero before and at its passage, and thereafter its magnitude is
+at most $2q$. The envelope and its norm bound follow by the triangle inequality.
+
+We prove the finite-scale construction. Fix $\varepsilon>0$.
+Choose $N$ with $Q(q\geq N)<\varepsilon/4$, and stop all gains at the first
+strict passage of their absolute values above $N$; call this time $\zeta$.
+Given $0<\delta\leq\varepsilon/4$, choose the passage cutoff so that
+$Q(E_i(c))\leq\delta^2$ for every $i$ and $\|G^{w,c}\|_2\leq\delta$
+for all weights. These choices precede the offending weights.
+The active mass
+\[
+ F_t=\sum_iw_i1_{\{\tau_i(c)<t\}},\qquad
+ \gamma=\inf\{t:F_t>\delta\}
+\]
+is increasing, adapted and left-continuous. Thus $F_\gamma\leq\delta$,
+whereas $EF_\infty\leq\delta^2$ implies $Q(\gamma<\infty)\leq\delta$.
+For $t\leq\zeta\wedge\gamma$, every active entry occurred strictly before
+$\zeta$, so $Y_i(\tau_i(c))\leq N$, while $Y_i(t)\geq-1$, including at the
+closed endpoint. Hence
+\[
+ Z^{w,c}_t\geq-(N+1)F_t\geq-(N+1)\delta.
+\]
+Also stop at the passage of $L^{w,c}$ at level $\varepsilon$.
+Suppose its finite-passage event has probability greater than $\varepsilon$.
+Removing the events where the gain cap or active-mass stop occurs first leaves
+probability strictly greater than
+$\varepsilon-\varepsilon/4-\delta\geq\varepsilon/2$.
+There the stopped martingale has absolute value at least $\varepsilon$,
+and therefore strictly greater than $\varepsilon/2$.
+Each gain in the finite sum is constant after a finite time, so the stopped
+gain also has a constant continuation after a finite time.
+Dividing by $(N+1)\delta$ gives an original-market $1$-admissible gain.
+Its envelope norm is at most $1/(N+1)\leq1$, and the displayed amplified
+probability bound follows.
+Finally apply Lemma~\ref{lem:explicit-jump-envelope} with $q=G^{w,c}$.
+Explicitly, one can use
+\[
+ \xi_T^{w,c}=2G^{w,c}
+       +2\sup_{t\leq T}|E_Q[G^{w,c}\mid\mathcal F_t]|.
+\]
+The norm estimate follows from Doob, independently of the horizon.
+\end{proof}
+
+For \contractref{F1}, take the terminal value $f=V_n(T)$ in Lemma~\ref{lem:quantitative-47}
+and use $K_0\subseteq K_0-L^0_+$. Clause \contractref{F2} is precisely the conclusion of Lemma~\ref{lem:quantitative-tails}.
