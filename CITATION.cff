@@ -2,11 +2,20 @@ cff-version: 1.2.0
 message: "Please cite this repository when using the formalization."
 type: software
 title: "The Delbaen–Schachermayer Closedness Theorem in Lean"
-version: 0.1.0
+version: 0.1.1
 authors:
-  - name: selpo
+  - given-names: "Mocho"
+    family-names: "Go"
 repository-code: "https://github.com/selpoG/lean-ftap-closedness"
 license: Apache-2.0
 abstract: >-
   A Lean 4 formalization of Fatou and weak-star closedness under NFLVR
   for the general integral market of a bounded real-valued semimartingale.
+keywords:
+  - Lean
+  - mathlib
+  - mathematical finance
+  - semimartingales
+  - NFLVR
+  - Fatou closedness
+  - weak-star closedness

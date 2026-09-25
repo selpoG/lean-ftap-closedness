@@ -139,5 +139,9 @@ the Lean verification and this documentation build.
 
 ## License and citation
 
+Author: **Mocho Go** ([selpoG](https://github.com/selpoG)).
+
+Please cite the software using [CITATION.cff](CITATION.cff), and identify the
+release or commit you used so that the cited formalization is reproducible.
+
 Released under the [Apache License 2.0](LICENSE).
-[CITATION.cff](CITATION.cff) provides citation metadata for this formalization.

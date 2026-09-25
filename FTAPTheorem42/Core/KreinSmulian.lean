@@ -1,7 +1,7 @@
 /-
-Copyright (c) 2026 selpo. All rights reserved.
+Copyright (c) 2026 Mocho Go. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
-Authors: selpo
+Authors: Mocho Go
 -/
 import Mathlib.Analysis.LocallyConvex.Polar
 import Mathlib.Analysis.Normed.Module.WeakDual

@@ -1,7 +1,7 @@
 /-
-Copyright (c) 2026 selpo. All rights reserved.
+Copyright (c) 2026 Mocho Go. All rights reserved.
 Released under Apache 2.0 license as described in the file LICENSE.
-Authors: selpo
+Authors: Mocho Go
 -/
 import FTAPTheorem42.Stochastic.Integral.Local.Construction.MartingaleGluing
 import FTAPTheorem42.Stochastic.Integral.Local.Construction.FiniteVariationGluing
