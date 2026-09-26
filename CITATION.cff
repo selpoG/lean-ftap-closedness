@@ -6,6 +6,7 @@ version: 0.1.1
 authors:
   - given-names: "Mocho"
     family-names: "Go"
+    orcid: "https://orcid.org/0009-0000-8123-9408"
 repository-code: "https://github.com/selpoG/lean-ftap-closedness"
 license: Apache-2.0
 abstract: >-
