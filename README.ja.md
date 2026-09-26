@@ -2,6 +2,8 @@
 
 [English](README.md)
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.22974586.svg)](https://doi.org/10.5281/zenodo.22974586)
+
 Delbaen–Schachermayer の *A General Version of the Fundamental Theorem of Asset Pricing* の
 Theorem 4.2 を、有界実数値セミマルチンゲールについて Lean 4 で証明する。
 FTAP は Fundamental Theorem of Asset Pricing（資産価格付けの基本定理）の略であり、
@@ -130,5 +132,9 @@ CI でも Lean の検証と、この文書ビルドを実行する。
 
 ソフトウェアとしての引用情報は [CITATION.cff](CITATION.cff) に記載しています。
 引用した形式化を再現できるよう、使用したリリースまたは commit を明記してください。
+
+保存済みの **v0.1.1** は
+[10.5281/zenodo.22974587](https://doi.org/10.5281/zenodo.22974587) から参照できます。
+冒頭の DOI バッジは、このソフトウェアの全バージョンをまとめたレコードを指します。
 
 [Apache License 2.0](LICENSE) の下で公開しています。
