@@ -3,6 +3,9 @@ message: "Please cite this repository when using the formalization."
 type: software
 title: "The Delbaen–Schachermayer Closedness Theorem in Lean"
 version: 0.1.1
+date-released: 2026-09-26
+# This DOI identifies v0.1.1; replace it when citing a different release.
+doi: "10.5281/zenodo.22974587"
 authors:
   - given-names: "Mocho"
     family-names: "Go"
