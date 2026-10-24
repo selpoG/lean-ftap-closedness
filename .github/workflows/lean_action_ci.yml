@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
 
       - name: Check module layout and documentation references
         run: python3 scripts/check_structure.py
@@ -35,7 +35,7 @@ jobs:
       # The restore prefix reuses the preceding commit as an incremental-build
       # base when the toolchain and dependency manifest have not changed.
       - name: Cache project Lean build
-        uses: actions/cache@v5
+        uses: actions/cache@caa296126883cff596d87d8935842f9db880ef25 # v5
         with:
           path: .lake/build
           key: >-
@@ -43,7 +43,7 @@ jobs:
           restore-keys: |
             project-build-${{ runner.os }}-${{ runner.arch }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-
 
-      - uses: leanprover/lean-action@v1
+      - uses: leanprover/lean-action@24581d74d674803a25a81b10b059c5c0cdd344c6 # v1
         with:
           # The Mathlib cache is still downloaded by lean-action.  Caching the
           # whole .lake directory duplicates those large artifacts and can
@@ -65,7 +65,7 @@ jobs:
   documentation:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@fbc6f3992d24b796d5a048ff273f7fcc4a7b6c09 # v5
       - name: Install Japanese and English TeX tools
         run: |
           sudo apt-get update
